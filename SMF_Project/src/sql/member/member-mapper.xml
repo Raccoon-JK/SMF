@@ -17,10 +17,17 @@
 	</entry>
 	
 	
-	<entry key="serachEmail">
+	<entry key="searchEmail">
 		SELECT USER_ID
 		FROM MEMBER 
 		WHERE PHONE = ?
+	</entry>
+	
+	<entry key="searchPwd">
+		SELECT USER_PWD
+		FROM MEMBER
+		WHERE PHONE = ?
+			AND USER_ID = ?	
 	</entry>
 	
 </properties>

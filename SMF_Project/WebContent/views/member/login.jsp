@@ -29,7 +29,7 @@
                         <div class="has_button input_box" id="email_input_box">
                             <h3 class="input_title">이메일 주소</h3>
                             <div class="input_item">
-                                <input type="text" placeholder="예) kream@kream.co.kr" class="input_txt" id="email_input" name="email" >
+                                <input type="text" placeholder="예) SaveMeFashion@SMF.co.kr" class="input_txt" id="email_input" name="email" >
                             </div>
                             <p class="input_error" id="email_input_error"></p>
                         </div>
@@ -49,7 +49,7 @@
                     <ul class="look_box">
                         <li class="look_list"><a href="<%=request.getContextPath() %>/enroll.me" class="look_link"> 이메일 가입 </a></li>
                         <li class="look_list"><a href="<%=request.getContextPath() %>/searchemail.page" class="look_link"> 이메일 찾기 </a></li>
-                        <li class="look_list"><a href="/login/find_password" class="look_link"> 비밀번호 찾기 </a></li>
+                        <li class="look_list"><a href="<%=request.getContextPath() %>/searchpwd.page" class="look_link"> 비밀번호 찾기 </a></li>
                     </ul>
                 </div>
              </div>
