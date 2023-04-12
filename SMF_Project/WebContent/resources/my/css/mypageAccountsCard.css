@@ -1,0 +1,9 @@
+#mypage_content{
+    /* border: 1px solid black; */
+    margin: 50px 50px 0px 50px;
+}
+
+#accounts_card{
+    display: flex;
+    justify-content: space-around;
+}

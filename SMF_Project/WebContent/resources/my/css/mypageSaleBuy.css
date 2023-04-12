@@ -1,0 +1,54 @@
+/* 판매, 구매내역 메뉴탭 */
+.salebuy_menuTab{
+    display: flex;
+    justify-content: center;
+    margin: 55px 25px 20px 25px;
+}
+
+.buysale_menutab_common{
+    font-size: 18px;
+    width: 30%;
+    height: 45px;
+    text-align: center;
+}
+.buysale_menuSelect{
+    border-bottom: 3px solid black;
+    font-weight: 700;
+    margin-left: 30px;
+}
+.buysale_menuSelect>a{
+    color: #222;
+}
+.buysale_menuUnselect{
+    border-bottom: 2px solid #ebebeb;
+    margin-right: 30px;
+    font-weight: 500;
+}
+.buysale_menuUnselect>a{
+    color: rgba(34,34,34,.5);
+}
+
+/* 판매 및 구매 기간 조회 */
+.dateSelect_box{
+    background-color: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 20px 20px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+/* 판매 및 구매 상품 정보 */
+.salebuy_info_box{
+    border: 1px solid black;
+    border-radius: 14px;
+}
+.salebuy_info_title{
+    border-bottom: 1px solid black;
+}
+.salebuy_info_product_flex{
+    display: flex;
+    justify-content: space-between;
+}
+.salebuy_info_product_left{
+    display: flex;
+}

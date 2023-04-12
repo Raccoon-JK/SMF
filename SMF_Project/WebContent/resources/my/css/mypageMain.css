@@ -1,0 +1,150 @@
+#mypage_content{
+    margin-top: 25px;
+}
+#myprofile{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+	border: 1px solid black;
+    padding: 23px 0 23px 23px;
+	margin: 0 10px 10px 10px;
+    border-radius: 15px;
+}
+
+
+/* 내 프로필 왼쪽 */
+#myprofile_left{
+    display: flex;
+	
+}
+
+#profile_img>img{
+    border-radius: 50%;
+    margin-left: 15px; 
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+}
+
+#myname{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#my_name{
+    font-weight: bold;
+}
+
+#my_id{
+    font-size: 12px;
+}
+
+/* 내 프로필 오른쪽 */
+#myprofile_right{
+    display: flex;
+    text-align: center;
+    margin-right: 15px;
+}
+#myprofile_right>div{
+    margin-right: 5px;
+}
+
+#myprofile_right p:nth-child(1){
+    font-weight: bold;
+}
+#myprofile_right p:nth-child(2){
+    font-size: 12px;
+}
+.mypage_box{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+}
+
+/* 배송 조회 */
+#delivery_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+#shoppingcart{
+    display: flex;
+}
+
+.delivery_tracking_summary{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 15px;
+}
+.delivery_tracking_summary>p{
+    display: inline-block;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+
+#delivery_content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.delivery_product>img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+}
+
+.delivery_product{
+    display: flex;
+}
+
+.delivery_product_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.others{
+    align-self: flex-end;
+}
+
+/* 관심 목록 */
+#interest_title{
+    display: flex;
+    justify-content: space-between;
+}
+#interest{
+    display: flex;
+}
+.interest_product_wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.interest_products{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    margin-top: 10px;
+    /* margin-right: 25px; */
+    padding: 15px;
+}
+
+.interest_products>p:nth-child(3){
+    text-overflow: ellipsis;
+    
+}
+
+.interest_img{
+    text-align: center;
+}
+.interest_img>img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}

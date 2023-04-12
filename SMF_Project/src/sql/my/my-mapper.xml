@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 내 프로필 정보 -->
+	<entry key="myInfoUpdateLoginUser">
+		SELECT * FROM MEMBER WHERE USER_ID = ?
+	</entry>
+	<entry key="myinfoDelete">
+		UPDATE MEMBER SET STATUS = 'X' WHERE USER_ID= ?
+	</entry>
+	<!-- 주소록 -->
+	<entry key="addressDefult">
+		SELECT * FROM ADDRESS WHERE default_address = 'Y' AND USER_ID = ?
+	</entry>
+	<entry key="addressList">
+		SELECT * FROM ADDRESS WHERE default_address = 'N' AND USER_ID = ?
+	</entry>
+	<entry key="insertAddress">
+		INSERT INTO ADDRESS(ADDRESS_NO, USER_ID, RECEIVER, PHONE, POSTCODE, ADDRESS)
+    		VALUES(seq_address_no.nextval, ?, ?, ?, ?, ?)
+	</entry>
+	<entry key="addressDefaultUpdateY">
+		UPDATE ADDRESS SET default_address = 'Y' WHERE ADDRESS_NO = ? AND user_id = ?
+	</entry>
+	<entry key="addressDefaultUpdateN">
+		UPDATE ADDRESS SET default_address = 'N' WHERE default_address = 'Y' AND user_id = ?
+	</entry>
+	<entry key="addressDelete">
+		DELETE FROM ADDRESS WHERE ADDRESS_NO = ? AND USER_ID = ?
+	</entry>
+	<entry key="addressUpdate">
+		UPDATE ADDRESS SET RECEIVER = ?,
+                   		   PHONE = ?,
+                   		   POSTCODE = ?,
+                   		   ADDRESS = ?
+       		   		   WHERE ADDRESS_NO = ? AND USER_ID = ?
+	</entry>
+	
+	<!-- 계좌 및 카드 관리 -->
+	<entry key="accountSelect">
+		SELECT * FROM ACCOUNT WHERE USER_ID = ?
+	</entry>
+	<entry key="cardSelect">
+		SELECT * FROM CARD WHERE USER_ID = ?
+	</entry>
+	<entry key="accountInsert">
+		INSERT INTO ACCOUNT VALUES(?,?,?,?)
+	</entry>
+	<entry key="accountUpdate">
+		UPDATE ACCOUNT SET BANK_NAME = ?,
+						   ACCOUNT_NO = ?,
+						   ACCOUNT_HOLDER = ?
+			   WHERE USER_ID = ?
+	</entry>
+		<entry key="cardInsert">
+		INSERT INTO CARD VALUES(?,?,?,?,?)
+	</entry>
+	<entry key="cardUpdate">
+		UPDATE CARD SET CARD_NO = ?,
+						   CARD_PWD = ?,
+						   CARD_VALIDIY = ?,
+						   CVC = ?
+			   WHERE USER_ID = ?
+	</entry>
+	
+	
+	<!-- 관심 상품 -->
+	<entry key="wishlistList">
+		SELECT PRODUCT_NAME, BRAND_NAME, IMG_NAME, IMG_PATH
+		FROM WISHLIST W LEFT JOIN PRODUCT P USING(PRODUCT_NAME)
+		LEFT JOIN PRODUCT_IMG PI USING(PRODUCT_NAME)
+		WHERE USER_ID = ? AND PI.IMG_NAME LIKE '%_1.png%'
+	</entry>
+	
+</properties>

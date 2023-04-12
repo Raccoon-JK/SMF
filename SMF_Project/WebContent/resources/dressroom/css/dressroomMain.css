@@ -1,0 +1,87 @@
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+#main {
+	display: flex;
+	position: relative;
+	height: 1500px;
+	width: 100%;
+	max-width: 1900px;
+	min-width: 1600px;
+	background-image: url(/SMF_Project/resources/dressroom/image/옷장틀1.png);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 61%;
+	height: 100%;
+}
+
+.leftbox {
+	width: 44%;
+	height: 50%;
+	position: absolute;
+	background-image: url(/SMF_Project/resources/dressroom/image/거울틀.png);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	top: 27.5%;
+	left: 25%;
+}
+
+#itemListbox {
+	display: flex;
+	align-items: flex-start;
+	width: 39%;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.container2, .container3, .container4, .container5, .container6 {
+	display: flex;
+}
+
+.rightbox {
+	width: 100px;
+	height: 100px;
+	margin: 5px;
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+}
+
+.image-container {
+	position: absolute;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+}
+
+#selectbox {
+	position: relative;
+	height: 700px;
+	width: 100%;
+	max-width: 1900px;
+	min-width: 1600px;
+}
+
+#selectboxList {
+	position: absolute;
+	height: 100%;
+	width: 61%;
+}

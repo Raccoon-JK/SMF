@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+i {
+	position: fixed;
+	height: 30px;
+	background: linear-gradient(transparent, #fff);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	animation: raining 5s linear Infinite;
+	z-index: 1001;
+}
+
+@keyframes raining { 
+	0% 
+{
+	transform: translateY(-130px);
+}
+	100%
+{
+	transform: translateY(-30px);}
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	background: linear-gradient(75deg, #ecebed, #9198e5);
+	border-bottom: solid 1px rgb(231, 231, 231);
+}
+
+.header_box {
+	height: 130px;
+	max-width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+}

@@ -1,0 +1,69 @@
+#mypage_content{
+    /* border: 1px solid black; */
+    margin: 0px 50px 0px 50px;
+}
+
+/* 프로필 사진 */
+#mypageInfo_img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    
+}
+#mypageInfo_img>img{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: 15px;
+    /* border: 1px solid black; */
+}
+#mypageInfo_img>label{
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#mypageInfo_content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.info_inputBox{
+    border: 0px;
+    border-bottom: 1px solid black;
+}
+.info_inputBox:focus-visible{
+    outline: none;
+}
+
+.mypageInfo_class{
+    position: relative;
+    margin: 10px 0px 15px 0px;
+}
+
+.mypageInfo_class>button{
+    position: absolute;
+    right: 0px;
+    bottom: 8px;
+}
+#agree_radio_box{
+    position: absolute;
+    right: 0px;
+    bottom: -7px;
+}
+#memberDel_div{
+    margin-top: 50px;
+    text-align: right;
+}
+#memberDel>a{
+    font-size: 11px;
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+}
+#updateMyImg{
+    display: none;
+}

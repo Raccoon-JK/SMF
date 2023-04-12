@@ -1,0 +1,91 @@
+#wishList_shoppingCart_menuTab{
+    display: flex;
+    justify-content: center;
+    margin: 55px 25px 20px 25px;
+}
+.wish_cart_menuTab{
+    font-size: 18px;
+    width: 30%;
+    height: 45px;
+    text-align: center;
+}
+#wishList_menuTab{
+    border-bottom: 3px solid black;
+    font-weight: 700;
+    margin-right: 30px;
+}
+#wishList_menuTab{
+    color: #222;
+}
+#shoppingCart_menuTab{
+    border-bottom: 2px solid #ebebeb;
+    margin-left: 30px;
+    font-weight: 500;
+}
+#shoppingCart_menuTab>a{
+    color: rgba(34,34,34,0.5);
+}
+/* 관심 상품 */
+.wishList_productInfo_flex{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+    padding: 20px 0 19px;
+}
+.wishList_productInfo_img>img{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.wishList_productInfo_left{
+    display: flex;
+}
+.wishList_productInfo_text{
+    margin-left: 13px;
+}
+.wishList_productInfo_brand{
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+}
+.wishList_productInfo_name{
+    margin-top: 2px;
+    font-size: 13px;
+    letter-spacing: -.03px;
+}
+.wishList_productInfo_size{
+    margin-top: 25px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+}
+.wishList_productInfo_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.wishList_productInfo_delete_div{
+    text-align: right;
+}
+.wishList_productInfo_delete_div>a{
+    font-size: 12px;
+    color: rgba(34,34,34,.8);
+    text-decoration: underline;
+    letter-spacing: -.06px;
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+}
+.wishList_productInfo_shoppingCart_div>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 150px;
+    height: 60px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(46, 204, 113);
+}

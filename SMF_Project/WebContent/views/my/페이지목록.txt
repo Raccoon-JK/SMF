@@ -1,0 +1,7 @@
+마이페이지 메인 - mypagemain.me
+프로필 정보 - mypageinfo.me
+주소록 - address.me
+계좌 및 카드관리 - mypageaccountscard.me
+구매 내역 - mypagebuyhistory.me
+판매 내역 - mypagesalehistory.me
+관심 상품 / 장바구니 페이지 - mypagewishlist.me

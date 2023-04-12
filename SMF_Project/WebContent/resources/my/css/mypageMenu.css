@@ -1,0 +1,44 @@
+#mypage_wrapper{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px; /*1100px*/
+    padding: 130px 40px 160px;
+}
+#mypage_menu{
+    width: 170px;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+#mypage_mainBtn{
+    font-size: 22px;
+    font-weight: bold;
+}
+#mypage_menu ul{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+#mypage_menu>ul>span{
+    display: block;
+    font-weight: bold;
+    font-size: 19px;
+    /* margin-bottom: 10px; */
+}
+#mypage_menu>ul>li{
+    margin-top: 13px;
+    font-size: 12px;
+    border-bottom: 1px solid black;
+}
+
+#mypage_content_wrapper{
+    width: 100%;
+    margin-left: 20px;
+}
+
+#mypage_title{
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}

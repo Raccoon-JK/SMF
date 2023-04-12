@@ -1,0 +1,121 @@
+#wishList_shoppingCart_menuTab{
+    display: flex;
+    justify-content: center;
+    margin: 55px 25px 20px 25px;
+}
+.wish_cart_menuTab{
+    font-size: 18px;
+    width: 30%;
+    height: 45px;
+    text-align: center;
+}
+#shoppingCart_menuTab{
+    border-bottom: 3px solid black;
+    font-weight: 700;
+    margin-left: 30px;
+}
+#shoppingCart_menuTab>a{
+    color: #222;
+}
+#wishList_menuTab{
+    border-bottom: 2px solid #ebebeb;
+    margin-right: 30px;
+    font-weight: 500;
+}
+#wishList_menuTab>a{
+    color: rgba(34,34,34,.5);
+    /* color: red; */
+}
+
+/* 장바구니 리스트 */
+#shoppingCartList_wrapper{
+    background-color: #fafafa;
+}
+.shoppingCart_productInfo:nth-last-of-type(2){
+    border-bottom: 3px solid #222;
+}
+.shoppingCart_productInfo{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px 20px 10px;
+    margin: 20px 0px 20px;
+    border-bottom: 2px solid #ebebeb;
+}
+.shoppingCart_productInfo_flexLeft{
+    display: flex;
+}
+.shoppingCart_productInfo_checkbox{
+    align-self: self-start;
+    margin-right: 10px;
+}
+.shoppingCart_productInfo_checkbox>input[type="checkbox"]{
+    width: 18px;
+    height: 18px;
+}
+.shoppingCart_productInfo_text{
+    margin-left: 10px;
+}
+.shoppingCart_productInfo_brand{
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+}
+.shoppingCart_productInfo_name{
+    margin-top: 2px;
+    font-size: 13px;
+    letter-spacing: -.03px;
+}
+.shoppingCart_productInfo_size{
+    margin-top: 23px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+}
+.shoppingCart_productInfo_price>span{
+    font-weight: 700;
+    font-size: 16px
+}
+.shoppingCart_productInfo_delete_div{
+    text-align: right;
+}
+.shoppingCart_productInfo_delete_div>a{
+    font-size: 12px;
+    color: rgb(206, 26, 26);
+    text-decoration: underline;
+    letter-spacing: -.06px;
+    position: absolute;
+    right: 11px;
+    bottom: 9px;
+}
+
+/* 최종 금액 및 결제버튼 */
+#total_buy{
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+#buyBtn_div{
+    padding-top: 10px;
+    align-self: center;
+}
+#total_buyPrice{
+    align-self: self-end;
+}
+#total_buyPrice>span{
+    font-size: 22px;
+    font-weight: 700;
+}
+#buyBtn_div>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 150px;
+    height: 55px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fafafa;
+    background-color: rgb(46, 204, 113);
+}

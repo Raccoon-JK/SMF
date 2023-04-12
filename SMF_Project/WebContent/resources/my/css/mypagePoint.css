@@ -1,0 +1,44 @@
+#mypage_content{
+    padding: 23px 0 23px 23px;
+	margin: 0 10px 10px 10px;
+}
+
+#Retention_point{
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 23px 23px 23px 23px;
+    display: inline-block;
+}
+
+#details_point{
+    padding-top: 15px;
+}
+
+#details_point_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.details_product_buyPoint{
+    display: flex;
+    padding: 23px 23px 23px 23px;
+    border-bottom: 1px solid black;
+    
+}
+
+.details_product_buyPoint>img{
+    width: 80px;
+    height: 100px;
+    /* border: 1px solid black; */
+}
+
+.details_product_name{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 25px;
+}
+
+.details_product_name>p:nth-child(3){
+    align-self: flex-end;
+}

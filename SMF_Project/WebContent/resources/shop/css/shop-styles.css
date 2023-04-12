@@ -1,0 +1,277 @@
+#searchbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0 36px 0;
+    position: relative;
+}
+
+#search {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid black;
+    width: 500px;
+    margin: 0 8px;
+    padding-bottom: 16px;
+}
+
+#deleteBtn {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+#search>input {
+    border: none;
+    width: 100%;
+    font-size: 24px;
+}
+
+#category {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+}
+
+#categoryUl {
+    height: 44px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.categoryLi{
+    cursor: pointer;
+}
+
+.categoryLi+.categoryLi {
+    margin-left: 27px;
+}
+
+#weatherCategory{
+    display: flex;
+}
+
+.weather{
+    height: 21px; /* 날씨 아이콘 크기 추후 변경 */
+}
+
+.temper{
+    display: flex;
+}
+
+.temperature{
+    display: flex;
+    align-items: center;
+}
+
+#body {
+    display: flex;
+    position: relative;
+    padding: 0 40px 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+
+#mainFilter{
+    width: 220px;
+}
+
+#filter {
+    width: 210px;
+    margin-right: 10px;
+    padding-right: 10px;
+    overflow-x: hidden;
+}
+.aside1{
+    display: flex;
+    align-items: center;
+    padding: 20px 0 16px;
+    justify-content: space-between;
+}
+.mainTitle{
+    /* display: block; */
+    position: relative;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    font-weight: 600;
+}
+.subTitle{
+    /* display: block; */
+    margin-top: 4px;
+    white-space: nowrap;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    color: rgba(34,34,34,.5);
+}
+.filterCheck{
+    /* display: flex;
+    flex-direction: column; */
+    padding-bottom: 24px;
+}
+
+.filterCheckUl{
+    -webkit-mask-image: linear-gradient(0deg,transparent,#000),linear-gradient(270deg,transparent 17px,#000 0);
+    -webkit-mask-size: 100% 20000px;
+    -webkit-mask-position: left bottom;
+    max-height: 315px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.filterDetail{
+    display: none;
+    overflow: hidden;
+}
+
+.filterCheckUl:hover{
+    -webkit-mask-position: left top;
+}
+
+.menu+.menu, .menu2+.menu2{
+    padding-top: 10px;
+}
+
+.menu2{
+    padding: 10px 0 0 25px;
+}
+
+.contentFilter{
+    border-bottom: 1px solid #ebebeb;
+}
+
+.filterPlus{
+    display: block;
+}
+
+.titleFilter{
+    display: flex;
+    padding: 16px 0;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.titleBox{
+    display: flex;
+    flex-direction: column;
+}
+.filterPM{
+    width: 15px;
+    height: 15px;
+}
+#mainContent{
+    width: 980px;
+}
+#showFilter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 24px 0;
+}
+.filterText{
+    color: rgba(34,34,34,.8);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 0;
+    margin-top: 10px;
+}
+#columnMenu{
+    display: flex;
+    flex-wrap: wrap;
+}
+.columnMenu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    width: calc(33.33333% - 4px);
+    height: 32px;
+    border: 1px solid #d3d3d3;
+    font-size: 13px;
+    color: #000;
+}
+
+.clothMenu+.clothMenu{
+    margin-top: 18px;
+}
+.freeCloth{
+    width: calc(100% - 4px);
+}
+.clothSize{
+    width: calc(50% - 4px);
+}
+
+.priceFilter{
+    margin-top: 5px;
+}
+#content{
+    display: grid;
+    grid-template-columns: repeat(5,minmax(0,180px));
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+}
+
+.productImg{
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+}
+
+.productInner{
+    padding: 0 4px;
+}
+.productBrand{
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    line-height: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+}
+
+.productName{
+    overflow: hidden;
+    line-height: 16px;
+    font-size: 13px;
+    color: #333;
+}
+
+.productPrice{
+    line-height: 17px;
+    font-size: 14px;
+    font-weight: 700;
+    color:#222;
+    margin-top: 12px;
+}
+
+.productWish{
+    display: flex;
+    grid-column-gap: 12px;
+    column-gap: 12px;
+    padding-top: 12px;
+}
+.interestWish{
+    display: flex;
+}
+.wishText{
+    margin-left: 4px;
+    font-size: 12px;
+
+}
+
+#searchMain:focus{
+    outline: none;
+}

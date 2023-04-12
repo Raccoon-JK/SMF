@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+		
+	<entry key="loginMember">
+	 	SELECT *
+	 	FROM MEMBER
+	 	WHERE USER_ID = ?
+	 		AND USER_PWD = ?
+	 		AND STATUS = 'Y'
+	</entry>
+	
+	
+	<entry key="insertMember">
+		INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, AGREE_EMAIL, SNS_ID) 
+		VALUES(?,?,?,?,?,?,?)
+	</entry>
+	
+	
+	<entry key="serachEmail">
+		SELECT USER_ID
+		FROM MEMBER 
+		WHERE PHONE = ?
+	</entry>
+	
+</properties>

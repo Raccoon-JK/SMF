@@ -1,0 +1,58 @@
+.address_area{
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.address_area_right{
+    align-self: flex-end;
+}
+.address_area>p{
+    margin-left: 10px;
+}
+.address_area>p:not(.addrName){
+    font-size: 12px;
+}
+
+#address_wrapper{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#addressLine{
+	border-bottom: 2px solid black;
+	margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.addrName{
+	font-weight: bold;
+}
+.address_null>p{
+    font-weight: 700;
+
+}
+
+
+/* 새 주소 추가 모달창 */
+.modal-body input{
+    border: 0px;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+.modal-body input:focus-visible{
+    outline: none;
+}
+
+#postcode_wrapper{
+    position: relative;
+}
+#postcode_wrapper>button{
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+}

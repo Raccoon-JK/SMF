@@ -1,0 +1,221 @@
+/* input type="number" 증감소 화살표 삭제 */
+input::-webkit-inner-spin-button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+/* input placeholder 설정 */
+input::placeholder{
+    font-size: 10px;
+}
+
+#orderPayment_wrapper{
+    background-color: #fafafa;
+}
+#orderPayment_contentArea{
+    margin: 0 auto;
+    padding: 20px 40px 160px;
+    max-width: 780px;
+}
+.orderPayment_div{
+    background-color: #fff;
+    padding: 32px;
+    margin-top: 15px
+}
+
+/* 상품 정보 */
+#proudctInfo_flex{
+    display: flex;
+}
+#productInfo_img>img{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+}
+#productInfo_text{
+    padding-left: 16px;
+}
+.product_brand{
+    line-height: 17px;
+    font-size: 14px;
+}
+.product_en{
+    line-height: 17px;
+    font-size: 14px;
+}
+.product_ko{
+    line-height: 16px;
+    font-size: 13px;
+}
+.product_size{
+    line-height: 17px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 7px;
+}
+
+/* 배송 주소 */
+#orderAdress_title{
+    display: flex;
+    justify-content: space-between;
+}
+.orderAddress_title{
+    float: left;
+    display: block;
+    min-width: 80px;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    color: rgba(34,34,34,.5);
+}
+.orderAddress_desc{
+    font-size: 14px;
+    letter-spacing: -.21px;
+}
+
+/* 포인트 */
+#orderPoint_title{
+    display: flex;
+    justify-content: flex-start;
+}
+#orderPoint_title>h5{
+    margin-right: 10px;
+}
+#pointInputBox{
+    font-size: 13px;
+    line-height: 100%;
+    padding: 17px 12px;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    margin-right: 56px;
+    width: calc(100% - 76px);
+}
+#pointInputBox:focus-visible{
+    outline: none;
+    resize: none;
+}
+
+/* 결제 방법 */
+#enrollment_orderPayment{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 11px 8px 13px 9px;
+}
+#enrollment_card_flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+#paymentPwdInputBox{
+    font-size: 14px;
+    line-height: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    width: 107px;
+    font-weight: bold;
+}
+#paymentPwdInputBox:focus-visible{
+    outline: none;
+    resize: none;
+}
+#enrollment_cardNum{
+    font-size: 16px;
+    margin-right: 10px;
+}
+#enrollment_cardDate{
+    font-size: 11px;
+}
+#enrollment_cardTitle{
+    font-weight: bold;
+}
+#generalPayments_title{
+    margin-top: 15px;
+    font-weight: bold;
+}
+#generalPayments_box{
+    display: flex;
+}
+#tossPayments{
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    padding: 7px 7px 8px 11px;
+}
+#tossPay_img{
+    width: 60px;
+    height: 40px;
+    margin-left: 15px;
+}
+
+/* 최종 주문정보 */
+.finalOrder_Detail_flex{
+    display: flex;
+    justify-content: space-between;
+}
+#finalOrder_price{
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #f15746;
+}
+#finalOrder_price_Div{
+    padding-bottom: 19px;
+    border-bottom: 2px solid #ebebeb;
+
+}
+#finalOrder_Detail{
+    padding-top: 19px;
+    padding-bottom: 19px;
+    border-bottom: 2px solid #ebebeb;
+}
+.finalOrder_Detail_titleStyle{
+    color: rgba(34,34,34,.5);
+    font-size: 13px;
+    letter-spacing: -0.7px;
+}
+.finalOrder_Detail_textStyle{
+    color: #222;
+    font-size: 14px;
+    letter-spacing: -.21px;
+}
+#finalOrder_buy>.finalOrder_Detail_titleStyle{
+    color: #222;
+}
+#finalOrder_buy>.finalOrder_Detail_textStyle{
+    font-weight: 700;
+}
+#tradeAgree_flex{
+    padding-top: 19px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#tradeAgree_flex>p{
+    line-height: 18px;
+    font-size: 15px;
+    letter-spacing: -.01px;
+    font-weight: 700;
+}
+#tradeAgree_flex>input[type="checkbox"]{
+    width: 24px;
+    height: 24px;
+}
+#paymentsBtn_div{
+    display: flex;
+    justify-content: center;
+}
+#paymentsBtn_div>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 145px;
+    height: 45px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #ebebeb;
+}

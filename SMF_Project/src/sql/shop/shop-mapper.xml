@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectSubCategory">
+		SELECT *
+		FROM CATEGORY_SUB 
+		WHERE P_CATEGORY_NO = (SELECT P_CATEGORY_NO FROM CATEGORY_PARENT WHERE P_CATEGORY_NAME = ? )
+	</entry>
+	
+	<entry key="insertProduct">
+		INSERT INTO PRODUCT(
+			BRAND_NAME,
+			PRODUCT_NAME,
+			COMPANY_PRICE,
+			CATEGORY_NO,
+			PRODUCT_GENDER,
+			PRODUCT_WEATHER
+		)
+		VALUES(
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)
+	</entry>
+	<entry key="insertStock">
+		INSERT INTO STOCK{
+			STOCK_NO,
+			USER_ID,
+			PRODUCT_NAME,
+			PRICE,
+			STOCK,
+			SIZE,
+			USER_CLASS
+		)
+		VALUES(
+			SEQ_RNO.NEXTVAL,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)
+	</entry>
+	<entry key="insertProduct_Detail">
+		INSERT INTO(
+			PRODUCT_NAME,
+			POST_NO,
+			PRODUCT_CONTENT
+		)
+		VALUES(
+			?,
+			SEQ_PNO.NEXTVAL,
+			?
+		)
+	</entry>
+	<entry key="insertProductImg">
+		INSERT INTO(
+			PRODUCT_NAME,
+			IMG_NAME,
+			IMG_PATH
+		)
+		VALUES(
+			?,
+			?,
+			?
+		)
+	</entry>
+</properties>

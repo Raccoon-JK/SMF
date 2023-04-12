@@ -1,0 +1,16 @@
+.ck.ck-editor{
+    width: 1200px;
+}
+
+.ck-editor__editable {
+    height: 400px;
+}
+
+#itemDetail {
+    width: 1280px;
+    margin: auto;
+}
+
+.categoryDetail{
+    display: none;
+}

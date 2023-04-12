@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+body {
+	background: white;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding-top: 130px;
+}
+
+.swiper {
+	width: 100%;
+	height: 480px;
+}
+
+.swiper-slide {
+	background-position: center;
+	background-size: cover;
+}
+
+.swiper.second {
+	max-width: 1280px;
+	height: 260px;
+}
+
+.swiper-slide.style {
+	background-position: center;
+	background-size: cover;
+}
+
+.container {
+	height: auto;
+	max-width: 1280px;
+	margin: 20px auto;
+	border-bottom: solid 1px rgb(231, 231, 231);
+}
+
+.content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin-bottom: 40px;
+	border: none;
+}
+
+#box1 {
+	width: 300px;
+	height: 120px;
+	margin: 40px 10px 5px;
+	border-radius: 10px 10px;
+}
+
+.content p {
+	text-align: center;
+}
+
+.content_label {
+	margin-bottom: 20px;
+}
+
+div>a {
+	text-decoration: none;
+	color: black;
+}
+
+div>a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+#box2 {
+	background-color: bisque;
+	border-radius: 10px 10px;
+}
+
+.info_box {
+	padding: 16px 0px 25px;
+}
+
+.brand {
+	text-decoration: underline;
+	font-weight: bolder;
+}
+
+.name {
+	padding-top: 10px;
+}
+
+#box2 {
+	width: 300px;
+}
+
+.button_box {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+.btn_more {
+	width: 100px;
+	height: 40px;
+	border-radius: 10px 10px;
+	background-color: white;
+	border: solid 1px rgb(231, 231, 231);
+	display: inline-block;
+}
+
+.swiper-button-next.style::after, .swiper-button-prev.style::after {
+	display: none;
+}
+
+.banner img{
+	display: block;
+	margin: 0 auto;
+}
+
+.style_head {
+	margin-top: 10px;
+}
+
+.style-main {
+	width: 176px;
+	height: 235px;
+	overflow: hidden;
+	position: absolute;
+	border-radius: 10%;
+	z-index: 100;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.style-main img{
+    
+	height: 100%;
+}
+
+.row{
+	justify-content: center;
+}
+
+.style-pro {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: white solid 1px;
+	overflow: hidden;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	z-index: 101;
+}
+
+.style-pro img{
+	display: block;
+	width: 100%;
+}
+
+.userId {
+	position: absolute;
+	bottom: 20px;
+	left: 10px;
+	font-size: 20px;
+	color: white;
+	z-index: 101;
+}

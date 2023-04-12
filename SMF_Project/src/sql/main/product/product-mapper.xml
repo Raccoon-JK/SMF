@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!-- 인기상품 mapper -->
+<properties>
+	<entry key="getProduct">
+		SELECT
+		P.PRODUCT_NAME
+		, P.COMPANY_PRICE
+		, P.TRADE_COUNT
+		, P.STATUS
+		, P.IMG_PATH
+        , B.BRAND_NAME
+		FROM(
+		SELECT P.PRODUCT_NAME
+		, P.COMPANY_PRICE
+		, P.TRADE_COUNT
+		, P.STATUS
+        , P.BRAND_NO
+		, PIMG.IMG_PATH
+		FROM PRODUCT P
+		FULL OUTER JOIN PRODUCT_IMG PIMG
+		ON (P.PRODUCT_NAME = PIMG.PRODUCT_NAME)
+		ORDER BY P.TRADE_COUNT DESC) P
+        JOIN BRAND B
+        ON (P.BRAND_NO = B.BRAND_NO)
+		WHERE ROWNUM <= 3
+		AND STATUS = 'Y';
+	</entry>
+
+	<entry key="getMoreProduct">
+		SELECT
+		PRODUCT_NAME
+		, COMPANY_PRICE
+		, TRADE_COUNT
+		, STATUS
+		, IMG_PATH
+		, BRAND_NAME
+		FROM(
+		SELECT
+		P.PRODUCT_NAME
+		, P.COMPANY_PRICE
+		, P.TRADE_COUNT
+		, P.STATUS
+		, P.IMG_PATH
+		, B.BRAND_NAME
+		, ROWNUM AS NUM
+		FROM
+		(
+		SELECT P.PRODUCT_NAME
+		, P.COMPANY_PRICE
+		, P.TRADE_COUNT
+		, P.STATUS
+		, P.BRAND_NO
+		, PIMG.IMG_PATH
+		FROM PRODUCT P
+		FULL OUTER JOIN PRODUCT_IMG PIMG
+		ON (P.PRODUCT_NAME = PIMG.PRODUCT_NAME)
+		ORDER BY P.TRADE_COUNT DESC) P
+		JOIN BRAND B
+		ON (P.BRAND_NO = B.BRAND_NO)
+		WHERE STATUS = 'Y'
+		)
+		WHERE NUM BETWEEN ? AND ?; <!-- ?은 4~6 7~9 -->
+	</entry>
+
+</properties>
