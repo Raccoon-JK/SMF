@@ -3,6 +3,7 @@
 <!-- 인기상품 mapper -->
 <properties>
 	<entry key="getProduct">
+	<![CDATA[
 		SELECT
 		P.PRODUCT_NAME
 		, P.COMPANY_PRICE
@@ -24,10 +25,12 @@
         JOIN BRAND B
         ON (P.BRAND_NO = B.BRAND_NO)
 		WHERE ROWNUM <= 3
-		AND STATUS = 'Y';
+		AND STATUS = 'Y'
+		]]>
 	</entry>
 
 	<entry key="getMoreProduct">
+	<![CDATA[
 		SELECT
 		PRODUCT_NAME
 		, COMPANY_PRICE
@@ -60,7 +63,8 @@
 		ON (P.BRAND_NO = B.BRAND_NO)
 		WHERE STATUS = 'Y'
 		)
-		WHERE NUM BETWEEN ? AND ?; <!-- ?은 4~6 7~9 -->
+		WHERE NUM BETWEEN ? AND ?;
+		]]>
 	</entry>
 
 </properties>

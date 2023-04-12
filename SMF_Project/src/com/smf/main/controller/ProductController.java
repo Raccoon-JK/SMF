@@ -2,7 +2,7 @@ package com.smf.main.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,27 +10,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.main.model.dao.ProductDAO;
+import com.smf.main.model.service.ProductService;
 import com.smf.main.model.vo.Product;
 
-@WebServlet("/product.pr")
+/**
+ * Servlet implementation class ProductController
+ */
+@WebServlet("/Product.pr")
 public class ProductController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 데이터베이스에서 상품 정보를 조회하는 DAO 호출
-        List<Product> productList = ProductDAO.getProduct();
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Product> productList = new ProductService().getProduct();
 
         // 조회한 상품 정보를 JSON 형식으로 변환
         String json = "[";
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
             json += "{";
-            json += "\"title\":\"" + product.getProductName() + "\",";
+            json += "\"image\":\"" + product.getImagePath() + "\",";
             json += "\"brand\":\"" + product.getBrandName() + "\",";
             json += "\"price\":\"" + product.getCompanyPrice() + "\",";
-            json += "\"image\":\"" + product.getImagePath() + "\"";
+            json += "\"title\":\"" + product.getProductName() + "\"";
             json += "}";
             if (i < productList.size() - 1) {
                 json += ",";
@@ -43,6 +55,14 @@ public class ProductController extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.print(json);
         out.flush();
-    }
-}
+	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

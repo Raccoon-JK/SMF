@@ -1,19 +1,33 @@
 package com.smf.main.model.service;
 
-import java.sql.Connection;
-import java.util.List;
+import static com.smf.common.JDBCTemplate.*;
 
-import com.smf.main.model.dao.ProductDAO;
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.smf.main.model.dao.ProductDao;
 import com.smf.main.model.vo.Product;
-import com.smf.common.JDBCTemplate;
+import com.smf.main.model.vo.ProductRange;
 
 public class ProductService {
 
-    public static List<Product> getProduct() {
-        Connection conn = JDBCTemplate.getConnection();
-        new ProductDAO();
-		List<Product> productList = ProductDAO.getProduct();
-        JDBCTemplate.close(conn);
+    public ArrayList<Product> getProduct() {
+        Connection conn = getConnection();
+        
+		ArrayList<Product> productList = new ProductDao().getProduct(conn);
+		
+        close(conn);
+        
+        return productList;
+    }
+    
+    public ArrayList<Product> getMoreProduct(ProductRange pr) {
+        Connection conn = getConnection();
+        
+		ArrayList<Product> productList = new ProductDao().getMoreProduct(conn, pr);
+		
+        close(conn);
+        
         return productList;
     }
 }

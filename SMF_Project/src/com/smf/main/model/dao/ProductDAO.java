@@ -1,43 +1,107 @@
 package com.smf.main.model.dao;
 
+import static com.smf.common.JDBCTemplate.*;
+import com.smf.main.model.vo.Product;
+import com.smf.main.model.vo.ProductRange;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.InvalidPropertiesFormatException;
+import java.util.Properties;
 
-import com.smf.common.JDBCTemplate;
-import com.smf.main.model.vo.Product;
+public class ProductDao {
+	private Properties prop = new Properties();
 
-public class ProductDAO {
-    // 모든 상품 정보를 가져오는 메소드
-    public static List<Product> getProduct() {
-        List<Product> productList = new ArrayList<>();
-        String sql = "SELECT * FROM PRODUCT";
-        try (Connection conn = JDBCTemplate.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            while (rs.next()) {
-                Product product = new Product();
-                product.setProductName(rs.getString("PRODUCT_NAME"));
-                product.setCompanyPrice(rs.getInt("COMPANY_PRICE"));
-                product.setTradeCount(rs.getInt("TRADE_COUNT"));
-                product.setStatus(rs.getString("STATUS"));
-                product.setImagePath(rs.getString("IMG_PATH"));
-                product.setBrandName(rs.getString("BRAND_NAME"));
-                productList.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return productList;
-    }
+	public ProductDao() {
+		try {
+			prop.loadFromXML(new FileInputStream(
+					ProductDao.class.getResource("/sql/main/product/product-mapper.xml").getPath()));
+		} catch (InvalidPropertiesFormatException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<Product> getProduct(Connection conn) {
+		ArrayList<Product> productList = new ArrayList<>();
+
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("getProduct");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Product product = new Product();
+				product.setProductName(rset.getString("PRODUCT_NAME"));
+				product.setCompanyPrice(rset.getInt("COMPANY_PRICE"));
+				product.setTradeCount(rset.getInt("TRADE_COUNT"));
+				product.setStatus(rset.getString("STATUS"));
+				product.setImagePath(rset.getString("IMG_PATH"));
+				product.setBrandName(rset.getString("BRAND_NAME"));
+
+				productList.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return productList;
+	}
+	
+	public ArrayList<Product> getMoreProduct(Connection conn, ProductRange pr) {
+		ArrayList<Product> productList = new ArrayList<>();
+
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("getMoreProduct");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+		
+			int startRange = 1 + 3 * (pr.getCurrentRange() - 1);
+			int endRange = 4 + pr.getProductLimit() * (startRange - 1);
+
+			pstmt.setInt(1, startRange);
+			pstmt.setInt(2, endRange);
+
+			while (rset.next()) {
+				Product product = new Product();
+				product.setProductName(rset.getString("PRODUCT_NAME"));
+				product.setCompanyPrice(rset.getInt("COMPANY_PRICE"));
+				product.setTradeCount(rset.getInt("TRADE_COUNT"));
+				product.setStatus(rset.getString("STATUS"));
+				product.setImagePath(rset.getString("IMG_PATH"));
+				product.setBrandName(rset.getString("BRAND_NAME"));
+
+				productList.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return productList;
+	}
 }
-
-
-
-
-
-
