@@ -72,5 +72,21 @@
 		LEFT JOIN PRODUCT_IMG PI USING(PRODUCT_NAME)
 		WHERE USER_ID = ? AND PI.IMG_NAME LIKE '%_1.png%'
 	</entry>
+	<entry key="wishlistItemDelete">
+		DELETE FROM WISHLIST WHERE USER_ID = ? AND PRODUCT_NAME = ?
+	</entry>
 	
+	
+	<!-- 장바구니 -->
+	<entry key="shoppingCartList">
+        SELECT ST.USER_ID AS RESELLER, ST.STOCK_NO, ST.STATUS, C.CART_NO, ST.PRODUCT_NAME, P.BRAND_NAME, ST.PRICE, "SIZE", CART_COUNT, PI.IMG_PATH, PI.IMG_NAME
+        FROM CART C
+        LEFT JOIN STOCK ST ON C.STOCK_NO = ST.STOCK_NO
+        LEFT JOIN PRODUCT P ON ST.PRODUCT_NAME = P.PRODUCT_NAME
+        LEFT JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+        WHERE C.USER_ID = ? AND ST.STATUS IN(1,2) AND IMG_NAME LIKE '%_1.png'
+	</entry>
+	<entry key="shoppingCartItemDelete">
+		DELETE FROM CART WHERE CART_NO = ?
+	</entry>
 </properties>

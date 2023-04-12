@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.member.model.vo.Member;
 import com.smf.my.model.service.MyPageService;
 
 /**
- * Servlet implementation class MyWishListDeleteController
+ * Servlet implementation class MyShoppingCartDeleteController
  */
-@WebServlet("/wishListItemDel.me")
-public class MyWishListDeleteController extends HttpServlet {
+@WebServlet("/mypageshoppingDel.me")
+public class MyShoppingCartDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyWishListDeleteController() {
+    public MyShoppingCartDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,20 +28,16 @@ public class MyWishListDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		String pName = request.getParameter("pName");
+		int cNo = Integer.parseInt(request.getParameter("cNo"));
 		
-		int result = new MyPageService().wishlistItemDelete(userId, pName);
+		int result = new MyPageService().shoppingCartItemDelete(cNo);
 		
 		if( result>0 ) {
-			
-			request.getSession().setAttribute("alertMsg", "삭제되었습니다.");
-			
-			response.sendRedirect(request.getContextPath()+"/mypagewishlist.me");
+			request.getSession().setAttribute("alertMsg", "삭제 되었습니다.");
+			response.sendRedirect(request.getContextPath()+"/mypageshoppingcart.me");
 		}else {
-			System.out.println("삭제 오류!");
+			System.out.println("장바구니 삭제 오류");
 		}
 	}
 
