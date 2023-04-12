@@ -93,6 +93,9 @@ button{
 .productInfoHalf{
     width: 50%;
 }
+.productInfoHalfR{
+    width: 40%;
+}
 .productInfoRight{
     display: flex;
     justify-content: end;
@@ -404,12 +407,12 @@ button{
     cursor: pointer;
 }
 .prevArrow{
-    left: 280px;
+    left: 350px;
     background: url(../symbols/prev.svg);
     z-index: 1;
 }
 .nextArrow{
-    right: 917px;
+    right: 990px;
     background: url(../symbols/next.svg);
     z-index: 1;
 }

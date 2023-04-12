@@ -1,7 +1,6 @@
 package com.smf.shop.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -100,31 +99,7 @@ public class postInsertController extends HttpServlet {
 			// 단, 여러개의 첨부파일이 있을것이기 때문에 attachment들을 ArrayList에 담을 예정 => 반드시 1개 이상은 담김(대표이미지)
 			// >> Product_Img?
 			int result = new ShopService().insertProduct(p, s, pd);
-
-			ArrayList<Product_Img> list = new ArrayList();
-
-//				for (int i = 1; i <= 4; i++) { // 파일개수는 최대 4개이기 때문에 4번 반복시킴
-//
-//					String key = "file" + i; // file1, file2, file3, file4
-//
-//					if (multi.getOriginalFileName(key) != null) { // 넘어온 첨부파일이 있는 경우
-//						// 첨부파일이 있는 케이스
-//						// Attachment객체 생성 + 원본명, 수정명, 저장경로 + 파일레벨 담기.
-//						// list에 추가해주기
-//						Product_Img pi = new Product_Img();
-//						pi.setImgName(multi.getFilesystemName(key));
-//						pi.setImgPath("/resources/thumb_upfiles/");
-//						at.setOriginName(multi.getOriginalFileName(key));
-//						at.setChangeName(multi.getFilesystemName(key));
-//						at.setFilePath("/resources/thumb_upfiles/");
-//						at.setFileLevel(i);
-//
-//						list.add(pi);
-//					}
-//				}
-//
-//				int result = new ShopService().insertThumbnailBoard(b, list);
-//
+			
 			if (result > 0) { // 성공 -> list.th를 요청
 				
 				// 상품 이미지
@@ -151,8 +126,5 @@ public class postInsertController extends HttpServlet {
 			}
 
 		}
-
-//		response.sendRedirect(request.getContextPath());
-
 	}
 }

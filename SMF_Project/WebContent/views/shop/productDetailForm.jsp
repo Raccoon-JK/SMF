@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../../resources/shop/css/productDetail.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/shop/css/productDetail.css">
 <style>
     *{
         box-sizing: border-box;
@@ -43,45 +43,41 @@
             <div id="contentHeaderLeft" class="column mainImg">
                 <button class="prevArrow"></button>
                 <div class="mainImgList">
-                    <div>
-                        <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" style="width: 560px;">
-                    </div>                
-                    <div>
-                        <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" style="width: 560px;">
-                    </div>
-                    <div>
-                        <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" style="width: 560px;">
-                    </div>
+                	<c:forEach var="pi" items="${ list }">
+	                	<div>
+	                		<img src="${ pageContext.request.contextPath }${ pi.imgPath }${ pi.imgName }" alt="" style="width: 560px;">
+	                	</div>
+                	</c:forEach>
                 </div>
                 <button class="nextArrow"></button>
             </div>
             <div id="contentHeaderRight" class="column">
                 <div id="productDetail">
-                    <p class="detailBrand"><%= p.getBrandName() %></p>
-                    <p class="detailName"><%= p.getProductName() %></p>
+                    <p class="detailBrand">${ p.brandName }</p>
+                    <p class="detailName">${ p.productName }</p>
                     <!-- <p>알렌느 카펜터 디테일 트윌 데님 바이커 자켓 인디안 핑크</p> -->
                 </div>
                 <div id="productInfo">
                     <form action="">
                             <div class="categoryTitle productUnderline">
                                 <div id="productInfoPrice">
-                                    <div class="titleProduct">가격</div><!-- 가격 << 포지션 따로 해서 뺄 예정 -->
+                                    <div class="titleProduct">가격</div>
                                 </div>
-                                <div class="productInfoHalf">
+                                <div class="productInfoHalfR">
                                     <div class="detailPriceInfo">
                                         <div class="detailPrice">기업 가격</div>
-                                        <div class="detailFullPrice"><%= s.getPrice() %></div>                                 
+                                        <div class="detailFullPrice"><%= p.getCompanyPrice() %>원</div>                                 
                                     </div>
                                     <div class="detailPriceInfo">
                                         <div class="detailPrice">리셀 가격</div>
-                                        <div class="detailFullPrice"><%= s.getPrice() %></div>                                 
+                                        <div class="detailFullPrice">0원</div>                                 
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div class="categoryTitle productUnderline"">
                                     <div class="productInfoHalf">사이즈</div>
-                                    <div class="productInfoRight productInfoHalf">
+                                    <div class="productInfoRight productInfoHalfR">
                                         <!-- 사이즈 Modal-->
                                         <button id="testBtn" class="btn sizeOption">옵션</button>
                                         <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -169,19 +165,21 @@
                                             </div>
                                         </div>
                                     </div> <!-- 모달창으로. 누르면 해당 브랜드 재고, 리셀 재고 표시 -->
-                                    <div class="productInfoHalf detailPriceInfo">
+                                    <div class="productInfoHalfR detailPriceInfo">
                                         <div class="detailPrice">총 가격</div>
-                                        <div class="detailFullPrice"><%  %>원</div>                                 
+                                        <div class="detailFullPrice">원</div>                                 
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <c:if test="${ a }"> <!-- 재고가 있을때 -->
-                                    <button type="submit" class="buyButton" style="background-color: rgb(239, 98, 83);color: rgb(255, 255, 255);">구매하기</button>
-                                </c:if>
-                                <c:if test="${ a }"> <!-- 재고가 없을때 -->
-                                    <button type="submit" class="buyButton" style="background-color: rgb(211, 211, 211);color: rgb(255, 255, 255); cursor: not-allowed;">일시 품절</button>
-                                </c:if>
+                            	<c:choose>
+	                                <c:when test="${ s.stock != 0 }"> <!-- 재고가 있을때 -->
+	                                    <button type="submit" class="buyButton" style="background-color: rgb(239, 98, 83);color: rgb(255, 255, 255);">구매하기</button>
+	                                </c:when>
+	                                <c:otherwise>
+	                                    <button type="submit" class="buyButton" style="background-color: rgb(211, 211, 211);color: rgb(255, 255, 255); cursor: not-allowed;">일시 품절</button>
+	                                </c:otherwise>                            	
+                            	</c:choose>
                                 <a href="" class="interestProduct">
                                     <svg width="13" height="15">
                                         <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
@@ -196,7 +194,7 @@
                         <div>
                             <div class="deliveryFlex"><!-- flex용 -->
                                 <div style="width: 40px; height: 40px; margin-right: 14px;">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" style="width: 40px; height: 40px;">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" style="width: 40px; height: 40px;">
                                 </div>
                                 <div>
                                     <p class="deliveryText1">
@@ -213,7 +211,7 @@
         </div>
         <div class="productDetailItemContent">
             <div class="otherProductArea"> <!-- 상품상세정보 -->
-                <%= pd.getProductContent() %>
+                
             </div>
             <div class="PDIC2 otherProductArea"> <!-- 교환 및 반품안내 -->
                 <div class="PDIC2_0">
@@ -352,11 +350,11 @@
                     <div class="feedContent1">
                         <a href="">
                             <div class="feedContent2">
-                                <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
+                                <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
                             </div>
                             <div class="feedContent3">
                                 <div class="feedContent3_1">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
                                     <p class="feedContent3_1_2">fashion69</p><!-- 스타일 아이디 -->
                                     <span class="feedContent3_1_3"><!-- 좋아요 -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
@@ -372,11 +370,11 @@
                     <div class="feedContent1" style="left: 307px;">
                         <a href="">
                             <div class="feedContent2">
-                                <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
+                                <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
                             </div>
                             <div class="feedContent3">
                                 <div class="feedContent3_1">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
                                     <p class="feedContent3_1_2">fashion69</p><!-- 스타일 아이디 -->
                                     <span class="feedContent3_1_3"><!-- 좋아요 -->
                                         svg
@@ -390,11 +388,11 @@
                     <div class="feedContent1">
                         <a href="">
                             <div class="feedContent2">
-                                <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
+                                <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
                             </div>
                             <div class="feedContent3">
                                 <div class="feedContent3_1">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
                                     <p class="feedContent3_1_2">fashion69</p><!-- 스타일 아이디 -->
                                     <span class="feedContent3_1_3"><!-- 좋아요 -->
                                         svg
@@ -408,11 +406,11 @@
                     <div class="feedContent1">
                         <a href="">
                             <div class="feedContent2">
-                                <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
+                                <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
                             </div>
                             <div class="feedContent3">
                                 <div class="feedContent3_1">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
                                     <p class="feedContent3_1_2">fashion69</p><!-- 스타일 아이디 -->
                                     <span class="feedContent3_1_3"><!-- 좋아요 -->
                                         svg
@@ -426,11 +424,11 @@
                     <div class="feedContent1">
                         <a href="">
                             <div class="feedContent2">
-                                <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
+                                <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
                             </div>
                             <div class="feedContent3">
                                 <div class="feedContent3_1">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
                                     <p class="feedContent3_1_2">fashion69</p><!-- 스타일 아이디 -->
                                     <span class="feedContent3_1_3"><!-- 좋아요 -->
                                         svg
@@ -444,11 +442,11 @@
                     <div class="feedContent1">
                         <a href="">
                             <div class="feedContent2">
-                                <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
+                                <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="productSocialImg">
                             </div>
                             <div class="feedContent3">
                                 <div class="feedContent3_1">
-                                    <img src="../../resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" class="feedContent3_1_1"><!-- 프로필사진 -->
                                     <p class="feedContent3_1_2">fashion69</p><!-- 스타일 아이디 -->
                                     <span class="feedContent3_1_3"><!-- 좋아요 -->
                                         svg
@@ -472,7 +470,7 @@
                         <div class="moreContent1_1">
                             <a href="">
                                 <div class="moreContentImg">
-                                    <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
                                 </div>
                                 <div class="moreContentInfo">
                                     <div class="moreContentInfo1">jordan</div>
@@ -484,7 +482,7 @@
                         <div class="moreContent1_1">
                             <a href="">
                                 <div class="moreContentImg">
-                                    <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
                                 </div>
                                 <div class="moreContentInfo">
                                     <div class="moreContentInfo1">jordan</div>
@@ -496,7 +494,7 @@
                         <div class="moreContent1_1">
                             <a href="">
                                 <div class="moreContentImg">
-                                    <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
                                 </div>
                                 <div class="moreContentInfo">
                                     <div class="moreContentInfo1">jordan</div>
@@ -508,7 +506,7 @@
                         <div class="moreContent1_1">
                             <a href="">
                                 <div class="moreContentImg">
-                                    <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
                                 </div>
                                 <div class="moreContentInfo">
                                     <div class="moreContentInfo1">jordan</div>
@@ -520,7 +518,7 @@
                         <div class="moreContent1_1">
                             <a href="">
                                 <div class="moreContentImg">
-                                    <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
                                 </div>
                                 <div class="moreContentInfo">
                                     <div class="moreContentInfo1">jordan</div>
@@ -532,7 +530,7 @@
                         <div class="moreContent1_1">
                             <a href="">
                                 <div class="moreContentImg">
-                                    <img src="../../resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
+                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
                                 </div>
                                 <div class="moreContentInfo">
                                     <div class="moreContentInfo1">jordan</div>
