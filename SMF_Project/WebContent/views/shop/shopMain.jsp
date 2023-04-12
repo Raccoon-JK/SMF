@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String contextPath = request.getContextPath();
 %>
@@ -13,7 +14,7 @@
     <title>Document</title>
     <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../resources/shop/css/shop-styles.css" type="text/css">
+    <link rel="stylesheet" href="<%= contextPath %>/resources/shop/css/shop-styles.css" type="text/css">
 </head>
 <style>
     #navibar{
@@ -54,7 +55,7 @@
         <div id="searchbox">
             <div id="search">
                 <input id="searchMain" type="text" placeholder="브랜드, 모델명, 모델번호 등" onfocus="this.placeholder = ''" onblur="this.placeholder = '브랜드, 모델명, 모델번호 등'">
-                <img src="../../resources/shop/symbols/x.png" id="deleteBtn">
+                <img src="<%= contextPath %>/resources/shop/symbols/x.png" id="deleteBtn">
             </div>
         </div>
         <div id="category">
@@ -73,19 +74,19 @@
             <div>
                 <ul id="weatherCategory">
                     <li>
-                        <img src="../../resources/shop/symbols/맑음.png" alt="" class="weather">
+                        <img src="<%= contextPath %>/resources/shop/symbols/맑음.png" alt="" class="weather">
                     </li>
                     <li>
-                        <img src="../../resources/shop/symbols/흐림.png" alt="" class="weather">
+                        <img src="<%= contextPath %>/resources/shop/symbols/흐림.png" alt="" class="weather">
                     </li>
                     <li>
-                        <img src="../../resources/shop/symbols/비.png" alt="" class="weather">
+                        <img src="<%= contextPath %>/resources/shop/symbols/비.png" alt="" class="weather">
                     </li>
                     <li>
-                        <img src="../../resources/shop/symbols/눈.png" alt="" class="weather">
+                        <img src="<%= contextPath %>/resources/shop/symbols/눈.png" alt="" class="weather">
                     </li>
                     <li class="temper">
-                        <img src="../../resources/shop/symbols/기온.png" alt="" class="weather">
+                        <img src="<%= contextPath %>/resources/shop/symbols/기온.png" alt="" class="weather">
                         <div class="temperature">현재 기온</div>
                     </li>
                 </ul>
@@ -106,8 +107,8 @@
                                 <span class="subTitle" id="subTitle1">모든 카테고리</span>
                             </div>
                             <div class="titleBtn">
-                                <img src="../../resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
-                                <img src="../../resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
+                                <img src="<%= contextPath %>/resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
+                                <img src="<%= contextPath %>/resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
                             </div>
                         </div>
                         <div class="filterCheck" id="filterCheck1" style="display: none;">
@@ -253,8 +254,8 @@
                                 <span class="subTitle" id="subTitle2">모든 성별</span>
                             </div>
                             <div class="titleBtn">
-                                <img src="../../resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
-                                <img src="../../resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
+                                <img src="<%= contextPath %>/resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
+                                <img src="<%= contextPath %>/resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
                             </div>
                         </div>
                         <div class="filterCheck" id="filterCheck2" style="display: none;">
@@ -275,8 +276,8 @@
                                 <span class="subTitle" id="subTitle1">모든 브랜드</span>
                             </div>
                             <div class="titleBtn">
-                                <img src="../../resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
-                                <img src="../../resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
+                                <img src="<%= contextPath %>/resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
+                                <img src="<%= contextPath %>/resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
                             </div>
                         </div>
                         <div class="filterCheck" id="filterCheck1" style="display: none;">
@@ -294,8 +295,8 @@
                                 <span class="subTitle" id="subTitle1">모든 사이즈</span>
                             </div>
                             <div class="titleBtn">
-                                <img src="../../resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
-                                <img src="../../resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
+                                <img src="<%= contextPath %>/resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
+                                <img src="<%= contextPath %>/resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
                             </div>
                         </div>
                         <div class="filterCheck" id="filterCheck1" style="display: none;">
@@ -374,8 +375,8 @@
                                 <span class="subTitle" id="subTitle1">모든 혜택/가격</span>
                             </div>
                             <div class="titleBtn">
-                                <img src="../../resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
-                                <img src="../../resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
+                                <img src="<%= contextPath %>/resources/shop/symbols/+.png" alt="" class="filterPM filterPlus">
+                                <img src="<%= contextPath %>/resources/shop/symbols/-.png" alt="" class="filterPM filterMinus" style="display: none;">
                             </div>
                         </div>
                         <div class="filterCheck" id="filterCheck1" style="display: none;">
@@ -422,238 +423,37 @@
                     <div>필터</div> <!-- 필터 기능 -->
                 </div>
                 <div id="content" class="contentContainer">
-                    <div class="postItem">
-                        <a href="productDetailForm.jsp">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="productDetailForm.jsp">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="productDetailForm.jsp">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="productDetailForm.jsp">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="postItem">
-                        <a href="">
-                            <div>
-                                <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                            </div>
-                            <div class="productInner">
-                                <div class="productBrand">Hermes</div>
-                                <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                                <div class="productPrice">850,000원</div>
-                            </div>
-                        </a>
-                        <div class="productWish">
-                            <div class="interestWish">
-                                <svg width="13" height="15">
-                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                            <div class="interestWish">
-                                <svg width="15" height="15">
-                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                                </svg>
-                                <div class="wishText">300</div>
-                            </div>
-                        </div>
-                    </div>
+                	<c:forEach var="p" items="${ list }">
+	                	<div class="postItem">
+	                        <a href="${ pageContext.request.contextPath }/productDetail.sh?productName=${ p.productName }">
+	                            <div>
+	                                <img src="${ pageContext.request.contextPath }${ p.imgPath }${ p.imgName }" alt="" class="productImg">
+	                            </div>
+	                            <div class="productInner">
+	                                <div class="productBrand">${ p.brandName }</div>
+	                                <div class="productName">${ p.productName }</div>
+	                                <div class="productPrice">${ p.companyPrice }원</div>
+	                            </div>
+	                        </a>
+	                        <div class="productWish">
+	                            <div class="interestWish">
+	                                <svg width="13" height="15">
+	                                    <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
+	                                </svg>
+	                                <div class="wishText">${ p.wishListCount }</div>
+	                            </div>
+	                            <div class="interestWish">
+	                                <svg width="15" height="15">
+	                                    <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
+	                                    <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
+	                                    <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
+	                                    <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
+	                                </svg>
+                                	<div class="wishText">${ p.postProductTagCount }</div>
+	                            </div>
+	                        </div>
+	                    </div>
+                	</c:forEach>
                 </div>
             </div>
         </div>
@@ -705,83 +505,56 @@
             order: 'asc'
         };
 
-        $('input[type="checkbox"]').change(function() {
-        	console.log(this);
-            if ($(this).is(':checked')) {
-                $.ajax({
-                url: "<%=contextPath%>/pCatFilter.sh",
-                dataType: 'json',
-                data: { category },
-                success: function(data) {
-                    // <div class="postItem">
-                    //     <a href="productDetailForm.jsp">
-                    //         <div>
-                    //             <img src="../../resources/shop/symbols/sample.jpg" alt="" class="productImg">
-                    //         </div>
-                    //         <div class="productInner">
-                    //             <div class="productBrand">Hermes</div>
-                    //             <div class="productName">(W) Hermes Mini Pop H Pendant Rose Gold & Blanc</div>
-                    //             <div class="productPrice">850,000원</div>
-                    //         </div>
-                    //     </a>
-                    //     <div class="productWish">
-                    //         <div class="interestWish">
-                    //             <svg width="13" height="15">
-                    //                 <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                    //             </svg>
-                    //             <div class="wishText">300</div>
-                    //         </div>
-                    //         <div class="interestWish">
-                    //             <svg width="15" height="15">
-                    //                 <rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />
-                    //                 <path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>
-                    //                 <line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />
-                    //                 <line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />
-                    //             </svg>
-                    //             <div class="wishText">300</div>
-                    //         </div>
-                    //     </div>
-                    // </div>
-                    for(let i = 0; i < data.length; i++) {
-						str += '<div class="postItem">'
-                            +   '<a href="">'
-                            +      '<div>'
-                            +           '<img src="' + product.filPath + '"alt ="" class ="productImg">'
-							+      '</div>'
-                            +       '<div class="productInner">'
-                            +           '<div class="productBrand">'+ product.brand +'</div>'
-                            +           '<div class="productName">'+ product.name +'</div>'
-                            +           '<div class="productPrice">'+ product.price +'</div>'
-                            +   '</a>'
-                            +   '<div class="productWish">'
-                            +       '<div class="interestWish">'
-                            +           '<svg width="13" height="15">'
-                            +               '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />'
-                            +           '</svg>'
-                            +           '<div class="wishText">300</div>'
-                            +       '</div>'
-                            +       '<div class="interestWish">'
-                            +           '<svg width="15" height="15">'
-                            +               '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />'
-                            +               '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>'
-                            +               '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />'
-                            +               '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />'
-                            +           '</svg>'
-                            +           '<div class="wishText">300</div>'
-                            +       '</div>'
-                            +    '</div>'
-							+ '</div>'
-					}
-					$("#content").html(str);
-                },
-                error: function() {
-                    alert('상품 목록을 가져오는데 실패하였습니다.');
-                }
-                });
-            } else {
-                // 체크박스가 체크 해제될 때 필요한 처리
-            } 
-        });
+//         $('input[type="checkbox"]').change(function() {
+//         	console.log(this);
+//             if ($(this).is(':checked')) {
+//                 $.ajax({
+<%--                 url: "<%=contextPath%>/pCatFilter.sh", --%>
+//                 dataType: 'json',
+//                 data: { category },
+//                 success: function(product, stock, wishlist, postProductTag) { // 매개변수 이게 맞나..?       
+//                     let product = response.~~; // product, wishlist등 데이터가져오기
+//                     let str = "";
+//                     for(let i = 0; i < data.length; i++) {
+// 						str +=  '<div class="postItem">'
+//                             +   '<a href="">'
+//                             +       '<div>'
+//                             +           '<img src="' + product.filePath + '"alt ="" class ="productImg">'
+// 							+       '</div>'
+//                             +       '<div class="productInner">'
+//                             +           '<div class="productBrand">'+ product.brand +'</div>'
+//                             +           '<div class="productName">'+ product.name +'</div>'
+//                             +           '<div class="productPrice">'+ product.price +'</div>'
+//                             +   '</a>'
+//                             +   '<div class="productWish">'
+//                             +       '<div class="interestWish">'
+//                             +           '<svg width="13" height="15">'
+//                             +               '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />'
+//                             +           '</svg>'
+//                             +           '<div class="wishText">' + WISHLIST개수 + '</div>'
+//                             +       '</div>'
+//                             +       '<div class="interestWish">'
+//                             +          '<svg width="15" height="15">'
+//                             +              '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />'
+//                             +              '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>'
+//                             +              '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />'
+//                             +              '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />'
+//                             +          '</svg>'
+//                             +          '<div class="wishText">' + POST_PRODUCTTAG개수 + '</div>'
+//                             +       '</div>'
+//                             +    '</div>'
+// 							+ '</div>'
+// 					}
+// 					$("#content").html(str);
+//                 },
+//                 error: function() {
+//                     alert('상품 목록을 가져오는데 실패하였습니다.');
+//                 }
+//                 });
+//             } else {
+//                 // 체크박스가 체크 해제될 때 필요한 처리
+//             } 
+//         });
 
         $('.filterCheckUl').on('click', 'input[name="outer"]', function() {
             var selectedFilters = [];

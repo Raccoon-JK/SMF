@@ -1,44 +1,100 @@
 package com.smf.shop.model.vo;
 
 public class ProductAll {
-	private String productName;	   //	PRODUCT_NAME
-	private int categoryNo;	  	   //	CATEGORY_NO
-	private String brandName;	   //	BRAND_NAME
-	private String companyPrice;   //	COMPANY_PRICE
-	private String productGender;  //	PRODUCT_GENDER
-	private String prdouctWeather; //	PRODUCT_WEATHER
-	private String status;		   //	STATUS
-	private int imgNo;		       //	IMG_NO
-	private String imgName;		   //	IMG_NAME
-	private String imgPath;		   //	IMG_PATH
-	private String imgStatus;	   //	IMG_STATUS
+
+	private String productName;
+	private int categoryNo;
+	private String brandName;
+	private int companyPrice;
+	private String productGender;
+	private String productWeather;
+	private String status;
+	private int tradeCount;
+	private int StockNo;
+	private String userId;
+	private int price;
+	private int stock;
+	private String size;
+	private String userClass;
+	private int imgNo;
+	private String imgName;
+	private String imgPath;
+	private String imgStatus;
+	private int postNo;
+	private String productContent;
+	private int pCategoryNo;
+	private String pCategoryName;
+	private int subCategoryNo;
+	private String subCategoryName;
+	private int wishListCount;
+	private int postProductTagCount;
 	
 	public ProductAll() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public ProductAll(String productName, int categoryNo, String brandName, String companyPrice, String productGender,
-			String prdouctWeather, String status, int imgNo, String imgName, String imgPath, String imgStatus) {
+	public ProductAll(String productName, int categoryNo, String brandName, int companyPrice, String productGender,
+			String productWeather, String status, int tradeCount, int stockNo, String userId, int price, int stock,
+			String size, String userClass, int imgNo, String imgName, String imgPath, String imgStatus, int postNo,
+			String productContent, int pCategoryNo, String pCategoryName, int subCategoryNo, String subCategoryName,
+			int wishListCount, int postProductTagCount) {
 		super();
 		this.productName = productName;
 		this.categoryNo = categoryNo;
 		this.brandName = brandName;
 		this.companyPrice = companyPrice;
 		this.productGender = productGender;
-		this.prdouctWeather = prdouctWeather;
+		this.productWeather = productWeather;
 		this.status = status;
+		this.tradeCount = tradeCount;
+		StockNo = stockNo;
+		this.userId = userId;
+		this.price = price;
+		this.stock = stock;
+		this.size = size;
+		this.userClass = userClass;
 		this.imgNo = imgNo;
 		this.imgName = imgName;
 		this.imgPath = imgPath;
 		this.imgStatus = imgStatus;
+		this.postNo = postNo;
+		this.productContent = productContent;
+		this.pCategoryNo = pCategoryNo;
+		this.pCategoryName = pCategoryName;
+		this.subCategoryNo = subCategoryNo;
+		this.subCategoryName = subCategoryName;
+		this.wishListCount = wishListCount;
+		this.postProductTagCount = postProductTagCount;
 	}
 	
-	public ProductAll(String productName, String brandName, String imgName, String imgPath) {
+
+	public ProductAll(String productName, String brandName, int companyPrice, String imgName, String imgPath,
+			int wishListCount, int postProductTagCount) {
 		super();
 		this.productName = productName;
 		this.brandName = brandName;
+		this.companyPrice = companyPrice;
 		this.imgName = imgName;
 		this.imgPath = imgPath;
+		this.wishListCount = wishListCount;
+		this.postProductTagCount = postProductTagCount;
+	}
+
+	public int getWishListCount() {
+		return wishListCount;
+	}
+
+	public void setWishListCount(int wishListCount) {
+		this.wishListCount = wishListCount;
+	}
+
+	public int getPostProductTagCount() {
+		return postProductTagCount;
+	}
+
+	public void setPostProductTagCount(int postProductTagCount) {
+		this.postProductTagCount = postProductTagCount;
 	}
 
 	public String getProductName() {
@@ -65,11 +121,11 @@ public class ProductAll {
 		this.brandName = brandName;
 	}
 
-	public String getCompanyPrice() {
+	public int getCompanyPrice() {
 		return companyPrice;
 	}
 
-	public void setCompanyPrice(String companyPrice) {
+	public void setCompanyPrice(int companyPrice) {
 		this.companyPrice = companyPrice;
 	}
 
@@ -81,12 +137,12 @@ public class ProductAll {
 		this.productGender = productGender;
 	}
 
-	public String getPrdouctWeather() {
-		return prdouctWeather;
+	public String getProductWeather() {
+		return productWeather;
 	}
 
-	public void setPrdouctWeather(String prdouctWeather) {
-		this.prdouctWeather = prdouctWeather;
+	public void setProductWeather(String productWeather) {
+		this.productWeather = productWeather;
 	}
 
 	public String getStatus() {
@@ -95,6 +151,62 @@ public class ProductAll {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getTradeCount() {
+		return tradeCount;
+	}
+
+	public void setTradeCount(int tradeCount) {
+		this.tradeCount = tradeCount;
+	}
+
+	public int getStockNo() {
+		return StockNo;
+	}
+
+	public void setStockNo(int stockNo) {
+		StockNo = stockNo;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getUserClass() {
+		return userClass;
+	}
+
+	public void setUserClass(String userClass) {
+		this.userClass = userClass;
 	}
 
 	public int getImgNo() {
@@ -129,11 +241,65 @@ public class ProductAll {
 		this.imgStatus = imgStatus;
 	}
 
+	public int getPostNo() {
+		return postNo;
+	}
+
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
+	}
+
+	public String getProductContent() {
+		return productContent;
+	}
+
+	public void setProductContent(String productContent) {
+		this.productContent = productContent;
+	}
+
+	public int getpCategoryNo() {
+		return pCategoryNo;
+	}
+
+	public void setpCategoryNo(int pCategoryNo) {
+		this.pCategoryNo = pCategoryNo;
+	}
+
+	public String getpCategoryName() {
+		return pCategoryName;
+	}
+
+	public void setpCategoryName(String pCategoryName) {
+		this.pCategoryName = pCategoryName;
+	}
+
+	public int getSubCategoryNo() {
+		return subCategoryNo;
+	}
+
+	public void setSubCategoryNo(int subCategoryNo) {
+		this.subCategoryNo = subCategoryNo;
+	}
+
+	public String getSubCategoryName() {
+		return subCategoryName;
+	}
+
+	public void setSubCategoryName(String subCategoryName) {
+		this.subCategoryName = subCategoryName;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductAll [productName=" + productName + ", categoryNo=" + categoryNo + ", brandName=" + brandName
-				+ ", companyPrice=" + companyPrice + ", productGender=" + productGender + ", prdouctWeather="
-				+ prdouctWeather + ", status=" + status + ", imgNo=" + imgNo + ", imgName=" + imgName + ", imgPath="
-				+ imgPath + ", imgStatus=" + imgStatus + "]";
+				+ ", companyPrice=" + companyPrice + ", productGender=" + productGender + ", productWeather="
+				+ productWeather + ", status=" + status + ", tradeCount=" + tradeCount + ", StockNo=" + StockNo
+				+ ", userId=" + userId + ", price=" + price + ", stock=" + stock + ", size=" + size + ", userClass="
+				+ userClass + ", imgNo=" + imgNo + ", imgName=" + imgName + ", imgPath=" + imgPath + ", imgStatus="
+				+ imgStatus + ", postNo=" + postNo + ", productContent=" + productContent + ", pCategoryNo="
+				+ pCategoryNo + ", pCategoryName=" + pCategoryName + ", subCategoryNo=" + subCategoryNo
+				+ ", subCategoryName=" + subCategoryName + ", wishListCount=" + wishListCount + ", postProductTagCount="
+				+ postProductTagCount + "]";
 	}
+
 }
