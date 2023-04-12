@@ -10,6 +10,7 @@ import com.smf.my.model.dao.MyPageDao;
 import com.smf.my.model.vo.Account;
 import com.smf.my.model.vo.Address;
 import com.smf.my.model.vo.Card;
+import com.smf.my.model.vo.ShoppingCart;
 import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.vo.ProductAll;
 
@@ -242,6 +243,53 @@ public class MyPageService {
 		
 		return list;
 		
+	}
+	
+	public int wishlistItemDelete(String userId, String pName) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPageDao().wishlistItemDelete(conn, userId, pName);
+		
+		if( result>0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	// 장바구니
+	public ArrayList<ShoppingCart> shoppingCartList(String userId){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ShoppingCart> list = new MyPageDao().shoppingCartList(conn, userId);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public int shoppingCartItemDelete(int cNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPageDao().shoppingCartItemDelete(conn, cNo);
+		
+		if( result>0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 	
 }

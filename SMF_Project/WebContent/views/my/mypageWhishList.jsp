@@ -46,7 +46,7 @@
 			                                <a href="" >상품페이지 이동</a>
 			                            </div>
 			                            <div class="wishList_productInfo_delete_div">
-			                                <a href="" >삭제</a>
+			                                <a href="#">삭제</a>
 			                            </div>
 			                        </div>
 			                    </div>
@@ -62,9 +62,20 @@
             </div>
         </div>
     </div>
+   	<script>
+		const msg = "${alertMsg}";
+		 
+		 if(msg != ""){
+			alert(msg);
+			<% session.removeAttribute("alertMsg"); %>
+		} 
+	</script>
     <script>
-    	$('#wishList_productInfo_delete_div>a').click(function(){
-    		$(this).attr("href","${pageContext.request.contextPath}/wishListItemDel.me?")//html에서 불러와야함
+    	$('.wishList_productInfo_delete_div>a').click(function(){
+			let pName = $(this).parents('.wishList_productInfo_flex').children('.wishList_productInfo_left').children('.wishList_productInfo_text').children('.wishList_productInfo_name').text();
+    		if(confirm('정말 삭제하십니까?')){
+    			$(this).attr("href","${pageContext.request.contextPath}/wishListItemDel.me?pName="+pName)
+			}
     	});
     </script>
 </body>
