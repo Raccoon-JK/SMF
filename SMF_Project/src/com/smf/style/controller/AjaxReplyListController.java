@@ -1,23 +1,29 @@
-package com.smf.my.controller;
+package com.smf.style.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.smf.style.model.service.StyleService;
+import com.smf.style.model.vo.StyleComment;
+
 /**
- * Servlet implementation class MyWishListDeleteController
+ * Servlet implementation class AjaxReplyListController
  */
-@WebServlet("/wishListItemDel.me")
-public class MyWishListDeleteController extends HttpServlet {
+@WebServlet("/rlist.bo")
+public class AjaxReplyListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyWishListDeleteController() {
+    public AjaxReplyListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +33,15 @@ public class MyWishListDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int postNo = Integer.parseInt(request.getParameter("pno"));
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ArrayList<StyleComment> list = new StyleService().selectCommentList(postNo);
+		
+		
+		// Gson을 이용해서 응답 ArrayList- > JSONArray로 변환
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list , response.getWriter());
+		
 	}
 
 	/**

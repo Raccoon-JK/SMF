@@ -19,7 +19,6 @@ import com.smf.my.model.vo.Account;
 import com.smf.my.model.vo.Address;
 import com.smf.my.model.vo.Card;
 import com.smf.my.model.vo.ReplacePhoneNumber;
-import com.smf.my.model.vo.ShoppingCart;
 import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.vo.ProductAll;
 
@@ -526,90 +525,5 @@ public class MyPageDao {
 		}
 		
 		return list;
-	}
-	
-	public int wishlistItemDelete(Connection conn, String userId, String pName) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("wishlistItemDelete");
-		
-		try {
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, userId);
-			pstmt.setString(2, pName);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
-	// 쇼핑 카트
-	public ArrayList<ShoppingCart> shoppingCartList(Connection conn, String userId){
-		
-		ArrayList<ShoppingCart> list = new ArrayList<>();
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("shoppingCartList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, userId);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				ShoppingCart cart = new ShoppingCart(rset.getString("RESELLER"), 
-													 rset.getInt("STOCK_NO"),
-													 rset.getInt("CART_NO"), 
-													 rset.getString("PRODUCT_NAME"), 
-													 rset.getString("BRAND_NAME"), 
-													 rset.getInt("PRICE"), 
-													 rset.getString("SIZE"), 
-													 rset.getInt("CART_COUNT"), 
-													 rset.getString("IMG_PATH"), 
-													 rset.getString("IMG_NAME"),
-													 rset.getInt("STATUS")
-													);
-				list.add(cart);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-	}
-	
-	public int shoppingCartItemDelete(Connection conn, int cNo) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("shoppingCartItemDelete");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, cNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
 	}
 }

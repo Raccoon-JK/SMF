@@ -38,12 +38,12 @@
 						</div>
 						<div class="Personal_info mypageInfo_class">
 							<p>생년월일</p>
-							<input class="inputBox" type="text" name="BIRTH" readonly>
+							<input class="inputBox" type="text" name="BIRTH">
 							<button type="button">변경</button>
 						</div>
 						<div class="Personal_info mypageInfo_class">
 							<p>핸드폰</p>
-							<input class="inputBox" type="text"  name="PHONE" readonly>
+							<input class="inputBox" type="text"  name="PHONE">
 							<button type="button">변경</button>
 						</div>
 					</div>
@@ -52,12 +52,12 @@
 							<div class="login_info mypageInfo_class">
 								<h5>로그인 정보</h5>
 								<p>아이디</p>
-								<input class="inputBox" type="text" readonly>
+								<input class="inputBox" type="text">
 								<button type="button">변경</button>
 							</div>
 							<div class="login_info mypageInfo_class">
 								<p>비밀번호</p>
-								<input class="inputBox" type="password"  name="USER_PWD" readonly>
+								<input class="inputBox" type="password"  name="USER_PWD">
 								<button type="button">변경</button>
 							</div>
 						</div>

@@ -1,17 +1,11 @@
 package com.smf.my.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.smf.member.model.vo.Member;
-import com.smf.my.model.service.MyPageService;
-import com.smf.my.model.vo.ShoppingCart;
 
 /**
  * Servlet implementation class MyShoppingCartController
@@ -32,14 +26,7 @@ public class MyShoppingCartController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		
-		ArrayList<ShoppingCart> list = new MyPageService().shoppingCartList(userId);
-		
-		request.setAttribute("cartList", list);
-		
-		request.getRequestDispatcher("/views/my/mypageShoppingCart.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/my/mypageShoppingCart.jsp").forward(request, response);;
 	}
 
 	/**
