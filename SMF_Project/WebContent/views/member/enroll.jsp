@@ -19,7 +19,7 @@
                     <div class="input_box" id="email_input_box">
                         <h3 class="input_title ess">이메일 주소</h3>
                         <div class="input_item">
-                            <input type="text" placeholder="예) kream@kream.co.kr" class="input_txt in_essValue" id="uid" name="email" required value="lee5031207@naver.com">
+                            <input type="text" placeholder="예) kream@kream.co.kr" class="input_txt in_essValue" id="uid" name="email" required>
                         </div>
                         <p class="input_error" id="email_input_error"></p>
                     </div>
@@ -27,14 +27,14 @@
                     <div class="input_box" id="name_input_box">
                         <h3 class="input_title ess">이름(*)</h3>
                         <div class="input_item">
-                            <input type="text" placeholder="이름을 입력하세요" class="input_txt" id="uname" name="name" required value="이성욱">
+                            <input type="text" placeholder="이름을 입력하세요" class="input_txt" id="uname" name="name" required>
                         </div>
                     </div>
 
                     <div class="input_box has_button" id="password_input_box">
                         <h3 class="input_title ess">비밀번호</h3>
                         <div class="input_item">
-                            <input type="password" placeholder="영문, 숫자, 특수문자 조합 8-16자"  class="input_txt" id="upwd" name="password" maxlength="16" required value="1q2w3e4r@">
+                            <input type="password" placeholder="영문, 숫자, 특수문자 조합 8-16자"  class="input_txt" id="upwd" name="password" maxlength="16" required>
                         </div>
                         <p class="input_error" id="password_input_error"></p>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="input_box" id="passwordcheck_input_box">
                         <h3 class="input_title ess">비밀번호 확인</h3>
                         <div class="input_item">
-                            <input type="password" placeholder="비밀번호 확인"class="input_txt" id="urepwd" maxlength="16" required value="1q2w3e4r@">
+                            <input type="password" placeholder="비밀번호 확인"class="input_txt" id="urepwd" maxlength="16" required>
                         </div>
                     </div>
                     
@@ -51,7 +51,7 @@
                     <div class="input_box" id="tell_input_box">
                         <h3 class="input_title ess">휴대폰 번호</h3>
                         <div class="input_item">
-                            <input type="text" placeholder="휴대폰 번호('-'제거 후 입력해주세요.)" class="input_txt" id="uphone" name="phone" maxlength="11" required value="01074861207">
+                            <input type="text" placeholder="휴대폰 번호('-'제거 후 입력해주세요.)" class="input_txt" id="uphone" name="phone" maxlength="11" required>
                         </div>
                     
                     </div>
@@ -61,7 +61,7 @@
 
                        <div class="birth_box" id="birth_input_box">
                         <label>
-                            <input type="text" name="yy" id="yy" placeholder="년(4자)" maxlength="4" required value="1997"> 
+                            <input type="text" name="yy" id="yy" placeholder="년(4자)" maxlength="4" required> 
                             <select class="box" id="birth-mm" name="mm">
                                 <option value="">월 선택 </option>
                                 <option value="01">1</option>
@@ -79,7 +79,7 @@
                             </select>
                              월
                         </label> 
-                        <input type="text" name="dd" id="dd" placeholder="일(2자)" maxlength="2" required value="03">  일
+                        <input type="text" name="dd" id="dd" placeholder="일(2자)" maxlength="2" required>  일
                         </div> 
                     </div>
                     
