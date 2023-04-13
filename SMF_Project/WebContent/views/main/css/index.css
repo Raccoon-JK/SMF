@@ -74,6 +74,11 @@ div>a:hover {
 	border-radius: 10px 10px;
 }
 
+.product_container{
+	width: 340px;
+	height: 500px;
+}
+
 .info_box {
 	padding: 16px 0px 25px;
 }

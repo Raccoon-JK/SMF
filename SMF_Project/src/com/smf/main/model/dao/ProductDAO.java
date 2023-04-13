@@ -2,7 +2,6 @@ package com.smf.main.model.dao;
 
 import static com.smf.common.JDBCTemplate.*;
 import com.smf.main.model.vo.Product;
-import com.smf.main.model.vo.ProductRange;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -50,8 +49,7 @@ public class ProductDao {
 				Product product = new Product();
 				product.setProductName(rset.getString("PRODUCT_NAME"));
 				product.setCompanyPrice(rset.getInt("COMPANY_PRICE"));
-				product.setTradeCount(rset.getInt("TRADE_COUNT"));
-				product.setStatus(rset.getString("STATUS"));
+				product.setImageName(rset.getString("IMG_NAME"));
 				product.setImagePath(rset.getString("IMG_PATH"));
 				product.setBrandName(rset.getString("BRAND_NAME"));
 
@@ -66,9 +64,8 @@ public class ProductDao {
 		return productList;
 	}
 	
-	public ArrayList<Product> getMoreProduct(Connection conn, ProductRange pr) {
-		ArrayList<Product> productList = new ArrayList<>();
-
+	public ArrayList<Product> getMoreProduct(Connection conn, int currentCount) {
+		ArrayList<Product> moreProductList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
@@ -77,24 +74,22 @@ public class ProductDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-		
-			int startRange = 1 + 3 * (pr.getCurrentRange() - 1);
-			int endRange = 4 + pr.getProductLimit() * (startRange - 1);
-
+			
+			int startRange = (currentCount * 3) - 2; // 4, 7, 10, 13 ...
+			int endRange = currentCount * 3; // 6, 9, 12
+			
 			pstmt.setInt(1, startRange);
 			pstmt.setInt(2, endRange);
+			
+			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				Product product = new Product();
-				product.setProductName(rset.getString("PRODUCT_NAME"));
-				product.setCompanyPrice(rset.getInt("COMPANY_PRICE"));
-				product.setTradeCount(rset.getInt("TRADE_COUNT"));
-				product.setStatus(rset.getString("STATUS"));
-				product.setImagePath(rset.getString("IMG_PATH"));
-				product.setBrandName(rset.getString("BRAND_NAME"));
-
-				productList.add(product);
+				Product product = new Product(rset.getString("PRODUCT_NAME")
+						, rset.getInt("COMPANY_PRICE")
+						, rset.getString("IMG_NAME")
+						, rset.getString("IMG_PATH")
+						, rset.getString("BRAND_NAME"));
+				moreProductList.add(product);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,6 +97,6 @@ public class ProductDao {
 			close(rset);
 			close(pstmt);
 		}
-		return productList;
+		return moreProductList;
 	}
 }

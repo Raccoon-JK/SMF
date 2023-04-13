@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import com.smf.main.model.dao.ProductDao;
 import com.smf.main.model.vo.Product;
-import com.smf.main.model.vo.ProductRange;
 
 public class ProductService {
 
@@ -21,14 +20,15 @@ public class ProductService {
         return productList;
     }
     
-    public ArrayList<Product> getMoreProduct(ProductRange pr) {
+    public ArrayList<Product> getMoreProduct(int currentCount) {
         Connection conn = getConnection();
         
-		ArrayList<Product> productList = new ProductDao().getMoreProduct(conn, pr);
+		ArrayList<Product> moreProductList = new ProductDao().getMoreProduct(conn, currentCount);
 		
         close(conn);
         
-        return productList;
+        return moreProductList;
+        
     }
 }
 
