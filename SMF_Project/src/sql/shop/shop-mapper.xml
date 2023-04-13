@@ -136,6 +136,15 @@
 		SELECT PRODUCT_NAME, P_SIZE
 		FROM STOCK
 		WHERE PRODUCT_NAME = ?
+		AND STATUS = 'Y'
 		GROUP BY PRODUCT_NAME, P_SIZE
+	</entry>
+	
+	<entry key="selectSizeStock">
+		SELECT PRODUCT_NAME, P_SIZE, STOCK, PRICE, USER_CLASS
+		FROM STOCK
+		WHERE PRODUCT_NAME = ?
+		AND P_SIZE = ?
+		AND STATUS = 'Y'
 	</entry>
 </properties>

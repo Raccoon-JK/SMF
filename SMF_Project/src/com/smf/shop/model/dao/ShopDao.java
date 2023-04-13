@@ -417,8 +417,44 @@ public class ShopDao {
 				
 				list.add(s);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Stock> selectSizeStock(Connection conn, String productName, String pSize) {
+		
+		ArrayList<Stock> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSizeStock");
+		
+		try {
 			
+			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setString(1, productName);
+			pstmt.setString(2, pSize);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Stock s = new Stock();
+				
+				s.setStock(rset.getInt("STOCK"));
+				s.setPrice(rset.getInt("PRICE"));
+				s.setUserClass(rset.getString("USER_CLASS"));
+				
+				list.add(s);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

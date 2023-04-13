@@ -107,9 +107,9 @@
 													</div>
 													<div class="modal-body shoeSize">
 <%-- 														<% for(int i = 0; i < list1.length; i++){ %> --%>
-<%-- 														<c:forEach var="s" items="${ list1 }"> --%>		
-															<input type="radio" id="" name="size" value=""
-																class="modalSize"><label for="" class="btn"></label>
+<%-- 														<c:forEach var="s" items="${ list1 }">		 --%>
+<!-- 															<input type="radio" id="" name="size" value="" -->
+<!-- 																class="modalSize"><label for="" class="btn"></label> -->
 <%-- 														<% } %> --%>
 <%-- 														</c:forEach> --%>
 													</div>
@@ -126,22 +126,22 @@
                                 <div class="categoryTitle productUnderline"">
                                     <div class="productInfoHalf">
                                         <button id="testBtn2">수량</button> <!-- 모달창으로. 누르면 해당 브랜드 재고, 리셀 재고 표시 -->
-<!--                                         <div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-<!--                                             <div class="modal-dialog" role="document"> -->
-<!--                                                 <div class="modal-content"> -->
-<!--                                                     <div class="modal-header"> -->
-<!--                                                         <h5 class="modal-title" id="exampleModalLabel2">상품 수량 선택</h5> -->
-<!--                                                     </div>                                                     -->
-<!--                                                     <div class="modal-body stock"> -->
+                                        <div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel2">상품 수량 선택</h5>
+                                                    </div>                                                    
+                                                    <div class="modal-body sizeStock">
                                                         
-<!--                                                     </div>                                                     -->
-<!--                                                     <div class="modal-footer"> -->
-<!--                                                         <button type="button" id="sizeBtn" class="btn">선택</button> -->
-<!--                                                         <button type="button" id="closeBtn" class="btn" data-dismiss="modal">취소</button> -->
-<!--                                                     </div> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </div> -->
+                                                    </div>                                                    
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="sizeBtn" class="btn">선택</button>
+                                                        <button type="button" id="closeBtn" class="btn" data-dismiss="modal">취소</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="productInfoHalfR detailPriceInfo">
                                         <div class="detailPrice">총 가격</div>
@@ -564,13 +564,12 @@
         //     $(this).addClass('btn-outline-primary');
         // });
 
-        $('input[type="radio"]').change(function() {
+        $(document).on('change', 'input[type="radio"]', function() {
             console.log(this);
             
             if ($(this).is(':checked')) {
                 $('input[type="radio"]').next().removeClass('btn-outline-primary');
                 $(this).next().addClass('btn-outline-primary');
-            } else {
             }
         });
         
@@ -583,63 +582,77 @@
         			
 //         			let data = JSON.parse(data);
 //         			let sizeInput = $('.shoeSize').children('input')
-        			let sizeInput = $('.shoeSize').text()
+//         			let sizeInput = $('.shoeSize').text()
+   			 		let sizeInput = $('.shoeSize');
         			console.log(data);
         			console.log(sizeInput);
+        			sizeInput.empty();
        			 	for(let i = 0; i < data.length; i++) {
-	  //<input type="radio" id="" name="size" value="" class="modalSize"><label for="" class="btn"></label>
        			 		let item = data[i].size;
        			 		console.log(item);
-	   			      	
-	   			     	sizeInput.attr('id', item)
-	                    sizeInput.val(item)
-	                    sizeInput.siblings('label').text(item)
-	                    sizeInput.siblings('label').attr('for', item)
+       			 		console.log(sizeInput);
+       			 		sizeInput.append('<input type="radio" id="' + item + '" name="size" value="' + item + '" class="modalSize"><label for="' + item + '" class="btn">' + item + '</label>');
+       			 		
+//						<input type="radio" id="" name="size" value="" class="modalSize"><label for="" class="btn"></label>
+// 	   			     	sizeInput.attr('id', item)
+// 	                    sizeInput.val(item)
+// 	                    sizeInput.siblings('label').text(item)
+// 	                    sizeInput.siblings('label').attr('for', item)
 	        			
        			    }
+        		}
+//         		complete: function(){
+//         			$('#testBtn2').click(function() {
+//         	        	$.ajax({
+//         	        		url: "${ pageContext.request.contextPath }/pCount.sh",
+//         	        		dataType: 'json',
+//         	        		data: { productName: ${ p.productName },
+//         	        				pSize: $(".sizeOption").text()
+//         	        				},
+//         	        		success: function(data){
+        	        			
+//         	        			let sizeStock = $('.sizeStock');
+//         	        			sizeStock.empty();
+//         	        			for(let i = 0; i < data.length; i++) {
+        	        				
+//         	        				let item = data[i].stock;
+        	        				
+//         			             	console.log(item);
+        			             	
+//         			             	sizeStock.append('브랜드상품<input type="number" min="1" max="' + item[0] + '">')
+//         			             	sizeStock.append('리셀상품<input type="number" min="1" max="' + item[1] + '">')
+//         	        			}
+//         	        		}
+//         	        	});
+//         	        });
+//         		}
+        	});
+        });
+        
+        $('#testBtn2').click(function() {
+        	$.ajax({
+        		url: "${ pageContext.request.contextPath }/pCount.sh",
+        		dataType: 'json',
+        		data: { productName: '${ p.productName }',
+        				pSize: $(".sizeOption").text()
+        				},
+        		success: function(data){
         			
-//         			let s = data[0].size
-        			
-                    
-//         			let currInput = $('.shoeSize').children('input')
-                    
-//                     currInput.attr('id', s)
-//                     currInput.val(s)
-//                     currInput.siblings('label').text(s)
-//                     currInput.siblings('label').attr('for', s)
+        			let sizeStock = $('.sizeStock');
+        			sizeStock.empty();
+		            
+        			if(data.length == 1 && data[0].userClass == 1){
+		             	sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '">')
+        			}else if(data.length == 1 && data[0].userClass == 2){
+        				sizeStock.append('리셀상품<input type="number" min="1" max="' + data[0].stock + '">')
+        			}else{
+	        			sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '">')
+	        			sizeStock.append('리셀상품<input type="number" min="1" max="' + data[1].stock + '">')        				
+        			}
         			
         		}
         	});
         });
-        
-//         $('#testBtn2').click(function() {
-//         	$.ajax({
-//         		url: "${ pageContext.request.contextPath }/pCount.sh",
-//         		dataType: 'json',
-//         		data: { productName=${ p.productName },
-//         				size=$(".sizeOption").val()
-//         				},
-//         		success: function(data){
-//         			<div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-//                     <div class="modal-dialog" role="document">
-//                         <div class="modal-content">
-//                             <div class="modal-header">
-//                                 <h5 class="modal-title" id="exampleModalLabel2">상품 수량 선택</h5>
-//                             </div>                                                    
-//                             <div class="modal-body size">
-//                            		브랜드상품<input type="number" min="1" max="${ s.stock }[0]"/>
-//                         		리셀상품<input type="number" min="1" max="${ s.stock }[1]"/>
-//                         	</div>
-//                             <div class="modal-footer">
-//                                 <button type="button" id="sizeBtn2" class="btn">선택</button>
-//                                 <button type="button" id="closeBtn2" class="btn" data-dismiss="modal">취소</button>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//         		}
-//         	});
-//         });
         </script>
 </body>
 </html>

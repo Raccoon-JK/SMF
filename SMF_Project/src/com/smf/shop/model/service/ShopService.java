@@ -136,4 +136,16 @@ public class ShopService {
 		
 		return list;
 	}
+	
+	public ArrayList<Stock> selectSizeStock(String productName, String pSize) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> list = new ShopDao().selectSizeStock(conn, productName, pSize);
+		
+		close(conn);
+		
+		return list;
+		
+	}
 }
