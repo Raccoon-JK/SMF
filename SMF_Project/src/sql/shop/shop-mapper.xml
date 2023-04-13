@@ -125,4 +125,17 @@
 		WHERE PRODUCT_NAME = ?
         GROUP BY PRODUCT_NAME
 	</entry>
+	
+	<entry key="selectWishList">
+		SELECT COUNT(PRODUCT_NAME) AS PRODUCT_NAME
+		FROM WISHLIST
+		WHERE PRODUCT_NAME = ?
+	</entry>
+	
+	<entry key="selectSize">
+		SELECT PRODUCT_NAME, P_SIZE
+		FROM STOCK
+		WHERE PRODUCT_NAME = ?
+		GROUP BY PRODUCT_NAME, P_SIZE
+	</entry>
 </properties>

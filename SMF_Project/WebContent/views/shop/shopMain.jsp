@@ -51,6 +51,7 @@
 
 <body>
     <div id="navibar"></div>
+<%--     <jsp:include page="/views/main/menubar_shop.jsp" /> --%>
     <div>
         <div id="searchbox">
             <div id="search">
