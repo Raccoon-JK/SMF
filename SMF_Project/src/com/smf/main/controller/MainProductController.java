@@ -35,6 +35,7 @@ public class MainProductController extends HttpServlet {
 		
 		ArrayList<MainProduct> productList = new MainProductService().getProduct();
 
+		
         // 조회한 상품 정보를 JSON 형식으로 변환
         String json = "[";
         for (int i = 0; i < productList.size(); i++) {

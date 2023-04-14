@@ -66,10 +66,10 @@ $(document).ready(function() {
  */
 
 var count = 2;
-var url = "http://localhost:8080/SMF_Project/MoreProduct.pr?currentCount="
+var url2 = "http://localhost:8080/SMF_Project/MoreProduct.pr?currentCount="
 
 $('#more').click(function() {
-	$.get(url.concat(count))
+	$.get(url2.concat(count))
 		.done((data) => {
 			data.forEach((a, i) => {
 				var template =
