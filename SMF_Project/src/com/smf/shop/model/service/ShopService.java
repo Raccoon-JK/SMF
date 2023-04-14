@@ -148,4 +148,20 @@ public class ShopService {
 		return list;
 		
 	}
+	
+	public int insertWishList(String productName, String userId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().insertWishList(conn, productName, userId);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+	}
 }

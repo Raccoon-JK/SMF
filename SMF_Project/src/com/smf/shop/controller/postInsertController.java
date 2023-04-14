@@ -70,7 +70,16 @@ public class postInsertController extends HttpServlet {
 			String pName = multi.getParameter("productName");
 			String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId() + ""; // 로그인 유저 아이디 정보
 			String userClass = ((Member) request.getSession().getAttribute("loginUser")).getUserType() + "";
-
+			
+			
+			Enumeration e = multi.getParameterNames();
+			while (e.hasMoreElements()) {
+				String name = (String) e.nextElement();
+				String[] values = multi.getParameterValues(name);
+				for (String value : values) {
+					System.out.println("name=" + name + ",value=" + value);
+				}
+			}
 			// 3. DB에 저장
 			// Product에 들어갈 값들 뽑아오기
 			Product p = new Product();
@@ -93,8 +102,8 @@ public class postInsertController extends HttpServlet {
 			// 상세정보 >> 상품상세
 			Product_Detail pd = new Product_Detail();
 			pd.setProductName(pName);
-			pd.setProductContent(multi.getParameter("productContent"));
-
+			pd.setProductContent(multi.getParameter("content"));
+			
 			// Attachment테이블에 여러번 insert할 데이터를 뽑기
 			// 단, 여러개의 첨부파일이 있을것이기 때문에 attachment들을 ArrayList에 담을 예정 => 반드시 1개 이상은 담김(대표이미지)
 			// >> Product_Img?
