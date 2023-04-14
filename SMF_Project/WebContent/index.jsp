@@ -1,6 +1,9 @@
-<%@ page import="com.smf.main.model.vo.Product, java.util.ArrayList, com.smf.main.model.vo.ProductRange" %>
+<%@ page import="com.smf.main.model.vo.Product, java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	int currentCount = 1;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +25,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/common/css/index.css"
+	href="${pageContext.request.contextPath}/views/main/css/index.css"
 	type="text/css">
 </head>
 <style>
@@ -138,13 +141,17 @@
 			인기상품
 		</div>
 
-		<div class="row">
-			
+		<div class="row">		
 		</div>
-
-		<div class="button_box">
-			<button class="btn_more" id="more">더보기</button>
-		</div>
+		
+		<iframe id="iframe1" name="iframe1" style="display: none"></iframe>
+		<form class="button_box"
+			action="${pageContext.request.contextPath}/MoreProduct.pr"
+			target="iframe1"
+			method="get">
+			<input type="hidden" name="currentCount" value="<%=currentCount += 1%>">
+			<button type="submit" class="btn_more" id="more">더보기</button>
+		</form>
 	</div>
 
 	<!-- Swiper -->
@@ -298,7 +305,7 @@
 	</div>
 
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/views/common/js/index.js"></script>
+		src="${pageContext.request.contextPath}/views/main/js/index.js"></script>
 
 	<jsp:include page="/views/common/footer.jsp" />
 

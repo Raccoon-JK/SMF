@@ -56,6 +56,7 @@
 #menu_li {
 	padding-left: 0px;
 	list-style: none;
+	font-size: 13px;
 }
 
 #menu_li>li {
