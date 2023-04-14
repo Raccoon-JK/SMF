@@ -113,4 +113,51 @@ public class NoticeService {
 	}
 	
 	
+	public Notice selectfaqNotice(int nno) {
+		
+		Connection conn = getConnection();
+		
+		Notice n = new NoticeDao().selectfaqNotice(conn, nno);
+		
+		
+		close(conn);
+		
+		return n;
+		
+	}
+	
+	public int updatefaqNotice(Notice n) {
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().updatefaqNotice(conn, n);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+			
+		
+	}
+	
+	
+	
+	public int deletefaqNotice(int nno) {
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().deletefaqNotice(conn, nno);
+		
+		if(result> 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 }
