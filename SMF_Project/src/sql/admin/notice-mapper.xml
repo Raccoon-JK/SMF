@@ -88,5 +88,29 @@
 
 	</entry>
 	
-
+	<entry key="insertFaq">
+	
+		INSERT INTO NOTICE
+		(
+			ALERT_NO,
+			ALERT_CATEGORY,
+			ALERT_TITLE,
+			ALERT_CONTENT,
+			QLEVEL
+		
+			
+		)VALUES
+		(
+			SEQ_NOTICE_NO.NEXTVAL,
+			?,
+			?,
+			?,
+			1
+		
+			
+		)
+	
+	
+	
+	</entry>
 </properties>

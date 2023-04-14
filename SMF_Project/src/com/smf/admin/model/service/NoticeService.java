@@ -97,7 +97,20 @@ public class NoticeService {
 		return list; 	
 	}
 	
-	
+	public int insertFaq(Notice n) {
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().insertFaq(conn, n);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 	
 	
 }

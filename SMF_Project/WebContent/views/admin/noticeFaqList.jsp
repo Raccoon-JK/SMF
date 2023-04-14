@@ -107,7 +107,7 @@ h2{
 			<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
 			<div align= "right" style="width:800px;">
 				
-				<a href="<%= contextPath %>/enrollform.no" class="btn btn-secondary">글작성</a>
+				<a href="<%= contextPath %>/faqenrollform.no" class="btn btn-secondary">글작성</a>
 				
 			</div>	
 		<%} %>

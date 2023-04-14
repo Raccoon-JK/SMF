@@ -244,4 +244,30 @@ public ArrayList<Notice> selectFaqNoticeList(Connection conn){
 	}
 
 
+
+
+
+public int insertFaq(Connection conn, Notice n) {
+	
+	int result = 0;
+	
+	PreparedStatement pstmt = null;
+	String sql = prop.getProperty("insertFaq");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, n.getAlertCategory());
+		pstmt.setString(2, n.getAlertTitle());
+		pstmt.setString(3, n.getAlertContent());
+		
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	return result;
+}
+
 }
