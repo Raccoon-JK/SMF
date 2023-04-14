@@ -1720,11 +1720,12 @@ INSERT INTO CATEGORY_SUB(SUB_CATEGORY_NO, P_CATEGORY_NO, SUB_CATEGORY_NAME)
     VALUES(SEQ_SCAT_NO.NEXTVAL, 8, '기타 패션잡화');            
     
 -- 테스트 회원 생성
-'admin@naver.com'
+--'admin@naver.com'
 INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
-       VALUES 
-	   ('test@smf.com', '테스트', '1q2w3e4r@', 01011110000, '010101', 'test@smf.com'),
-	   ('admin@naver.com', 'admin', '1q2w3e4r@', 01011110000, '121212' 'admin@naver.com' );
+       VALUES ('test@smf.com', '테스트', '1q2w3e4r@', 01011110000, '01/01/01', 'test@smf.com');
+       
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('admin@naver.com', 'admin', '1q2w3e4r@', 01011110000, '12/12/12', 'admin@naver.com' );
 	   
 COMMIT;
 
