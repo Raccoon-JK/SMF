@@ -292,4 +292,17 @@ public class MyPageService {
 		return result;
 	}
 	
+	// 주문 결제
+	public ArrayList<ShoppingCart> stockProdcutSelectList(String userId, String[] pArr){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ShoppingCart> list = new MyPageDao().stockProdcutSelectList(conn, userId, pArr);
+		
+		close(conn);
+		
+		System.out.println("ser"+list);
+		return list;
+	}
+	
 }

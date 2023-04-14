@@ -59,7 +59,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			
-			
+			// 더 많은 정보를 로그인할 때 가져와야 합니다.
 			if(rset.next()) {
 				m = new Member(rset.getString("USER_ID"),
 							   rset.getString("USER_NAME"),

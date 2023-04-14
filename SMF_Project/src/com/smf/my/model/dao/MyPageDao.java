@@ -612,4 +612,56 @@ public class MyPageDao {
 		
 		return result;
 	}
+	
+	
+	
+	// 주문 결제 페이지
+	public ArrayList<ShoppingCart> stockProdcutSelectList(Connection conn, String userId, String[] pArr){
+		
+		ArrayList<ShoppingCart> plist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("stockProdcutSelectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			int i = 2;
+			for(String p : pArr) {
+				System.out.println(i+" "+p);
+				pstmt.setString(i, p);
+				i++;
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ShoppingCart cart = new ShoppingCart(rset.getString("RESELLER"), 
+													 rset.getInt("STOCK_NO"),
+													 rset.getInt("CART_NO"), 
+													 rset.getString("PRODUCT_NAME"), 
+													 rset.getString("BRAND_NAME"), 
+													 rset.getInt("PRICE"), 
+													 rset.getString("SIZE"), 
+													 rset.getInt("CART_COUNT"), 
+													 rset.getString("IMG_PATH"), 
+													 rset.getString("IMG_NAME"),
+													 rset.getInt("STATUS")
+													);
+				
+				plist.add(cart);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		System.out.println("Dao"+plist);
+		return plist;
+	}
 }
