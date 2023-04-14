@@ -33,16 +33,16 @@
                 </div>
                 <div id="orderAddress_area">
                     <div>
-                        <span class="orderAddress_title">받는 분</span>
-                        <span class="orderAddress_desc">와우이</span>
+                        <span class="orderAddress_title">배송지 이름</span>
+                        <span class="orderAddress_desc">${ defaultAddr.receiver }</span>
                     </div>
                     <div>
                         <span class="orderAddress_title">연락처</span>
-                        <span class="orderAddress_desc">010-0000-0000</span>
+                        <span class="orderAddress_desc">${ defaultAddr.phone }</span>
                     </div>
                     <div>
                         <span class="orderAddress_title">배송 주소</span>
-                        <span class="orderAddress_desc">서울 강북서구 강북서로 99길 28</span>
+                        <span class="orderAddress_desc">${ defaultAddr.address }</span>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 </div>
                 <input type="number" id="pointInputBox">
                 <span>보유 포인트</span>
-                <span>0P</span>
+                <span>${ loginUser.totalPoint }P</span>
             </div>
             <div class="orderPayment_div">
                 <h5>결제 방법</h5>
@@ -61,8 +61,8 @@
                     <p id=enrollment_cardTitle>등록된 카드</p>
                     <div id="enrollment_card_flex">
 	                    <div id="enrollment_card_left">
-		                    <span id="enrollment_cardNum">1564X-895X-15X5-192X</span>
-		                    <span id="enrollment_cardDate">MM/YY</span>
+		                    <span id="enrollment_cardNum">${ card.cardNo }</span>
+		                    <span id="enrollment_cardDate">${ card.cardValidity }</span>
 	                    </div>
 	                    <div id="enrollment_card_right">
 	                    	<input type="number" id="paymentPwdInputBox" placeholder="비밀번호 앞 2자리" oninput="numLimit(this)">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div id="generalPayments">
-                    <p id="generalPayments_title">일반 결제</p>
+                    <p id="generalPayments_title">일반 결제</p> <!-- 나중에 카드가 추가 안될 시에 대한 조건문 제시 -->
                     <div id="generalPayments_box">
 	                    <div id="tossPayments">
 	                        <span>토스 페이</span>

@@ -80,6 +80,15 @@ public class ProductAll {
 		this.wishListCount = wishListCount;
 		this.postProductTagCount = postProductTagCount;
 	}
+	
+	// 마이페이지 - 관심상품 페이지의 상품 조회
+	public ProductAll(String productName, String brandName, String imgName, String imgPath) {
+		super();
+		this.productName = productName;
+		this.brandName = brandName;
+		this.imgName = imgName;
+		this.imgPath = imgPath;
+	}
 
 	public int getWishListCount() {
 		return wishListCount;

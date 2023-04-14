@@ -143,13 +143,14 @@
 					</tr>
                 </table>
                 <div style="width: 100px; margin: auto;">
-                    <button type="button" id="submit">확인</button>
+                    <button type=button id="submit">확인</button>
                     <button type="reset">취소</button>
                 </div>
             </div>
         </form>
     </body>
     <script>
+        let editorTxT;
         CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
             toolbar: {
                 items: [
@@ -267,6 +268,12 @@
                 'WProofreader',
                 'MathType'
             ]
+        })
+        .then( newEditor => {
+        	editorTxT = newEditor;
+        })
+        .catch( error => {
+            console.log(error);
         });
 
 //         $('#category').change(function () {
@@ -322,17 +329,20 @@
 			})
         });
         
-        $('#submit').click(function(){
-    		let form = $("#productPostForm")[0];
-    		let formData = new FormData(form);
-    		//console.log('a');
-    		$.each($("input[name='upfile']")[0].files, function(index, file){
-    			console.log(index, file);
-    			formData.append("upfile"+index, file);
-    		});
-    		formData.delete("upfile");
 
-    		
+        $('#submit').click(function(){
+			let form = $("#productPostForm")[0];
+			let formData = new FormData(form);
+            let editorVal = editorTxT.getData();
+
+            formData.delete("content"); // <- 기존 html에 있는 form안에 <textarea name="content"> 삭제
+            formData.append("content", editorVal);
+			$.each($("input[name='upfile']")[0].files, function(index, file){
+				console.log(index, file);
+				formData.append("upfile"+index, file);
+			});
+			formData.delete("upfile");
+			
     		$.ajax({
     			cache: false,
     			url: "<%=contextPath%>/insert.sh",
@@ -346,8 +356,8 @@
                 error: function(data){
                 	alert("실패");
                 }
-    			
     		});
+            $(this).submit();
     	});
     </script>
 

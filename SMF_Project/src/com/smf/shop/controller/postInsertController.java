@@ -71,15 +71,26 @@ public class postInsertController extends HttpServlet {
 			String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId() + ""; // 로그인 유저 아이디 정보
 			String userClass = ((Member) request.getSession().getAttribute("loginUser")).getUserType() + "";
 			
+			// 넘어오는 <input type="file" multiple>확인용도
+//			Enumeration f = multi.getFileNames();
+//			while (f.hasMoreElements()) {
+//				String fileName = (String) f.nextElement();
+//				String imgName = multi.getFilesystemName(fileName);
+//				
+//				System.out.println(fileName);
+//				System.out.println(imgName);
+//			}
 			
-			Enumeration e = multi.getParameterNames();
-			while (e.hasMoreElements()) {
-				String name = (String) e.nextElement();
-				String[] values = multi.getParameterValues(name);
-				for (String value : values) {
-					System.out.println("name=" + name + ",value=" + value);
-				}
-			}
+			// 넘어오는 form안의 데이터들 확인 용도
+//			Enumeration e = multi.getParameterNames();
+//			while (e.hasMoreElements()) {
+//				String name = (String) e.nextElement();
+//				String[] values = multi.getParameterValues(name);
+//				for (String value : values) {
+//					System.out.println("name=" + name + ",value=" + value);
+//				}
+//			}
+			
 			// 3. DB에 저장
 			// Product에 들어갈 값들 뽑아오기
 			Product p = new Product();
@@ -118,17 +129,18 @@ public class postInsertController extends HttpServlet {
 					String fileName = (String) f.nextElement();
 					String imgName = multi.getFilesystemName(fileName);
 					
+					System.out.println(fileName);
+					System.out.println(imgName);
+					
 					Product_Img pi = new Product_Img();
 
 					pi.setProductName(pName);
 					pi.setImgName(imgName);
 					pi.setImgPath("/resources/thumb_upfiles/");
-
 					imgresult += new ShopService().insertProductImg(pi);
 				}
 				if(imgresult > 0) {
 					response.sendRedirect(request.getContextPath());
-					
 				}
 			} else {
 

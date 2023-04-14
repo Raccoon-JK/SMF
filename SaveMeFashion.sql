@@ -511,13 +511,11 @@ REFERENCES "CATEGORY_SUB" (
 
 CREATE TABLE "PRODUCT_DETAIL" (
 	"PRODUCT_NAME"	        VARCHAR2(100)	NOT NULL,
-	"POST_NO"	            NUMBER		    NOT NULL,
 	"PRODUCT_CONTENT"	    VARCHAR2(4000)	NOT NULL
 );
 
 COMMENT ON COLUMN "PRODUCT_DETAIL"."PRODUCT_NAME" IS '상품이름';
 
-COMMENT ON COLUMN "PRODUCT_DETAIL"."POST_NO" IS '시퀀스자동생성(FK)';
 
 COMMENT ON COLUMN "PRODUCT_DETAIL"."PRODUCT_CONTENT" IS '게시글 상세내용';
 
@@ -530,13 +528,6 @@ ALTER TABLE "PRODUCT_DETAIL" ADD CONSTRAINT "FK_P_TO_P_DETAIL" FOREIGN KEY (
 )
 REFERENCES "PRODUCT" (
 	"PRODUCT_NAME"
-);
-
-ALTER TABLE "PRODUCT_DETAIL" ADD CONSTRAINT "FK_SNS_POST_TO_P_DETAIL" FOREIGN KEY (
-	"POST_NO"
-)
-REFERENCES "SNS_POST" (
-	"POST_NO"
 );
 
 -- 상품 이미지 테이블
@@ -1729,11 +1720,12 @@ INSERT INTO CATEGORY_SUB(SUB_CATEGORY_NO, P_CATEGORY_NO, SUB_CATEGORY_NAME)
     VALUES(SEQ_SCAT_NO.NEXTVAL, 8, '기타 패션잡화');            
     
 -- 테스트 회원 생성
-'admin@naver.com'
+--'admin@naver.com'
 INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
-       VALUES 
-	   ('test@smf.com', '테스트', '1q2w3e4r@', 01011110000, '010101', 'test@smf.com'),
-	   ('admin@naver.com', 'admin', '1q2w3e4r@', 01011110000, '121212' 'admin@naver.com' );
+       VALUES ('test@smf.com', '테스트', '1q2w3e4r@', 01011110000, '01/01/01', 'test@smf.com');
+       
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('admin@naver.com', 'admin', '1q2w3e4r@', 01011110000, '12/12/12', 'admin@naver.com' );
 	   
 COMMIT;
 

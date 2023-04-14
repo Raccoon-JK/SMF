@@ -62,8 +62,8 @@
 	</entry>
 	
 	<entry key="insertProductImg">
-		INSERT INTO(
-		IMG_NO
+		INSERT INTO PRODUCT_IMG(
+		IMG_NO,
 		PRODUCT_NAME,
 		IMG_NAME,
 		IMG_PATH
