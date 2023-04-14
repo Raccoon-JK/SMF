@@ -67,7 +67,7 @@ $(document).ready(function() {
 
 var count = 2;
 var url = "http://localhost:8080/SMF_Project/MoreProduct.pr?currentCount="
-       
+
 $('#more').click(function() {
 	$.get(url.concat(count))
 		.done((data) => {
@@ -84,8 +84,31 @@ $('#more').click(function() {
 				$(".row").append(template);
 			})
 		})
-		count += 1;
+	count += 1;
 });
 
+
+/**
+ * 스타일 스와이퍼... 이거 되나?
+ */
+
+$(document).ready(function() {
+	$.get("/SMF_Project/Style.st")
+		.done((data) => {
+			data.forEach((a, i) => {
+				var template =
+					`<div class="swiper-slide style"> 
+						<div class="style-pro">
+							<a><img src="${data[i].userImg}"></a>
+						</div>
+						<div class="style-main">
+							<a><img src="${data[i].image}"></a>
+						</div>
+			          	<p class="userId">${data[i].id}</p>
+			        </div>`;
+				$(".row2").append(template);
+			})
+		})
+});
 
 

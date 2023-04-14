@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<!-- 인기상품 mapper -->
 <properties>
+<!-- 인기상품 mapper -->
 	<entry key="getProduct">
 	<![CDATA[
 		SELECT
@@ -33,6 +33,7 @@ WHERE ROWNUM <= 3
 		]]>
 	</entry>
 
+<!-- 더보기버튼 mapper -->
 	<entry key="getMoreProduct">
 	<![CDATA[
 		SELECT

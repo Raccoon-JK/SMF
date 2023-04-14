@@ -16,14 +16,14 @@ import com.smf.main.model.vo.MainProduct;
 /**
  * Servlet implementation class ProductController
  */
-@WebServlet("/MoreProduct.pr")
-public class MoreProductController extends HttpServlet {
+@WebServlet("/Product.pr")
+public class MainProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoreProductController() {
+    public MainProductController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +33,19 @@ public class MoreProductController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int currentCount = Integer.parseInt(request.getParameter("currentCount"));
-		
-		ArrayList<MainProduct> moreProductList = new MainProductService().getMoreProduct(currentCount);
+		ArrayList<MainProduct> productList = new MainProductService().getProduct();
 
         // 조회한 상품 정보를 JSON 형식으로 변환
         String json = "[";
-        for (int i = 0; i < moreProductList.size(); i++) {
-            MainProduct product = moreProductList.get(i);
+        for (int i = 0; i < productList.size(); i++) {
+            MainProduct product = productList.get(i);
             json += "{";
             json += "\"image\":\"" + "." + product.getImagePath() + product.getImageName() + "\",";
             json += "\"brand\":\"" + product.getBrandName() + "\",";
             json += "\"price\":\"" + product.getCompanyPrice() + "\",";
             json += "\"title\":\"" + product.getProductName() + "\"";
             json += "}";
-            if (i < moreProductList.size() - 1) {
+            if (i < productList.size() - 1) {
                 json += ",";
             }
         }
@@ -59,7 +57,6 @@ public class MoreProductController extends HttpServlet {
         out.print(json);
         out.flush();
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

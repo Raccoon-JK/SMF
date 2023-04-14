@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.main.model.service.ProductService;
-import com.smf.main.model.vo.Product;
+import com.smf.main.model.service.MainStyleService;
+import com.smf.main.model.vo.MainStyle;
 
 /**
- * Servlet implementation class ProductController
+ * Servlet implementation class StyleController
  */
-@WebServlet("/Product.pr")
-public class ProductController extends HttpServlet {
+@WebServlet("/Style.st")
+public class MainStyleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductController() {
+    public MainStyleController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +32,18 @@ public class ProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Product> productList = new ProductService().getProduct();
+		ArrayList<MainStyle> styleList = new MainStyleService().getStyle();
 
-        // 조회한 상품 정보를 JSON 형식으로 변환
+        // 조회한 스타일 정보를 JSON 형식으로 변환
         String json = "[";
-        for (int i = 0; i < productList.size(); i++) {
-            Product product = productList.get(i);
+        for (int i = 0; i < styleList.size(); i++) {
+            MainStyle style = styleList.get(i);
             json += "{";
-            json += "\"image\":\"" + "." + product.getImagePath() + product.getImageName() + "\",";
-            json += "\"brand\":\"" + product.getBrandName() + "\",";
-            json += "\"price\":\"" + product.getCompanyPrice() + "\",";
-            json += "\"title\":\"" + product.getProductName() + "\"";
+            json += "\"image\":\"" + "." + style.getImgPath() + style.getImgName() + "\",";
+            json += "\"id\":\"" + style.getSnsId() + "\",";
+            json += "\"userImg\":\"" + "." + style.getUserImage() + "\"";
             json += "}";
-            if (i < productList.size() - 1) {
+            if (i < styleList.size() - 1) {
                 json += ",";
             }
         }

@@ -1,7 +1,8 @@
 package com.smf.main.model.dao;
 
 import static com.smf.common.JDBCTemplate.*;
-import com.smf.main.model.vo.Product;
+
+import com.smf.main.model.vo.MainProduct;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,13 +17,13 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
-public class ProductDao {
+public class MainProductDao {
 	private Properties prop = new Properties();
 
-	public ProductDao() {
+	public MainProductDao() {
 		try {
 			prop.loadFromXML(new FileInputStream(
-					ProductDao.class.getResource("/sql/main/product/product-mapper.xml").getPath()));
+					MainProductDao.class.getResource("/sql/main/product/product-mapper.xml").getPath()));
 		} catch (InvalidPropertiesFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -32,8 +33,8 @@ public class ProductDao {
 		}
 	}
 
-	public ArrayList<Product> getProduct(Connection conn) {
-		ArrayList<Product> productList = new ArrayList<>();
+	public ArrayList<MainProduct> getProduct(Connection conn) {
+		ArrayList<MainProduct> productList = new ArrayList<>();
 
 		PreparedStatement pstmt = null;
 
@@ -46,7 +47,7 @@ public class ProductDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				Product product = new Product();
+				MainProduct product = new MainProduct();
 				product.setProductName(rset.getString("PRODUCT_NAME"));
 				product.setCompanyPrice(rset.getInt("COMPANY_PRICE"));
 				product.setImageName(rset.getString("IMG_NAME"));
@@ -64,8 +65,8 @@ public class ProductDao {
 		return productList;
 	}
 	
-	public ArrayList<Product> getMoreProduct(Connection conn, int currentCount) {
-		ArrayList<Product> moreProductList = new ArrayList<>();
+	public ArrayList<MainProduct> getMoreProduct(Connection conn, int currentCount) {
+		ArrayList<MainProduct> moreProductList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
@@ -84,7 +85,7 @@ public class ProductDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				Product product = new Product(rset.getString("PRODUCT_NAME")
+				MainProduct product = new MainProduct(rset.getString("PRODUCT_NAME")
 						, rset.getInt("COMPANY_PRICE")
 						, rset.getString("IMG_NAME")
 						, rset.getString("IMG_PATH")

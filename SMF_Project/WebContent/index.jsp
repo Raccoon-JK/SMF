@@ -1,4 +1,4 @@
-<%@ page import="com.smf.main.model.vo.Product, java.util.ArrayList" %>
+<%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -30,7 +30,8 @@
 </head>
 <style>
 .swiper-button-prev.style {
-	background-image: url("resources/common/images/prev_button.svg") !important;
+	background-image: url("resources/common/images/prev_button.svg")
+		!important;
 	width: 80px;
 	height: 100px;
 	margin-left: -25px;
@@ -38,7 +39,8 @@
 }
 
 .swiper-button-next.style {
-	background-image: url("resources/common/images/next_button.svg") !important;
+	background-image: url("resources/common/images/next_button.svg")
+		!important;
 	width: 80px;
 	height: 100px;
 	margin-right: -25px;
@@ -53,16 +55,20 @@
 	<div class="swiper first">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide banner">
-				<a><img src="${pageContext.request.contextPath}/resources/common/images/banner1.webp"/></a>
+				<a><img
+					src="${pageContext.request.contextPath}/resources/common/images/banner1.webp" /></a>
 			</div>
 			<div class="swiper-slide banner">
-				<a><img src="${pageContext.request.contextPath}/resources/common/images/banner2.webp"/></a>
+				<a><img
+					src="${pageContext.request.contextPath}/resources/common/images/banner2.webp" /></a>
 			</div>
 			<div class="swiper-slide banner">
-				<a><img src="${pageContext.request.contextPath}/resources/common/images/banner3.webp"/></a>
+				<a><img
+					src="${pageContext.request.contextPath}/resources/common/images/banner3.webp" /></a>
 			</div>
 			<div class="swiper-slide banner">
-				<a><img src="${pageContext.request.contextPath}/resources/common/images/banner4.webp"/></a>
+				<a><img
+					src="${pageContext.request.contextPath}/resources/common/images/banner4.webp" /></a>
 			</div>
 		</div>
 		<div class="swiper-button-next"></div>
@@ -141,15 +147,14 @@
 			인기상품
 		</div>
 
-		<div class="row">		
-		</div>
-		
+		<div class="row"></div>
+
 		<iframe id="iframe1" name="iframe1" style="display: none"></iframe>
 		<form class="button_box"
 			action="${pageContext.request.contextPath}/MoreProduct.pr"
-			target="iframe1"
-			method="get">
-			<input type="hidden" name="currentCount" value="<%=currentCount += 1%>">
+			target="iframe1" method="get">
+			<input type="hidden" name="currentCount"
+				value="<%=currentCount += 1%>">
 			<button type="submit" class="btn_more" id="more">더보기</button>
 		</form>
 	</div>
@@ -163,139 +168,8 @@
 		</div>
 		<div class="content">
 			<div class="swiper second">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test1.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test1.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
+				<div class="swiper-wrapper row2">
 
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test2.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test2.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test3.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test3.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test4.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test4.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test5.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test5.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test6.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test6.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test7.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test7.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test8.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test8.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test9.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test9.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
-					<div class="swiper-slide style">
-						<div class="style-container">
-							<div class="style-pro">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test10.webp"></a>
-							</div>
-							<div class="style-main">
-								<a><img
-									src="${pageContext.request.contextPath}/resources/common/images/test10.webp"></a>
-							</div>
-							<p class="userId">@test1</p>
-						</div>
-					</div>
 				</div>
 				<div class="swiper-button-next style"></div>
 				<div class="swiper-button-prev style"></div>

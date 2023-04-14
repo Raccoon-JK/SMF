@@ -1,16 +1,16 @@
 package com.smf.main.model.vo;
 
-public class Product {
+public class MainProduct {
 	private String productName;
 	private int companyPrice;
 	private String imageName;
 	private String imagePath;
 	private String brandName;
-	public Product() {
+	public MainProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(String productName, int companyPrice, String imageName, String imagePath, String brandName) {
+	public MainProduct(String productName, int companyPrice, String imageName, String imagePath, String brandName) {
 		super();
 		this.productName = productName;
 		this.companyPrice = companyPrice;
