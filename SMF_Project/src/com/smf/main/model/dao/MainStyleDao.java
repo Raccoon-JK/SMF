@@ -23,7 +23,7 @@ public class MainStyleDao {
 	public MainStyleDao() {
 		try {
 			prop.loadFromXML(new FileInputStream(
-					MainStyleDao.class.getResource("/sql/main/style/style-mapper.xml").getPath()));
+					MainStyleDao.class.getResource("/sql/main/style/main-style-mapper.xml").getPath()));
 		} catch (InvalidPropertiesFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {

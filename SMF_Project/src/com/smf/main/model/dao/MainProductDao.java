@@ -23,7 +23,7 @@ public class MainProductDao {
 	public MainProductDao() {
 		try {
 			prop.loadFromXML(new FileInputStream(
-					MainProductDao.class.getResource("/sql/main/product/product-mapper.xml").getPath()));
+					MainProductDao.class.getResource("/sql/main/product/main-product-mapper.xml").getPath()));
 		} catch (InvalidPropertiesFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
