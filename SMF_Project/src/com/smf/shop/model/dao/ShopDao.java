@@ -88,9 +88,10 @@ public class ShopDao {
 			
 			pstmt.setString(1, p.getBrandName());
 			pstmt.setString(2, p.getProductName());
-			pstmt.setInt(3, p.getCategoryNo());
-			pstmt.setString(4, p.getProductGender());
-			pstmt.setString(5, p.getProductWeather());
+			pstmt.setInt(3, p.getCompanyPrice());
+			pstmt.setInt(4, p.getCategoryNo());
+			pstmt.setString(5, p.getProductGender());
+			pstmt.setString(6, p.getProductWeather());
 			
 			result = pstmt.executeUpdate();
 			
@@ -108,18 +109,20 @@ public class ShopDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertResellStock");
+		String sql = prop.getProperty("insertStock");
 		
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			System.out.println(s);
 			
 			pstmt.setString(1, s.getUserId());
 			pstmt.setString(2, s.getProductName());
 			pstmt.setInt(3, s.getPrice());
 			pstmt.setInt(4, s.getStock());
 			pstmt.setString(5, s.getSize());
-			pstmt.setString(6, s.getUserClass());
+			pstmt.setInt(6, 1);
 			
 			result = pstmt.executeUpdate();
 			
@@ -140,7 +143,7 @@ public class ShopDao {
 		String sql = prop.getProperty("insertProduct_Detail");
 		
 		try {
-			
+			System.out.println(pd);
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, pd.getProductName());
@@ -462,5 +465,28 @@ public class ShopDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int insertWishList(Connection conn, String productName, String userId) {
+	
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertWishList");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, productName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
