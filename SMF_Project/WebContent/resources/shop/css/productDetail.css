@@ -88,13 +88,13 @@ button{
 #productInfoPrice{
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 65%;
 }
 .productInfoHalf{
-    width: 50%;
+    width: 65%;
 }
 .productInfoHalfR{
-    width: 40%;
+    width: 35%;
 }
 .productInfoRight{
     display: flex;
@@ -109,7 +109,7 @@ button{
 .detailPriceInfo{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .interestProduct{
     display: flex;
