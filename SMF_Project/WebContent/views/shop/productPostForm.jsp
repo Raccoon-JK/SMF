@@ -21,13 +21,13 @@
     </head>
 
     <body>
-        <form action="<%= contextPath %>/insert.sh" method="POST" enctype="multipart/form-data">
+        <form action="<%= contextPath %>/insert.sh" method="POST" enctype="multipart/form-data" id="productPostForm">
             <div id="itemDetail">
                 <h2>상품 등록</h2>
                 <table>
                     <tr>
                         <td>브랜드 명</td>
-                        <td><input type="text" placeholder="브랜드 명 입력" name="brandNo"></td>
+                        <td><input type="text" placeholder="브랜드 명 입력" name="brandName"></td>
                     </tr>
                     <tr>
                     <tr>
@@ -134,7 +134,7 @@
                             상세정보
                         </td>
                         <td>
-                            <textarea name="productContent" id="editor"></textarea>
+                            <textarea name="content" id="editor"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -325,8 +325,8 @@
         $('#submit').click(function(){
     		let form = $("#productPostForm")[0];
     		let formData = new FormData(form);
-    		
-    		$.each($("#upfile")[0].files, function(index, file){
+    		//console.log('a');
+    		$.each($("input[name='upfile']")[0].files, function(index, file){
     			console.log(index, file);
     			formData.append("upfile"+index, file);
     		});
@@ -342,7 +342,11 @@
                 contentType: false,
                 success: function(data){
                 	alert("성공");
+                },
+                error: function(data){
+                	alert("실패");
                 }
+    			
     		});
     	});
     </script>
