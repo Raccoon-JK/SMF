@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +20,17 @@
 		</div>
 
 		<section id="itemListbox">
+			<button id="backButton">뒤로 가기</button>
+		  <section id="itemListboxList">
 			<section class="container2">
 				<div class="rightbox" id="rightbox1">
-					<img id="img1" class="deco" class="deco resizable"
+					<input type="hidden" name="" value="캐리어">
+					<img id="img1" class="deco"
 						src="/SMF_Project/resources/dressroom/image/AMI de Coeur Oversize Intarsia Sweater Black Red_1.png">
 				</div>
 				<div class="rightbox" id="rightbox1">
-					<img id="img2" class="deco" class="deco resizable"
+					<input type="hidden" name="" value="스니커즈">
+					<img id="img2" class="deco"
 						src="/SMF_Project/resources/dressroom/image/Stussy Basic Stussy Hoodie Ash Heather 2023_1.png">
 				</div>
 				<div class="rightbox" id="rightbox1">
@@ -133,7 +140,8 @@
 			</section>
 
 		</section>
-
+		
+	   </section>
 	</section>
 
 	<section id="selectbox">
@@ -142,6 +150,63 @@
     </div>
     
   </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+	 $(function(){
+            var previousContent;
+
+            // 클릭 이벤트 핸들러 등록 함수
+            function listBackHandlers() {
+                $(".rightbox").click(function(){
+                    // Ajax 요청 이전의 내용을 저장
+                    previousContent = $("#itemListboxList").html();
+
+                    // Ajax 요청 보내기
+                    var catName = $(this).children('input[type="hidden"]').val();
+                    $.ajax({
+                        url : "<%= contextPath %>/dressroomCategory.me",
+                        type : "get",
+                        data : {"categoryName" : catName},
+                        dataType : "JSON",
+                        success : function(data){
+                            var str = '';
+                            $(data).each(function(index, item){
+                                str += '<div class="rightboxSelectList" id="rightbox1">'
+                                        +'<img id="img26" class="deco" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
+                                    +'</div>';
+                            });
+                            // Ajax 요청 성공 시 처리
+                            $("#itemListboxList").html(str);
+
+                            // 뒤로 가기 버튼 보이기
+                            $("#backButton").show();
+
+                            // 다시 클릭 이벤트 핸들러 등록
+                            listBackHandlers();
+                        }
+                    });
+                });
+            }
+
+            // 뒤로 가기 버튼 숨기기
+            $("#backButton").hide();
+
+            // 페이지 로딩 시 클릭 이벤트 핸들러 등록
+            listBackHandlers();
+
+            $("#backButton").click(function() {
+                // 이전에 저장한 내용을 출력
+                $("#itemListboxList").html(previousContent);
+
+                // 뒤로 가기 버튼 숨기기
+                $("#backButton").hide();
+
+                // 다시 클릭 이벤트 핸들러 등록
+                listBackHandlers();
+            });
+        });
+	</script>
+
 
 	<script src="/SMF_Project/resources/dressroom/javascript/dressroomMainJs.js"></script>
 </body>
