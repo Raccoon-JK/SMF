@@ -12,6 +12,8 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 import static com.smf.common.JDBCTemplate.*;
+
+import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.vo.Category_Sub;
 import com.smf.shop.model.vo.Product;
 import com.smf.shop.model.vo.ProductAll;
@@ -353,5 +355,112 @@ public class ShopDao {
 		}
 		return pd;
 	}
+	
+	public WishList selectWishList(Connection conn, String productName) {
+		
+		WishList wl = null;
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectWishList");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, productName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
 
+				wl = new WishList();
+				
+				wl.setProductName(rset.getString("PRODUCT_NAME"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return wl;
+	}
+
+	public ArrayList<Stock> selectSize(Connection conn, String productName) {
+		
+		ArrayList<Stock> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSize");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, productName);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Stock s = new Stock();
+				
+				s.setSize(rset.getString("P_SIZE"));
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Stock> selectSizeStock(Connection conn, String productName, String pSize) {
+		
+		ArrayList<Stock> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSizeStock");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, productName);
+			pstmt.setString(2, pSize);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Stock s = new Stock();
+				
+				s.setStock(rset.getInt("STOCK"));
+				s.setPrice(rset.getInt("PRICE"));
+				s.setUserClass(rset.getString("USER_CLASS"));
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }
