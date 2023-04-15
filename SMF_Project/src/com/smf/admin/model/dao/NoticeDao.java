@@ -270,4 +270,96 @@ public int insertFaq(Connection conn, Notice n) {
 	return result;
 }
 
+public Notice selectfaqNotice(Connection conn, int nno) {
+	
+	Notice n = null;
+	
+	PreparedStatement pstmt = null;
+	
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectfaqNotice");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, nno);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			n = new Notice(
+					rset.getInt("ALERT_NO"),
+					rset.getString("ALERT_CATEGORY"),
+					rset.getString("ALERT_TITLE"),
+					rset.getString("ALERT_CONTENT"),
+					rset.getDate("CREATE_DATE")
+					);
+			
+		}
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return n;
+}
+
+
+public int updatefaqNotice(Connection conn, Notice n) {
+	
+	int result = 0;
+	
+	PreparedStatement pstmt = null;
+	
+	String sql = prop.getProperty("updatefaqNotice");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, n.getAlertCategory());
+		pstmt.setString(2, n.getAlertTitle());
+		pstmt.setString(3, n.getAlertContent());
+		pstmt.setInt(4, n.getAlertNo());
+		
+		
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	return result;
+}
+
+
+public int deletefaqNotice(Connection conn, int nno) {
+	
+	int result = 0;
+	
+	PreparedStatement pstmt = null;
+	
+	String sql = prop.getProperty("deletefaqNotice");
+	
+	
+	try {
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, nno);
+		
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	return result;
+}
+
+
 }

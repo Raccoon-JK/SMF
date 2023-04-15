@@ -6,8 +6,6 @@
 
 
 	Notice n = (Notice) request.getAttribute("n");
-	
-	String alertMsg = (String) session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,10 +25,10 @@
 	<div class="outer">
 	<jsp:include page="adminform.jsp"></jsp:include>
 		<br>
-		<h2 align="center">공지사항 수정</h2>
+		<h2 align="center">FAQ 수정</h2>
 		<br>
 		
-		<form id="update-form" action="<%= contextPath %>/update.no" method="post">
+		<form id="update-form" action="<%= contextPath %>/faqupdate.no" method="post">
 			<input type="hidden" name="nno" value="<%= n.getAlertNo() %>">
 			<table align="center">
 				<tr>
@@ -58,17 +56,3 @@
 			</div>
 		</form>
 	 </div>
-	 
-	 
-	 <script>
-	 const msg = "<%= alertMsg %>";
-	 
-	  if(msg !="null"){
-		 alert(msg);
-		 <% session.removeAttribute("alertMsg"); %>
-	 } 
-	
-	</script>
-	
-</body>
-</html>
