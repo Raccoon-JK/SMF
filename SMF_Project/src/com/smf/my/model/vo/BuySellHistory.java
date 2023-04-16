@@ -20,16 +20,15 @@ public class BuySellHistory {
     private String address;
     private String imgPath;
     private String imgName;
+    private int point;
     
 	public BuySellHistory() {
 		super();
 	}
 
-
-
-	public BuySellHistory(int orderNo, int orderPno, int stockNo, int imgNo, String userId, int addressNo, int orderCount,
-			Date orderDate, int amount, int totalAmount, String productName, String brandName, String pSize,
-			int postcode, String address, String imgPath, String imgName) {
+	public BuySellHistory(int orderNo, int orderPno, int stockNo, int imgNo, String userId, int addressNo,
+			int orderCount, Date orderDate, int amount, int totalAmount, String productName, String brandName,
+			String pSize, int postcode, String address, String imgPath, String imgName, int point) {
 		super();
 		this.orderNo = orderNo;
 		this.orderPno = orderPno;
@@ -48,16 +47,11 @@ public class BuySellHistory {
 		this.address = address;
 		this.imgPath = imgPath;
 		this.imgName = imgName;
+		this.point = point;
 	}
+
 
 	// 리스트 안 상품정보
-
-
-
-	public int getOrderNo() {
-		return orderNo;
-	}
-
 	public BuySellHistory(int orderNo, int orderPno, int orderCount, Date orderDate, int amount,
 			String productName, String brandName, String pSize, int postcode, String address, String imgPath,
 			String imgName) {
@@ -77,7 +71,9 @@ public class BuySellHistory {
 	}
 
 
-
+	public int getOrderNo() {
+		return orderNo;
+	}
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
@@ -210,13 +206,21 @@ public class BuySellHistory {
 		this.imgName = imgName;
 	}
 
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
 		return "BuySellHistory [orderNo=" + orderNo + ", orderPno=" + orderPno + ", stockNo=" + stockNo + ", imgNo="
 				+ imgNo + ", userId=" + userId + ", addressNo=" + addressNo + ", orderCount=" + orderCount
 				+ ", orderDate=" + orderDate + ", amount=" + amount + ", totalAmount=" + totalAmount + ", productName="
 				+ productName + ", brandName=" + brandName + ", pSize=" + pSize + ", postcode=" + postcode
-				+ ", address=" + address + ", imgPath=" + imgPath + ", imgName=" + imgName + "]";
+				+ ", address=" + address + ", imgPath=" + imgPath + ", imgName=" + imgName + ", point=" + point + "]";
 	}
     
 }

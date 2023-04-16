@@ -14,7 +14,6 @@ import java.util.Properties;
 
 import static com.smf.common.JDBCTemplate.*;
 
-import com.smf.main.model.vo.Product;
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.vo.Account;
 import com.smf.my.model.vo.Address;
@@ -788,9 +787,9 @@ public class MyPageDao {
 	
 	
 	//구매내역
-	public ArrayList<Integer> selectBuyListCount(Connection conn, String userId){
+	public ArrayList<BuySellHistory> selectBuyListCount(Connection conn, String userId){
 		
-		ArrayList<Integer> listcount = new ArrayList<>();
+		ArrayList<BuySellHistory> listcount = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		
@@ -806,7 +805,13 @@ public class MyPageDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				listcount.add(rset.getInt("ORDER_NO"));
+				BuySellHistory bs = new BuySellHistory();
+				bs.setOrderNo(rset.getInt("ORDER_NO"));
+				bs.setOrderDate(rset.getDate("ORDER_DATE"));
+				bs.setTotalAmount(rset.getInt("TOTAL_AMOUNT"));
+				bs.setPoint(rset.getInt("POINT"));
+				
+				listcount.add(bs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -826,15 +831,15 @@ public class MyPageDao {
 		ArrayList<BuySellHistory> listInProduct = new ArrayList<>();
 		
 		String sql = prop.getProperty("selectBuyListInProduct");
-		
 		try {
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, orderNo);
 			
 			rset = pstmt.executeQuery();
-			
+
 			while(rset.next()) {
 				BuySellHistory h = new BuySellHistory(rset.getInt("ORDER_NO")
 						                             ,rset.getInt("ORDER_PNO")
@@ -860,4 +865,42 @@ public class MyPageDao {
 		
 		return listInProduct;
 	}
+	
+	public ArrayList<BuySellHistory> selectOrderListMountCount(Connection conn, String userId, int month){
+		
+		ArrayList<BuySellHistory> listcount = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOrderListMountCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, month);
+				
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory();
+				bs.setOrderNo(rset.getInt("ORDER_NO"));
+				bs.setOrderDate(rset.getDate("ORDER_DATE"));
+				bs.setTotalAmount(rset.getInt("TOTAL_AMOUNT"));
+				bs.setPoint(rset.getInt("POINT"));
+				
+				listcount.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listcount;
+	}
+	
 }

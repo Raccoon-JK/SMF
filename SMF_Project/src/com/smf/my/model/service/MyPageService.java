@@ -342,25 +342,64 @@ public class MyPageService {
 	
 	
 	//구매 내역
+	public ArrayList<BuySellHistory> selectOrderListCount(String userId){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<BuySellHistory> orderList = new MyPageDao().selectBuyListCount(conn, userId);
+		
+		close(conn);
+		
+		return orderList;
+	}
+	
 	public ArrayList<ArrayList<BuySellHistory>> selectBuyListCount(String userId){
 		
 		Connection conn = getConnection();
 			
 		//주문 리스트번호 불러오기
-		ArrayList<Integer> ListCount = new MyPageDao().selectBuyListCount(conn, userId);
-		//주문 리스트 안에 있는 상품들 불러오기
-		ArrayList<BuySellHistory> ListInProduct = new ArrayList<>();
-		//주문 리스트 묶음
-		ArrayList<ArrayList<BuySellHistory>> orderList = new ArrayList<ArrayList<BuySellHistory>>(); 
+		ArrayList<BuySellHistory> ListCount = new MyPageDao().selectBuyListCount(conn, userId);
+		
+		ArrayList<ArrayList<BuySellHistory>> ListInProduct = new ArrayList<>();
 		
 		for(int i=0; i<ListCount.size(); i++) {
-			orderList.add(new MyPageDao().selectBuyListInProduct(conn, userId, ListCount.get(i)));
+			//주문 리스트와 주문 리스트 상품 묶기
+			ListInProduct.add(new MyPageDao().selectBuyListInProduct(conn, userId, ListCount.get(i).getOrderNo()));
 		}
 		
+		close(conn);
 		
-		return orderList;
+		return ListInProduct;
 	}
 	
+	public ArrayList<BuySellHistory> selectOrderListMountCount(String userId, int month){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<BuySellHistory> orderList = new MyPageDao().selectOrderListMountCount(conn, userId, month);
+		
+		close(conn);
+		
+		return orderList;
+	} 
 	
+	public ArrayList<ArrayList<BuySellHistory>> selectBuyListMountCount(String userId, int month){
+		
+		Connection conn = getConnection();
+			
+		//주문 리스트번호 불러오기
+		ArrayList<BuySellHistory> ListCount = new MyPageDao().selectOrderListMountCount(conn, userId, month);
+		
+		ArrayList<ArrayList<BuySellHistory>> ListInProduct = new ArrayList<>();
+		
+		for(int i=0; i<ListCount.size(); i++) {
+			//주문 리스트와 주문 리스트 상품 묶기
+			ListInProduct.add(new MyPageDao().selectBuyListInProduct(conn, userId, ListCount.get(i).getOrderNo()));
+		}
+		
+		close(conn);
+		
+		return ListInProduct;
+	}	
 	
 }

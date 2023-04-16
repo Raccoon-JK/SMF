@@ -224,7 +224,7 @@
         var p_count = $('.proudctInfo_flex').length
         var first_pName = $('.proudctInfo_flex .product_en')[0].innerHTML
         var orderNameVal = first_pName+' 외 '+p_count+'건';
-        var amountVal = parseInt($('#finalOrder_price').text().replace(/[^0-9]/g, ""))
+        var amountVal = 0
         var p_quantityTxT = $('.p_quantity');
         var stockNo = $('input[name="sNo"]');
         var cartNo = $('input[name="cNo"]');
@@ -233,8 +233,7 @@
         var p_quantityArr = [];
         var addrNo = 'addrNo='+$('input[name="arrNo"]').val();
 
-        console.log(final_TotalPoint);
-
+        
         cartNo.each(function(i, item){
             cNoArr.push('cNo='+item.value);
         });
@@ -244,11 +243,13 @@
         p_quantityTxT.each(function(i, item){
             p_quantityArr.push('orderCount='+item.innerHTML.replace(/[^0-9]/g, ""));
         });
-
+        
         var cNoStr = cNoArr.join('&');
         var sNoStr = sNoArr.join('&');
         var p_quantityStr = p_quantityArr.join('&');
         function paymentsBtn_click() {
+            amountVal = parseInt($('#finalOrder_price').text().replace(/[^0-9]/g, ""))
+            console.log(amountVal);
             // 토스결제
             if($('#tossPayments').hasClass('paymentSelect')){
                 const clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'
