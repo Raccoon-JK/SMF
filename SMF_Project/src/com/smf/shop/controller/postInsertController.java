@@ -114,33 +114,35 @@ public class postInsertController extends HttpServlet {
 			Product_Detail pd = new Product_Detail();
 			pd.setProductName(pName);
 			pd.setProductContent(multi.getParameter("content"));
+			 
+			int result = new ShopService().insertProduct(p);
 			
-			// Attachment테이블에 여러번 insert할 데이터를 뽑기
-			// 단, 여러개의 첨부파일이 있을것이기 때문에 attachment들을 ArrayList에 담을 예정 => 반드시 1개 이상은 담김(대표이미지)
-			// >> Product_Img?
-			int result = new ShopService().insertProduct(p, s, pd);
-			
-			if (result > 0) { // 성공 -> list.th를 요청
+			if (result > 0) {
 				
-				// 상품 이미지
-				int imgresult = 0;
-				Enumeration f = multi.getFileNames();
-				while (f.hasMoreElements()) {
-					String fileName = (String) f.nextElement();
-					String imgName = multi.getFilesystemName(fileName);
-					
-					System.out.println(fileName);
-					System.out.println(imgName);
-					
-					Product_Img pi = new Product_Img();
-
-					pi.setProductName(pName);
-					pi.setImgName(imgName);
-					pi.setImgPath("/resources/thumb_upfiles/");
-					imgresult += new ShopService().insertProductImg(pi);
-				}
-				if(imgresult > 0) {
-					response.sendRedirect(request.getContextPath());
+				int result2 = new ShopService().insertProduct2(s, pd);
+				
+				if (result2 > 0) {
+					// 상품 이미지
+					int imgresult = 0;
+					Enumeration f = multi.getFileNames();
+					while (f.hasMoreElements()) {
+						String fileName = (String) f.nextElement();
+						String imgName = multi.getFilesystemName(fileName);
+						
+						System.out.println(fileName);
+						System.out.println(imgName);
+						
+						Product_Img pi = new Product_Img();
+						
+						pi.setProductName(pName);
+						pi.setImgName(imgName);
+						pi.setImgPath("/resources/thumb_upfiles/");
+						imgresult += new ShopService().insertProductImg(pi);
+						System.out.println(pi);
+					}
+					if(imgresult > 0) {
+						response.sendRedirect(request.getContextPath());
+					}
 				}
 			} else {
 

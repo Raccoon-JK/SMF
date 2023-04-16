@@ -27,21 +27,36 @@ public class ShopService {
 		
 	}
 	
-	public int insertProduct(Product p, Stock s, Product_Detail pd) {
+	public int insertProduct(Product p) {
 		
 		Connection conn = getConnection();
 		
 		int result1 = new ShopDao().insertProduct(conn, p);
-		int result2 = new ShopDao().insertStock(conn, s);
-		int result3 = new ShopDao().insertProduct_Detail(conn, pd);
 		
-		if (result1 > 0 && result2 > 0 && result3 > 0) {
+		if (result1 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		close(conn);
-		return result1 * result2 * result3;
+		return result1;
+		
+	}
+	
+	public int insertProduct2(Stock s, Product_Detail pd) {
+		
+		Connection conn = getConnection();
+		
+		int result2 = new ShopDao().insertStock(conn, s);
+		int result3 = new ShopDao().insertProduct_Detail(conn, pd);
+		
+		if(result2 > 0 && result3 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result2 * result3;
 		
 	}
 	
@@ -164,4 +179,38 @@ public class ShopService {
 		return result;
 		
 	}
+	
+	public ArrayList<ProductAll> selectNcategory(String category) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectNcategory(conn, category);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectBcategory(String category) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectBcategory(conn, category);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectGcategory(String category) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectBcategory(conn, category);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 }
