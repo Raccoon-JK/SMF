@@ -42,31 +42,20 @@ public class OrderPaymentFormController extends HttpServlet {
 		
 		String[] pArr = (request.getParameterValues("cNo"));
 		
-		String pIn = String.join(",", pArr);
-//		System.out.println(pIn);
-		
-		ArrayList<ShoppingCart> pList = new ArrayList<>();
-		
-		pList = new MyPageService().stockProdcutSelectList(userId, pArr);
-		
-		//getparameterValues로 이따 상품받아와야함
-		
 		// 선택 상품 
+		ArrayList<ShoppingCart> pList = new MyPageService().stockProdcutSelectList(userId, pArr);
 		
 		// 배송 주소
 		Address defaultAddr = new MyPageService().addressDefault(userId);
 		
-		// 포인트
-//		int userPoint = ((Member)request.getSession().getAttribute("loginUser")).getTotalPoint();
-		
 		// 결제 카드
 		Card c = new MyPageService().cardSelect(userId);
 		
-		
-		
-		request.setAttribute("cart", c);
+		request.setAttribute("pList", pList);
+		request.setAttribute("card", c);
 		request.setAttribute("defaultAddr", defaultAddr);
 		
+		System.out.println(pList);
 		request.getRequestDispatcher("/views/my/orderPaymentForm.jsp").forward(request, response);
 	}
 

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
@@ -17,7 +18,9 @@ import com.smf.main.model.vo.Product;
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.vo.Account;
 import com.smf.my.model.vo.Address;
+import com.smf.my.model.vo.BuySellHistory;
 import com.smf.my.model.vo.Card;
+import com.smf.my.model.vo.OrderBuilder;
 import com.smf.my.model.vo.ReplacePhoneNumber;
 import com.smf.my.model.vo.ShoppingCart;
 import com.smf.my.model.vo.WishList;
@@ -39,6 +42,16 @@ public class MyPageDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String varIn(String sql, final int params) {
+		final StringBuilder sb = new StringBuilder(String.join(", ", Collections.nCopies(params, "?")));
+		
+		if(sb.length() > 1) {
+			sql = sql.replace("(?)", "("+sb+")");
+		}
+		
+		return sql;
 	}
 	
 	// 내 프로필 정보
@@ -87,6 +100,7 @@ public class MyPageDao {
 						   rset.getDate("BIRTH"),
 						   rset.getInt("USER_TYPE"),
 						   rset.getString("AGREE_EMAIL"),
+						   rset.getString("STATUS"),
 						   rset.getString("USER_IMAGE"),
 						   rset.getString("INTRODUCE"),
 						   rset.getString("SNS_ID"),
@@ -378,7 +392,7 @@ public class MyPageDao {
 				card = new Card(rset.getString("USER_ID"),
 								rset.getInt("CARD_NO"),
 								rset.getInt("CARD_PWD"),
-								rset.getDate("CARD_VALIDIY"),
+								rset.getDate("CARD_VALIDITY"),
 								rset.getInt("CVC")
 								);
 			}
@@ -574,7 +588,7 @@ public class MyPageDao {
 													 rset.getString("PRODUCT_NAME"), 
 													 rset.getString("BRAND_NAME"), 
 													 rset.getInt("PRICE"), 
-													 rset.getString("SIZE"), 
+													 rset.getString("P_SIZE"), 
 													 rset.getInt("CART_COUNT"), 
 													 rset.getString("IMG_PATH"), 
 													 rset.getString("IMG_NAME"),
@@ -588,7 +602,7 @@ public class MyPageDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(list);
 		return list;
 	}
 	
@@ -625,6 +639,8 @@ public class MyPageDao {
 		
 		String sql = prop.getProperty("stockProdcutSelectList");
 		
+		sql = varIn(sql, pArr.length);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -632,7 +648,6 @@ public class MyPageDao {
 			
 			int i = 2;
 			for(String p : pArr) {
-				System.out.println(i+" "+p);
 				pstmt.setString(i, p);
 				i++;
 			}
@@ -646,7 +661,7 @@ public class MyPageDao {
 													 rset.getString("PRODUCT_NAME"), 
 													 rset.getString("BRAND_NAME"), 
 													 rset.getInt("PRICE"), 
-													 rset.getString("SIZE"), 
+													 rset.getString("P_SIZE"), 
 													 rset.getInt("CART_COUNT"), 
 													 rset.getString("IMG_PATH"), 
 													 rset.getString("IMG_NAME"),
@@ -657,11 +672,192 @@ public class MyPageDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		
-		
-		System.out.println("Dao"+plist);
 		return plist;
+	}
+	
+	public int insertOrder(Connection conn, OrderBuilder ob) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ob.getUserId());
+			pstmt.setInt(2, ob.getAddrNo());
+			pstmt.setInt(3, ob.getTotalAmount());
+			pstmt.setInt(4,ob.getPoint());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	public int insertOrderProduct(Connection conn, int sNo, int orderCount) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertOrderProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sNo);
+			pstmt.setInt(2, orderCount);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int updateStockOrder(Connection conn, int sNo, int orderCount) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateStockOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, orderCount);
+			pstmt.setInt(2, orderCount);
+			pstmt.setInt(3, sNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int updateMemberPoint(Connection conn, String userId, int usedPoint) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemberPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, usedPoint);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	
+	//구매내역
+	public ArrayList<Integer> selectBuyListCount(Connection conn, String userId){
+		
+		ArrayList<Integer> listcount = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBuyListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+				
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				listcount.add(rset.getInt("ORDER_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listcount;
+	}
+	
+	public ArrayList<BuySellHistory> selectBuyListInProduct(Connection conn, String userId, int orderNo){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<BuySellHistory> listInProduct = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectBuyListInProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, orderNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory h = new BuySellHistory(rset.getInt("ORDER_NO")
+						                             ,rset.getInt("ORDER_PNO")
+						                             ,rset.getInt("ORDER_COUNT")
+						                             ,rset.getDate("ORDER_DATE")
+						                             ,rset.getInt("PRICE")
+						                             ,rset.getString("PRODUCT_NAME")
+						                             ,rset.getString("BRAND_NAME")
+						                             ,rset.getString("P_SIZE")
+						                             ,rset.getInt("POSTCODE")
+						                             ,rset.getString("ADDRESS")
+						                             ,rset.getString("IMG_PATH")
+						                             ,rset.getString("IMG_NAME")
+						                             );
+				listInProduct.add(h);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listInProduct;
 	}
 }
