@@ -176,6 +176,55 @@ public class MemberDao {
 		
 	}
 	
+	public ArrayList<Member> selectMemberList(Connection conn){
+		
+		ArrayList<Member> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMemberList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member m = new Member(
+						rset.getString("USER_ID"),
+						rset.getString("USER_NAME"),
+						rset.getString("PHONE"),
+						rset.getDate("ENROLL_DATE"),
+						rset.getString("ADDRESS"),
+						rset.getString("AGREE_EMAIL")
+						);
+				
+				list.add(m);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
