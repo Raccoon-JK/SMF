@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!-- 인기상품 mapper -->
+	<entry key="getProduct">
+	<![CDATA[
+		SELECT
+P1.PRODUCT_NAME
+, P1.COMPANY_PRICE
+, P1.IMG_NAME
+, P1.IMG_PATH
+, P1.BRAND_NAME
+FROM
+(
+SELECT DISTINCT
+       P.PRODUCT_NAME
+       , P.COMPANY_PRICE
+       , P.BRAND_NAME
+       , P.STATUS
+       , PIMG.IMG_NAME
+       , PIMG.IMG_PATH
+       , PIMG.IMG_STATUS
+       , S.STOCK
+       , S.TRADE_COUNT
+FROM PRODUCT P, PRODUCT_IMG PIMG, STOCK S
+WHERE P.PRODUCT_NAME = PIMG.PRODUCT_NAME
+    AND PIMG.PRODUCT_NAME = S.PRODUCT_NAME
+    AND S.STOCK != 0
+    AND P.STATUS = 'Y'
+    AND PIMG.IMG_NAME LIKE CONCAT('%','1.png')
+ORDER BY S.TRADE_COUNT DESC) P1
+WHERE ROWNUM <= 3
+		]]>
+	</entry>
+
+<!-- 더보기버튼 mapper -->
+	<entry key="getMoreProduct">
+	<![CDATA[
+		SELECT
+		PRODUCT_NAME
+		, COMPANY_PRICE
+        , IMG_NAME
+		, IMG_PATH
+		, BRAND_NAME
+        FROM
+        (SELECT
+P1.PRODUCT_NAME
+, P1.COMPANY_PRICE
+, P1.IMG_NAME
+, P1.IMG_PATH
+, P1.BRAND_NAME
+, ROWNUM AS NUM
+FROM
+(
+SELECT DISTINCT
+       P.PRODUCT_NAME
+       , P.COMPANY_PRICE
+       , P.BRAND_NAME
+       , P.STATUS
+       , PIMG.IMG_NAME
+       , PIMG.IMG_PATH
+       , PIMG.IMG_STATUS
+       , S.STOCK
+       , S.TRADE_COUNT
+FROM PRODUCT P, PRODUCT_IMG PIMG, STOCK S
+WHERE P.PRODUCT_NAME = PIMG.PRODUCT_NAME
+    AND PIMG.PRODUCT_NAME = S.PRODUCT_NAME
+    AND S.STOCK != 0
+    AND P.STATUS = 'Y'
+    AND PIMG.IMG_NAME LIKE CONCAT('%','1.png')
+ORDER BY S.TRADE_COUNT DESC) P1)
+WHERE NUM BETWEEN ? AND ?
+		]]>
+	</entry>
+
+</properties>

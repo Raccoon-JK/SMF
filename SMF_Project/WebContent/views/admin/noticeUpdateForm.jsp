@@ -6,6 +6,8 @@
 
 
 	Notice n = (Notice) request.getAttribute("n");
+	
+	String alertMsg = (String) session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -56,3 +58,17 @@
 			</div>
 		</form>
 	 </div>
+	 
+	 
+	 <script>
+	 const msg = "<%= alertMsg %>";
+	 
+	  if(msg !="null"){
+		 alert(msg);
+		 <% session.removeAttribute("alertMsg"); %>
+	 } 
+	
+	</script>
+	
+</body>
+</html>

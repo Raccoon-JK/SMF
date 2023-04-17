@@ -54,13 +54,15 @@ public class NoticeUpdateController extends HttpServlet {
 		
 		
 		int result = new NoticeService().updateNotice(n);
-			request.getSession().setAttribute("alertMsg","공지사항이 공적으로 수정되었습니다");
-			response.sendRedirect(request.getContextPath()+"/detail.no?nno="+nno);
+			
 		if(result>0) {
+			
+			request.getSession().setAttribute("alertMsg","공지사항이 성공적으로 수정되었습니다");
+			response.sendRedirect(request.getContextPath()+"/detail.no?nno="+nno);
 			
 		}else {
 			request.setAttribute("errorMsg", "공지사항 수정 실패");
-			request.getRequestDispatcher("views/commmon/error404.jps").forward(request, response);
+			request.getRequestDispatcher("views/commmon/error404.jsp").forward(request, response);
 			
 		}
 		 

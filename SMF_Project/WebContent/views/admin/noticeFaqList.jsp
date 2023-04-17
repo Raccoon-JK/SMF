@@ -14,6 +14,8 @@
 	
 	int index =1;
 	
+	String alertMsg = (String) session.getAttribute("alertMsg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -118,13 +120,27 @@ h2{
             <input type="checkbox" id="qna-<%=index%>">
             <label for="qna-<%=index++%>"><%= n.getAlertCategory()+" "+" "+" "+n.getAlertTitle() %></label>
             <div>
-                <p><%= n.getAlertContent() %></p>
+                <p><%= n.getAlertContent() %>   
+                <% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
+                                <a href="<%=contextPath %>/faqupdateForm.no?nno=<%=n.getAlertNo() %>" class="btn btn warning btn-sm">수정</a>
+                                <a href="<%=contextPath %>/faqdelete.no?nno=<%=n.getAlertNo() %>" class="btn btn danger  btn-sm">삭제</a>
+                <%} %>
+                
+                </p>
             </div>
         </li>
     </ul>
     <%} %>
     </div>
+	<script>
+	 const msg = "<%= alertMsg %>";
+	 
+	  if(msg !="null"){
+		 alert(msg);
+		 <% session.removeAttribute("alertMsg"); %>
+	 } 
 	
+	</script>
 	
 </body>
 </html>

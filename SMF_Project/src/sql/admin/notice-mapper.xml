@@ -8,7 +8,7 @@
 			   CREATE_DATE,
 			   QLEVEL
 		FROM NOTICE
-		WHERE STATUS = 'Y'
+		WHERE STATUS = 'Y' AND QLEVEL = 0
 		ORDER BY ALERT_NO DESC
 
 	</entry>
@@ -22,7 +22,7 @@
 			   ALERT_CONTENT,
 			   CREATE_DATE
 		FROM NOTICE 
-		WHERE ALERT_NO = ?
+		WHERE ALERT_NO = ? AND QLEVEL= 0
 		AND STATUS = 'Y'
 
 	</entry>
@@ -59,7 +59,7 @@
 		SET ALERT_CATEGORY = ?,
 			ALERT_TITLE = ?,
 			ALERT_CONTENT = ?
-		WHERE ALERT_NO = ? AND STATUS = 'Y'
+		WHERE ALERT_NO = ? AND STATUS = 'Y' AND QLEVEL = 0
 		
 	
 	</entry>
@@ -68,7 +68,7 @@
 	<entry key="deleteNotice">
 		UPDATE NOTICE
 		SET STATUS = 'N'
-		WHERE ALERT_NO = ? 
+		WHERE ALERT_NO = ? AND QLEVEL = 0
 		
 		
 		
@@ -109,8 +109,34 @@
 		
 			
 		)
+	</entry>
+	<entry key="selectfaqNotice">
+		SELECT ALERT_NO,
+			   ALERT_CATEGORY,
+			   ALERT_TITLE,
+			   ALERT_CONTENT,
+			   CREATE_DATE
+		FROM NOTICE 
+		WHERE ALERT_NO = ? AND QLEVEL= 1
+		AND STATUS = 'Y'
+
+	</entry>
 	
+	<entry key="updatefaqNotice">
+		UPDATE NOTICE
+		SET ALERT_CATEGORY = ?,
+			ALERT_TITLE = ?,
+			ALERT_CONTENT = ?
+		WHERE ALERT_NO = ? AND STATUS = 'Y' AND QLEVEL = 1
+		
 	
+	</entry>
 	
+		
+	<entry key="deletefaqNotice">
+		UPDATE NOTICE
+		SET STATUS = 'N'
+		WHERE ALERT_NO = ? AND QLEVEL = 1
+		
 	</entry>
 </properties>
