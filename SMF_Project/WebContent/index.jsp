@@ -49,7 +49,7 @@
 </style>
 <body>
 
-	<jsp:include page="/views/common/menubar_sun.jsp" />
+	<jsp:include page="/views/main/menubar_sun.jsp" />
 
 	<!-- Swiper -->
 	<div class="swiper first">

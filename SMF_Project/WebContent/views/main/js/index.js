@@ -89,7 +89,7 @@ $('#more').click(function() {
 
 
 /**
- * 스타일 스와이퍼... 이거 되나?
+ * 스타일 스와이퍼
  */
 
 $(document).ready(function() {
@@ -112,3 +112,21 @@ $(document).ready(function() {
 });
 
 
+/**
+ * 알림 기능
+ */
+ 
+ $(document).ready(function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8080/SMF_Project/Notice.no");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var responseText = xhr.responseText;
+                document.getElementById("notification").innerHTML = responseText;
+                $(".modal").show(); // 모달창 열기
+            }
+        };
+        xhr.send();
+    });
+ 
+ 
