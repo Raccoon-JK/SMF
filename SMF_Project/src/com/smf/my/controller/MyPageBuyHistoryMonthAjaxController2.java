@@ -9,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.service.MyPageService;
 import com.smf.my.model.vo.BuySellHistory;
 
 /**
- * Servlet implementation class MyBuyingHistory
+ * Servlet implementation class MyPageBuyHistoryMonthAjaxController2
  */
-@WebServlet("/mypagbuyhistory.me")
-public class MyBuyingHistoryController extends HttpServlet {
+@WebServlet("/buyingHistoryMonthAjax2.me")
+public class MyPageBuyHistoryMonthAjaxController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyBuyingHistoryController() {
+    public MyPageBuyHistoryMonthAjaxController2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +33,24 @@ public class MyBuyingHistoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		
-		ArrayList<ArrayList<BuySellHistory>> list = new MyPageService().selectBuyListCount(userId);
-		ArrayList<BuySellHistory> orderList = new MyPageService().selectOrderListCount(userId);
-		request.setAttribute("orderList", orderList);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("/views/my/mypageBuyingHistory.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		
+		int month = Integer.parseInt(request.getParameter("month"));
+		
+		ArrayList<BuySellHistory> orderList = new MyPageService().selectOrderListMountCount(userId, month);
+//		ArrayList<ArrayList<BuySellHistory>> list = new MyPageService().selectBuyListMountCount(userId, month);
+		
+		response.setContentType("apllication/json; charset=UTF-8");
+		
+        new Gson().toJson(orderList, response.getWriter());
 	}
 
 }
