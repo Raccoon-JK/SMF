@@ -486,6 +486,8 @@ public class ShopDao {
 			
 			pstmt.setString(1, productName);
 			pstmt.setString(2, pSize);
+			pstmt.setString(3, productName);
+			pstmt.setString(4, pSize);
 			
 			rset = pstmt.executeQuery();
 			
@@ -493,6 +495,7 @@ public class ShopDao {
 				
 				Stock s = new Stock();
 				
+				s.setStockNo(rset.getInt("STOCK_NO"));
 				s.setStock(rset.getInt("STOCK"));
 				s.setPrice(rset.getInt("PRICE"));
 				s.setUserClass(rset.getString("USER_CLASS"));
@@ -966,5 +969,29 @@ public class ShopDao {
 		}
 		return list;
 		
+	}
+	
+	public int insertStockNo(Connection conn, String userId, int pCount, int stockNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertStockNo");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, stockNo);
+			pstmt.setInt(3, pCount);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

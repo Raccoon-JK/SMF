@@ -311,4 +311,15 @@ public class ShopService {
 		
 		return list;
 	}
+	
+	public int insertStockNo(String userId, int pCount, int stockNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().insertStockNo(conn, userId, pCount, stockNo);
+		
+		close(conn);
+		
+		return result;
+	}
 }

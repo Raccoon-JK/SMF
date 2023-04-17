@@ -146,7 +146,10 @@
 	                                    </div>
 	                                    <div class="productInfoHalfR detailPriceInfo">
 	                                        <div class="detailPrice">총 가격</div>
-	                                        <div id="fullPrice" class="detailFullPrice">원</div>                                 
+	                                        <div style="align-items: center; display: flex;">
+	                                        	<div id="fullPrice" class="detailFullPrice"></div><p class="detailFullPrice">원</p>
+	                                        	<input type="hidden" value="" id="stockNo">                                 	                                        
+	                                        </div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -464,11 +467,11 @@
                 <div class="moreContent">
                     <div class="moreContent1"> <!-- grid 5*2 -->
                         <!-- content -->
-                        <c:forEach var="p" items="${ list2 }">
+                        <c:forEach var="p" begin="1" end="10" items="${ list2 }">
 		                	<div class="moreContent1_1">
 		                        <a href="${ pageContext.request.contextPath }/productDetail.sh?productName=${ p.productName }">
 		                            <div class="moreContentImg">
-		                                <img src="${ pageContext.request.contextPath }${ p.imgPath }${ p.imgName }" alt="" class="productImg">
+		                                <img src="${ pageContext.request.contextPath }${ p.imgPath }${ p.imgName }" alt="" class="moreContentImg1">
 		                            </div>
 		                            <div class="moreContentInfo">
 		                                <div class="moreContentInfo1">${ p.brandName }</div>
@@ -582,7 +585,8 @@
 				            $('#testBtn2').text('수량 :' + ' ');
 				            $('#pCount').text($('input[type=number]').val());
 				            $('#resellPrice').text("0원");
-				            $('#fullPrice').text(($('input[type=number]').val()*data[0].price)+"원");
+				            $('#fullPrice').text(($('input[type=number]').val()*data[0].price));
+				            $('#stockNo').val(data[0].StockNo);
 				        });
 		             	
         			}else if(data.length == 1 && data[0].userClass == 2){
@@ -593,7 +597,8 @@
     			            $('#testBtn2').text('수량 :' + ' ');
     			            $('#pCount').text($('input[type=number]').val());
     			            $('#resellPrice').text(data[0].price+"원");
-    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price)+"원");
+    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price));
+    			            $('#stockNo').val(data[0].StockNo);
     			        });
         				
         			}else{
@@ -613,7 +618,8 @@
 		    			            $('#testBtn2').text('수량 :' + ' ');
 		    			            $('#pCount').text($('input[type=number]').val());
 		    			            $('#resellPrice').text("0원");
-		    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price)+"원");
+		    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price));
+		    			            $('#stockNo').val(data[0].StockNo);
 		    			        });
 						    	
 						  	} else if(selectedValue == 2){
@@ -622,34 +628,39 @@
 						    	
 						    	$('#sizeBtn2').click(function() {
 		    			            $('#testModal2').modal("hide");
-		    			            $('#testBtn2').text('수량 :' + ' ');
+		    			            $('#testBtn2').text('수량 : ' + ' ');
 		    			            $('#pCount').text($('input[type=number]').eq(1).val());
 		    			            $('#resellPrice').text(data[1].price+"원");
-		    			            $('#fullPrice').text(($('input[type=number]').eq(1).val()*data[1].price)+"원");
+		    			            $('#fullPrice').text(($('input[type=number]').eq(1).val()*data[1].price));
+		    			            $('#stockNo').val(data[1].StockNo);
 		    			    	});
 						  	}
 						});
         			}
         		}
         	});
+        console.log(sizeStock);
         });
-
-//         $(".sendCart").click(function(){
-//        		let size = $(.sizeOption).text();
-//        		let count = $
-//                $.ajax({
-//                  url: "${ pageContext.request.contextPath }/sCart.sh",
-//                  dataType: 'json',
-//                  data: { category: category },
-//                  success: function(data) {
-//                	 	console.log(data);
-//               	    for (let i = 0; i < data.length; i++) {
-//               	       
-//               	    )}                
-//                  },
-//              });
-//         });
         
+
+	    $(".sendCart").click(function(){
+// 	   		let size = $('.sizeOption').text();
+ 			let pCount = parseInt($('#pCount').text());
+// 			let fullPrice = parseInt($('#fullPrice').text()) / pCount;
+			let stockNo = $('#stockNo').val();
+	           $.ajax({
+	             url: "${ pageContext.request.contextPath }/sCart.sh",
+	             dataType: 'json',
+	             data: { productName: "${ p.productName }",
+						 pCount: pCount,
+						 stockNo: stockNo
+				},
+	             success: function(data) {
+	            	 location.href = '${ pageContext.request.contextPath }/sCart.sh';
+	             },
+	         });
+	    });
+		    
         </script>
 </body>
 </html>
