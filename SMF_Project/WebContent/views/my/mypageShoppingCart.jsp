@@ -26,49 +26,56 @@
                         <a href="">장바구니</a>
                     </div>
                 </div>
-                <form action="${ pageContext.request.contextPath }/orderForm.pay" method="get">
-	                <div id="shoppingCartList_wrapper">
-	                    <c:forEach var="c" items="${cartList}">
-		                    <div class="shoppingCart_productInfo">
-								<input type="hidden" name="" value="${c.status}">
-		                        <div class="shoppingCart_productInfo_flexLeft">
-		                            <div class="shoppingCart_productInfo_checkbox">
-		                                <input type="checkbox" class="p_checkbox" name="cNo" value="${ c.cartNo }"  checked>
-		                            </div>
-		                            <div class="shoppingCart_productInfo_img">
-		                                <img src="${pageContext.request.contextPath}${c.imgPath}${c.imgName}" alt="" width="80" height="80">
-		                            </div>
-		                            <div class="shoppingCart_productInfo_text">
-		                                <p class="shoppingCart_productInfo_brand">${ c.brandName }</p>
-		                                <p class="shoppingCart_productInfo_name">${ c.productName }</p>
-		                                <!-- <p>1</p> -->
-		                                <p class="shoppingCart_productInfo_size">${ c.size }</p>
-										<p class="shoppingCart_productInfo_stockAmount">${c.cartCount}</p> <!-- 해당 재고 수량-->
-		                            </div>
-		                        </div>
-		                        <div class="shoppingCart_productInfo_flexRight">
-		                            <div class="shoppingCart_productInfo_price">
-		                                <span class="priceTitle">가격: </span>
-		                                <span class="priceValue">${ c.price*c.cartCount }원</span>
-		                            </div>
-		                            <div class="shoppingCart_productInfo_delete_div">
-		                                <a href="#">삭제</a>
-										<input type="hidden" name="" value="${ c.cartNo }">
-		                            </div>
-		                        </div>
-		                    </div>
-	                    </c:forEach>
-	                    <div id="total_buy">
-	                        <div id="total_buyPrice">
-	                            <span>총 결제 금액 : </span>
-								<span id="total_priceVal"></span>
-	                        </div>
-	                        <div id="buyBtn_div">
-	                            <a href="#"><button type="submit">결제하기</button></a> <!-- 회원은 하나의 재고 상품에 한번만 장바구니에 담기 가능 -->
-	                        </div>
-	                    </div>
-	                </div>
-                </form>
+                <c:choose>
+	                <c:when test="${cartList != '[]'}">
+		                <form action="${ pageContext.request.contextPath }/orderForm.pay" method="get">
+			                <div id="shoppingCartList_wrapper">
+			                    <c:forEach var="c" items="${cartList}">
+				                    <div class="shoppingCart_productInfo">
+										<input type="hidden" name="" value="${c.status}">
+				                        <div class="shoppingCart_productInfo_flexLeft">
+				                            <div class="shoppingCart_productInfo_checkbox">
+				                                <input type="checkbox" class="p_checkbox" name="cNo" value="${ c.cartNo }"  checked>
+				                            </div>
+				                            <div class="shoppingCart_productInfo_img">
+				                                <img src="${pageContext.request.contextPath}${c.imgPath}${c.imgName}" alt="" width="80" height="80">
+				                            </div>
+				                            <div class="shoppingCart_productInfo_text">
+				                                <p class="shoppingCart_productInfo_brand">${ c.brandName }</p>
+				                                <p class="shoppingCart_productInfo_name">${ c.productName }</p>
+				                                <!-- <p>1</p> -->
+				                                <p class="shoppingCart_productInfo_size">${ c.size }</p>
+												<p class="shoppingCart_productInfo_stockAmount">${c.cartCount}</p> <!-- 해당 재고 수량-->
+				                            </div>
+				                        </div>
+				                        <div class="shoppingCart_productInfo_flexRight">
+				                            <div class="shoppingCart_productInfo_price">
+				                                <span class="priceTitle">가격: </span>
+				                                <span class="priceValue">${ c.price*c.cartCount }원</span>
+				                            </div>
+				                            <div class="shoppingCart_productInfo_delete_div">
+				                                <a href="#">삭제</a>
+												<input type="hidden" name="" value="${ c.cartNo }">
+				                            </div>
+				                        </div>
+				                    </div>
+			                    </c:forEach>
+			                    <div id="total_buy">
+			                        <div id="total_buyPrice">
+			                            <span>총 결제 금액 : </span>
+										<span id="total_priceVal"></span>
+			                        </div>
+			                        <div id="buyBtn_div">
+			                            <a href="#"><button type="submit">결제하기</button></a> <!-- 회원은 하나의 재고 상품에 한번만 장바구니에 담기 가능 -->
+			                        </div>
+			                    </div>
+			                </div>
+		                </form>
+	                </c:when>
+	                <c:otherwise>
+	                	<p>장바구니에 담겨져 있는 상품이 없습니다.</p>
+	                </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
