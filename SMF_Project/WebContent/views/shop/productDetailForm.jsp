@@ -4,6 +4,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%
 	Product p = (Product) request.getAttribute("p");
+	ArrayList<Stock> list = (ArrayList<Stock>) request.getAttribute("list");
 	Stock s = (Stock) request.getAttribute("s");
 	Product_Detail pd = (Product_Detail) request.getAttribute("pd");
 	Product_Img pi = (Product_Img) request.getAttribute("pi");
@@ -37,6 +38,22 @@
 </style>
 </head>
 <body>
+<!-- 	<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!-- 	   	<div class="modal-dialog" role="document"> -->
+<!-- 	       	<div class="modal-content"> -->
+<!-- 	           	<div class="modal-header"> -->
+<!-- 	      	     	<h5 class="modal-title" id="exampleModalLabel">사이즈 선택</h5> -->
+<!-- 	            </div> -->
+<!-- 	          	<div class="modal-body shoeSize"> -->
+<!--    					<input type="radio" id="" name="size" value="" class="modalSize"><label for="" class="btn"></label> -->
+<!-- 	          	</div> -->
+<!-- 	           <div class="modal-footer"> -->
+<!-- 	               <button type="button" id="sizeBtn" class="btn">선택</button> -->
+<!-- 	               <button type="button" id="closeBtn" class="btn" data-dismiss="modal">취소</button> -->
+<!-- 	           </div> -->
+<!-- 	       </div> -->
+<!-- 	   </div> -->
+<!-- 	</div> -->
     <div></div>
     <div class="content">
         <div class="contentHead">
@@ -66,11 +83,11 @@
                                 <div class="productInfoHalfR">
                                     <div class="detailPriceInfo">
                                         <div class="detailPrice">기업 가격</div>
-                                        <div class="detailFullPrice"><%= p.getCompanyPrice() %>원</div>                                 
+                                        <div id="companyPrice" class="detailFullPrice">${ p.companyPrice }원</div>                                 
                                     </div>
                                     <div class="detailPriceInfo">
                                         <div class="detailPrice">리셀 가격</div>
-                                        <div class="detailFullPrice">0원</div>                                 
+                                        <div id="resellPrice" class="detailFullPrice">0원</div>                                 
                                     </div>
                                 </div>
                             </div>
@@ -79,95 +96,56 @@
                                     <div class="productInfoHalf">사이즈</div>
                                     <div class="productInfoRight productInfoHalfR">
                                         <!-- 사이즈 Modal-->
-                                        <button id="testBtn" class="btn sizeOption">옵션</button>
-                                        <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">사이즈 선택</h5>
-                                                    </div>
-                                                    <div class="modal-body shoeSize">
-                                                        <input type="radio" id="215" name="size" value="215" class="modalSize"><label for="215" class="btn">215</label></input>
-                                                        <input type="radio" id="220" name="size" value="220" class="modalSize"><label for="220" class="btn">220</label></input>
-                                                        <input type="radio" id="225" name="size" value="225" class="modalSize"><label for="225" class="btn">225</label></input>
-                                                        <input type="radio" id="230" name="size" value="230" class="modalSize"><label for="230" class="btn">230</label></input>
-                                                        <input type="radio" id="235" name="size" value="235" class="modalSize"><label for="235" class="btn">235</label></input>
-                                                        <input type="radio" id="240" name="size" value="240" class="modalSize"><label for="240" class="btn">240</label></input>
-                                                        <input type="radio" id="245" name="size" value="245" class="modalSize"><label for="245" class="btn">245</label></input>
-                                                        <input type="radio" id="250" name="size" value="250" class="modalSize"><label for="250" class="btn">250</label></input>
-                                                        <input type="radio" id="255" name="size" value="255" class="modalSize"><label for="255" class="btn">255</label></input>
-                                                        <input type="radio" id="260" name="size" value="260" class="modalSize"><label for="260" class="btn">260</label></input>
-                                                        <input type="radio" id="265" name="size" value="265" class="modalSize"><label for="265" class="btn">265</label></input>
-                                                        <input type="radio" id="270" name="size" value="270" class="modalSize"><label for="270" class="btn">270</label></input>
-                                                        <input type="radio" id="275" name="size" value="275" class="modalSize"><label for="275" class="btn">275</label></input>
-                                                        <input type="radio" id="280" name="size" value="280" class="modalSize"><label for="280" class="btn">280</label></input>
-                                                        <input type="radio" id="285" name="size" value="285" class="modalSize"><label for="285" class="btn">285</label></input>
-                                                        <input type="radio" id="290" name="size" value="290" class="modalSize"><label for="290" class="btn">290</label></input>
-                                                        <input type="radio" id="295" name="size" value="295" class="modalSize"><label for="295" class="btn">295</label></input>
-                                                        <input type="radio" id="300" name="size" value="300" class="modalSize"><label for="300" class="btn">300</label></input>
-                                                        <input type="radio" id="305" name="size" value="305" class="modalSize"><label for="305" class="btn">305</label></input>
-                                                        <input type="radio" id="310" name="size" value="310" class="modalSize"><label for="310" class="btn">310</label></input>
-                                                        <input type="radio" id="315" name="size" value="315" class="modalSize"><label for="315" class="btn">315</label></input>
-                                                        <input type="radio" id="320" name="size" value="320" class="modalSize"><label for="320" class="btn">320</label></input>
-                                                        <input type="radio" id="325" name="size" value="325" class="modalSize"><label for="325" class="btn">325</label></input>
-                                                        <input type="radio" id="330" name="size" value="330" class="modalSize"><label for="330" class="btn">330</label></input>
-                                                    </div>
-                                                    <div class="modal-body commonSize">                                               
-                                                        <input type="radio" id="XXS" name="size" value="XXS" class="modalSize"><label for="XXS" class="btn">XXS</label></input>
-                                                        <input type="radio" id="XS" name="size" value="XS" class="modalSize"><label for="XS" class="btn">XS</label></input>
-                                                        <input type="radio" id="S" name="size" value="S" class="modalSize"><label for="S" class="btn">S</label></input>
-                                                        <input type="radio" id="M" name="size" value="M" class="modalSize"><label for="M" class="btn">M</label></input>
-                                                        <input type="radio" id="L" name="size" value="L" class="modalSize"><label for="L" class="btn">L</label></input>
-                                                        <input type="radio" id="XL" name="size" value="XL" class="modalSize"><label for="XL" class="btn">XL</label></input>
-                                                        <input type="radio" id="XXL" name="size" value="XXL" class="modalSize"><label for="XXL" class="btn">XXL</label></input>
-                                                        <input type="radio" id="XXXL" name="size" value="XXXL" class="modalSize"><label for="XXXL" class="btn">XXXL</label></input>
-                                                    </div>
-                                                    <div class="modal-body bottomSize">
-                                                        <input type="radio" id="28" name="size" value="28" class="modalSize"><label for="28" class="btn">28</label></input>                                                
-                                                        <input type="radio" id="29" name="size" value="29" class="modalSize"><label for="29" class="btn">29</label></input>
-                                                        <input type="radio" id="30" name="size" value="30" class="modalSize"><label for="30" class="btn">30</label></input>
-                                                        <input type="radio" id="31" name="size" value="31" class="modalSize"><label for="31" class="btn">31</label></input>
-                                                        <input type="radio" id="32" name="size" value="32" class="modalSize"><label for="32" class="btn">32</label></input>
-                                                        <input type="radio" id="33" name="size" value="33" class="modalSize"><label for="33" class="btn">33</label></input>
-                                                        <input type="radio" id="34" name="size" value="34" class="modalSize"><label for="34" class="btn">34</label></input>
-                                                        <input type="radio" id="35" name="size" value="35" class="modalSize"><label for="35" class="btn">35</label></input>
-                                                        <input type="radio" id="36" name="size" value="36" class="modalSize"><label for="36" class="btn">36</label></input>
-                                                    </div>
-                                                    <div class="modal-body freeSize">
-                                                        <input type="radio" id="Free" name="size" value="Free" class="modalSize"><label for="Free" class="btn">Free</label></input>                                                
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" id="sizeBtn" class="btn">선택</button>
-                                                        <button type="button" id="closeBtn" class="btn" data-dismiss="modal">취소</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <button id="testBtn" class="btn sizeOption" data-target="#testModal">옵션</button>
+										<div class="modal fade" id="testModal" tabindex="-1"
+											role="dialog" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">사이즈 선택</h5>
+													</div>
+													<div class="modal-body shoeSize">
+<%-- 														<% for(int i = 0; i < list1.length; i++){ %> --%>
+<%-- 														<c:forEach var="s" items="${ list1 }">		 --%>
+<!-- 															<input type="radio" id="" name="size" value="" -->
+<!-- 																class="modalSize"><label for="" class="btn"></label> -->
+<%-- 														<% } %> --%>
+<%-- 														</c:forEach> --%>
+													</div>
+													<div class="modal-footer">
+														<button type="button" id="sizeBtn" class="btn">선택</button>
+														<button type="button" id="closeBtn" class="btn"
+															data-dismiss="modal">취소</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
                                 </div>
                                 <div class="categoryTitle productUnderline"">
                                     <div class="productInfoHalf">
-                                        <button id="testBtn2">수량</button>
+                                        <button id="testBtn2">수량</button> <!-- 모달창으로. 누르면 해당 브랜드 재고, 리셀 재고 표시 -->
                                         <div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel2">상품 수량 선택</h5>
                                                     </div>                                                    
-                                                    <div class="modal-body stock">
-                                                        
+                                                    <div class="modal-body sizeStock">
+                                                       	
                                                     </div>                                                    
                                                     <div class="modal-footer">
-                                                        <button type="button" id="sizeBtn" class="btn">선택</button>
-                                                        <button type="button" id="closeBtn" class="btn" data-dismiss="modal">취소</button>
+                                                        <button type="button" id="sizeBtn2" class="btn">선택</button>
+                                                        <button type="button" id="closeBtn2" class="btn" data-dismiss="modal">취소</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> <!-- 모달창으로. 누르면 해당 브랜드 재고, 리셀 재고 표시 -->
+                                    </div>
                                     <div class="productInfoHalfR detailPriceInfo">
                                         <div class="detailPrice">총 가격</div>
-                                        <div class="detailFullPrice">원</div>                                 
+                                        <div id="fullPrice" class="detailFullPrice">원</div>                                 
                                     </div>
                                 </div>
                             </div>
@@ -180,12 +158,12 @@
 	                                    <button type="submit" class="buyButton" style="background-color: rgb(211, 211, 211);color: rgb(255, 255, 255); cursor: not-allowed;">일시 품절</button>
 	                                </c:otherwise>                            	
                             	</c:choose>
-                                <a href="" class="interestProduct">
+                                <a href="${ pageContext.request.contextPath }/wishListCount.sh?productName=${ p.productName }" class="interestProduct">
                                     <svg width="13" height="15">
                                         <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
                                     </svg>
                                     <span class="btnText">관심상품</span>
-                                    <span class="wishCount">320</span>
+                                    <span class="wishCount">${ wl.productName }</span>
                                 </a>
                             </div>
                         <div class="deliveryTitle1">
@@ -210,8 +188,26 @@
             </div>
         </div>
         <div class="productDetailItemContent">
-            <div class="otherProductArea"> <!-- 상품상세정보 -->
-                
+            <div class="otherProductArea innerProductArea"> <!-- 상품상세정보 -->
+                <div class="innerProductArea1">
+                    <p class="innerProduct">본 상품은 'Blitzway' 브랜드 판매자가 배송하는 상품입니다.</p>
+                </div>
+                <div class="innerProductArea2">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_451235e8591f4d09a62a0a8203c4f174.jpg" alt="" style="width: auto;">
+                </div>
+                <div class="innerProductArea3">
+                    <div class="innerProductArea3_1">Blitzway Stitch</div>
+                    <div class="innerProductArea3_2">블리츠웨이 스티치</div>
+                    <div class="innerProductArea3_3">귀여운 모습과 동시에 악동스러운 스티치의 특색과 제스처를 구조적으로 해석하고 래칫 관절 움직임을 활용하여 스티치 특유의 귀여우면서도 장난끼 넘치는 모습을 표현할 수 있습니다.
+                        <br>360도 회전 가능한 귀, 교체 가능한 다양한 표정과 손 부품, 입에 들어가는 LED 조명을 통해 스티치의 생동감을 보다 다양하게 경험해보세요.</div>
+                </div>
+                <div class="innerProductArea4">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_f9d518a2283e4a65a9660fed89ca6672.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치2.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치3.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치4.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치정보.jpg" alt="">
+                </div>
             </div>
             <div class="PDIC2 otherProductArea"> <!-- 교환 및 반품안내 -->
                 <div class="PDIC2_0">
@@ -573,19 +569,125 @@
             $('#testModal').modal("hide");
         });
         
+        $('#closeBtn2').click(function() {
+            $('#testModal2').modal("hide");
+        });
+        
         // $('input[type="checkbox"]').change(function() {
         //     $(this).addClass('btn-outline-primary');
         // });
 
-        $('input[type="radio"]').change(function() {
+        $(document).on('change', 'input[type="radio"]', function() {
             console.log(this);
             
             if ($(this).is(':checked')) {
                 $('input[type="radio"]').next().removeClass('btn-outline-primary');
                 $(this).next().addClass('btn-outline-primary');
-            } else {
             }
         });
+        
+        $('#testBtn').click(function() {
+        	$.ajax({
+        		url: "${ pageContext.request.contextPath }/pSize.sh",
+        		dataType: 'json',
+        		data: {productName : '${ p.productName }'},
+        		success: function(data){
+        			
+//         			let data = JSON.parse(data);
+//         			let sizeInput = $('.shoeSize').children('input')
+//         			let sizeInput = $('.shoeSize').text()
+   			 		let sizeInput = $('.shoeSize');
+        			console.log(data);
+        			console.log(sizeInput);
+        			sizeInput.empty();
+       			 	for(let i = 0; i < data.length; i++) {
+       			 		let item = data[i].size;
+       			 		console.log(item);
+       			 		console.log(sizeInput);
+       			 		sizeInput.append('<input type="radio" id="' + item + '" name="size" value="' + item + '" class="modalSize"><label for="' + item + '" class="btn">' + item + '</label>');
+       			 		
+//						<input type="radio" id="" name="size" value="" class="modalSize"><label for="" class="btn"></label>
+// 	   			     	sizeInput.attr('id', item)
+// 	                    sizeInput.val(item)
+// 	                    sizeInput.siblings('label').text(item)
+// 	                    sizeInput.siblings('label').attr('for', item)
+	        			
+       			    }
+        		}
+        	});
+        });
+        
+        $('#testBtn2').click(function() {
+        	$.ajax({
+        		url: "${ pageContext.request.contextPath }/pCount.sh",
+        		dataType: 'json',
+        		data: { productName: '${ p.productName }',
+        				pSize: $(".sizeOption").text()
+        				},
+        		success: function(data){
+        			
+        			let sizeStock = $('.sizeStock');
+        			let resellStockPrice = data.price;
+        			console.log(resellStockPrice);
+        			sizeStock.empty();
+		            
+        			if(data.length == 1 && data[0].userClass == 1){
+		             	sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '">')
+		             	
+		             	$('#sizeBtn2').click(function() {
+				            $('#testModal2').modal("hide");
+				            $('#testBtn2').text('수량 : '+$('input[type=number]').val());
+				            $('#resellPrice').text("0원");
+				            $('#fullPrice').text(($('input[type=number]').val()*data[0].price)+"원");
+				        });
+		             	
+        			}else if(data.length == 1 && data[0].userClass == 2){
+        				sizeStock.append('리셀상품<input type="number" min="1" max="' + data[0].stock + '">')
+        				
+        				$('#sizeBtn2').click(function() {
+    			            $('#testModal2').modal("hide");
+    			            $('#testBtn2').text('수량 : '+$('input[type=number]').val());
+    			            $('#resellPrice').text(data[0].price+"원");
+    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price)+"원");
+    			        });
+        				
+        			}else{
+        				sizeStock.append('<input type="radio" name="stockCheck" value="1" style="appearance:auto;">')
+	        			sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '" disabled><br>')
+        				sizeStock.append('<input type="radio" name="stockCheck" value="2" style="appearance:auto;">')
+	        			sizeStock.append('리셀상품<input type="number" min="1" max="' + data[1].stock + '" disabled>')    
+	        			
+	        			$('input[name=stockCheck]').change(function() {
+							let selectedValue = $("input[name=stockCheck]:checked").val();
+						  	if(selectedValue == 1){
+						    	$('input[type=number]').eq(0).prop('disabled', false);
+						    	$('input[type=number]').eq(1).prop('disabled', true);
+						    	
+						    	$('#sizeBtn2').click(function() {
+		    			            $('#testModal2').modal("hide");
+		    			            $('#testBtn2').text('수량 : '+$('input[type=number]').val());
+		    			            $('#resellPrice').text("0원");
+		    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price)+"원");
+		    			        });
+						    	
+						  	} else if(selectedValue == 2){
+						   	 	$('input[type=number]').eq(0).prop('disabled', true);
+						    	$('input[type=number]').eq(1).prop('disabled', false);
+						    	
+						    	$('#sizeBtn2').click(function() {
+		    			            $('#testModal2').modal("hide");
+		    			            $('#testBtn2').text('수량 : '+$('input[type=number]').eq(1).val());
+		    			            $('#resellPrice').text(data[1].price+"원");
+		    			            $('#fullPrice').text(($('input[type=number]').eq(1).val()*data[1].price)+"원");
+		    			    	});
+						  	}
+						});
+        			}
+        		}
+        	});
+        });
+
+        
         </script>
 </body>
 </html>

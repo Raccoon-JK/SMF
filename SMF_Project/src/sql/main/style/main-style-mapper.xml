@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- 최신스타일 mapper -->
+	<entry key="getStyle">
+	<![CDATA[
+		SELECT
+		F.IMG_NAME
+		, F.IMG_PATH
+		, F.IMG_STATUS
+		, F.SNS_ID
+		, F.USER_IMAGE
+		FROM(
+		SELECT
+		P.IMG_NAME
+		, P.IMG_PATH
+		, P.IMG_STATUS
+		, U.SNS_ID
+		, U.USER_IMAGE
+		, U.POST_NO
+		FROM
+		(
+		SELECT
+		M.USER_IMAGE
+		, M.SNS_ID
+		, S.USER_ID
+		, S.POST_NO
+		FROM MEMBER M
+		JOIN SNS_POST S
+		ON M.USER_ID = S.USER_ID) U
+		JOIN POST_IMG P
+		ON U.POST_NO = P.POST_NO
+		WHERE P.IMG_STATUS = 'Y'
+		ORDER BY U.POST_NO DESC)F
+		WHERE ROWNUM <= 10
+		]]>
+	</entry>
+</properties>

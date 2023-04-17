@@ -30,17 +30,17 @@
 	</entry>
 	
 	<entry key="insertStock">
-		INSERT INTO STOCK{
+		INSERT INTO STOCK(
 		STOCK_NO,
 		USER_ID,
 		PRODUCT_NAME,
 		PRICE,
 		STOCK,
-		SIZE,
+		P_SIZE,
 		USER_CLASS
 		)
 		VALUES(
-		SEQ_RNO.NEXTVAL,
+		SEQ_STOCK_NO.NEXTVAL,
 		?,
 		?,
 		?,
@@ -51,25 +51,25 @@
 	</entry>
 	
 	<entry key="insertProduct_Detail">
-		INSERT INTO(
+		INSERT INTO PRODUCT_DETAIL(
 		PRODUCT_NAME,
-		POST_NO,
 		PRODUCT_CONTENT
 		)
 		VALUES(
 		?,
-		SEQ_PNO.NEXTVAL,
 		?
 		)
 	</entry>
 	
 	<entry key="insertProductImg">
-		INSERT INTO(
+		INSERT INTO PRODUCT_IMG(
+		IMG_NO,
 		PRODUCT_NAME,
 		IMG_NAME,
 		IMG_PATH
 		)
 		VALUES(
+		SEQ_PRODUCT_INO.NEXTVAL,
 		?,
 		?,
 		?
@@ -124,5 +124,38 @@
 		FROM STOCK
 		WHERE PRODUCT_NAME = ?
         GROUP BY PRODUCT_NAME
+	</entry>
+	
+	<entry key="selectWishList">
+		SELECT COUNT(PRODUCT_NAME) AS PRODUCT_NAME
+		FROM WISHLIST
+		WHERE PRODUCT_NAME = ?
+	</entry>
+	
+	<entry key="selectSize">
+		SELECT PRODUCT_NAME, P_SIZE
+		FROM STOCK
+		WHERE PRODUCT_NAME = ?
+		AND STATUS = 'Y'
+		GROUP BY PRODUCT_NAME, P_SIZE
+	</entry>
+	
+	<entry key="selectSizeStock">
+		SELECT PRODUCT_NAME, P_SIZE, STOCK, PRICE, USER_CLASS
+		FROM STOCK
+		WHERE PRODUCT_NAME = ?
+		AND P_SIZE = ?
+		AND STATUS = 'Y'
+	</entry>
+	
+	<entry key="insertWishList">
+		INSERT INTO WISHLIST(
+                        USER_ID,
+                        PRODUCT_NAME                        
+                    )
+   					VALUES (
+   							?,
+   							?
+   					)
 	</entry>
 </properties>

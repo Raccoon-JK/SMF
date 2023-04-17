@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.service.ShopService;
 import com.smf.shop.model.vo.Product;
 import com.smf.shop.model.vo.Product_Detail;
@@ -41,14 +42,13 @@ public class ProductDetailController extends HttpServlet {
 		Stock s = new ShopService().selectStock(productName);
 		Product_Detail pd = new ShopService().selectProduct_Detail(productName);
 		ArrayList<Product_Img> list = new ShopService().selectProduct_Img(productName);
+		WishList wl = new ShopService().selectWishList(productName);
 		
 		request.setAttribute("p", p);
 		request.setAttribute("s", s);
 		request.setAttribute("list", list);
 		request.setAttribute("pd", pd);
-		System.out.println(p);
-		System.out.println(list);
-		System.out.println(pd);
+		request.setAttribute("wl", wl);
 		
 		request.getRequestDispatcher("views/shop/productDetailForm.jsp").forward(request, response);
 		

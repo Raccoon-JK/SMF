@@ -12,6 +12,8 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 import static com.smf.common.JDBCTemplate.*;
+
+import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.vo.Category_Sub;
 import com.smf.shop.model.vo.Product;
 import com.smf.shop.model.vo.ProductAll;
@@ -86,9 +88,10 @@ public class ShopDao {
 			
 			pstmt.setString(1, p.getBrandName());
 			pstmt.setString(2, p.getProductName());
-			pstmt.setInt(3, p.getCategoryNo());
-			pstmt.setString(4, p.getProductGender());
-			pstmt.setString(5, p.getProductWeather());
+			pstmt.setInt(3, p.getCompanyPrice());
+			pstmt.setInt(4, p.getCategoryNo());
+			pstmt.setString(5, p.getProductGender());
+			pstmt.setString(6, p.getProductWeather());
 			
 			result = pstmt.executeUpdate();
 			
@@ -106,18 +109,20 @@ public class ShopDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertResellStock");
+		String sql = prop.getProperty("insertStock");
 		
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			System.out.println(s);
 			
 			pstmt.setString(1, s.getUserId());
 			pstmt.setString(2, s.getProductName());
 			pstmt.setInt(3, s.getPrice());
 			pstmt.setInt(4, s.getStock());
 			pstmt.setString(5, s.getSize());
-			pstmt.setString(6, s.getUserClass());
+			pstmt.setInt(6, 1);
 			
 			result = pstmt.executeUpdate();
 			
@@ -138,7 +143,7 @@ public class ShopDao {
 		String sql = prop.getProperty("insertProduct_Detail");
 		
 		try {
-			
+			System.out.println(pd);
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, pd.getProductName());
@@ -353,5 +358,135 @@ public class ShopDao {
 		}
 		return pd;
 	}
+	
+	public WishList selectWishList(Connection conn, String productName) {
+		
+		WishList wl = null;
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectWishList");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, productName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
 
+				wl = new WishList();
+				
+				wl.setProductName(rset.getString("PRODUCT_NAME"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return wl;
+	}
+
+	public ArrayList<Stock> selectSize(Connection conn, String productName) {
+		
+		ArrayList<Stock> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSize");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, productName);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Stock s = new Stock();
+				
+				s.setSize(rset.getString("P_SIZE"));
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Stock> selectSizeStock(Connection conn, String productName, String pSize) {
+		
+		ArrayList<Stock> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSizeStock");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, productName);
+			pstmt.setString(2, pSize);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Stock s = new Stock();
+				
+				s.setStock(rset.getInt("STOCK"));
+				s.setPrice(rset.getInt("PRICE"));
+				s.setUserClass(rset.getString("USER_CLASS"));
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int insertWishList(Connection conn, String productName, String userId) {
+	
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertWishList");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, productName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
