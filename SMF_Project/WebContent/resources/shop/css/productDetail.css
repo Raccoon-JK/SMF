@@ -491,3 +491,7 @@ input[type="radio"] {
     -moz-appearance: none;
     appearance: none;
 }
+
+#pCountDiv{
+	display: flex;
+}

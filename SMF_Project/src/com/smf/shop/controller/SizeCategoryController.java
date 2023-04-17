@@ -14,16 +14,16 @@ import com.smf.shop.model.service.ShopService;
 import com.smf.shop.model.vo.ProductAll;
 
 /**
- * Servlet implementation class GenderCategoryController
+ * Servlet implementation class SizeCategoryController
  */
-@WebServlet("/gCat.sh")
-public class GenderCategoryController extends HttpServlet {
+@WebServlet("/sizeCat.sh")
+public class SizeCategoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GenderCategoryController() {
+    public SizeCategoryController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +34,8 @@ public class GenderCategoryController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String category = request.getParameter("category");
-
-		ArrayList<ProductAll> list = new ShopService().selectGcategory(category);
+		
+		ArrayList<ProductAll> list = new ShopService().selectSizeCategory(category);
 		
 		response.setContentType("apllication/json; charset=UTF-8");
 		
