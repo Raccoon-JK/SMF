@@ -785,6 +785,30 @@ public class MyPageDao {
 		
 	}
 	
+	public int updateAddMemberPoint(Connection conn, String userId, int point) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateAddMemberPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, point);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	
 	//구매내역
 	public ArrayList<BuySellHistory> selectBuyListCount(Connection conn, String userId){
@@ -881,6 +905,42 @@ public class MyPageDao {
 			
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, month);
+				
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory();
+				bs.setOrderNo(rset.getInt("ORDER_NO"));
+				bs.setOrderDate(rset.getDate("ORDER_DATE"));
+				bs.setTotalAmount(rset.getInt("TOTAL_AMOUNT"));
+				bs.setPoint(rset.getInt("POINT"));
+				
+				listcount.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listcount;
+	}
+	
+	public ArrayList<BuySellHistory> selectsellOrderList(Connection conn, String userId){
+		
+		ArrayList<BuySellHistory> listcount = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBuyListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
 				
 			rset = pstmt.executeQuery();
 			

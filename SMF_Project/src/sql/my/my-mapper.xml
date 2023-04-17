@@ -114,6 +114,9 @@
 	<entry key="updateMemberPoint">
 		UPDATE MEMBER SET TOTAL_POINT = TOTAL_POINT-? WHERE USER_ID = ?
 	</entry>
+		<entry key="updateAddMemberPoint">
+		UPDATE MEMBER SET TOTAL_POINT = TOTAL_POINT+? WHERE USER_ID = ?
+	</entry>
 	
 	<!-- 구매내역 -->
 	<entry key="selectBuyListCount">
