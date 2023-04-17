@@ -24,6 +24,7 @@ import com.smf.shop.model.vo.Stock;
 public class ShopDao {
 	private Properties prop = new Properties();
 
+	
 	public ShopDao() {
 
 		String fileName = ShopDao.class.getResource("/sql/shop/shop-mapper.xml").getPath();
@@ -234,8 +235,8 @@ public class ShopDao {
 		String sql = prop.getProperty("selectProduct");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
 			
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productName);
 			
 			rset = pstmt.executeQuery();
@@ -488,5 +489,128 @@ public class ShopDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public ArrayList<ProductAll> selectNcategory(Connection conn, String category){
+			
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectNcategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectBcategory(Connection conn, String category){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBcategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectGcategory(Connection conn, String category){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectGcategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
 	}
 }

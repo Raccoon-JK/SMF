@@ -590,7 +590,7 @@
         	$.ajax({
         		url: "${ pageContext.request.contextPath }/pSize.sh",
         		dataType: 'json',
-        		data: {productName : '${ p.productName }'},
+        		data: {productName : "${ p.productName }"},
         		success: function(data){
         			
 //         			let data = JSON.parse(data);
@@ -621,7 +621,7 @@
         	$.ajax({
         		url: "${ pageContext.request.contextPath }/pCount.sh",
         		dataType: 'json',
-        		data: { productName: '${ p.productName }',
+        		data: { productName: "${ p.productName }",
         				pSize: $(".sizeOption").text()
         				},
         		success: function(data){
