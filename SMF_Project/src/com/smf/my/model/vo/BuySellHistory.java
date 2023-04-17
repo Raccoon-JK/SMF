@@ -10,7 +10,9 @@ public class BuySellHistory {
     private String userId;
     private int addressNo;
     private int orderCount;
+    private int sellCount;
     private Date orderDate;
+    private Date sellDate;
     private int amount;
     private int totalAmount;
     private String productName;
@@ -20,15 +22,18 @@ public class BuySellHistory {
     private String address;
     private String imgPath;
     private String imgName;
+    private int tradeCount;
     private int point;
+    private int status;
     
 	public BuySellHistory() {
 		super();
 	}
-
+	
 	public BuySellHistory(int orderNo, int orderPno, int stockNo, int imgNo, String userId, int addressNo,
-			int orderCount, Date orderDate, int amount, int totalAmount, String productName, String brandName,
-			String pSize, int postcode, String address, String imgPath, String imgName, int point) {
+			int orderCount, int sellCount, Date orderDate, Date sellDate, int amount, int totalAmount,
+			String productName, String brandName, String pSize, int postcode, String address, String imgPath,
+			String imgName, int tradeCount, int point, int status) {
 		super();
 		this.orderNo = orderNo;
 		this.orderPno = orderPno;
@@ -37,7 +42,9 @@ public class BuySellHistory {
 		this.userId = userId;
 		this.addressNo = addressNo;
 		this.orderCount = orderCount;
+		this.sellCount = sellCount;
 		this.orderDate = orderDate;
+		this.sellDate = sellDate;
 		this.amount = amount;
 		this.totalAmount = totalAmount;
 		this.productName = productName;
@@ -47,9 +54,10 @@ public class BuySellHistory {
 		this.address = address;
 		this.imgPath = imgPath;
 		this.imgName = imgName;
+		this.tradeCount = tradeCount;
 		this.point = point;
+		this.status = status;
 	}
-
 
 	// 리스트 안 상품정보
 	public BuySellHistory(int orderNo, int orderPno, int orderCount, Date orderDate, int amount,
@@ -70,10 +78,28 @@ public class BuySellHistory {
 		this.imgName = imgName;
 	}
 
-
+	//판매리스트
+	public BuySellHistory(int stockNo, int sellCount, Date sellDate, int amount, String productName, String brandName,
+			String pSize, String imgPath, String imgName, int tradeCount, int status) {
+		super();
+		this.stockNo = stockNo;
+		this.sellCount = sellCount;
+		this.sellDate = sellDate;
+		this.amount = amount;
+		this.productName = productName;
+		this.brandName = brandName;
+		this.pSize = pSize;
+		this.imgPath = imgPath;
+		this.imgName = imgName;
+		this.tradeCount = tradeCount;
+		this.status = status;
+	}
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
+
+
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
@@ -126,12 +152,28 @@ public class BuySellHistory {
 		this.orderCount = orderCount;
 	}
 
+	public int getSellCount() {
+		return sellCount;
+	}
+
+	public void setSellCount(int sellCount) {
+		this.sellCount = sellCount;
+	}
+
 	public Date getOrderDate() {
 		return orderDate;
 	}
 
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+	
+	public Date getSellDate() {
+		return sellDate;
+	}
+
+	public void setSellDate(Date sellDate) {
+		this.sellDate = sellDate;
 	}
 
 	public int getAmount() {
@@ -206,6 +248,13 @@ public class BuySellHistory {
 		this.imgName = imgName;
 	}
 
+	public int getTradeCount() {
+		return tradeCount;
+	}
+
+	public void setTradeCount(int tradeCount) {
+		this.tradeCount = tradeCount;
+	}
 	public int getPoint() {
 		return point;
 	}
@@ -214,13 +263,23 @@ public class BuySellHistory {
 		this.point = point;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "BuySellHistory [orderNo=" + orderNo + ", orderPno=" + orderPno + ", stockNo=" + stockNo + ", imgNo="
 				+ imgNo + ", userId=" + userId + ", addressNo=" + addressNo + ", orderCount=" + orderCount
-				+ ", orderDate=" + orderDate + ", amount=" + amount + ", totalAmount=" + totalAmount + ", productName="
-				+ productName + ", brandName=" + brandName + ", pSize=" + pSize + ", postcode=" + postcode
-				+ ", address=" + address + ", imgPath=" + imgPath + ", imgName=" + imgName + ", point=" + point + "]";
+				+ ", sellCount=" + sellCount + ", orderDate=" + orderDate + ", sellDate=" + sellDate + ", amount="
+				+ amount + ", totalAmount=" + totalAmount + ", productName=" + productName + ", brandName=" + brandName
+				+ ", pSize=" + pSize + ", postcode=" + postcode + ", address=" + address + ", imgPath=" + imgPath
+				+ ", imgName=" + imgName + ", tradeCount=" + tradeCount + ", point=" + point + ", status=" + status
+				+ "]";
 	}
     
 }

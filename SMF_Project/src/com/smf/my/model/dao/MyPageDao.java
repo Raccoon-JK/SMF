@@ -53,6 +53,42 @@ public class MyPageDao {
 		return sql;
 	}
 	
+	//마이 페이지 메인
+	public ArrayList<ProductAll> selectMypageMainWishList(Connection conn, String userId){
+		
+		ArrayList<ProductAll> wList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMypageMainWishList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll();
+				pa.setProductName(rset.getString("PRODUCT_NAME"));
+				pa.setBrandName(rset.getString("BRAND_NAME"));
+				pa.setImgPath(rset.getString("IMG_PATH"));
+				pa.setImgName(rset.getString("IMG_NAME"));
+				
+				wList.add(pa);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return wList;
+	}
+	
 	// 내 프로필 정보
 	public int myInfoUpdate(Connection conn, String column, String value, String userId) {
 		
@@ -927,7 +963,8 @@ public class MyPageDao {
 		return listcount;
 	}
 	
-	public ArrayList<BuySellHistory> selectsellOrderList(Connection conn, String userId){
+	//판매 내역
+	public ArrayList<BuySellHistory> selectsellList(Connection conn, String userId){
 		
 		ArrayList<BuySellHistory> listcount = new ArrayList<>();
 		
@@ -935,7 +972,7 @@ public class MyPageDao {
 		
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectBuyListCount");
+		String sql = prop.getProperty("selectsellList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -945,12 +982,20 @@ public class MyPageDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				BuySellHistory bs = new BuySellHistory();
-				bs.setOrderNo(rset.getInt("ORDER_NO"));
-				bs.setOrderDate(rset.getDate("ORDER_DATE"));
-				bs.setTotalAmount(rset.getInt("TOTAL_AMOUNT"));
-				bs.setPoint(rset.getInt("POINT"));
-				
+				BuySellHistory bs = new BuySellHistory(
+									rset.getInt("STOCK_NO"),
+									rset.getInt("STOCK"),
+									rset.getDate("SUGGEST_DATE"),
+									rset.getInt("PRICE"),
+									rset.getString("PRODUCT_NAME"),
+									rset.getString("BRAND_NAME"),
+									rset.getString("P_SIZE"),
+									rset.getString("IMG_PATH"),
+									rset.getString("IMG_NAME"),
+									rset.getInt("TRADE_COUNT"),
+									rset.getInt("STATUS")
+									
+						);
 				listcount.add(bs);
 			}
 		} catch (SQLException e) {
@@ -961,6 +1006,54 @@ public class MyPageDao {
 		}
 		
 		return listcount;
+	}
+	
+	public ArrayList<BuySellHistory> selectSellMonthList(Connection conn, String userId, int month){
+		
+		ArrayList<BuySellHistory> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSellMonthList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, month);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory(
+									rset.getInt("STOCK_NO"),
+									rset.getInt("STOCK"),
+									rset.getDate("SUGGEST_DATE"),
+									rset.getInt("PRICE"),
+									rset.getString("PRODUCT_NAME"),
+									rset.getString("BRAND_NAME"),
+									rset.getString("P_SIZE"),
+									rset.getString("IMG_PATH"),
+									rset.getString("IMG_NAME"),
+									rset.getInt("TRADE_COUNT"),
+									rset.getInt("STATUS")
+									);
+				list.add(bs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
 	}
 	
 }

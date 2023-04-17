@@ -91,38 +91,15 @@
             		</div>
             		<div id="interest_content">
             			<div class="interest_product_wrapper">
-            				<div class="interest_products">
-          						<div class="interest_img">
-            						<img alt="" src="/SMF_Project/resources/my/img/_W_ Adidas Gazelle Bold Core Black Cloud White_1.png">
-            					</div>
-            					<p>Adidas</p>
-            					<p>Adidas Gazelle Bold Core Black Cloud White</p>
-            					<p>275</p>
-            				</div>
-           					<div class="interest_products">
-          						<div class="interest_img">
-            						<img alt="" src="/SMF_Project/resources/my/img/_W_ Adidas Gazelle Bold Core Black Cloud White_1.png">
-            					</div>
-            					<p>Adidas</p>
-            					<p>Adidas Gazelle Bold Core Black Cloud White</p>
-            					<p>275</p>
-            				</div>
-            				<div class="interest_products">
-          						<div class="interest_img">
-            						<img alt="" src="/SMF_Project/resources/my/img/_W_ Adidas Gazelle Bold Core Black Cloud White_1.png">
-            					</div>
-            					<p>Adidas</p>
-            					<p>Adidas Gazelle Bold Core Black Cloud White</p>
-            					<p>275</p>
-            				</div>
-          					<div class="interest_products">
-          						<div class="interest_img">
-            						<img alt="" src="/SMF_Project/resources/my/img/_W_ Adidas Gazelle Bold Core Black Cloud White_1.png">
-            					</div>
-            					<p>Adidas</p>
-            					<p>Adidas Gazelle Bold Core Black Cloud White</p>
-            					<p>275</p>
-            				</div>
+            				<c:forEach var="list" items="${wList}">
+	            				<div class="interest_products">
+	          						<div class="interest_img">
+	            						<img alt="" src="${pageContext.request.contextPath}${list.imgPath}${list.imgName}">
+	            					</div>
+	            					<p class="mainBrandName">${list.brandName}</p>
+	            					<p class="mainProudctName">${list.productName}</p>
+	            				</div>
+            				</c:forEach>
             			</div>
             		</div>
             	</div>
@@ -136,6 +113,14 @@
 		});
 		document.querySelector("#whishList_more>a").addEventListener('click',function(){
 			location.href='<%=contextPath%>/mypagewishlist.me';
+		});
+
+		$('.interest_products').css('cursor', 'pointer');
+
+		$('.interest_products').click(function(){
+			let prodcutName = $(this).children('.mainProudctName').text();
+			let productUrl = '${pageContext.request.contextPath}/productDetail.sh?productName='+prodcutName
+			window.location.href =  productUrl;
 		});
 	</script>
 </body>

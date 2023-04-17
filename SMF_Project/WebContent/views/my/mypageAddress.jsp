@@ -11,6 +11,11 @@
 <jsp:include page="mypageHead.jsp"></jsp:include>
 <link rel="stylesheet" href="/SMF_Project/resources/my/css/mypageAddress.css">
 <title>Insert title here</title>
+<style>
+	.modal{
+		z-index: 1050 !important;
+	}
+</style>
 </head>
 <body>
 	<!-- 주소추가 모달 -->
@@ -90,7 +95,7 @@
 	                            <input type="text" name="detailedAddress" placeholder="건물, 아파트, 동/호수 입력">
 	                        </div>
                 		</div>
-               		 <div class="modal-footer">
+<!--                		 <div class="modal-footer"> -->
                     	<button type="submit" class="btn btn-primary" id="addrSave" onclick="addrUpdate_modal();">저장</button>
                     	<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="addrModalCancel();">취소</button>
                 	</div>
@@ -146,8 +151,7 @@
 											<p>(${addrDefault.postcode}) ${addrDefault.address}</p>
 										</div>
 										<div class="address_area_right">
-											<a href="" class="mypageBtn">수정</a>
-				<!-- 							<a href="" class="mypageBtn">삭제</a> -->
+											<a href="#" class="mypageBtn" data-toggle="modal" data-target="#addressUpdate" onclick="(${addrDefault.addressNo});">수정</a>
 										</div>
 					                </div>
 				                </c:when>
@@ -182,7 +186,6 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/SMF_Project/resources/my/javascript/daum_postcode.js"></script>
 	<script>
-		
 		var Num = 0;
     	function defaultAddrChange(addrNo) {
 			location.href = "<%= contextPath %>/defaultaddr.me?addrno="+addrNo;

@@ -119,7 +119,7 @@
                                         +'</div>'
                                      +'</div>'
                         }
-                        $('.salebuy_info_wrapper').append(str+'</div>');    
+                        $('.salebuy_info_wrapper').append(str+'</div>'); 
                     }
                     $.ajax({
                         url: "${pageContext.request.contextPath}/buyingHistoryMonthAjax2.me",
@@ -144,6 +144,7 @@
                 error : function(data){
                     console.log('실패1');
                 }
+                
             })
 
         })

@@ -18,6 +18,18 @@ import com.smf.shop.model.vo.ProductAll;
 
 public class MyPageService {
 	
+	// 마이 페이지 메인
+	public ArrayList<ProductAll> selectMypageMainWishList(String userId){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> wList = new MyPageDao().selectMypageMainWishList(conn, userId);
+		
+		close(conn);
+		
+		return wList;
+	}
+	
 	// 내 프로필 정보
 	public Member myInfoUpdate(String column, String value, String userId) {
 		 
@@ -403,33 +415,26 @@ public class MyPageService {
 	}
 	
 	//판매 내역
-	public ArrayList<BuySellHistory> selectsellOrderList(String userId){
+	public ArrayList<BuySellHistory> selectsellList(String userId){
 		Connection conn = getConnection();
 		
-		ArrayList<BuySellHistory> orderList = new MyPageDao().selectsellOrderList(conn, userId);
+		ArrayList<BuySellHistory> sellList = new MyPageDao().selectsellList(conn, userId);
 		
 		close(conn);
 		
-		return orderList;
+		return sellList;
 	}
 	
-	public ArrayList<ArrayList<BuySellHistory>> selectSellList(String userId){
+	public ArrayList<BuySellHistory> selectSellMonthList(String userId, int month){
 		
 		Connection conn = getConnection();
-			
-		//주문 리스트번호 불러오기
-		ArrayList<BuySellHistory> ListCount = new MyPageDao().selectBuyListCount(conn, userId);
 		
-		ArrayList<ArrayList<BuySellHistory>> ListInProduct = new ArrayList<>();
-		
-		for(int i=0; i<ListCount.size(); i++) {
-			//주문 리스트와 주문 리스트 상품 묶기
-			ListInProduct.add(new MyPageDao().selectSellList(conn, userId, ListCount.get(i).getOrderNo()));
-		}
+		ArrayList<BuySellHistory> sellList = new MyPageDao().selectSellMonthList(conn, userId, month);
 		
 		close(conn);
 		
-		return ListInProduct;
+		return sellList;
 	}
+
 	
 }
