@@ -7,7 +7,7 @@ function makeDragEvent() {
 	}
 
 	leftboxes.forEach((leftbox) => {
-		const images = leftbox.querySelectorAll('.deco');
+		const images = leftbox.querySelectorAll('.itemObject');
 
 		// images NodeList가 빈 경우 예외처리
 		if (!images.length) {
@@ -91,7 +91,7 @@ function makeCopyDragEvent() {
 	const rightboxes = document.querySelectorAll('.rightbox');
 
 	rightboxes.forEach((rightbox) => {
-		const images = rightbox.querySelectorAll('.deco');
+		const images = rightbox.querySelectorAll('.itemObject');
 		images.forEach((image) => {
 			image.addEventListener('dragstart', startDrag, false);
 		});
@@ -123,7 +123,7 @@ function dropped(e) {
 
 	var newImage = document.createElement('img');
 	newImage.id = data;
-	newImage.className = 'deco';
+	newImage.className = 'itemObject';
 	newImage.src = document.getElementById(data).src;
 
 	var leftbox = document.querySelector('#' + e.currentTarget.id);
@@ -159,7 +159,7 @@ function dropped(e) {
 			// 합쳐진 이미지를 새로운 img 엘리먼트로 만들어서 leftbox에 추가
 			var newMergedImage = document.createElement('img');
 			newMergedImage.id = "mergedImage";
-			newMergedImage.className = 'deco';
+			newMergedImage.className = 'itemObject';
 			newMergedImage.src = mergedImage.toDataURL();
 			leftbox.appendChild(newMergedImage);
 
@@ -239,7 +239,7 @@ function dropped(e) {
 	}
 
 	// 아이콘 생성
-	var images = document.querySelectorAll('.deco');
+	var images = document.querySelectorAll('.itemObject');
 	images.forEach(function(image) {
 		image.addEventListener('click', function(e) {
 			e.stopPropagation();
