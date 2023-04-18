@@ -49,6 +49,10 @@
 </style>
 <body>
 
+	<div id="Openning" style="display: none;">
+		<jsp:include page="/views/main/OpenningPage.jsp" />
+	</div>
+
 	<jsp:include page="/views/main/menubar_sun.jsp" />
 
 	<!-- Swiper -->
@@ -168,9 +172,7 @@
 		</div>
 		<div class="content">
 			<div class="swiper second">
-				<div class="swiper-wrapper row2">
-
-				</div>
+				<div class="swiper-wrapper row2"></div>
 				<div class="swiper-button-next style"></div>
 				<div class="swiper-button-prev style"></div>
 				<div class="swiper-pagination"></div>
