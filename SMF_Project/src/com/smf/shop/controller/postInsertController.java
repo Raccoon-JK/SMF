@@ -70,7 +70,27 @@ public class postInsertController extends HttpServlet {
 			String pName = multi.getParameter("productName");
 			String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId() + ""; // 로그인 유저 아이디 정보
 			String userClass = ((Member) request.getSession().getAttribute("loginUser")).getUserType() + "";
-
+			
+			// 넘어오는 <input type="file" multiple>확인용도
+//			Enumeration f = multi.getFileNames();
+//			while (f.hasMoreElements()) {
+//				String fileName = (String) f.nextElement();
+//				String imgName = multi.getFilesystemName(fileName);
+//				
+//				System.out.println(fileName);
+//				System.out.println(imgName);
+//			}
+			
+			// 넘어오는 form안의 데이터들 확인 용도
+//			Enumeration e = multi.getParameterNames();
+//			while (e.hasMoreElements()) {
+//				String name = (String) e.nextElement();
+//				String[] values = multi.getParameterValues(name);
+//				for (String value : values) {
+//					System.out.println("name=" + name + ",value=" + value);
+//				}
+//			}
+			
 			// 3. DB에 저장
 			// Product에 들어갈 값들 뽑아오기
 			Product p = new Product();
@@ -93,33 +113,36 @@ public class postInsertController extends HttpServlet {
 			// 상세정보 >> 상품상세
 			Product_Detail pd = new Product_Detail();
 			pd.setProductName(pName);
-			pd.setProductContent(multi.getParameter("productContent"));
-
-			// Attachment테이블에 여러번 insert할 데이터를 뽑기
-			// 단, 여러개의 첨부파일이 있을것이기 때문에 attachment들을 ArrayList에 담을 예정 => 반드시 1개 이상은 담김(대표이미지)
-			// >> Product_Img?
-			int result = new ShopService().insertProduct(p, s, pd);
+			pd.setProductContent(multi.getParameter("content"));
+			 
+			int result = new ShopService().insertProduct(p);
 			
-			if (result > 0) { // 성공 -> list.th를 요청
+			if (result > 0) {
 				
-				// 상품 이미지
-				int imgresult = 0;
-				Enumeration f = multi.getFileNames();
-				while (f.hasMoreElements()) {
-					String fileName = (String) f.nextElement();
-					String imgName = multi.getFilesystemName(fileName);
-					
-					Product_Img pi = new Product_Img();
-
-					pi.setProductName(pName);
-					pi.setImgName(imgName);
-					pi.setImgPath("/resources/thumb_upfiles/");
-
-					imgresult += new ShopService().insertProductImg(pi);
-				}
-				if(imgresult > 0) {
-					response.sendRedirect(request.getContextPath());
-					
+				int result2 = new ShopService().insertProduct2(s, pd);
+				
+				if (result2 > 0) {
+					// 상품 이미지
+					int imgresult = 0;
+					Enumeration f = multi.getFileNames();
+					while (f.hasMoreElements()) {
+						String fileName = (String) f.nextElement();
+						String imgName = multi.getFilesystemName(fileName);
+						
+						System.out.println(fileName);
+						System.out.println(imgName);
+						
+						Product_Img pi = new Product_Img();
+						
+						pi.setProductName(pName);
+						pi.setImgName(imgName);
+						pi.setImgPath("/resources/thumb_upfiles/");
+						imgresult += new ShopService().insertProductImg(pi);
+						System.out.println(pi);
+					}
+					if(imgresult > 0) {
+						response.sendRedirect(request.getContextPath());
+					}
 				}
 			} else {
 

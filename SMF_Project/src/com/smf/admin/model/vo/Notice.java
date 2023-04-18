@@ -32,6 +32,19 @@ public class Notice {
 	
 	
 	
+	
+	public Notice(int alertNo, String alertCategory, String alertTitle, String alertContent, String qLevel) {
+		super();
+		AlertNo = alertNo;
+		AlertCategory = alertCategory;
+		AlertTitle = alertTitle;
+		AlertContent = alertContent;
+		QLevel = qLevel;
+	}
+
+
+
+
 	public Notice(int alertNo, String alertCategory, String alertTitle, Date createDate, String qLevel) {
 		super();
 		AlertNo = alertNo;

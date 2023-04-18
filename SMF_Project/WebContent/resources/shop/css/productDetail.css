@@ -169,6 +169,68 @@ button{
     padding-top: 60px;
     border-top: 1px solid #ebebeb;
 }
+
+.innerProductArea{
+    padding: 0 100px;
+}
+
+.innerProductArea1{
+    text-align: center;
+}
+
+.innerProduct{
+    font-size: 15px;
+    max-width: 600px;
+    letter-spacing: -.01em;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.innerProductArea2{
+    margin-top: 40px;
+}
+
+.innerProductArea3{
+    text-align: left;
+    border-top: 1px solid #ebebeb;
+    padding: 57px 0 0;
+    margin-top: 40px;
+}
+
+.innerProductArea3_1{
+    font-size: 32px;
+    letter-spacing: -.48px;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 0;
+}
+
+.innerProductArea3_2{
+    font-size: 28px;
+    margin-top: 4px;
+    letter-spacing: -.015em;
+    text-transform: capitalize;
+}
+
+.innerProductArea3_3{
+    font-size: 17px;
+    margin: 24px 0 0;
+    padding: 0;
+    border: 0;
+    line-height: 24px;
+    color: rgba(34,34,34,.5);
+    text-align: justify;
+}
+
+.innerProductArea4{
+    margin-top: 27px;
+}
+
+.mainImgList{
+	background: rgb(246, 238, 237);
+	border-radius: 5px;
+}
+
 .PDIC2_0{
     padding: 42px 100px 0;
 }
@@ -431,4 +493,8 @@ input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+#pCountDiv{
+	display: flex;
 }
