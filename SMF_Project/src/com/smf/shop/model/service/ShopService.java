@@ -119,6 +119,17 @@ public class ShopService {
 		return list;
 	}
 	
+	public ArrayList<ProductAll> selectProductBrandProduct(String brand) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectProductBrandProduct(conn, brand);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 	public Product_Detail selectProduct_Detail(String productName) {
 		
 		Connection conn = getConnection();
@@ -206,11 +217,109 @@ public class ShopService {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ProductAll> list = new ShopDao().selectBcategory(conn, category);
+		ArrayList<ProductAll> list = new ShopDao().selectGcategory(conn, category);
 		
 		close(conn);
 		
 		return list;
 	}
 	
+	public ArrayList<ProductAll> selectTcategory() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectTcategory(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectPcategory1() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectPcategory1(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectPcategory2() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectPcategory2(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectPcategory3() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectPcategory3(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectPcategory4() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectPcategory4(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectPcategory5() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectPcategory5(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectPcategory6() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectPcategory6(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectSizeCategory(String category) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectSizeCategory(conn, category);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public int insertStockNo(String userId, int pCount, int stockNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().insertStockNo(conn, userId, pCount, stockNo);
+		
+		close(conn);
+		
+		return result;
+	}
 }

@@ -81,6 +81,15 @@ public class ProductAll {
 		this.postProductTagCount = postProductTagCount;
 	}
 	
+	public ProductAll(String productName, String brandName, int companyPrice, String imgName, String imgPath) {
+		super();
+		this.productName = productName;
+		this.brandName = brandName;
+		this.companyPrice = companyPrice;
+		this.imgName = imgName;
+		this.imgPath = imgPath;
+	}
+
 	// 마이페이지 - 관심상품 페이지의 상품 조회
 	public ProductAll(String productName, String brandName, String imgName, String imgPath) {
 		super();
