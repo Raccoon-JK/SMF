@@ -36,7 +36,7 @@ public class MemberManageListController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		System.out.println(list);
+		
 		
 		request.getRequestDispatcher("views/admin/membermanage.jsp").forward(request, response);
 	}

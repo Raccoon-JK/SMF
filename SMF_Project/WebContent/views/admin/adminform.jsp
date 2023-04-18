@@ -12,8 +12,19 @@
     <title>Document</title>
 </head>
 <style>
+.wrapadmin {
+   box-sizing: border-box;
+    border: 5px solid #ebebeb;
+ }
+ .left-side-bar{
+  box-sizing: border-box;
+    border: 5px solid #ebebeb;
+ }
 
-
+.status-ico{
+	box-sizing: border-box;
+    border: 5px solid #ebebeb;
+}
 a {
     color: black;
     text-decoration: none;
@@ -36,6 +47,7 @@ a {
     position: fixed;
     left: -155px;
     transition: left .3s;
+    z-index: 1550;
 }
 
 .left-side-bar > .status-ico {
@@ -55,7 +67,7 @@ a {
 
 .left-side-bar ul > li > a {
     display: block;
-    padding: 10px;
+    padding: 10px 60px;
     white-space: nowrap;
 }
 
@@ -65,6 +77,7 @@ a {
 
 .left-side-bar ul > li:hover ul {
     display: block;
+  
 }
 
 .left-side-bar ul > li:hover > a {
@@ -85,13 +98,14 @@ a {
 }
 </style>
 <body>
+
     <div class="left-side-bar">
         <div class="status-ico">
             <span>▶</span>
             <span>▼</span>
         </div>
 
-        <ul>
+        <ul class="wrapadmin">
             <li>
                 <a href="#">회원관리</a>
                 <ul>
@@ -123,7 +137,7 @@ a {
         </ul>
         
     </div>
-    
+
 
         
     

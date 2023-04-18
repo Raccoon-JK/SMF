@@ -20,15 +20,6 @@
     <title>판매제안</title>
 </head>
 <style>
-    div {
-        box-sizing: border-box;
-        border : 1px solid blue;
-    }    
-    
-    p{
-    	height:150px;
-    }               
-    
     
     
     .content{
@@ -51,8 +42,12 @@
         margin-right: 40px;
     }
     .content_title.border{
-        padding-bottom: 16px;
-        border-bottom: 3px solid #222;
+        padding-bottom: 0;
+        border-bottom: 1px solid #black;
+    }
+    
+    .title{
+    	border-bottom: .3rem solid black;
     }
     .title>h3{
         line-height: 29px;
@@ -78,12 +73,14 @@
     }
 
     .content_area{
-        margin: 0 auto;
-    padding: 60px 0 160px;
-    width: 400px;
+     box-sizing: border-box;
+     border : 1px solid #ebebeb;
+     margin: 0 auto;
+     padding: 60px 0 10px;
+     width: 900px;
     }
     .dropdown_head{
-        padding: 17px 0 19px;
+        padding: 15px 0 0px;
         align-items: center;
         border-bottom : 1px solid #ebebeb;
         cursor: pointer
@@ -109,6 +106,7 @@
     }
 
     .dropdown_content{
+   		height: 400px;
         padding: 30px 30px 28px;
         background-color: #fafafa;
         border-bottom: 1px solid #ebebeb;
@@ -116,7 +114,7 @@
         letter-spacing: -.21px;
     }
     .dropdown_content .content{
-        max-width: 640px;
+        max-width: 900px;
         word-break: break-word;
     }
 
@@ -129,12 +127,21 @@
         margin:0;
         padding:0;
     }
+    
+    .suggestdetail_all{
+    
+   	 padding: 200px 300px 200px 300px;	
+    }
+    
+    
+	
 
     
 </style>
 <body>
  <jsp:include page="adminform.jsp"></jsp:include>
-    <div class="wrap">
+ <jsp:include page="/views/common/menubar.jsp"></jsp:include>
+    <div class="suggestdetail_all">
    
         <div class= "content lg">
             <div class="sub_area">
@@ -144,7 +151,7 @@
                 <div class="content_area">
                     <div class="content_title border">
                         <div class="title">
-                            <div>
+                            <div class="suggest_underline">
                             <h3>판매제안서 상세보기</h3>
                             </div>
                             <div class="test">
@@ -163,22 +170,23 @@
                     <div class="dropdown_head">
                         <div class="title_box">
                             <span class="date"><%= s.getSuggestDate() %></span>
-                            <p class="title"><%= s.getProductName() %> <%= s.getUserId() %> </p>
+                            <p class="pdname"><%= s.getProductName() %>  </p>
+                            <p class="username"><%= s.getUserId() %></p>
                         </div>
                     </div>
                     <div class="dropdown_content">
                         <div class="content">
-							<h3>상품명 : <%= s.getProductName()%></h3>
-							<h3>판매가격 : <%= s.getPrice()%></h3>
-							<h3>사이즈 : <%=s.getSize() %></h3>
-							<h3>수량 : <%= s.getStock()%></h3>
-							<h3>제안자 : <%= s.getUserId()%></h3>
-							<h3>제안일자 : <%=s.getSuggestDate() %></h3>
+							<h6>상품명  :  <%= s.getProductName()%></h6>
+							<h6>판매가격 :  <%= s.getPrice()%></h6>
+							<h6>사이즈  :  <%=s.getSize() %></h6>
+							<h6>수량   : <%= s.getStock()%></h6>
+							<h6>제안자  : <%= s.getUserId()%></h6>
+							<h6>제안일자 : <%=s.getSuggestDate() %></h6>
                         </div>
                     </div> 
                 </div>
                 <div class="btn_list">
-                    <a href="<%= contextPath %>/suggestlist.no" class="btn outlinegreymedium">목록보기</a>
+                    <a href="<%= contextPath %>/suggestlist.no" class="btn btn-success btn-block">목록보기</a>
                 </div>
 
             </div>
@@ -191,6 +199,6 @@
             
         </div>
     </div>
-    
+     <jsp:include page="/views/common/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -65,16 +65,16 @@
 <script>
 function phoneEmailCheck(){
 	
-	var phoneCheck = /^[0~9]{11}/g;
+	/*var phoneCheck = /^[0~9]{11}/g;
 		if(!phoneCheck.test(uphone.value)){
 			alert("올바른 전화번호 형식이 아닙니다. ");
 			uphone.focus();
 			return false;
-		}
+		}*/	
 	
 	var emailCheck = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/g;
          
-         if(!emailCheck.test(userId.value)){
+         if(!emailCheck.test(userId.value)){	
              alert("올바른 이메일 형식이 아닙니다. ");
              userId.focus();
              return false;
