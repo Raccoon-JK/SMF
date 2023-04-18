@@ -52,9 +52,10 @@ div {
 
 .container2, .container3, .container4, .container5, .container6 {
 	display: flex;
+	flex-wrap: wrap;
 }
 
-.rightbox {
+.rightbox, .rightboxSelectList {
 	width: 100px;
 	height: 100px;
 	margin: 5px;
@@ -84,4 +85,8 @@ img {
 	position: absolute;
 	height: 100%;
 	width: 61%;
+}
+#itemListboxList{
+	display:flex;
+	flex-wrap:wrap;
 }

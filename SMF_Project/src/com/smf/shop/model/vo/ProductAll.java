@@ -99,6 +99,17 @@ public class ProductAll {
 		this.imgPath = imgPath;
 	}
 
+	public ProductAll(String productName, int imgNo, String imgName, String imgPath, int subCategoryNo,
+			String subCategoryName) {
+		super();
+		this.productName = productName;
+		this.imgNo = imgNo;
+		this.imgName = imgName;
+		this.imgPath = imgPath;
+		this.subCategoryNo = subCategoryNo;
+		this.subCategoryName = subCategoryName;
+	}
+
 	public int getWishListCount() {
 		return wishListCount;
 	}
