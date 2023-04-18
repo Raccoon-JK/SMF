@@ -117,12 +117,27 @@ $(document).ready(function() {
  */
 
 $(document).ready(function() {
-    var evtSource = new EventSource("http://localhost:8080/SMF_Project/notification");
-    evtSource.onmessage = function(e) {
-        // 모달창 안에 알림 메시지 출력
-        var message = e.data;
-        $(".table-alarm").append("<tr><td>" + message + "</td></tr>");
-        $(".modal").show();
-    };
+	$.get("/SMF_Project/Notice.no")
+		.done((data) => {
+			if (data.length > 0) {
+				data.forEach((a, i) => {
+					var template = `<tr class="alarm-row"><td class="cell-padding">${data[i].title}</td></tr>`;
+					$(".alarm-list").append(template);
+					$(".red-dot").removeAttr("hidden");
+				});
+			} else {
+				// 데이터가 없는 경우
+				$(".no-alarm").removeAttr("hidden");
+			}
+		})
+		.fail(() => {
+			// 데이터를 받아오지 못한 경우
+			$(".no-alarm").removeAttr("hidden");
+		});
+});
+
+
+$('.view_more').click(function() {
+	$(".red-dot").attr("hidden", true);
 });
 

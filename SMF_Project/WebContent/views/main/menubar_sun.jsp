@@ -64,10 +64,8 @@
 			<div class="modal-alarm">
 				<span class="close">&times;</span>
 				<div>
-					<table class="table-alarm">
-						<tbody id="alarm-list">
-						</tbody>
-					</table>
+					<table class="alarm-list"></table>
+					<p class="no-alarm" hidden>새로운 알림이 없습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -84,6 +82,7 @@
 						<li><button class="view_more" type="button">
 								<img id="alarm"
 									src="${pageContext.request.contextPath}/resources/main/bell_icon.png">
+								<div class="red-dot" hidden></div>
 							</button></li>
 					</ul>
 				</div>

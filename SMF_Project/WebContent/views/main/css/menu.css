@@ -93,6 +93,18 @@ div a:hover {
 }
 
 
+.red-dot{
+	position: absolute;
+	border-radius: 10px 10px;
+	width: 10px;
+	height: 10px;
+	z-index: 10000;
+	background-color: red;
+	top: 2px;
+	right: 2px;
+}
+
+
 .swiper-slide>a>img {
 	height: 100%;
 }
@@ -100,4 +112,5 @@ div a:hover {
 .view_more{
 	border-style: none;
 	background-color: rgba(255, 255, 255, 0);
+	position: relative;
 }
