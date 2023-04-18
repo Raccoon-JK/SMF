@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import static com.smf.common.JDBCTemplate.*;
 
+import com.smf.common.model.vo.PageInfo;
 import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.vo.Category_Sub;
 import com.smf.shop.model.vo.Product;
@@ -40,6 +41,41 @@ public class ShopDao {
 		}
 	}
 
+	public int selectListCount(Connection conn) {
+		
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListCount");
+		/*
+		 * SELECT COUNT (*) AS COUNT
+		 * FROM BOARD
+		 * WHERE STATUS = 'Y'
+		 * 	 AND BOARD_TYPE = 1
+		 * 
+		 */
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	public ArrayList<Category_Sub> list(Connection conn, String cat) {
 
 		ArrayList<Category_Sub> list = new ArrayList();
@@ -186,7 +222,7 @@ public class ShopDao {
 		return result;
 	}
 	
-	public ArrayList<ProductAll> selectProductAll(Connection conn){
+	public ArrayList<ProductAll> selectProductAll(Connection conn, PageInfo pi){
 		 
 		ArrayList<ProductAll> list = new ArrayList<ProductAll>();
 		
@@ -200,6 +236,13 @@ public class ShopDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			System.out.println(startRow);
+			System.out.println(endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -233,6 +276,7 @@ public class ShopDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectProduct");
+		System.out.println(productName);
 		
 		try {
 			
@@ -255,6 +299,7 @@ public class ShopDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return p;
 	}
 	
@@ -991,6 +1036,8 @@ public class ShopDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		return result;
 	}

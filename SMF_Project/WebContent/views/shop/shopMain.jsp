@@ -1,8 +1,18 @@
+<%@ page import="com.smf.common.model.vo.PageInfo, java.util.ArrayList, com.smf.shop.model.vo.ProductAll" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String contextPath = request.getContextPath();
+%>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<ProductAll> list = (ArrayList<ProductAll>) request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/marshallku/infinite-scroll/dist/infiniteScroll.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="<%= contextPath %>/resources/shop/css/shop-styles.css" type="text/css">
 </head>
@@ -419,7 +429,23 @@
             <div id="mainContent">
                 <div id="showFilter">
                     <div>상품</div> <!-- 총 상품 개수 -->
-                    <div><< < 1 2 3 4 5 6 7 8 9 10 > >></div> <!-- 페이징 바. 위치 고민 -->
+                    <div align="center" class="pagin-area">
+						<a href="<%= contextPath %>/main.sh?currentPage=<%= 1 %>">&lt;&lt;</a>
+						
+						<a href="<%= contextPath %>/main.sh?currentPage=<%= currentPage - 1 %>" class="prevPage">&lt;</a>
+						
+<%-- 						<% for(int i = startPage; i <= endPage; i++) { %>				 --%>
+<%-- 							<% if(i != currentPage) { %> --%>
+<%-- 								<a href="<%= contextPath %>/main.sh?currentPage=<%= i %>"><%= i %></a> --%>
+<%-- 							<% } else { %> --%>
+<%-- 								<a disabled><%= i %></a> --%>
+<%-- 							<% } %> --%>
+<%-- 						<% } %> --%>
+						<% if(currentPage != maxPage) { %>
+						<a href="<%= contextPath %>/main.sh?currentPage=<%= currentPage + 1 %>" class="nextPage">&gt;</a>
+						<% } %>
+						<a href="<%= contextPath %>/main.sh?currentPage=<%= maxPage %>">&gt;&gt;</a>
+					</div>
                     <div>필터</div> <!-- 필터 기능 -->
                 </div>
                 <div id="content" class="contentContainer">
@@ -459,6 +485,13 @@
         </div>
     </div>
     <script>
+    
+	    infiniteScroll({
+	        container: "#content",
+	        item: ".postItem",
+	        next: ".nextPage",
+	        prev: ".prevPage"
+	    });
         
         $('#deleteBtn').click(function() {
             $('#searchMain').val("");
@@ -612,7 +645,7 @@
                	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
                	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
                	                        '</svg>' +
-               	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
                	                    '</div>' +
                	                '</div>' + 
                	            '</div>'
@@ -660,7 +693,7 @@
                	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
                	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
                	                        '</svg>' +
-               	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
                	                    '</div>' +
                	                '</div>' + 
                	            '</div>'
@@ -709,7 +742,7 @@
                	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
                	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
                	                        '</svg>' +
-               	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
                	                    '</div>' +
                	                '</div>' + 
                	            '</div>'
@@ -759,7 +792,7 @@
                	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
                	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
                	                        '</svg>' +
-               	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
                	                    '</div>' +
                	                '</div>' + 
                	            '</div>'
@@ -805,7 +838,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                        '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -849,7 +882,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -893,7 +926,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -937,7 +970,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -981,7 +1014,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -1025,7 +1058,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -1070,7 +1103,7 @@
            	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
            	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
            	                        '</svg>' +
-           	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+           	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
            	                    '</div>' +
            	                '</div>' + 
            	            '</div>'
@@ -1135,7 +1168,7 @@
 		               	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
 		               	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
 		               	                        '</svg>' +
-		               	                        '<div class="wishText">${ p.postProductTagCount }</div>' +
+		               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
 		               	                    '</div>' +
 		               	                '</div>' + 
 		               	            '</div>'

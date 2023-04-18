@@ -4,6 +4,7 @@ import static com.smf.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.smf.common.model.vo.PageInfo;
 import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.dao.ShopDao;
 import com.smf.shop.model.vo.Category_Sub;
@@ -14,6 +15,18 @@ import com.smf.shop.model.vo.Product_Img;
 import com.smf.shop.model.vo.Stock;
 
 public class ShopService {
+	
+	public int selectListCount() {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().selectListCount(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
 	
 	public ArrayList<Category_Sub> list (String cat){
 		
@@ -75,11 +88,11 @@ public class ShopService {
 		return result;
 	}
 	
-	public ArrayList<ProductAll> selectProductAll(){
+	public ArrayList<ProductAll> selectProductAll(PageInfo pi){
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ProductAll> list = new ShopDao().selectProductAll(conn);
+		ArrayList<ProductAll> list = new ShopDao().selectProductAll(conn, pi);
 		
 		close(conn);
 		
@@ -317,6 +330,12 @@ public class ShopService {
 		Connection conn = getConnection();
 		
 		int result = new ShopDao().insertStockNo(conn, userId, pCount, stockNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		
 		close(conn);
 		
