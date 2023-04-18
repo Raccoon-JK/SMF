@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="">
+	<entry key="Main_New_Notice">
+		CREATE OR REPLACE TRIGGER notice_trigger
+		AFTER INSERT ON NOTICE
+		FOR EACH STATEMENT
+		DECLARE
+		BEGIN
+		DBMS_OUTPUT.PUT_LINE('New Notice inserted into table');
+		END;
+	</entry>
 	
+	<entry key="Main_New_Comment">
+		CREATE OR REPLACE TRIGGER notice_trigger
+		AFTER INSERT ON SNS_COMMENT
+
+		FOR EACH STATEMENT
+		DECLARE
+		BEGIN
+		DBMS_OUTPUT.PUT_LINE('New Comment inserted into table');
+		END;
+	</entry>
 	
+	<entry key="Main_New_Comment_Like">
+		CREATE OR REPLACE TRIGGER notice_trigger
+		AFTER INSERT ON SNS_COMMENT_LIKE
+		FOR EACH STATEMENT
+		DECLARE
+		BEGIN
+		DBMS_OUTPUT.PUT_LINE('New Comment_Like inserted into table');
+		END;
+	</entry>
+	
+	<entry key="Main_New_Post">
+		CREATE OR REPLACE TRIGGER notice_trigger
+		AFTER INSERT ON POST
+		FOR EACH STATEMENT
+		DECLARE
+		BEGIN
+		DBMS_OUTPUT.PUT_LINE('New Post inserted into table');
+		END;
+	</entry>
+	
+	<entry key="Main_New_Post_Like">
+		CREATE OR REPLACE TRIGGER notice_trigger
+		AFTER INSERT ON POST_LIKE
+		FOR EACH STATEMENT
+		DECLARE
+		BEGIN
+		DBMS_OUTPUT.PUT_LINE('New Post_Like inserted into table');
+		END;
 	</entry>
 
 </properties>

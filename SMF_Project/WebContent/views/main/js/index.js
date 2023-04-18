@@ -115,18 +115,14 @@ $(document).ready(function() {
 /**
  * 알림 기능
  */
- 
- $(document).ready(function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:8080/SMF_Project/Notice.no");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var responseText = xhr.responseText;
-                document.getElementById("notification").innerHTML = responseText;
-                $(".modal").show(); // 모달창 열기
-            }
-        };
-        xhr.send();
-    });
- 
- 
+
+$(document).ready(function() {
+    var evtSource = new EventSource("http://localhost:8080/SMF_Project/notification");
+    evtSource.onmessage = function(e) {
+        // 모달창 안에 알림 메시지 출력
+        var message = e.data;
+        $(".table-alarm").append("<tr><td>" + message + "</td></tr>");
+        $(".modal").show();
+    };
+});
+

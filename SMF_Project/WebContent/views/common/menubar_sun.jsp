@@ -65,21 +65,9 @@
 			<div class="modal-alarm">
 				<span class="close">&times;</span>
 				<div>
-					<table>
+					<table class="table-alarm">
 						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
+							<td id="notification"></td>
 						</tr>
 					</table>
 				</div>

@@ -65,9 +65,8 @@
 				<span class="close">&times;</span>
 				<div>
 					<table class="table-alarm">
-						<tr>
-							<td id="notification"></td>
-						</tr>
+						<tbody id="alarm-list">
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -94,7 +93,9 @@
 				<div class="gnb_area">
 					<nav class="gnb">
 						<ul class="gnb_list">
-							<li><a href="${pageContext.request.contextPath}/dressroomMain.me">DRESS ROOM</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/dressroomMain.me">DRESS
+									ROOM</a></li>
 							<li><a href="">MY</a></li>
 							<li><button class="view_more" type="button">
 									<img id="search"
