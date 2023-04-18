@@ -11,6 +11,7 @@ public class StylePost {
 	private String postStatus;
 	
 	private String titleImg;
+	private String userImage;
 	
 	private PostImg pi;
 	
@@ -29,6 +30,7 @@ public class StylePost {
 	}
 	
 
+
 	public StylePost(int postNo, String userId, String content, Date uproadTime) {
 		super();
 		this.postNo = postNo;
@@ -38,6 +40,17 @@ public class StylePost {
 	}
 	
 	
+	
+
+
+	public String getUserImage() {
+		return userImage;
+	}
+
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
 
 
 	public String getTitleImg() {

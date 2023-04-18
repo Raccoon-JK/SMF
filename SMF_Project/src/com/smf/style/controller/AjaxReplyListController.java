@@ -16,7 +16,7 @@ import com.smf.style.model.vo.StyleComment;
 /**
  * Servlet implementation class AjaxReplyListController
  */
-@WebServlet("/rlist.bo")
+@WebServlet("/commentList.st")
 public class AjaxReplyListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,15 +33,16 @@ public class AjaxReplyListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int postNo = Integer.parseInt(request.getParameter("pno"));
-		
-		ArrayList<StyleComment> list = new StyleService().selectCommentList(postNo);
-		
-		
-		// Gson을 이용해서 응답 ArrayList- > JSONArray로 변환
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list , response.getWriter());
-		
+		/*
+		 * int postNo = Integer.parseInt(request.getParameter("pno"));
+		 * 
+		 * ArrayList<StyleComment> list = new StyleService().selectCommentList(postNo);
+		 * 
+		 * 
+		 * // Gson을 이용해서 응답 ArrayList- > JSONArray로 변환
+		 * response.setContentType("application/json; charset=UTF-8"); new
+		 * Gson().toJson(list , response.getWriter());
+		 */
 	}
 
 	/**

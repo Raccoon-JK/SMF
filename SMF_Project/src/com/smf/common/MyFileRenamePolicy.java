@@ -37,9 +37,9 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 		 */
 		String ext = originName.substring(originName.lastIndexOf(".")); // .jpg , .png
 		
-		String changeName = currentTime + ranNum + ext; //2023022011265012345.jpg 
+		String ImgName = currentTime + ranNum + ext; //2023022011265012345.jpg 
 		
-		return new File(originFile.getParent(), changeName); // 원본파일을 수정된 파일명으로 적용시켜서 객체를 반환해줌
+		return new File(originFile.getParent(), ImgName); // 원본파일을 수정된 파일명으로 적용시켜서 객체를 반환해줌
 	}
 	
 }

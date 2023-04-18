@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class luxuryController
  */
-@WebServlet("/luxury.do")
+@WebServlet("/luxury.st")
 public class luxuryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
