@@ -204,11 +204,11 @@ public class ShopService {
 		
 	}
 	
-	public ArrayList<ProductAll> selectNcategory(String category) {
+	public ArrayList<ProductAll> selectNcategory(String category, PageInfo pi) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ProductAll> list = new ShopDao().selectNcategory(conn, category);
+		ArrayList<ProductAll> list = new ShopDao().selectNcategory(conn, category, pi);
 		
 		close(conn);
 		
@@ -237,11 +237,11 @@ public class ShopService {
 		return list;
 	}
 	
-	public ArrayList<ProductAll> selectTcategory() {
+	public ArrayList<ProductAll> selectTcategory(PageInfo pi) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ProductAll> list = new ShopDao().selectTcategory(conn);
+		ArrayList<ProductAll> list = new ShopDao().selectTcategory(conn, pi);
 		
 		close(conn);
 		

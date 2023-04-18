@@ -429,24 +429,10 @@
             <div id="mainContent">
                 <div id="showFilter">
                     <div>상품</div> <!-- 총 상품 개수 -->
-                    <div align="center" class="pagin-area">
-						<a href="<%= contextPath %>/main.sh?currentPage=<%= 1 %>">&lt;&lt;</a>
-						
-						<a href="<%= contextPath %>/main.sh?currentPage=<%= currentPage - 1 %>" class="prevPage">&lt;</a>
-						
-<%-- 						<% for(int i = startPage; i <= endPage; i++) { %>				 --%>
-<%-- 							<% if(i != currentPage) { %> --%>
-<%-- 								<a href="<%= contextPath %>/main.sh?currentPage=<%= i %>"><%= i %></a> --%>
-<%-- 							<% } else { %> --%>
-<%-- 								<a disabled><%= i %></a> --%>
-<%-- 							<% } %> --%>
-<%-- 						<% } %> --%>
-						<% if(currentPage != maxPage) { %>
-						<a href="<%= contextPath %>/main.sh?currentPage=<%= currentPage + 1 %>" class="nextPage">&gt;</a>
-						<% } %>
-						<a href="<%= contextPath %>/main.sh?currentPage=<%= maxPage %>">&gt;&gt;</a>
+                    <div align="center" class="pagin-area" style="display:none">
+						<a href="${ pageContext.request.contextPath }/main.sh?currentPage=<%= currentPage - 1 %>" class="prevPage">&lt;</a>
+						<a href="${ pageContext.request.contextPath }/main.sh?currentPage=<%= currentPage + 1 %>" class="nextPage">&gt;</a>
 					</div>
-                    <div>필터</div> <!-- 필터 기능 -->
                 </div>
                 <div id="content" class="contentContainer">
                 	<c:forEach var="p" items="${ list }">
@@ -538,77 +524,6 @@
             order: 'asc'
         };
 
-//         $('input[type="checkbox"]').change(function() {
-//         	console.log(this);
-//             if ($(this).is(':checked')) {
-//                 $.ajax({
-<%--                 url: "<%=contextPath%>/pCatFilter.sh", --%>
-//                 dataType: 'json',
-//                 data: { category },
-//                 success: function(product, stock, wishlist, postProductTag) { // 매개변수 이게 맞나..?       
-//                     let product = response.~~; // product, wishlist등 데이터가져오기
-//                     let str = "";
-//                     for(let i = 0; i < data.length; i++) {
-// 						str +=  '<div class="postItem">'
-//                             +   '<a href="">'
-//                             +       '<div>'
-//                             +           '<img src="' + product.filePath + '"alt ="" class ="productImg">'
-// 							+       '</div>'
-//                             +       '<div class="productInner">'
-//                             +           '<div class="productBrand">'+ product.brand +'</div>'
-//                             +           '<div class="productName">'+ product.name +'</div>'
-//                             +           '<div class="productPrice">'+ product.price +'</div>'
-//                             +   '</a>'
-//                             +   '<div class="productWish">'
-//                             +       '<div class="interestWish">'
-//                             +           '<svg width="13" height="15">'
-//                             +               '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />'
-//                             +           '</svg>'
-//                             +           '<div class="wishText">' + WISHLIST개수 + '</div>'
-//                             +       '</div>'
-//                             +       '<div class="interestWish">'
-//                             +          '<svg width="15" height="15">'
-//                             +              '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />'
-//                             +              '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>'
-//                             +              '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />'
-//                             +              '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />'
-//                             +          '</svg>'
-//                             +          '<div class="wishText">' + POST_PRODUCTTAG개수 + '</div>'
-//                             +       '</div>'
-//                             +    '</div>'
-// 							+ '</div>'
-// 					}
-// 					$("#content").html(str);
-//                 },
-//                 error: function() {
-//                     alert('상품 목록을 가져오는데 실패하였습니다.');
-//                 }
-//                 });
-//             } else {
-//                 // 체크박스가 체크 해제될 때 필요한 처리
-//             } 
-//         });
-
-//         $('.filterCheckUl').on('click', 'input[name="outer"]', function() {
-//             let selectedFilters = [];
-//             $('input[name="outer"]:checked').each(function() {
-//                 selectedFilters.push($(this).val());
-//             });
-
-//             $.ajax({
-//                 url: '/getProducts',
-//                 type: 'POST',
-//                 dataType: 'json',
-//                 data: { category: 'outer', filters: selectedFilters },
-//                 success: function(data) {
-//                 // 응답받은 데이터를 가지고 상품 목록 생성 및 렌더링
-//                 },
-//                 error: function() {
-//                 alert('상품 목록을 가져오는데 실패하였습니다.');
-//                 }
-//             });
-//         });
-
 		$(".tProduct").click(function(){
                 $.ajax({
                   url: "${ pageContext.request.contextPath }/tCat.sh",
@@ -617,39 +532,55 @@
                 	  
                   	console.log(data);
                 	$('#content').empty();
+//                 	$('#mainContent').append(
+//                             '<div id="showFilter">' +
+//                                 '<div>상품</div>' +
+//                                 '<div align="center" class="pagin-area" style="display:none">' +
+//             						'<a href="${ pageContext.request.contextPath }/main.sh?currentPage=${ currentPage - 1 }" class="prevPage">&lt;</a>' +
+//             						'<a href="${ pageContext.request.contextPath }/main.sh?currentPage=${ currentPage + 1 }" class="nextPage">&gt;</a>' +
+//             					'</div>' +
+//                            	'</div>' +
+//                             '<div id="content" class="contentContainer">' 
+//                 	);
+                	
 
                	    for (let i = 0; i < data.length; i++) {
                	        $('#content').append(
-               	            '<div class="postItem">' +
-               	                '<a href="${ pageContext.request.contextPath }/productDetail.sh?productName=' + data[i].productName + '">' +
-               	                    '<div>' +
-               	                        '<img src="${ pageContext.request.contextPath }' + data[i].imgPath + data[i].imgName + '" alt="" class="productImg">' +
-               	                    '</div>' +
-               	                    '<div class="productInner">' +
-               	                        '<div class="productBrand">' + data[i].brandName + '</div>' +
-               	                        '<div class="productName">' + data[i].productName + '</div>' +
-               	                        '<div class="productPrice">' + data[i].companyPrice + '원</div>' +
-               	                    '</div>' +
-               	                '</a>' +
-               	                '<div class="productWish">' +
-               	                    '<div class="interestWish">' +
-               	                        '<svg width="13" height="15">' +
-               	                            '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />' +
-               	                        '</svg>' +
-               	                        '<div class="wishText">' + data[i].wishListCount + '</div>' +
-               	                    '</div>' +
-               	                    '<div class="interestWish">' +
-               	                        '<svg width="15" height="15">' +
-               	                            '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />' +
-               	                            '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>' +
-               	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
-               	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
-               	                        '</svg>' +
-               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
-               	                    '</div>' +
-               	                '</div>' + 
-               	            '</div>'
-               	    )}                
+                                '<div class="postItem">' +
+                                    '<a href="${ pageContext.request.contextPath }/productDetail.sh?productName=' + data[i].productName + '">' +
+                                        '<div>' +
+                                            '<img src="${ pageContext.request.contextPath }' + data[i].imgPath + data[i].imgName + '" alt="" class="productImg">' +
+                                        '</div>' +
+                                        '<div class="productInner">' +
+                                            '<div class="productBrand">' + data[i].brandName + '</div>' +
+                                            '<div class="productName">' + data[i].productName + '</div>' +
+                                            '<div class="productPrice">' + data[i].companyPrice + '원</div>' +
+                                        '</div>' +
+                                    '</a>' +
+                                    '<div class="productWish">' +
+                                        '<div class="interestWish">' +
+                                            '<svg width="13" height="15">' +
+                                                '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />' +
+                                            '</svg>' +
+                                            '<div class="wishText">' + data[i].wishListCount + '</div>' +
+                                        '</div>' +
+                                        '<div class="interestWish">' +
+                                            '<svg width="15" height="15">' +
+                                                '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />' +
+                                                '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>' +
+                                                '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
+                                                '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
+                                            '</svg>' +
+                                        '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
+                                        '</div>' +
+                                    '</div>' + 
+                               
+                            '</div>'                                                                                       
+               	    )}
+//                 	$('#mainContent').append(
+//                 			'</div>'+
+//                 			'</div>'
+//                 	);
                   },
              });
         });        

@@ -579,7 +579,7 @@ public class ShopDao {
 		return result;
 	}
 	
-	public ArrayList<ProductAll> selectNcategory(Connection conn, String category){
+	public ArrayList<ProductAll> selectNcategory(Connection conn, String category, PageInfo pi){
 			
 		ArrayList<ProductAll> list = new ArrayList<>();
 		
@@ -593,7 +593,11 @@ public class ShopDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, category);
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			pstmt.setString(1, category);			
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -702,7 +706,7 @@ public class ShopDao {
 		
 	}
 	
-	public ArrayList<ProductAll> selectTcategory(Connection conn){
+	public ArrayList<ProductAll> selectTcategory(Connection conn, PageInfo pi){
 		
 		ArrayList<ProductAll> list = new ArrayList<>();
 		
@@ -715,6 +719,12 @@ public class ShopDao {
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
 			rset = pstmt.executeQuery();
 			
