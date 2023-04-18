@@ -1,5 +1,7 @@
 package com.smf.shop.model.vo;
 
+import java.sql.Date;
+
 public class Stock {
 
 	private int StockNo;
@@ -10,6 +12,7 @@ public class Stock {
 	private String size;
 	private String status;
 	private String userClass;
+	private Date suggestDate;
 
 	public Stock() {
 		super();
@@ -27,6 +30,36 @@ public class Stock {
 		this.size = size;
 		this.status = status;
 		this.userClass = userClass;
+		
+	}
+	
+	
+	
+
+
+
+	public Stock(int stockNo, String userId, String productName, Date suggestDate, String status) {
+		super();
+		StockNo = stockNo;
+		this.userId = userId;
+		this.productName = productName;
+		this.suggestDate = suggestDate;
+		this.status = status;
+	}
+	
+	
+
+	public Stock(int stockNO, String userId, String productName, int price, int stock, String size, String status,
+			Date suggestDate) {
+		super();
+		this.StockNo = stockNO;
+		this.userId = userId;
+		this.productName = productName;
+		this.price = price;
+		this.stock = stock;
+		this.size = size;
+		this.status = status;
+		this.suggestDate = suggestDate;
 	}
 
 	public int getStockNo() {
@@ -91,6 +124,14 @@ public class Stock {
 
 	public void setUserClass(String userClass) {
 		this.userClass = userClass;
+	}
+	
+	public Date getSuggestDate() {
+		return suggestDate;
+	}
+
+	public void setSuggestDate(Date suggestDate) {
+		this.suggestDate = suggestDate;
 	}
 
 	@Override

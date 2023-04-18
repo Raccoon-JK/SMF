@@ -4,6 +4,7 @@ import static com.smf.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.smf.admin.model.dao.NoticeDao;
 import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.dao.ShopDao;
 import com.smf.shop.model.vo.Category_Sub;
@@ -164,4 +165,6 @@ public class ShopService {
 		return result;
 		
 	}
+	
+	
 }

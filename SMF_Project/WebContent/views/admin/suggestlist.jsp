@@ -1,9 +1,10 @@
 <%@ page import="java.util.ArrayList, com.smf.admin.model.vo.Notice" %>
-<%@ page import="com.smf.member.model.vo.Member" %>
+<%@ page import="com.smf.shop.model.vo.Stock" %>
+<%@ page import="com.smf.member.model.vo.Member" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Suggest> list = (ArrayList<Suggest>) request.getAttribute("list");
+	ArrayList<Stock> list = (ArrayList<Stock>) request.getAttribute("list");
 
 %>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -42,7 +43,6 @@
 		<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
 			<div align= "right" style="width:800px;">
 			
-				<a href="<%= contextPath %>/enrollform.no" class="btn btn-secondary">글작성</a>
 				
 			</div>	
 		<%} %>
@@ -50,10 +50,11 @@
 			<thead>
 				<tr>
 					<th>글번호 </th>
-					<th width="100">판매제안서 목록 </th>
-					<th width="400">판매제안서 제목</th>
+					<th width="120">판매제안서 목록 </th>
+					<th width="400">판매제안서 상품이름</th>
 					<th width="100">작성자 </th>
 					<th width="100">날짜 </th>
+					<th width="100">처리 상태 </th>
 					
 					
 					
@@ -66,12 +67,17 @@
 					</tr>
 				
 				<%} else { %>
-				<% for(Notice n : list) { %>
-					<tr onclick="moveNotice(<%=n.getAlertNo()%>)">
-						<td><%= n.getAlertNo() %></td>
-						<td><%= n.getAlertCategory() %> </td>
-						<td><%= n.getAlertTitle() %> </td>
-						<td><%= n.getCreateDate() %> </td>
+				<% for(Stock s : list) { %>
+					<tr onclick="moveNotice(<%=s.getStockNo()%>)">
+						<td><%= s.getStockNo() %> </td>
+						<td> 판매제안서 목록 </td>
+						<td><%= s.getProductName() %> </td>
+						<td><%= s.getUserId() %> </td>
+						<td><%= s.getSuggestDate() %> </td>
+						<td><% if(s.getStatus().equals("0")) { %>
+						판매대기
+						<% }else {%>
+						판매중<%} %>
 					</tr>
 				<% } %>
 			<% } %>
@@ -91,7 +97,7 @@
 			
 			let nno = $(this).children().eq(0).text();
 			
-			location.href = "<%= contextPath%>/detail.no?nno="+nno;
+			location.href = "<%= contextPath%>/suggestdetail.no?nno="+nno;
 			
 		});
 	})

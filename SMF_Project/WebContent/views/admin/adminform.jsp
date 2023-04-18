@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();    
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,23 +12,7 @@
     <title>Document</title>
 </head>
 <style>
-div {
-    box-sizing: border-box;
-    border: 1px solid red; 
- }
 
-
-
- body, ul{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-li{
-    padding :0;
-    margin: 0;
-
-}
 
 a {
     color: black;
@@ -41,9 +28,6 @@ a {
     background-color:white;
 }
 
-body {
-    height: 10000px;
-}
 
 .left-side-bar {
     background-color: white;
@@ -112,14 +96,14 @@ body {
                 <a href="#">회원관리</a>
                 <ul>
                     <li><a href="#">신고접수</a></li>
-                    <li><a href="#">회원정보 조회</a></li>
+                    <li><a href="<%=contextPath %>/member.list">회원정보 조회</a></li>
                     <li><a href="#">블랙리스트 관리</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">공지사항</a>
                 <ul>
-                    <li><a href="#">공지사항 등록</a></li>
+                    <li><a href="<%=contextPath%>/list.no">공지사항</a></li>
                 </ul>
             </li>
             <li>
@@ -131,13 +115,13 @@ body {
             <li>
                 <a href="#">고객문의</a>
                 <ul>
-                    <li><a href="#">실시간문의 (채팅)</a></li>
-                    <li><a href="#">FAQ관리</a></li>
-                    <li><a href="#">판매제안서 목록</a></li>
+                    <li><a href="<%=contextPath%>/Faqlist.no">FAQ관리</a></li>
+                    <li><a href="<%=contextPath%>/suggestlist.no">판매제안서 목록</a></li>
                 </ul>
             </li>
             
         </ul>
+        
     </div>
     
 

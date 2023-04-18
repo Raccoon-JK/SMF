@@ -489,4 +489,6 @@ public class ShopDao {
 		}
 		return result;
 	}
+	
+	
 }

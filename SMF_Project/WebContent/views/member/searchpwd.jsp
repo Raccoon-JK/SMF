@@ -12,7 +12,7 @@
 
 <body>
     <div class="wrap">
-
+		<jsp:include page="/views/common/menubar.jsp"></jsp:include>
         <div class="container help">
             <div class="content lg">
                 <div class="help_area">
@@ -58,19 +58,20 @@
             </div>
         </div>
     </div>
+       <jsp:include page="/views/common/footer.jsp"></jsp:include>
   </div>  
     
 </body>
 <script>
 function phoneEmailCheck(){
-	/*
+	
 	var phoneCheck = /^[0~9]{11}/g;
 		if(!phoneCheck.test(uphone.value)){
 			alert("올바른 전화번호 형식이 아닙니다. ");
 			uphone.focus();
 			return false;
 		}
-	*/	
+	
 	var emailCheck = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/g;
          
          if(!emailCheck.test(userId.value)){

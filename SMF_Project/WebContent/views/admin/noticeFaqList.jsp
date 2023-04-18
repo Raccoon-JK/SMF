@@ -95,6 +95,10 @@ h2{
 .qna input:checked + label + div { /* 내용 영역 펼침 */
   display: block;
 }
+
+.noticefaq_title{
+	border-bottom: .3rem solid black;
+}
 </style>
 </head>
 
@@ -103,9 +107,10 @@ h2{
 	<body>
 	<jsp:include page="adminform.jsp"></jsp:include>
 	<div id="wrap">
-		<div id="header">
+		<div class="noticefaq_title">
 		<h2>FAQ 자주묻는 질문</h2>
 		</div>
+		
 			<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
 			<div align= "right" style="width:800px;">
 				

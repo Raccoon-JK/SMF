@@ -28,21 +28,24 @@
 		<form id="enroll-form" action="<%=contextPath%>/faqinsert.no" method="post">
 			<table align="center">
 				<tr>
-					<th width="50">카테고리</th>
+					<th width="100">카테고리</th>
 					<td width="350"><input type="text" name="category" required></td>
-					<th width="50">제목</th>
-					<td width="350"><input type="text" name="title" required></td>
+					
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td></td>
+					<th width="50">제목</th>
+					<td width="350"><input type="text" name="title" required></td>
+					
 				</tr>
 				
 				<tr>
+					<th>내용</th>
 					<td colspan="2">
-						<textarea name="content" rows="10" style="resize:none" required></textarea>
+					<textarea name="content" rows="10" style="resize:none" required></textarea>
 					</td>
 				</tr>
+				
+				
 			</table>
 			<br><br>
 			<div align="center">

@@ -19,6 +19,7 @@
 </head>
 <body>
     <div class="wrap">
+    <jsp:include page="/views/common/menubar.jsp"></jsp:include>
         <div class="container login">
             <div class="content lg">
                 <div class="login_area">
@@ -54,6 +55,7 @@
                 </div>
              </div>
         </div>
+        <jsp:include page="/views/common/footer.jsp"></jsp:include>
     </div>
 </body>
 <script>

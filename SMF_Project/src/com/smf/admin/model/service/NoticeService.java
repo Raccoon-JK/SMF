@@ -7,6 +7,8 @@ import static com.smf.common.JDBCTemplate.*;
 
 import com.smf.admin.model.dao.NoticeDao;
 import com.smf.admin.model.vo.Notice;
+import com.smf.shop.model.vo.Stock;
+
 
 public class NoticeService {
 
@@ -159,5 +161,31 @@ public class NoticeService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public ArrayList<Stock> selectSuggestList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> list = new NoticeDao().selectSuggestList(conn);
+		
+		
+		close(conn);
+		
+		
+		return list; 	
+	}
+	
+	
+	public Stock selectSuggest(int nno) {
+		
+		Connection conn = getConnection();
+		
+		Stock s = new NoticeDao().selectSuggest(conn, nno);
+		
+		
+		close(conn);
+		
+		return s;
+		
 	}
 }
