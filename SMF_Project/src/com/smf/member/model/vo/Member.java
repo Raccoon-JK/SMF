@@ -52,7 +52,7 @@ public class Member {
 	
 	//로그인 시 사용되는 생성자
 	public Member(String userId, String userName, String userPwd, String phone, Date birth, int userType, String agreeEmail,
-			String userImg, String interoduce, String snsId, int totalPoint) {
+			String status, String userImg, String interoduce, String snsId, int totalPoint) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -61,6 +61,7 @@ public class Member {
 		this.birth = birth;
 		this.userType = userType;
 		this.agreeEmail = agreeEmail;
+		this.status = status;
 		this.userImg = userImg;
 		this.interoduce = interoduce;
 		this.snsId = snsId;

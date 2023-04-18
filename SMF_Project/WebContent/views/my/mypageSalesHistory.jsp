@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +34,9 @@
                 </div>
                 <div class="dateSelect_box">
                     <div class="decentBtn_box">
-                        <button type="button" value="2">최근 2개월</button>
-                        <button type="button" value="4"> 4개월</button>
-                        <button type="button" value="6"> 6개월</button>
+                        <button type="button" class="monthBtn" value="2">최근 2개월</button>
+                        <button type="button" class="monthBtn" value="4"> 4개월</button>
+                        <button type="button" class="monthBtn" value="6"> 6개월</button>
                     </div>
                     <div class="duration_box">
                         <input type="date" name="duration_start" id="">
@@ -45,25 +46,26 @@
                     </div>
                 </div>
                 <div class="salebuy_info_wrapper">
+                <c:forEach var="list" items="${sellList }">
                     <div class="salebuy_info_box">
                         <div class="salebuy_info_title">
-                            <p>2023.03.15</p>
+                            <p>${list.sellDate}</p>
                             <span>판매중</span>
-                            <span>남은 수량 : 1 개</span>
+                            <span>남은 수량 : ${list.sellCount} 개</span>
                         </div>
                         <div class="salebuy_info_product_flex">
                             <div class="salebuy_info_product_left">
                                 <div class="salebuy_info_product_img">
-                                    <img src="/SMF_Project/resources/my/img/_W_ Adidas Gazelle Bold Core Black Cloud White_1.png" alt="" width="80" height="80">
+                                    <img src="${pageContext.request.contextPath}${list.imgPath}${list.imgName}" alt="" width="80" height="80">
                                 </div>
                                 <div class="salebuy_info_product_text">
-                                    <p>Adidas</p>
-                                    <p>Adidas x Kith Samba OG Classics Program</p>
-                                    <p>275</p>
+                                    <p>${list.brandName}</p>
+                                    <p>${list.productName}</p>
+                                    <p>${list.pSize}</p>
                                 </div>
                             </div>
                             <div class="salebuy_info_product_right">
-                                <p>가격 : 1000원</p>
+                                <p>가격 : ${list.amount}원</p>
                                 <div class="salebuy_info_product_btn">
                                     <!-- <button></button>
                                     <button></button>
@@ -72,9 +74,57 @@
                             </div>
                         </div>
                     </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $('.monthBtn').click(function(){
+            let month = $(this).val()
+
+            $.ajax({
+                url : "${pageContext.request.contextPath}/sellingHistoryMonthAjax.me",
+                type : 'POST',
+                data : {month : month},
+                success : function(data){
+                    $('.salebuy_info_wrapper').empty();
+                   $.each (data, function(index, el){
+                        $('.salebuy_info_wrapper').append(  '<div class="salebuy_info_box">'
+                                                                +'<div class="salebuy_info_title">'
+                                                                    +'<p>'+el.sellDate+'</p>'
+                                                                    +'<span>판매중</span>'
+                                                                    +'<span>남은 수량 : '+el.sellCount+' 개</span>'
+                                                                +'</div>'
+                                                                +'<div class="salebuy_info_product_flex">'
+                                                                    +'<div class="salebuy_info_product_left">'
+                                                                        +'<div class="salebuy_info_product_img">'
+                                                                            +'<img src="${pageContext.request.contextPath}'+el.imgPath+el.imgName+'" alt="" width="80" height="80">'
+                                                                        +'</div>'
+                                                                        +'<div class="salebuy_info_product_text">'
+                                                                            +'<p>'+el.brandName+'</p>'
+                                                                            +'<p>'+el.productName+'</p>'
+                                                                            +'<p>'+el.pSize+'</p>'
+                                                                        +'</div>'
+                                                                    +'</div>'
+                                                                    +'<div class="salebuy_info_product_right">'
+                                                                        +'<p>가격 : '+el.amount+'원</p>'
+                                                                        +'<div class="salebuy_info_product_btn">'
+                                                                            +'<!-- <button></button>'
+                                                                            +'<button></button>'
+                                                                            +'<button></button> -->'
+                                                                        +'</div>'
+                                                                    +'</div>'
+                                                                +'</div>'
+                                                            +'</div>' )
+                        console.log(el)
+                   });
+                },
+                error : function(data){
+                    console.log(data)
+                }
+            });
+        });
+    </script>
 </body>
 </html>

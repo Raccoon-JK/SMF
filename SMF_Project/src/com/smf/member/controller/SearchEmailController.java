@@ -2,6 +2,7 @@ package com.smf.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,9 +53,9 @@ public class SearchEmailController extends HttpServlet {
    
       String uphone = request.getParameter("uphone");
       
-      String email = new MemberService().searchEmail(uphone);
+      ArrayList<String> email = new MemberService().searchEmail(uphone);
      
-    
+      
       
       if(email == null) {
     	  
@@ -65,7 +66,7 @@ public class SearchEmailController extends HttpServlet {
     	  
     	  session.setAttribute("email", email);
     	  session.setAttribute("alert", "이메일 찾기 성공");
-    	  
+    	
     	  
           response.sendRedirect(request.getContextPath()+"/views/member/searchemailresult.jsp");
       }

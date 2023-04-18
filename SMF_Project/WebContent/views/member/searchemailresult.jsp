@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"
+	import="java.util.ArrayList"    
+%>
 <%
 	String contextPath = request.getContextPath();
 	
-	String email = (String) session.getAttribute("email");
+	ArrayList<String> email = (ArrayList<String>)session.getAttribute("email");
 %>    
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+       <link rel="stylesheet" href="/SMF_Project/resources/member/css/search_email_result.css">
 </head>
 <body>
     <div class="wrap">
@@ -25,13 +28,17 @@
                         </h2>
                         <div class="success_notice">
                             <dl>
-                             <dt class="notice_title"> <%= email.email() %> 입니다.</dt>
+                             <h2 class="notice_title">
+                             	<% for(String a : email){%>
+                             	 <%=  a %> <br>
+                             	<%} %> 입니다.
+                             </h2>
                              <dd class="notice_txt"> </dd>
                             </dl>
                         </div>
                         <div class="success_btn_box">
-                            <a href="/login/findpassword" class="btn outline large" type="button">비밀번호 찾기</a>
-                            <a href="/login" class="btn outline large" type="button">로그인</a>
+                            <a href="<%=request.getContextPath()%>/searchpwd.page" class="btn outline large" type="button">비밀번호 찾기</a>
+                            <a href="<%=request.getContextPath()%>/login.page" class="btn outline large" type="button">로그인</a>
                         </div>
                         
                         

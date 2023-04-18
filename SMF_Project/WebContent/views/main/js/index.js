@@ -37,53 +37,78 @@ var swiper = new Swiper(".second", {
 	}
 });
 
+
+/**
+ * 상품 페이지
+ */
+
+$(document).ready(function() {
+	$.get("/SMF_Project/Product.pr")
+		.done((data) => {
+			data.forEach((a, i) => {
+				var template =
+					`<a class="product_container" href=""> <div class="col-sm-9">
+			          <img src="${data[i].image}" id="box2">
+			          <div class="info_box">
+			            <h6 class="brand">${data[i].brand}</h6>
+			            <p class="name">${data[i].title}</p>
+			            <p>가격 : ${data[i].price} 원</p>
+			          </div>
+			        </div> </a>`;
+				$(".row").append(template);
+			})
+		})
+});
+
+
 /**
  * 더보기 기능
  */
-/*
-$(function() {
-	$.get("/product.pr")
-		.done((data) => {
-			data = JSON.parse(data);
-			data.forEach((a, i) => {
-				var template =
-					`<a href=""> <div class="col-sm-4">
-			          <img src="${data[i].image}" id="box2">
-			          <div class="info_box">
-			            <h6 class="brand">${data[i].brand}</h6>
-			            <h5 class="name">${data[i].title}</h5>
-			            <p>가격 : ${data[i].price}</p>
-			          </div>
-			        </div> </a>`;
-				$(".row").append(template);
-			})
-		})
-});
-*/
 
-var count = 1;
+var count = 2;
+var url2 = "http://localhost:8080/SMF_Project/MoreProduct.pr?currentCount="
 
 $('#more').click(function() {
-	$.get("/product.pr")
+	$.get(url2.concat(count))
 		.done((data) => {
-			console.log(data)
-			data = JSON.parse(data);
 			data.forEach((a, i) => {
 				var template =
-					`<a href=""> <div class="col-sm-4">
+					`<a class="product_container" href=""> <div class="col-sm-9">
 			          <img src="${data[i].image}" id="box2">
 			          <div class="info_box">
 			            <h6 class="brand">${data[i].brand}</h6>
-			            <h5 class="name">${data[i].title}</h5>
-			            <p>가격 : ${data[i].price}</p>
+			            <p class="name">${data[i].title}</p>
+			            <p>가격 : ${data[i].price} 원</p>
 			          </div>
 			        </div> </a>`;
 				$(".row").append(template);
 			})
 		})
-	count++;
-	if (count == 3) {
-		console.log("여기까지")
-	}
+	count += 1;
 });
+
+
+/**
+ * 스타일 스와이퍼... 이거 되나?
+ */
+
+$(document).ready(function() {
+	$.get("/SMF_Project/Style.st")
+		.done((data) => {
+			data.forEach((a, i) => {
+				var template =
+					`<div class="swiper-slide style"> 
+						<div class="style-pro">
+							<a><img src="${data[i].userImg}"></a>
+						</div>
+						<div class="style-main">
+							<a><img src="${data[i].image}"></a>
+						</div>
+			          	<p class="userId">${data[i].id}</p>
+			        </div>`;
+				$(".row2").append(template);
+			})
+		})
+});
+
 
