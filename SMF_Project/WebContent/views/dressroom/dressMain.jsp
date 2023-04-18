@@ -151,6 +151,7 @@
     
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/SMF_Project/resources/dressroom/javascript/dressroomMainJs.js"></script>
   <script>
 	 $(function(){
             var previousContent;
@@ -207,9 +208,12 @@
                 listBackHandlers();
             });
         });
+
+
+		
 	</script>
 
 
-	<script src="/SMF_Project/resources/dressroom/javascript/dressroomMainJs.js"></script>
+	
 </body>
 </html>

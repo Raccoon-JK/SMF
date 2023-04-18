@@ -83,7 +83,7 @@
             				<?xml version="1.0" encoding="utf-8"?>
 							<!-- License: PD. Made by Mary Akveo: https://maryakveo.com/ -->
 							<svg fill="#000000" width="60px" height="60px" viewBox="0 0 24 24" id="bookmark" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><path id="primary" d="M12,17,5,21V4A1,1,0,0,1,6,3H18a1,1,0,0,1,1,1V21Z" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
-            				<p>관심 목록</p>
+            				<p>관심 상품</p>
             			</div>
 						<div id="whishList_more">
             				<a>더보기</a>
@@ -91,6 +91,8 @@
             		</div>
             		<div id="interest_content">
             			<div class="interest_product_wrapper">
+            				<c:choose>
+            				<c:when test="${wList ne '[]' }">
             				<c:forEach var="list" items="${wList}">
 	            				<div class="interest_products">
 	          						<div class="interest_img">
@@ -100,6 +102,11 @@
 	            					<p class="mainProudctName">${list.productName}</p>
 	            				</div>
             				</c:forEach>
+            				</c:when>
+            				<c:otherwise>
+            					<p>등록된 관심 상품이 없습니다.....</p>
+            				</c:otherwise>
+            				</c:choose>
             			</div>
             		</div>
             	</div>

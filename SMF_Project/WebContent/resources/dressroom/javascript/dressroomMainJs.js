@@ -105,6 +105,7 @@ function makeCopyDragEvent() {
 			e.preventDefault();
 		}, false);
 		leftbox.addEventListener('drop', (e) => {
+			console.log(e);
 			e.preventDefault();
 			dropped(e);
 		}, false);
@@ -118,13 +119,17 @@ function startDrag(e) {
 }
 
 function dropped(e) {
-
 	var data = e.dataTransfer.getData('text/plain');
-
 	var newImage = document.createElement('img');
-	newImage.id = data;
+	newImage.id = "test";
 	newImage.className = 'deco';
-	newImage.src = document.getElementById(data).src;
+	newImage.src = data;
+	// newImage.src = document.getElementById(data).src;
+	console.log(newImage)
+	console.log(newImage.id);
+
+	// console.log(newImage.className);
+	// console.log(newImage.src);
 
 	var leftbox = document.querySelector('#' + e.currentTarget.id);
 
