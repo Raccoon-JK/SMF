@@ -7,7 +7,8 @@ function makeDragEvent() {
 	}
 
 	leftboxes.forEach((leftbox) => {
-		const images = leftbox.querySelectorAll('.itemObject');
+		const images = leftbox.querySelectorAll('.itemObject:not(#img1.itemObject)');
+
 
 		// images NodeList가 빈 경우 예외처리
 		if (!images.length) {
@@ -88,10 +89,10 @@ function makeDragEvent() {
 
 function makeCopyDragEvent() {
 	let leftboxes = document.querySelectorAll('.leftbox');
-	const rightboxes = document.querySelectorAll('.rightbox');
-
-	rightboxes.forEach((rightbox) => {
-		const images = rightbox.querySelectorAll('.itemObject');
+	const rightboxes = document.querySelectorAll('.rightboxSelectList');
+	
+	rightboxes.forEach((rightboxSelectList) => {
+		const images = rightboxSelectList.querySelectorAll('.itemObject');
 		images.forEach((image) => {
 			image.addEventListener('dragstart', startDrag, false);
 		});
@@ -122,9 +123,9 @@ function dropped(e) {
 	var data = e.dataTransfer.getData('text/plain');
 
 	var newImage = document.createElement('img');
-	newImage.id = data;
+	newImage.id = "data";
 	newImage.className = 'itemObject';
-	newImage.src = document.getElementById(data).src;
+	newImage.src = data;
 
 	var leftbox = document.querySelector('#' + e.currentTarget.id);
 
