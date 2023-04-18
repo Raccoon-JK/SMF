@@ -170,11 +170,13 @@
                         dataType : "JSON",
                         success : function(data){
                             var str = '';
+							str += '<section class="container2">' 
                             $(data).each(function(index, item){
-                                str += '<div class="rightboxSelectList" id="rightbox1">'
-                                        +'<img id="img26" class="deco" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
-                                    +'</div>';
-                            });
+								str += '<div class="rightboxSelectList" id="rightbox1">'
+                                        	+'<img id="img26" class="deco" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
+                                    	+'</div>'
+									});
+								str += '</section>';
                             // Ajax 요청 성공 시 처리
                             $("#itemListboxList").html(str);
 
