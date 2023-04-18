@@ -90,8 +90,6 @@
     <script>
         $('.monthSearch').click(function(){
             let month = $(this).val()
-
-
             $.ajax({
                 url: "${pageContext.request.contextPath}/buyingHistoryMonthAjax.me",
                 type : 'POST',
@@ -102,7 +100,6 @@
                     $('.salebuy_info_wrapper').empty();
                     for(let i=0; i<arr.length; i++){
                         item = arr[i]
-                        
                         let str='<div class="salebuy_info_box">';
                         for(let j=0; j<item.length; j++){
                             str += '<div class="salebuy_info_product_flex">'
@@ -122,7 +119,7 @@
                                         +'</div>'
                                      +'</div>'
                         }
-                        $('.salebuy_info_wrapper').append(str+'</div>');    
+                        $('.salebuy_info_wrapper').append(str+'</div>'); 
                     }
                     $.ajax({
                         url: "${pageContext.request.contextPath}/buyingHistoryMonthAjax2.me",
@@ -147,6 +144,7 @@
                 error : function(data){
                     console.log('실패1');
                 }
+                
             })
 
         })

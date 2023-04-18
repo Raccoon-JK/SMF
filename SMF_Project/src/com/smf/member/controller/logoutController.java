@@ -1,29 +1,23 @@
-package com.smf.my.controller;
+package com.smf.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.member.model.vo.Member;
-import com.smf.my.model.service.MyPageService;
-import com.smf.my.model.vo.BuySellHistory;
-
 /**
- * Servlet implementation class MySalesHistoryController
+ * Servlet implementation class logoutController
  */
-@WebServlet("/mypagsalehistory.me")
-public class MySalesHistoryController extends HttpServlet {
+@WebServlet("/logout.page")
+public class logoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MySalesHistoryController() {
+    public logoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,13 +27,12 @@ public class MySalesHistoryController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		request.getSession().invalidate();
 		
-		ArrayList<BuySellHistory> sellList = new MyPageService().selectsellList(userId);
-			
-		request.setAttribute("sellList", sellList);
+		request.getSession().setAttribute("alertMsg", "로그아웃 되었습니다.");
 		
-		request.getRequestDispatcher("/views/my/mypageSalesHistory.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath());
+		
 	}
 
 	/**

@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-
+	<!-- 마이 페이지 메인 -->
+	<entry key="selectMypageMainWishList">
+	<![CDATA[
+	        SELECT * FROM(
+            SELECT W.PRODUCT_NAME, P.BRAND_NAME, IMG_PATH, IMG_NAME
+            FROM WISHLIST W
+            JOIN PRODUCT P ON W.PRODUCT_NAME = P.PRODUCT_NAME
+            JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+            WHERE USER_ID = ? 
+            ORDER BY dbms_random.value
+            )
+        WHERE ROWNUM<=4
+    ]]>
+	</entry>
+	
 	<!-- 내 프로필 정보 -->
 	<entry key="myInfoUpdateLoginUser">
 		SELECT * FROM MEMBER WHERE USER_ID = ?
@@ -114,6 +128,9 @@
 	<entry key="updateMemberPoint">
 		UPDATE MEMBER SET TOTAL_POINT = TOTAL_POINT-? WHERE USER_ID = ?
 	</entry>
+		<entry key="updateAddMemberPoint">
+		UPDATE MEMBER SET TOTAL_POINT = TOTAL_POINT+? WHERE USER_ID = ?
+	</entry>
 	
 	<!-- 구매내역 -->
 	<entry key="selectBuyListCount">
@@ -131,5 +148,23 @@
 	</entry>
 	<entry key="selectOrderListMountCount">
 		SELECT ORDER_NO, ORDER_DATE, TOTAL_AMOUNT, "POINT" FROM "ORDER" WHERE USER_ID = ? AND ORDER_DATE >= ADD_MONTHS(SYSDATE, -?) ORDER BY ORDER_DATE DESC
+	</entry>
+	
+	<!-- 판매내역 -->
+	<entry key="selectsellList">
+        SELECT STOCK_NO, S.PRODUCT_NAME, P.BRAND_NAME, PRICE, STOCK, P_SIZE, S.STATUS, TRADE_COUNT , IMG_PATH, IMG_NAME, SUGGEST_DATE
+        FROM STOCK S
+        JOIN PRODUCT P ON S.PRODUCT_NAME = P.PRODUCT_NAME
+        JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+        WHERE USER_ID = ? AND IMG_NAME LIKE '%_1.png'
+        ORDER BY SUGGEST_DATE DESC
+	</entry>
+	<entry key="selectSellMonthList">
+        SELECT STOCK_NO, S.PRODUCT_NAME, P.BRAND_NAME, PRICE, STOCK, P_SIZE, S.STATUS, TRADE_COUNT , IMG_PATH, IMG_NAME, SUGGEST_DATE
+        FROM STOCK S
+        JOIN PRODUCT P ON S.PRODUCT_NAME = P.PRODUCT_NAME
+        JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+        WHERE USER_ID = ? AND IMG_NAME LIKE '%_1.png' AND SUGGEST_DATE >= ADD_MONTHS(SYSDATE, -?)
+        ORDER BY SUGGEST_DATE DESC
 	</entry>
 </properties>

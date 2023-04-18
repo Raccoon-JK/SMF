@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.smf.member.model.service.MemberService;
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.service.MyPageService;
 import com.smf.my.model.vo.OrderBuilder;
@@ -34,6 +35,7 @@ public class OrderSuccessController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
 		int addrNo = Integer.parseInt(request.getParameter("addrNo"));
 		int totalAmount = Integer.parseInt(request.getParameter("amount"));
 		int usedPoint = Integer.parseInt(request.getParameter("point"));
@@ -62,9 +64,12 @@ public class OrderSuccessController extends HttpServlet {
 			orderCount[i] = Integer.parseInt(ocStr[i]);
 		}
 		
-		result = new MyPageService().insertOrder(ob, cNo, sNo, usedPoint, orderCount);
+		result = new MyPageService().insertOrder(ob, cNo, sNo, usedPoint, orderCount, point);
 		System.out.println(result);
+		
+		Member loginUser = new MemberService().loginMember(userId, userPwd);
 		if(result>0) {
+			request.getSession().setAttribute("loginUser", loginUser);
 			request.getRequestDispatcher("/views/my/orderSuccess.jsp").forward(request, response);
 		}else {
 			

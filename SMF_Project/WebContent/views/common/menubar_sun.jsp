@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,8 +93,15 @@
 				<div class="top_inner">
 					<ul class="top_list">
 						<li class="top_item"><a href="">고객센터</a></li>
-						<li class="top_item"><a href="">관심상품</a></li>
-						<li class="top_item"><a href="">로그인</a></li>
+						<li class="top_item"><a href="${pageContext.request.contextPath}/mypagewishlist.me">관심상품</a></li>
+						<c:choose>
+							<c:when test="${loginUser eq null }">
+								<li class="top_item"><a href="${pageContext.request.contextPath}/login.page">로그인</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="top_item"><a href="${pageContext.request.contextPath}/logout.page">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li><button class="view_more" type="button">
 								<img id="alarm"
 									src="${pageContext.request.contextPath}/resources/common/images/bell_icon.png">
@@ -108,7 +115,7 @@
 					<nav class="gnb">
 						<ul class="gnb_list">
 							<li><a href="${pageContext.request.contextPath}/dressroomMain.me">DRESS ROOM</a></li>
-							<li><a href="">MY</a></li>
+							<li><a href="${pageContext.request.contextPath}/mypagemain.me">MY</a></li>
 							<li><button class="view_more" type="button">
 									<img id="search"
 										src="${pageContext.request.contextPath}/resources/common/images/search_icon.png">
@@ -119,18 +126,24 @@
 			</div>
 			<div class="tab_area">
 				<ul>
-					<li><a href=""><span>HOME</span></a></li>
-					<li><a href=""><span>STYLE</span></a></li>
-					<li><a href=""><span>SHOP</span></a></li>
+					<li><a href="${pageContext.request.contextPath}"><span>HOME</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/postList.do"><span>STYLE</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/main.sh"><span>SHOP</span></a></li>
 					<li><a href=""><span>기획전</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
+	<script>
+	const msg = "${ alertMsg }";
+	console.log(msg);
+	if(msg != ""){
+		alert(msg);
+		<% session.removeAttribute("alertMsg"); %>
+	} 
+	</script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/views/common/js/modal.js"></script>
-	
-
+		src="${pageContext.request.contextPath}/views/common/js/modal.js">
+ 	</script>
 </body>
 </html>
