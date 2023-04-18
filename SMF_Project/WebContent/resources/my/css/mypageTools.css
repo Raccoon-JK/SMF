@@ -5,10 +5,72 @@
 
 .inputBox{
     border: 0px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #ebebeb;
     width: 300px;
 }
 
 .inputBox:focus-visible{
     outline: none;
 }
+
+.customBtn{
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fafafa;
+    font-weight: 600;
+}
+
+.customAadd{
+    border: none;
+    border-radius: 5px;
+    background-color: #41b979;
+    color: #fafafa;
+    font-weight: 600;
+    padding: 2px 8px;
+}
+.customAadd:hover{
+    color: #fafafa;
+}
+.customAupdate{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 209, 22);
+    color: #fafafa;
+    font-weight: 600;
+    padding: 2px 8px;
+}
+.customAupdate:hover{
+    color: #fafafa;
+}
+.customADel{
+    border: none;
+    border-radius: 5px;
+    background-color: #ef6253;
+    color: #fafafa;
+    font-weight: 600;
+    padding: 2px 8px;
+}
+.customADel:hover{
+    color: #fafafa;
+}
+
+
+.customA{
+    border-bottom: 1px solid black;
+}
+
+/* .customRadio{
+    vertical-align: middle;
+    appearance: none;
+    
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+}
+.customRadio:checked{
+    background-color: #222;
+    border: 0.4em solid #fff;
+    outline-style: 1px solid black;
+} */

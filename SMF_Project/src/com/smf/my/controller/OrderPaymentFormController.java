@@ -38,25 +38,30 @@ public class OrderPaymentFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		
-		String[] pArr = (request.getParameterValues("cNo"));
-		
-		// 선택 상품 
-		ArrayList<ShoppingCart> pList = new MyPageService().stockProdcutSelectList(userId, pArr);
-		
-		// 배송 주소
-		Address defaultAddr = new MyPageService().addressDefault(userId);
-		
-		// 결제 카드
-		Card c = new MyPageService().cardSelect(userId);
-		
-		request.setAttribute("pList", pList);
-		request.setAttribute("card", c);
-		request.setAttribute("defaultAddr", defaultAddr);
-		
-		System.out.println(pList);
-		request.getRequestDispatcher("/views/my/orderPaymentForm.jsp").forward(request, response);
+		if(request.getSession().getAttribute("loginUser") != null) {
+			String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			
+			String[] pArr = (request.getParameterValues("cNo"));
+			
+			// 선택 상품 
+			ArrayList<ShoppingCart> pList = new MyPageService().stockProdcutSelectList(userId, pArr);
+			
+			// 배송 주소
+			Address defaultAddr = new MyPageService().addressDefault(userId);
+			
+			// 결제 카드
+			Card c = new MyPageService().cardSelect(userId);
+			
+			request.setAttribute("pList", pList);
+			request.setAttribute("card", c);
+			request.setAttribute("defaultAddr", defaultAddr);
+			
+			System.out.println(pList);
+			request.getRequestDispatcher("/views/my/orderPaymentForm.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			response.sendRedirect(request.getContextPath()+"/login.page");
+		}
 	}
 
 	/**

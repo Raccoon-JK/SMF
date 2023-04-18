@@ -33,14 +33,20 @@ public class MyBuyingHistoryController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		ArrayList<ArrayList<BuySellHistory>> list = new MyPageService().selectBuyListCount(userId);
-		ArrayList<BuySellHistory> orderList = new MyPageService().selectOrderListCount(userId);
-		request.setAttribute("orderList", orderList);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("/views/my/mypageBuyingHistory.jsp").forward(request, response);
+		if(request.getSession().getAttribute("loginUser") != null) {
+			String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			
+			ArrayList<ArrayList<BuySellHistory>> list = new MyPageService().selectBuyListCount(userId);
+			ArrayList<BuySellHistory> orderList = new MyPageService().selectOrderListCount(userId);
+			request.setAttribute("orderList", orderList);
+			request.setAttribute("list", list);
+			
+			request.getRequestDispatcher("/views/my/mypageBuyingHistory.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			response.sendRedirect(request.getContextPath()+"/login.page");
+		}
 	}
 
 	/**

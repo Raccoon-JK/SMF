@@ -5,7 +5,7 @@
 	display: flex;
     justify-content: space-between;
     align-items: center;
-	border: 1px solid black;
+	border: 1px solid #ebebeb;
     padding: 23px 0 23px 23px;
 	margin: 0 10px 10px 10px;
     border-radius: 15px;
@@ -23,7 +23,6 @@
     margin-left: 15px; 
     width: 120px;
     height: 120px;
-    border: 1px solid black;
 }
 
 #myname{
@@ -34,37 +33,62 @@
 }
 
 #my_name{
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 18px
 }
 
 #my_id{
-    font-size: 12px;
+    font-size: 14px;
+    color: rgba(34,34,34,.5);
 }
 
 /* 내 프로필 오른쪽 */
 #myprofile_right{
     display: flex;
     text-align: center;
-    margin-right: 15px;
+    margin-right: 45px;
 }
 #myprofile_right>div{
     margin-right: 5px;
 }
 
-#myprofile_right p:nth-child(1){
-    font-weight: bold;
+#myprofile_right span:nth-child(1){
+    font-weight: 900;
+    font-size: 16px;
+
 }
-#myprofile_right p:nth-child(2){
+#myprofile_right span:nth-child(2){
     font-size: 12px;
+    font-weight: 400;
 }
 .mypage_box{
-    border: 1px solid black;
+    border: 1px solid #ebebeb;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
+    padding: 10px 10px;
     margin: 10px;
-    padding: 20px;
 }
+#point{
+    display: flex;
+    flex-direction: column;
+}
+.more_style{
+    display: flex;
+    font-size: 13px;
+    color: rgba(34,34,34,.5);
+    fill: rgba(34,34,34,.5);
+    align-items: center;
+}
+.more_style:hover{
+    cursor:pointer;
+    fill: black;
+}
+
+.arr-right-gray{
+    display: inline-block;
+}
+
 
 /* 배송 조회 */
 #delivery_title{
@@ -117,15 +141,21 @@
 #interest_title{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 #interest{
     display: flex;
+    /* align-items: center; */
+}
+.mypageInfo_titleText{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
 }
 .interest_product_wrapper{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
-
 .interest_products{
     display: flex;
     flex-direction: column;
@@ -133,6 +163,8 @@
     margin-top: 10px;
     /* margin-right: 25px; */
     padding: 15px;
+    width: 212.859px;
+    height: 280px;
 }
 
 .interest_products>p:nth-child(3){
@@ -142,9 +174,21 @@
 
 .interest_img{
     text-align: center;
+    margin-bottom: 5px;
 }
 .interest_img>img{
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    background-color: rgb(244, 244, 244);
+}
+.mainBrandName{
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+}
+.mainProudctName{
+    font-size: 13px;
+    color: #333;
 }

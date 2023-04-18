@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid #ebebeb;
     padding: 10px;
     
 }
@@ -20,23 +20,26 @@
     /* border: 1px solid black; */
 }
 #mypageInfo_img>label{
-    border: 1px solid black;
-    border-radius: 5px;
     cursor: pointer;
+    padding: 1px 6px;
 }
 
 #mypageInfo_content{
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 30px;
+    padding: 0px 18px;
+}
+.info_title{
+    margin-bottom: 20px;
+}
+.info_title>h5{
+    font-weight: 700;
+    font-size: 23px;
 }
 
-.info_inputBox{
-    border: 0px;
-    border-bottom: 1px solid black;
-}
-.info_inputBox:focus-visible{
-    outline: none;
+.infoText{
+    font-weight: 500;
 }
 
 .mypageInfo_class{
@@ -49,7 +52,14 @@
     right: 0px;
     bottom: 8px;
 }
+.mypageInfo_class>p{
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(34,34,34,.5);
+    margin-bottom: 0px;
+}
 #agree_radio_box{
+    display: flex;
     position: absolute;
     right: 0px;
     bottom: -7px;
@@ -66,4 +76,18 @@
 }
 #updateMyImg{
     display: none;
+}
+#email_agreeTitle{
+    margin-top: 35px;
+}
+#emailTitle{
+    font-size: 16px;
+}
+.agreeRadioBox>label{
+    margin: 0px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.infoRadio{
+    margin-right: 5px;
 }

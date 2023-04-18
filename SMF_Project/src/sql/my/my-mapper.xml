@@ -9,7 +9,7 @@
             FROM WISHLIST W
             JOIN PRODUCT P ON W.PRODUCT_NAME = P.PRODUCT_NAME
             JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
-            WHERE USER_ID = ? 
+            WHERE USER_ID = ?  AND  IMG_NAME LIKE '%_1.png'
             ORDER BY dbms_random.value
             )
         WHERE ROWNUM<=4
@@ -98,7 +98,7 @@
         LEFT JOIN STOCK ST ON C.STOCK_NO = ST.STOCK_NO
         LEFT JOIN PRODUCT P ON ST.PRODUCT_NAME = P.PRODUCT_NAME
         LEFT JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
-        WHERE C.USER_ID = ? AND ST.STATUS IN(1,2) AND IMG_NAME LIKE '%_1.png'
+        WHERE C.USER_ID = ? AND ST.STATUS IN('Y','X') AND IMG_NAME LIKE '%_1.png'
 	</entry>
 	<entry key="shoppingCartItemDelete">
 		DELETE FROM CART WHERE CART_NO = ?

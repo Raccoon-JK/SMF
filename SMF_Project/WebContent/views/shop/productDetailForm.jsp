@@ -8,6 +8,8 @@
 	Stock s = (Stock) request.getAttribute("s");
 	Product_Detail pd = (Product_Detail) request.getAttribute("pd");
 	Product_Img pi = (Product_Img) request.getAttribute("pi");
+
+    String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -156,7 +158,7 @@
 	                            <div>
 	                            	<c:choose>
 		                                <c:when test="${ s.stock != 0 }"> <!-- 재고가 있을때 -->
-		                                    <button type="submit" class="buyButton sendCart" style="background-color: rgb(239, 98, 83);color: rgb(255, 255, 255);">구매하기</button>
+		                                    <button type="button" class="buyButton sendCart" style="background-color: rgb(239, 98, 83);color: rgb(255, 255, 255);">구매하기</button>
 		                                </c:when>
 		                                <c:otherwise>
 		                                    <button type="submit" class="buyButton" style="background-color: rgb(211, 211, 211);color: rgb(255, 255, 255); cursor: not-allowed;">일시 품절</button>
@@ -644,23 +646,36 @@
         
 
 	    $(".sendCart").click(function(){
-// 	   		let size = $('.sizeOption').text();
  			let pCount = parseInt($('#pCount').text());
-// 			let fullPrice = parseInt($('#fullPrice').text()) / pCount;
 			let stockNo = $('#stockNo').val();
-	           $.ajax({
-	             url: "${ pageContext.request.contextPath }/sCart.sh",
-	             dataType: 'json',
-	             data: { productName: "${ p.productName }",
-						 pCount: pCount,
-						 stockNo: stockNo
-				},
-	             success: function(data) {
-	            	 location.href = '${ pageContext.request.contextPath }/sCart.sh';
-	             },
-	         });
+            let insertCart = "productName=${p.productName}&stockNo="+stockNo+"&pCount="+pCount;
+
+            if("${loginUser.userId}" == ""){
+                alert("로그인이 필요합니다.");
+                window.location.href = "${ pageContext.request.contextPath }/login.page"; 
+            }else{
+               window.location.href = "${ pageContext.request.contextPath }/sCart.sh?"+insertCart;
+            }
 	    });
-		    
+
+		let msg = "${alertMsg}";
+        // 관심 상품 등록
+        $(".interestProduct").click(function(){
+            if("${loginUser.userId}" == ""){
+                $(this).attr('href', "${ pageContext.request.contextPath }/login.page");
+                alert("로그인이 필요합니다.");
+            }else{
+                if(msg != ""){
+                    alert("이미 관심상품에 등록한 상품입니다.");
+                    msg = "";
+                    <% session.removeAttribute("alertMsg"); %>
+                }else{
+                    alert("관심 상품에 등록되었습니다.");
+                    msg = "이미 관심상품에 등록한 상품입니다.";
+                }
+            }
+        });
+        console.log("${alertMsg}")
         </script>
 </body>
 </html>
