@@ -104,34 +104,32 @@
 		let currImg = $("input[type='file']");
 		
 		currBtn.click(function(){
-			console.log($(this).text())
-				let currInput = $(this).siblings("input");
-				if($(this).text() == '변경'){
-				currInput.attr('readonly', false);
-				currInput.val('');
-				currInput.focus();
-				$(this).text('저장');
-				}else if($(this).text() == '저장'){
-					let currName = currInput.attr('name');
-					let currVal = currInput.val();
-					console.log
-					$.ajax({ // 어차피 변경된 값만 input값만 보여주고 새로고침할 때 변경된 값을 보여주면 될거 같은데 왜 굳이 ajax로 했을까란 후회를 다 하고나서 합니다...
-			 			url : "<%=contextPath%>/myinfoupdate.me",
-						data : { name : currName, val : currVal, id : '${ loginUser.userId }'},
-						type : "post",
-						success : function(m){
-						},
-						error :  console.log('실패!')
-					});
-					if(currName == 'BIRTH'){
-						let year = currVal.substring(0,4);
-						let month = currVal.substring(4, 6);
-						let day = currVal.substring(6,8);
-						let dateFormat = year+'-'+month+'-'+day;
-						currInput.val(dateFormat);
-					}
-					$(this).text('변경');
+			let currInput = $(this).siblings("input");
+			if($(this).text() == '변경'){
+			currInput.attr('readonly', false);
+			currInput.val('');
+			currInput.focus();
+			$(this).text('저장');
+			}else if($(this).text() == '저장'){
+				let currName = currInput.attr('name');
+				let currVal = currInput.val();
+				$.ajax({ // 어차피 변경된 값만 input값만 보여주고 새로고침할 때 변경된 값을 보여주면 될거 같은데 왜 굳이 ajax로 했을까란 후회를 다 하고나서 합니다...
+					url : "<%=contextPath%>/myinfoupdate.me",
+					data : { name : currName, val : currVal, id : '${ loginUser.userId }'},
+					type : "post",
+					success : function(m){
+					},
+					error :  console.log('실패!')
+				});
+				if(currName == 'BIRTH'){
+					let year = currVal.substring(0,4);
+					let month = currVal.substring(4, 6);
+					let day = currVal.substring(6,8);
+					let dateFormat = year+'-'+month+'-'+day;
+					currInput.val(dateFormat);
 				}
+				$(this).text('변경');
+			}
 		});
 		
 		currRadio.click(function() {

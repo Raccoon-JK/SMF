@@ -68,128 +68,150 @@
                 </div>
                 <button class="nextArrow"></button>
             </div>
-            <div id="contentHeaderRight" class="column">
-                <div id="productDetail">
-                    <p class="detailBrand">${ p.brandName }</p>
-                    <p class="detailName">${ p.productName }</p>
-                    <!-- <p>알렌느 카펜터 디테일 트윌 데님 바이커 자켓 인디안 핑크</p> -->
-                </div>
-                <div id="productInfo">
-                    <form action="">
-                            <div class="categoryTitle productUnderline">
-                                <div id="productInfoPrice">
-                                    <div class="titleProduct">가격</div>
-                                </div>
-                                <div class="productInfoHalfR">
-                                    <div class="detailPriceInfo">
-                                        <div class="detailPrice">기업 가격</div>
-                                        <div class="detailFullPrice"><%= p.getCompanyPrice() %>원</div>                                 
-                                    </div>
-                                    <div class="detailPriceInfo">
-                                        <div class="detailPrice">리셀 가격</div>
-                                        <div class="detailFullPrice">0원</div>                                 
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="categoryTitle productUnderline"">
-                                    <div class="productInfoHalf">사이즈</div>
-                                    <div class="productInfoRight productInfoHalfR">
-                                        <!-- 사이즈 Modal-->
-                                        <button id="testBtn" class="btn sizeOption" data-target="#testModal">옵션</button>
-										<div class="modal fade" id="testModal" tabindex="-1"
-											role="dialog" aria-labelledby="exampleModalLabel"
-											aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">사이즈 선택</h5>
-													</div>
-													<div class="modal-body shoeSize">
-<%-- 														<% for(int i = 0; i < list1.length; i++){ %> --%>
-<%-- 														<c:forEach var="s" items="${ list1 }">		 --%>
-<!-- 															<input type="radio" id="" name="size" value="" -->
-<!-- 																class="modalSize"><label for="" class="btn"></label> -->
-<%-- 														<% } %> --%>
-<%-- 														</c:forEach> --%>
-													</div>
-													<div class="modal-footer">
-														<button type="button" id="sizeBtn" class="btn">선택</button>
-														<button type="button" id="closeBtn" class="btn"
-															data-dismiss="modal">취소</button>
+<%--         	<form action="${ pageContext.request.contextPath }/cart.sh" id="enroll-form" method="post"> --%>
+	            <div id="contentHeaderRight" class="column">
+	                <div id="productDetail">
+	                    <p class="detailBrand">${ p.brandName }</p>
+	                    <p class="detailName">${ p.productName }</p>
+	                    <!-- <p>알렌느 카펜터 디테일 트윌 데님 바이커 자켓 인디안 핑크</p> -->
+	                </div>
+	                <div id="productInfo">
+	                            <div class="categoryTitle productUnderline">
+	                                <div id="productInfoPrice">
+	                                    <div class="titleProduct">가격</div>
+	                                </div>
+	                                <div class="productInfoHalfR">
+	                                    <div class="detailPriceInfo">
+	                                        <div class="detailPrice">기업 가격</div>
+	                                        <div id="companyPrice" class="detailFullPrice">${ p.companyPrice }원</div>                                 
+	                                    </div>
+	                                    <div class="detailPriceInfo">
+	                                        <div class="detailPrice">리셀 가격</div>
+	                                        <div id="resellPrice" class="detailFullPrice">0원</div>                                 
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div>
+	                                <div class="categoryTitle productUnderline"">
+	                                    <div class="productInfoHalf">사이즈</div>
+	                                    <div class="productInfoRight productInfoHalfR">
+	                                        <!-- 사이즈 Modal-->
+	                                        <button id="testBtn" class="btn sizeOption" data-target="#testModal">옵션</button>
+											<div class="modal fade" id="testModal" tabindex="-1"
+												role="dialog" aria-labelledby="exampleModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">사이즈 선택</h5>
+														</div>
+														<div class="modal-body shoeSize">
+	<%-- 														<% for(int i = 0; i < list1.length; i++){ %> --%>
+	<%-- 														<c:forEach var="s" items="${ list1 }">		 --%>
+	<!-- 															<input type="radio" id="" name="size" value="" -->
+	<!-- 																class="modalSize"><label for="" class="btn"></label> -->
+	<%-- 														<% } %> --%>
+	<%-- 														</c:forEach> --%>
+														</div>
+														<div class="modal-footer">
+															<button type="button" id="sizeBtn" class="btn">선택</button>
+															<button type="button" id="closeBtn" class="btn"
+																data-dismiss="modal">취소</button>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-                                </div>
-                                <div class="categoryTitle productUnderline"">
-                                    <div class="productInfoHalf">
-                                        <button id="testBtn2">수량</button> <!-- 모달창으로. 누르면 해당 브랜드 재고, 리셀 재고 표시 -->
-                                        <div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel2">상품 수량 선택</h5>
-                                                    </div>                                                    
-                                                    <div class="modal-body sizeStock">
-                                                        
-                                                    </div>                                                    
-                                                    <div class="modal-footer">
-                                                        <button type="button" id="sizeBtn" class="btn">선택</button>
-                                                        <button type="button" id="closeBtn" class="btn" data-dismiss="modal">취소</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="productInfoHalfR detailPriceInfo">
-                                        <div class="detailPrice">총 가격</div>
-                                        <div class="detailFullPrice">원</div>                                 
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                            	<c:choose>
-	                                <c:when test="${ s.stock != 0 }"> <!-- 재고가 있을때 -->
-	                                    <button type="submit" class="buyButton" style="background-color: rgb(239, 98, 83);color: rgb(255, 255, 255);">구매하기</button>
-	                                </c:when>
-	                                <c:otherwise>
-	                                    <button type="submit" class="buyButton" style="background-color: rgb(211, 211, 211);color: rgb(255, 255, 255); cursor: not-allowed;">일시 품절</button>
-	                                </c:otherwise>                            	
-                            	</c:choose>
-                                <a href="" class="interestProduct">
-                                    <svg width="13" height="15">
-                                        <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
-                                    </svg>
-                                    <span class="btnText">관심상품</span>
-                                    <span class="wishCount">${ wl.productName }</span>
-                                </a>
-                            </div>
-                        <div class="deliveryTitle1">
-                    </form>
-                        <p class="deliveryTitle1_1">배송 정보</p>
-                        <div>
-                            <div class="deliveryFlex"><!-- flex용 -->
-                                <div style="width: 40px; height: 40px; margin-right: 14px;">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" style="width: 40px; height: 40px;">
-                                </div>
-                                <div>
-                                    <p class="deliveryText1">
-                                        <span class="deliveryText1_1">브랜드배송</span>
-                                        <span class="deliveryText1_2">무료</span>
-                                    </p>
-                                    <p class="subText">입점한 브랜드에서 직접 택배 배송</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+	                                </div>
+	                                <div class="categoryTitle productUnderline">
+	                                    <div id="pCountDiv" class="productInfoHalf">
+	                                        <button id="testBtn2">수량</button>
+	                                        <p id="pCount"></p>
+	                                        <div class="modal fade" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	                                            <div class="modal-dialog" role="document">
+	                                                <div class="modal-content">
+	                                                    <div class="modal-header">
+	                                                        <h5 class="modal-title" id="exampleModalLabel2">상품 수량 선택</h5>
+	                                                    </div>                                                    
+	                                                    <div class="modal-body sizeStock">
+	                                                       	
+	                                                    </div>                                                    
+	                                                    <div class="modal-footer">
+	                                                        <button type="button" id="sizeBtn2" class="btn">선택</button>
+	                                                        <button type="button" id="closeBtn2" class="btn" data-dismiss="modal">취소</button>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="productInfoHalfR detailPriceInfo">
+	                                        <div class="detailPrice">총 가격</div>
+	                                        <div style="align-items: center; display: flex;">
+	                                        	<div id="fullPrice" class="detailFullPrice"></div><p class="detailFullPrice">원</p>
+	                                        	<input type="hidden" value="" id="stockNo">                                 	                                        
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div>
+	                            	<c:choose>
+		                                <c:when test="${ s.stock != 0 }"> <!-- 재고가 있을때 -->
+		                                    <button type="submit" class="buyButton sendCart" style="background-color: rgb(239, 98, 83);color: rgb(255, 255, 255);">구매하기</button>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <button type="submit" class="buyButton" style="background-color: rgb(211, 211, 211);color: rgb(255, 255, 255); cursor: not-allowed;">일시 품절</button>
+		                                </c:otherwise>                            	
+	                            	</c:choose>
+	                                <a href="${ pageContext.request.contextPath }/wishListCount.sh?productName=${ p.productName }" class="interestProduct">
+	                                    <svg width="13" height="15">
+	                                        <path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />
+	                                    </svg>
+	                                    <span class="btnText">관심상품</span>
+	                                    <span class="wishCount">${ wl.productName }</span>
+	                                </a>
+	                            </div>
+	                        <div class="deliveryTitle1">
+	                        <p class="deliveryTitle1_1">배송 정보</p>
+	                        <div>
+	                            <div class="deliveryFlex"><!-- flex용 -->
+	                                <div style="width: 40px; height: 40px; margin-right: 14px;">
+	                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/a_debcc71138bf44cebfe3e83661b3f3cb.png" alt="" style="width: 40px; height: 40px;">
+	                                </div>
+	                                <div>
+	                                    <p class="deliveryText1">
+	                                        <span class="deliveryText1_1">브랜드배송</span>
+	                                        <span class="deliveryText1_2">무료</span>
+	                                    </p>
+	                                    <p class="subText">입점한 브랜드에서 직접 택배 배송</p>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+<!--             </form> -->
         </div>
         <div class="productDetailItemContent">
-            <div class="otherProductArea"> <!-- 상품상세정보 -->
-                
+            <div class="otherProductArea innerProductArea"> <!-- 상품상세정보 -->
+                <div class="innerProductArea1">
+                    <p class="innerProduct">본 상품은 'Blitzway' 브랜드 판매자가 배송하는 상품입니다.</p>
+                </div>
+                <div class="innerProductArea2">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_451235e8591f4d09a62a0a8203c4f174.jpg" alt="" style="width: auto;">
+                </div>
+                <div class="innerProductArea3">
+                    <div class="innerProductArea3_1">Blitzway Stitch</div>
+                    <div class="innerProductArea3_2">블리츠웨이 스티치</div>
+                    <div class="innerProductArea3_3">귀여운 모습과 동시에 악동스러운 스티치의 특색과 제스처를 구조적으로 해석하고 래칫 관절 움직임을 활용하여 스티치 특유의 귀여우면서도 장난끼 넘치는 모습을 표현할 수 있습니다.
+                        <br>360도 회전 가능한 귀, 교체 가능한 다양한 표정과 손 부품, 입에 들어가는 LED 조명을 통해 스티치의 생동감을 보다 다양하게 경험해보세요.</div>
+                </div>
+                <div class="innerProductArea4">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_f9d518a2283e4a65a9660fed89ca6672.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치2.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치3.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치4.jpg" alt="">
+                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/스티치정보.jpg" alt="">
+                </div>
             </div>
             <div class="PDIC2 otherProductArea"> <!-- 교환 및 반품안내 -->
                 <div class="PDIC2_0">
@@ -439,84 +461,26 @@
             </div>
             <div class="otherProductArea"> <!-- 동일브랜드 다른 상품 -->
                 <h3 class="moreTitle">
-                    <span class="moreTitle1">jordan</span>
+                    <span class="moreTitle1">${ p.brandName }</span>
                     <span class="moreTitle2">의 다른 상품</span>
                 </h3>
                 <div class="moreContent">
                     <div class="moreContent1"> <!-- grid 5*2 -->
                         <!-- content -->
-                        <div class="moreContent1_1">
-                            <a href="">
-                                <div class="moreContentImg">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
-                                </div>
-                                <div class="moreContentInfo">
-                                    <div class="moreContentInfo1">jordan</div>
-                                    <div class="moreContentInfo2">Jordan 1 Retro High OG White Cement</div>
-                                    <div class="moreContentInfo3">185,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="moreContent1_1">
-                            <a href="">
-                                <div class="moreContentImg">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
-                                </div>
-                                <div class="moreContentInfo">
-                                    <div class="moreContentInfo1">jordan</div>
-                                    <div class="moreContentInfo2">Jordan 1 Retro High OG White Cement</div>
-                                    <div class="moreContentInfo3">185,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="moreContent1_1">
-                            <a href="">
-                                <div class="moreContentImg">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
-                                </div>
-                                <div class="moreContentInfo">
-                                    <div class="moreContentInfo1">jordan</div>
-                                    <div class="moreContentInfo2">Jordan 1 Retro High OG White Cement</div>
-                                    <div class="moreContentInfo3">185,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="moreContent1_1">
-                            <a href="">
-                                <div class="moreContentImg">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
-                                </div>
-                                <div class="moreContentInfo">
-                                    <div class="moreContentInfo1">jordan</div>
-                                    <div class="moreContentInfo2">Jordan 1 Retro High OG White Cement</div>
-                                    <div class="moreContentInfo3">185,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="moreContent1_1">
-                            <a href="">
-                                <div class="moreContentImg">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
-                                </div>
-                                <div class="moreContentInfo">
-                                    <div class="moreContentInfo1">jordan</div>
-                                    <div class="moreContentInfo2">Jordan 1 Retro High OG White Cement</div>
-                                    <div class="moreContentInfo3">185,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="moreContent1_1">
-                            <a href="">
-                                <div class="moreContentImg">
-                                    <img src="${ pageContext.request.contextPath }/resources/shop/symbols/p_a5578cd8bd72480d83719612c9e74282.webp" alt="" class="moreContentImg1">
-                                </div>
-                                <div class="moreContentInfo">
-                                    <div class="moreContentInfo1">jordan</div>
-                                    <div class="moreContentInfo2">Jordan 1 Retro High OG White Cement</div>
-                                    <div class="moreContentInfo3">185,000원</div>
-                                </div>
-                            </a>
-                        </div>                        
+                        <c:forEach var="p" begin="1" end="10" items="${ list2 }">
+		                	<div class="moreContent1_1">
+		                        <a href="${ pageContext.request.contextPath }/productDetail.sh?productName=${ p.productName }">
+		                            <div class="moreContentImg">
+		                                <img src="${ pageContext.request.contextPath }${ p.imgPath }${ p.imgName }" alt="" class="moreContentImg1">
+		                            </div>
+		                            <div class="moreContentInfo">
+		                                <div class="moreContentInfo1">${ p.brandName }</div>
+		                                <div class="moreContentInfo2">${ p.productName }</div>
+		                                <div class="moreContentInfo3">${ p.companyPrice }원</div>
+		                            </div>
+		                         </a>
+		                     </div>
+                		</c:forEach>               
                     </div>
                 </div>
             </div>
@@ -551,11 +515,6 @@
             $('#testModal').modal("hide");
         });
         
-        $('#sizeBtn2').click(function() {
-            $('#testModal2').modal("hide");
-            $('.detailFullPrice').text((("input[type='radio'][name='size2']:checked").val()*$("input[type='number']").val()));
-        });
-        
         $('#closeBtn2').click(function() {
             $('#testModal2').modal("hide");
         });
@@ -577,7 +536,7 @@
         	$.ajax({
         		url: "${ pageContext.request.contextPath }/pSize.sh",
         		dataType: 'json',
-        		data: {productName : '${ p.productName }'},
+        		data: {productName : "${ p.productName }"},
         		success: function(data){
         			
 //         			let data = JSON.parse(data);
@@ -601,31 +560,6 @@
 	        			
        			    }
         		}
-//         		complete: function(){
-//         			$('#testBtn2').click(function() {
-//         	        	$.ajax({
-//         	        		url: "${ pageContext.request.contextPath }/pCount.sh",
-//         	        		dataType: 'json',
-//         	        		data: { productName: ${ p.productName },
-//         	        				pSize: $(".sizeOption").text()
-//         	        				},
-//         	        		success: function(data){
-        	        			
-//         	        			let sizeStock = $('.sizeStock');
-//         	        			sizeStock.empty();
-//         	        			for(let i = 0; i < data.length; i++) {
-        	        				
-//         	        				let item = data[i].stock;
-        	        				
-//         			             	console.log(item);
-        			             	
-//         			             	sizeStock.append('브랜드상품<input type="number" min="1" max="' + item[0] + '">')
-//         			             	sizeStock.append('리셀상품<input type="number" min="1" max="' + item[1] + '">')
-//         	        			}
-//         	        		}
-//         	        	});
-//         	        });
-//         		}
         	});
         });
         
@@ -633,26 +567,100 @@
         	$.ajax({
         		url: "${ pageContext.request.contextPath }/pCount.sh",
         		dataType: 'json',
-        		data: { productName: '${ p.productName }',
+        		data: { productName: "${ p.productName }",
         				pSize: $(".sizeOption").text()
         				},
         		success: function(data){
         			
         			let sizeStock = $('.sizeStock');
+        			let resellStockPrice = data.price;
+        			console.log(resellStockPrice);
         			sizeStock.empty();
 		            
         			if(data.length == 1 && data[0].userClass == 1){
 		             	sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '">')
+		             	
+		             	$('#sizeBtn2').click(function() {
+				            $('#testModal2').modal("hide");
+				            $('#testBtn2').text('수량 :' + ' ');
+				            $('#pCount').text($('input[type=number]').val());
+				            $('#resellPrice').text("0원");
+				            $('#fullPrice').text(($('input[type=number]').val()*data[0].price));
+				            $('#stockNo').val(data[0].StockNo);
+				        });
+		             	
         			}else if(data.length == 1 && data[0].userClass == 2){
         				sizeStock.append('리셀상품<input type="number" min="1" max="' + data[0].stock + '">')
+        				
+        				$('#sizeBtn2').click(function() {
+    			            $('#testModal2').modal("hide");
+    			            $('#testBtn2').text('수량 :' + ' ');
+    			            $('#pCount').text($('input[type=number]').val());
+    			            $('#resellPrice').text(data[0].price+"원");
+    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price));
+    			            $('#stockNo').val(data[0].StockNo);
+    			        });
+        				
         			}else{
-	        			sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '">')
-	        			sizeStock.append('리셀상품<input type="number" min="1" max="' + data[1].stock + '">')        				
+        				sizeStock.append('<input type="radio" name="stockCheck" value="1" style="appearance:auto;">')
+	        			sizeStock.append('브랜드상품<input type="number" min="1" max="' + data[0].stock + '" disabled><br>')
+        				sizeStock.append('<input type="radio" name="stockCheck" value="2" style="appearance:auto;">')
+	        			sizeStock.append('리셀상품<input type="number" min="1" max="' + data[1].stock + '" disabled>')    
+	        			
+	        			$('input[name=stockCheck]').change(function() {
+							let selectedValue = $("input[name=stockCheck]:checked").val();
+						  	if(selectedValue == 1){
+						    	$('input[type=number]').eq(0).prop('disabled', false);
+						    	$('input[type=number]').eq(1).prop('disabled', true);
+						    	
+						    	$('#sizeBtn2').click(function() {
+		    			            $('#testModal2').modal("hide");
+		    			            $('#testBtn2').text('수량 :' + ' ');
+		    			            $('#pCount').text($('input[type=number]').val());
+		    			            $('#resellPrice').text("0원");
+		    			            $('#fullPrice').text(($('input[type=number]').val()*data[0].price));
+		    			            $('#stockNo').val(data[0].StockNo);
+		    			        });
+						    	
+						  	} else if(selectedValue == 2){
+						   	 	$('input[type=number]').eq(0).prop('disabled', true);
+						    	$('input[type=number]').eq(1).prop('disabled', false);
+						    	
+						    	$('#sizeBtn2').click(function() {
+		    			            $('#testModal2').modal("hide");
+		    			            $('#testBtn2').text('수량 : ' + ' ');
+		    			            $('#pCount').text($('input[type=number]').eq(1).val());
+		    			            $('#resellPrice').text(data[1].price+"원");
+		    			            $('#fullPrice').text(($('input[type=number]').eq(1).val()*data[1].price));
+		    			            $('#stockNo').val(data[1].StockNo);
+		    			    	});
+						  	}
+						});
         			}
-        			
         		}
         	});
+        console.log(sizeStock);
         });
+        
+
+	    $(".sendCart").click(function(){
+// 	   		let size = $('.sizeOption').text();
+ 			let pCount = parseInt($('#pCount').text());
+// 			let fullPrice = parseInt($('#fullPrice').text()) / pCount;
+			let stockNo = $('#stockNo').val();
+	           $.ajax({
+	             url: "${ pageContext.request.contextPath }/sCart.sh",
+	             dataType: 'json',
+	             data: { productName: "${ p.productName }",
+						 pCount: pCount,
+						 stockNo: stockNo
+				},
+	             success: function(data) {
+	            	 location.href = '${ pageContext.request.contextPath }/sCart.sh';
+	             },
+	         });
+	    });
+		    
         </script>
 </body>
 </html>

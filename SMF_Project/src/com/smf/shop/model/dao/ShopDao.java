@@ -24,6 +24,7 @@ import com.smf.shop.model.vo.Stock;
 public class ShopDao {
 	private Properties prop = new Properties();
 
+	
 	public ShopDao() {
 
 		String fileName = ShopDao.class.getResource("/sql/shop/shop-mapper.xml").getPath();
@@ -88,9 +89,10 @@ public class ShopDao {
 			
 			pstmt.setString(1, p.getBrandName());
 			pstmt.setString(2, p.getProductName());
-			pstmt.setInt(3, p.getCategoryNo());
-			pstmt.setString(4, p.getProductGender());
-			pstmt.setString(5, p.getProductWeather());
+			pstmt.setInt(3, p.getCompanyPrice());
+			pstmt.setInt(4, p.getCategoryNo());
+			pstmt.setString(5, p.getProductGender());
+			pstmt.setString(6, p.getProductWeather());
 			
 			result = pstmt.executeUpdate();
 			
@@ -108,18 +110,20 @@ public class ShopDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertResellStock");
+		String sql = prop.getProperty("insertStock");
 		
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			System.out.println(s);
 			
 			pstmt.setString(1, s.getUserId());
 			pstmt.setString(2, s.getProductName());
 			pstmt.setInt(3, s.getPrice());
 			pstmt.setInt(4, s.getStock());
 			pstmt.setString(5, s.getSize());
-			pstmt.setString(6, s.getUserClass());
+			pstmt.setInt(6, 1);
 			
 			result = pstmt.executeUpdate();
 			
@@ -140,7 +144,7 @@ public class ShopDao {
 		String sql = prop.getProperty("insertProduct_Detail");
 		
 		try {
-			
+			System.out.println(pd);
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, pd.getProductName());
@@ -231,8 +235,8 @@ public class ShopDao {
 		String sql = prop.getProperty("selectProduct");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
 			
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productName);
 			
 			rset = pstmt.executeQuery();
@@ -322,6 +326,46 @@ public class ShopDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public ArrayList<ProductAll> selectProductBrandProduct(Connection conn, String brand){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductBrandProduct");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, brand);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH")
+						);
+				list.add(pa);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
 	}
 	
 	public Product_Detail selectProduct_Detail(Connection conn, String productName) {
@@ -442,6 +486,8 @@ public class ShopDao {
 			
 			pstmt.setString(1, productName);
 			pstmt.setString(2, pSize);
+			pstmt.setString(3, productName);
+			pstmt.setString(4, pSize);
 			
 			rset = pstmt.executeQuery();
 			
@@ -449,6 +495,7 @@ public class ShopDao {
 				
 				Stock s = new Stock();
 				
+				s.setStockNo(rset.getInt("STOCK_NO"));
 				s.setStock(rset.getInt("STOCK"));
 				s.setPrice(rset.getInt("PRICE"));
 				s.setUserClass(rset.getString("USER_CLASS"));
@@ -462,5 +509,489 @@ public class ShopDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int insertWishList(Connection conn, String productName, String userId) {
+	
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertWishList");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, productName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public ArrayList<ProductAll> selectNcategory(Connection conn, String category){
+			
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectNcategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectBcategory(Connection conn, String category){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBcategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectGcategory(Connection conn, String category){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectGcategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectTcategory(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductAll");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectPcategory1(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPcategory1");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectPcategory2(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPcategory2");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectPcategory3(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPcategory3");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectPcategory4(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPcategory4");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectPcategory5(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPcategory5");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectPcategory6(Connection conn){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPcategory6");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectSizeCategory(Connection conn, String category){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSizeCategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public int insertStockNo(Connection conn, String userId, int pCount, int stockNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertStockNo");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, stockNo);
+			pstmt.setInt(3, pCount);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

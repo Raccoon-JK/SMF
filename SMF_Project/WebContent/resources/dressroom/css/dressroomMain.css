@@ -52,6 +52,7 @@ div {
 
 .container2, .container3, .container4, .container5, .container6 {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .rightbox, .rightboxSelectList {

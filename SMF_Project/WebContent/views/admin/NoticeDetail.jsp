@@ -150,7 +150,7 @@
                             <div class="test">
                            	<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
                                 <a href="<%=contextPath %>/updateForm.no?nno=<%=n.getAlertNo() %>" class="btn btn warning btn-sm">수정</a>
-                                <a href="<%=contextPath %>/deleteForm.no?nno=<%=n.getAlertNo() %>" class="btn btn danger  btn-sm">삭제</a>
+                                <a href="<%=contextPath %>/delete.no?nno=<%=n.getAlertNo() %>" class="btn btn danger  btn-sm">삭제</a>
                             <%} %>
                             </div>
                         </div>      
