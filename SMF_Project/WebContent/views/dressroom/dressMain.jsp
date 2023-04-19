@@ -173,8 +173,9 @@
                             var str = '';
 							str += '<section class="container2">' 
                             $(data).each(function(index, item){
+								var imgId = "img"+index;
 								str += '<div class="rightboxSelectList" id="rightbox1">'
-                                           +'<img id="img26" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
+                                           +'<img id="'+imgId+'" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
                                        +'</div>'
 								});
 								str += '</section>';
@@ -185,8 +186,10 @@
                             $("#backButton").show();
 
                             // 다시 클릭 이벤트 핸들러 등록
-                            listBackHandlers();
-                            
+                            //listBackHandlers();
+							$("#itemListboxList").off("mousedown", ".itemObject", makeCopyDragEvent);
+                           
+							makeCopyDragEvent();
                         }
                     });
                 });
@@ -197,6 +200,7 @@
 
             // 페이지 로딩 시 클릭 이벤트 핸들러 등록
             listBackHandlers();
+			
 
             $("#backButton").click(function() {
                 // 이전에 저장한 내용을 출력
@@ -205,10 +209,13 @@
                 // 뒤로 가기 버튼 숨기기
                 $("#backButton").hide();
 
+				$("#itemListboxList").off("mousedown", ".itemObject", makeCopyDragEvent);
+				
                 // 다시 클릭 이벤트 핸들러 등록
                 listBackHandlers();
             });
         });
+		
 	</script>
 
 
