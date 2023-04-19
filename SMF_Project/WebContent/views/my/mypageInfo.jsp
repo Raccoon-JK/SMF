@@ -98,10 +98,10 @@
 		let inputPwd = info.querySelector('input[type=password]');
 		let inputRadio = info.querySelectorAll('input[type=radio]')
 
-		inputText[0].value = '${loginUser.userName}';
-		inputText[1].value = '${loginUser.birth}';
-		inputText[2].value = '${loginUser.phone}'; //MemberDao에서 핸드폰 형식수정
-		inputText[3].value = '${loginUser.userId}';
+		inputText[0].value = '${loginUser.userId}';
+		inputText[1].value = '${loginUser.userName}';
+		inputText[2].value = '${loginUser.birth}';
+		inputText[3].value = '${loginUser.phone}'; //MemberDao에서 핸드폰 형식수정
 		inputPwd.value = '${loginUser.userPwd}';
 
 		console.log('${loginUser.agreeEmail}');
