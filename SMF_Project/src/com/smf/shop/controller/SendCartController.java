@@ -42,6 +42,10 @@ public class SendCartController extends HttpServlet {
 		
 		if(result > 0) {
 			response.sendRedirect(request.getContextPath() + "/mypageshoppingcart.me");
+//			request.getRequestDispatcher("/mypageshoppingcart.me").forward(request, response); 
+			
+		}else {
+			System.out.println("실패");
 		}
 //		response.setContentType("apllication/json; charset=UTF-8");
 //		
