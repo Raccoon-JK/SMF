@@ -16,7 +16,7 @@ import com.smf.style.model.vo.StyleComment;
 /**
  * Servlet implementation class AjaxReplyInsertController
  */
-@WebServlet("/rinsert.bo")
+@WebServlet("/insertComment.st")
 public class AjaxReplyInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,15 +47,10 @@ public class AjaxReplyInsertController extends HttpServlet {
 									setcContent("댓글내용").
 									setPostNo(1).
 									build();
-		
-//		ReplyBuilder rb =	 new ReplyBuilder.
-//									builder(1).
-//									replyContent("댓글내용").
-//									refBno(1).
-//									build();
+
 
 		
-		int result = new StyleService().insertReply(sc);
+		int result = new StyleService().insertComment(sc);
 		
 		response.getWriter().print(result);
 	}

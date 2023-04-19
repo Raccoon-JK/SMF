@@ -1,47 +1,21 @@
+<%@ page import="com.smf.style.model.vo.StylePost" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+	StylePost sp = (StylePost) request.getAttribute("sp"); 
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구해줘 패션</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="resources/style/팔로잉.css" />
 </head>
    <body>
-    <header>
-      <div class="headerwrap">
-          <div class="headertop">
-            <ul>
-              <li>
-                <a href="">고객센터</a>
-              </li>
-              <li>
-                <a href="">관심상품</a>
-              </li>
-              <li>
-                <a href="">로그인</a>
-              </li>
-            </ul>
-          </div>
-          <div class="headermain">
-            <div class="hm-logo"></div>
-            <div class="hm-menu"></div>
-          </div>
-          <div class="headerbottom">
-            <a href="<%= contextPath %>/follow.me"><span>팔로잉</span></a>
-            <a href="<%= contextPath %>" class="underline"><span>발견</span></a>
-            <a href="<%= contextPath %>/snekers.do" class="underline"><span>스니커즈</span></a>
-            <a href="<%= contextPath %>/luxury.do"><span>럭셔리</span></a>
-          	<a href="<%= contextPath %>/clothes.do"><span>의류</span></a>
-          	<a href="<%= contextPath %>/bag.do"><span>가방</span></a>
-          	<a href="<%= contextPath %>/accessory.do"><span>악세서리</span></a>
-          </div>
-      </div>
-    </header>
+    
+     <jsp:include page="/views/main/menubar_style.jsp" />
 
     <content>
     
@@ -299,6 +273,22 @@
             </div>
     
           </div>
+        </div>
+        <div>
+        	<table id="detail-ara" align="center" border="1">
+			<tr>
+				<th>작성자</th>
+				<td><%= sp.getUserId() %></td>
+				<th>작성일</th>
+				<td><%= sp.getUproadTime() %></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="3">
+					<p style="height:150px;"><%=sp.getContent() %></p>
+				</td>
+			</tr>
+		</table>
         </div>
       </div>
     </content>

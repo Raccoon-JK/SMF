@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.smf.member.model.vo.Member;
 import com.smf.style.model.service.StyleService;
+import com.smf.style.model.vo.Follow;
 import com.smf.style.model.vo.PostImg;
 import com.smf.style.model.vo.StylePost;
 
 /**
  * Servlet implementation class followController
  */
-@WebServlet("/follow.me")
+@WebServlet("/follow.st")
 public class followController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,14 +35,17 @@ public class followController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int postNo = Integer.parseInt(request.getParameter("pno"));
-
-		StylePost sp = new StyleService().selectPost(postNo);
-			
-		ArrayList<PostImg> list = new StyleService().selectImgList(postNo);
 		
-		request.setAttribute("sp", sp);
-		request.setAttribute("list", list);
+		
+		ArrayList<StylePost> list = new StyleService().selectPostImgList();
+		ArrayList<ArrayList<PostImg>> list2 = new StyleService().selectPostImgList2();
+		
+		
+		request.setAttribute("list",list);
+		request.setAttribute("list2", list2);
+		
+		
+		
 		
 		request.getRequestDispatcher("views/style/followPage.jsp").forward(request, response);
 		
