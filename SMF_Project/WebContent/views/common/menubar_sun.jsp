@@ -7,6 +7,8 @@
 Member loginUser = (Member) session.getAttribute("loginUser");
 // 로그인 전 : null값이 담김
 // 로그인 후 : 로그인한 회원의 Member객체
+
+char weather = 's';
 %>
 <!DOCTYPE html>
 <html>
@@ -31,9 +33,19 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
+<% if(weather == 's') { %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
 	type="text/css">
+<% } else if(weather == 'r') { %>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/rain.css"
+	type="text/css">
+<% } else if(weather == 'n') { %>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/snow.css"
+	type="text/css">
+<% } %>
 <style>
 .header {
 	position: fixed;
@@ -136,6 +148,14 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/modal.js"></script>
+
+	<% if(weather == 'r') { %>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/views/main/js/rain.js"></script>
+	<% } else if(weather == 'n') { %>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/views/main/js/snow.js"></script>
+	<% } %>
 
 
 </body>

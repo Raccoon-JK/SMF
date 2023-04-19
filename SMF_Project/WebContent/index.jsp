@@ -48,12 +48,10 @@
 }
 </style>
 <body>
-
 	<div class="Openning">
 		<jsp:include page="/views/main/OpeningPage.jsp" />
 	</div>
-
-	<jsp:include page="/views/common/menubar_sun.jsp" />
+	<jsp:include page="/views/main/menubar_sun.jsp" />
 
 	<!-- Swiper -->
 	<div class="swiper first">
