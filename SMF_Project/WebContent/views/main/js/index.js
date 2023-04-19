@@ -3,6 +3,65 @@
  */
 
 /**
+ * 오프닝 js
+ */
+
+$('.opening_button').click(function() {
+	$(".Openning").attr("hidden", true);
+});
+
+var video = document.getElementById("myVideo");
+$(document).ready(function() {
+	video.play();
+});
+
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ')
+			c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0)
+			return c.substring(nameEQ.length, c.length);
+	}
+	return null;
+}
+
+var closeBtn = document.getElementById("closeBtn");
+var dontShowAgain = document.getElementById("dontShowAgain");
+
+closeBtn.onclick = function() {
+	$(".Openning").attr("hidden", true);
+}
+
+dontShowAgain.onclick = function() {
+	setCookie("dontShowAgain", "true", 1); // 1 day expiration
+	$(".Openning").attr("hidden", true);
+}
+
+$(document).ready(function() {
+    var dontShowAgain = getCookie("dontShowAgain");
+    if (dontShowAgain) {
+        $(".Openning").attr("hidden", true);
+    } else {
+        var video = document.getElementById("myVideo");
+        video.play();
+    }
+});
+
+
+/**
  * Swiper 1
  */
 

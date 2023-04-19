@@ -1,6 +1,15 @@
+<%@ page import="com.smf.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
 
+Member loginUser = (Member) session.getAttribute("loginUser");
+// 로그인 전 : null값이 담김
+// 로그인 후 : 로그인한 회원의 Member객체
+
+String weather = "rain";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,9 +33,23 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
-	type="text/css">
+<c:choose>
+	<c:when test="${weather eq 'sun'}">
+		<link rel="stylesheet"
+			href="${pageContext.request.contextPath}/views/main/css/sunny.css"
+			type="text/css">
+	</c:when>
+	<c:when test="${weather eq 'rain'}">
+		<link rel="stylesheet"
+			href="${pageContext.request.contextPath}/views/main/css/rain.css"
+			type="text/css">
+	</c:when>
+	<c:when test="${weather eq 'snow'}">
+		<link rel="stylesheet"
+			href="${pageContext.request.contextPath}/views/main/css/snow.css"
+			type="text/css">
+	</c:when>
+</c:choose>
 <style>
 .header {
 	position: fixed;
@@ -78,12 +101,24 @@
 					<ul class="top_list">
 						<li class="top_item"><a href="">고객센터</a></li>
 						<li class="top_item"><a href="">관심상품</a></li>
-						<li class="top_item"><a href="">로그인</a></li>
+						<%
+							if (loginUser == null) {
+						%>
+						<li class="top_item"><a
+							href="${pageContext.request.contextPath}/login.page">로그인</a></li>
+						<%
+							} else {
+						%>
+						<li class="top_item"><a
+							href="${pageContext.request.contextPath}/logout.me">로그아웃</a></li>
 						<li><button class="view_more" type="button">
 								<img id="alarm"
 									src="${pageContext.request.contextPath}/resources/main/bell_icon.png">
 								<div class="red-dot" hidden></div>
 							</button></li>
+						<%
+							}
+						%>
 					</ul>
 				</div>
 			</div>
@@ -107,7 +142,7 @@
 			<div class="tab_area">
 				<ul>
 					<li><a href=""><span>HOME</span></a></li>
-					<li><a href=""><span>STYLE</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/styleList.st"><span>STYLE</span></a></li>
 					<li><a href=""><span>SHOP</span></a></li>
 					<li><a href=""><span>기획전</span></a></li>
 				</ul>
@@ -117,7 +152,18 @@
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/modal.js"></script>
-
+	<c:choose>
+		<c:when test="${weather eq 'rain'}">
+			<link rel="stylesheet"
+				href="${pageContext.request.contextPath}/views/main/js/rain.js"
+				type="text/css">
+		</c:when>
+		<c:when test="${weather eq 'snow'}">
+			<link rel="stylesheet"
+				href="${pageContext.request.contextPath}/views/main/js/snow.js"
+				type="text/css">
+		</c:when>
+	</c:choose>
 
 </body>
 </html>
