@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	
+	<entry key="selectListCount">
+		SELECT COUNT (*) AS COUNT
+		FROM PRODUCT
+		WHERE STATUS = 'Y'
+	</entry>
 	<entry key="selectSubCategory">
 		SELECT *
 		FROM CATEGORY_SUB
@@ -77,7 +81,10 @@
 	</entry>
 	
 	<entry key="selectProductAll">
-		SELECT PI.IMG_PATH, PI.IMG_NAME, P.PRODUCT_NAME,
+		SELECT *
+		FROM(
+			SELECT ROWNUM RNUM, A.*
+			FROM(SELECT PI.IMG_PATH, PI.IMG_NAME, P.PRODUCT_NAME,
 		BRAND_NAME, P.COMPANY_PRICE, COUNT(PPT.ORDER_NO) AS PPT_COUNT,
 		COUNT(WL.PRODUCT_NAME) AS WISHLIST_COUNT
 		FROM PRODUCT_IMG PI JOIN
@@ -93,7 +100,9 @@
 		PI.IMG_NAME LIKE '%_1.png'
 		AND P.STATUS = 'Y'
 		GROUP BY PI.IMG_PATH,
-		PI.IMG_NAME, P.PRODUCT_NAME, BRAND_NAME, P.COMPANY_PRICE
+		PI.IMG_NAME, P.PRODUCT_NAME, BRAND_NAME, P.COMPANY_PRICE) A
+			)
+		WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectProduct">
@@ -180,7 +189,10 @@
 	</entry>
 	
 	<entry key="selectNcategory">
-		SELECT PI.IMG_PATH, PI.IMG_NAME, P.PRODUCT_NAME,
+		SELECT *
+		FROM(SELECT ROWNUM RNUM, A.*
+			FROM(
+			SELECT PI.IMG_PATH, PI.IMG_NAME, P.PRODUCT_NAME,
 		BRAND_NAME, P.COMPANY_PRICE, COUNT(PPT.ORDER_NO) AS PPT_COUNT,
 		COUNT(WL.PRODUCT_NAME) AS WISHLIST_COUNT
 		FROM PRODUCT_IMG PI JOIN
@@ -203,7 +215,8 @@
             WHERE P_CATEGORY_NAME = ?
             )
 		GROUP BY PI.IMG_PATH,
-		PI.IMG_NAME, P.PRODUCT_NAME, BRAND_NAME, P.COMPANY_PRICE
+		PI.IMG_NAME, P.PRODUCT_NAME, BRAND_NAME, P.COMPANY_PRICE) A )
+		WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectBcategory">

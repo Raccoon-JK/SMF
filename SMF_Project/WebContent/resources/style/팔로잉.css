@@ -15,51 +15,6 @@ ul{
   list-style: none;
 }
 
-header {
-  border-bottom: 1px solid #f0f0f0;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  
-}
-.headerwrap {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
-}
-
-.headertop {
-  margin-bottom: 10px;
-  height: 80px;
-  font-size: 12px;
-}
-
-.headertop ul a {
-  margin-right: 20px;
-}
-
-.headertop ul {
-  display: flex;
-  float: right;
-  list-style: none;
-  height: 100px;
-}
-
-.headerbottom {
-  font-size: 16px;
-  padding-bottom: 10px;
-}
-
-.headerbottom span {
-  margin-right: 10px;
-}
-
-.headerbottom a:hover {
-  border-bottom: solid 3px black;
-}
 
 
 
@@ -172,18 +127,19 @@ span {
 /* 피드 버튼 */
 .fc-btn {
   display: flex;
-  margin-left: 18px;
+  padding-left: 10px;
+  padding-right: 550px;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
 .btn-bind {
-  margin-right: 560px;
+  margin-right: 550px;
+  display : flex;
 }
 
-.btn-bind .btn-like{
-  width: 50px;
-  height: 50px;
+.btn-bind a{
+	margin-right: 10px;
 }
 
 
@@ -200,14 +156,13 @@ span {
 .tag-link {
   display: flex;
   justify-content: center;
+  text-align: left;
   margin-top: 30px;
-  margin-right: 400px;
+  margin-right: 600px;
+  margin-bottom: 30px;
 }
 
-.tag-link a {
-  text-decoration: none;
-  color: #297dcb;
-}
+
 .fc-comment {
   margin-top: 10px;
   width: 100%;
@@ -390,7 +345,7 @@ span {
 
 .swiper-slide img {
   display: block;
-  height: 700px;
+  height: 600px;
   width: 100%;
   overflow: hidden;
   margin-left: auto;
@@ -399,6 +354,7 @@ span {
 }
 
 .swiper-button-next, .swiper-button-prev{
+	
   color: gray;
 }
 
