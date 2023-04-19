@@ -45,6 +45,8 @@ public class ProductDetailController extends HttpServlet {
 		ArrayList<Product_Img> list = new ShopService().selectProduct_Img(productName);
 		WishList wl = new ShopService().selectWishList(productName);
 		
+		
+		
 		String brand = p.getBrandName();
 		
 		ArrayList<ProductAll> list2 = new ShopService().selectProductBrandProduct(brand);

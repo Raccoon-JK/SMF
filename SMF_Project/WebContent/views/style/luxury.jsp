@@ -1,49 +1,22 @@
+<%@ page import = "com.smf.member.model.vo.*"  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+	Member loginUser = (Member) session.getAttribute("loginUser");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KREAM 카테고리</title>
+<title>구해줘 패션</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="resources/style/카테고리.css" />
   </head>
   <body>
-    <header>
-      <div class="headerwrap">
-        <div class="headertop">
-          <ul>
-            <li>
-              <a href="">고객센터</a>
-            </li>
-            <li>
-              <a href="">관심상품</a>
-            </li>
-            <li>
-              <a href="">로그인</a>
-            </li>
-          </ul>
-        </div>
-        <div class="headermain">
-          <div class="hm-logo"></div>
-          <div class="hm-menu"></div>
-        </div>
-        <div class="headerbottom">
-          <a href="<%= contextPath %>/follow.me"><span>팔로잉</span></a>
-          <a href="<%= contextPath %>"><span>발견</span></a>
-          <a href="<%= contextPath %>/snekers.do"><span>스니커즈</span></a>
-          <a href="<%= contextPath %>/luxury.do"><span>럭셔리</span></a>
-          <a href="<%= contextPath %>/clothes.do"><span>의류</span></a>
-          <a href="<%= contextPath %>/bag.do"><span>가방</span></a>
-          <a href="<%= contextPath %>/accessory.do"><span>악세서리</span></a>
-        </div>
-      </div>
-      
-    </header>
+     <jsp:include page="/views/main/menubar_style.jsp" />
 
     <content>
       <div class="ct-btncontainer">
@@ -62,7 +35,11 @@
         
       
         <div class="ct-sort">
-          <a href="<%= contextPath %>/styleInsert.me" class="style-insert">#스타일 등록</a>
+           <% if(loginUser != null){ %>
+          <a href="<%= contextPath %>/styleEnroll.st" class="style-insert">#스타일 등록</a>
+	       	<% } else {%>
+	       	  <a href="<%= contextPath %>/login.page" class="style-insert">#스타일 등록</a>
+	       	<% } %>
           <ul>
             <li>
               <a href="" style="font-weight: bold;">날짜별</a>

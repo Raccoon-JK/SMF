@@ -89,7 +89,7 @@ $('#more').click(function() {
 
 
 /**
- * 스타일 스와이퍼... 이거 되나?
+ * 스타일 스와이퍼
  */
 
 $(document).ready(function() {
@@ -111,4 +111,33 @@ $(document).ready(function() {
 		})
 });
 
+
+/**
+ * 알림 기능
+ */
+
+$(document).ready(function() {
+	$.get("/SMF_Project/Notice.no")
+		.done((data) => {
+			if (data.length > 0) {
+				data.forEach((a, i) => {
+					var template = `<tr class="alarm-row"><td class="cell-padding">${data[i].title}</td></tr>`;
+					$(".alarm-list").append(template);
+					$(".red-dot").removeAttr("hidden");
+				});
+			} else {
+				// 데이터가 없는 경우
+				$(".no-alarm").removeAttr("hidden");
+			}
+		})
+		.fail(() => {
+			// 데이터를 받아오지 못한 경우
+			$(".no-alarm").removeAttr("hidden");
+		});
+});
+
+
+$('.view_more').click(function() {
+	$(".red-dot").attr("hidden", true);
+});
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class accessoryController
  */
-@WebServlet("/accessory.do")
+@WebServlet("/accessory.st")
 public class accessoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
