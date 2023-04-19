@@ -141,8 +141,6 @@ input, textarea {
 
 .input_error { display: none;}
 
-
-
 .login_btn_box { padding-top: 4.5rem;}
 
 .login_btn_box .btn+.btn { margin-top: .8rem;}

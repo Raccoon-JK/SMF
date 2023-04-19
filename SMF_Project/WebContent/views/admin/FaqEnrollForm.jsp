@@ -17,31 +17,14 @@
 		width : 100%;
 		box-sizing : border-box;
 	}
-.faqenrollformall{
-	padding: 200px 300px 300px 300px;		
-}
 
-.faq_title{
-	 border-bottom: .3rem solid black;
-}
-
-.faqenrollsub{
-padding-top : 40px;
-
-
-}
 </style>
 <body>
 	<div class="outer">
-			<jsp:include page="/views/common/menubar.jsp"></jsp:include>
 			<jsp:include page="adminform.jsp"></jsp:include>
 		<br>
-	<div class="faqenrollformall">
-		<div class="faq_title">
 		<h2 align="center">FAQ 작성하기</h2>
-		</div>
-		
-		<div class="faqenrollsub">
+		<br>
 		<form id="enroll-form" action="<%=contextPath%>/faqinsert.no" method="post">
 			<table align="center">
 				<tr>
@@ -66,13 +49,10 @@ padding-top : 40px;
 			</table>
 			<br><br>
 			<div align="center">
-				<button type="submit"class="btn btn-primary">등록</button>
-				<button type="button" class="btn btn-warning" onclick="history.back();" >뒤로가기</button>				
+				<button type="submit">등록</button>
+				<button type="button" onclick="history.back();" >뒤로가기</button>				
 			</div>
 		</form>
-		</div>
-		</div>
-			<jsp:include page="/views/common/footer.jsp"></jsp:include>
 	 </div>
 	
 	

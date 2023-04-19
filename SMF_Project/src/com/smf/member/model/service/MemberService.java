@@ -84,12 +84,9 @@ public class MemberService {
 			
 			ArrayList<Member> list = new MemberDao().selectMemberList(conn);
 			
-		
 			JDBCTemplate.close(conn);
 			
 			return list;
-			
-			
 			
 			
 		}

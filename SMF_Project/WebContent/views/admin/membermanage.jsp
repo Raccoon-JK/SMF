@@ -24,7 +24,11 @@
 <title>Insert title here</title>
 </head>
 <style>
-
+    div {
+        box-sizing: border-box;
+        border : 1px solid blue;
+    }                   
+    
     .wrap { 
     position: relative;
     padding-top: 10rem;
@@ -88,35 +92,27 @@
     table{
         max-width: 1280px;
     }
-    .membermanagetitle{
-    	border-bottom: .3rem solid black;
-    }
-	.membermanage_all{
-	padding: 200px, 300px, 300px, 300px;
-	}
-	
-	.membermanagetable{
-		padding : 70px 0px;
-	}
-	
-	.leftcolor{
-	 border-left: 5px solid #369;
-	 }
+
     
 </style>
 <body>
-<jsp:include page="/views/common/menubar.jsp"></jsp:include>
  <jsp:include page="adminform.jsp"></jsp:include>
- 
     <div class="wrap">
-    		
-   <div class="membermanage_all">
+   
         <div class= "content lg">
                     <div class="content_title border">
-                        <div class="membermanagetitle">
-                            <h2 align="center">회원정보 조회</h2>
+                        <div class="title">
+                            
+                            <h2>회원정보 조회</h2>
+                           
+                            <div class="test">
+                                <input type="button" value="수정하기">
+                                <input type="button" value="삭제하기">
+                            </div>
                         </div>      
-
+                      
+                        
+                          
                     </div>
                 
               
@@ -124,12 +120,12 @@
                     
                         <div class="content">
                           
-                         <div class="membermanagetable">
+                         
                             <div class="tabletest">
                             <table border="1">
                               <thead>
                                 <tr>
-                                  <th class="leftcolor"width="100">등록일</th>
+                                  <th width="100">등록일</th>
                                   <th>이름</th>
                                   <th>이메일</th>
                                   <th>휴대폰</th>
@@ -145,7 +141,7 @@
                               	<%}else {%> 
                               	<% for (Member m : list){ %>
                               		<tr>
-                              			<td class="leftcolor"><%= m.getEnrollDate() %></td>
+                              			<td><%= m.getEnrollDate() %></td>
                               			<td><%= m.getUserName() %></td>
                               			<td><%= m.getUserId() %></td>
                               			<td><%= m.getPhone()%></td>
@@ -160,19 +156,21 @@
                               </tbody>
                             </table>
                             </div>
-                            </div>
                         </div>
                     
                
                 <div class="btn_list">
-                    <a href="" class="btn btn-success ">목록보기</a>
+                    <a href="" class="btn outlinegreymedium">목록보기</a>
                 </div>
 
             </div>
 
-           
-            </div>
-             <jsp:include page="/views/common/footer.jsp"></jsp:include>
+
+
+
+            
+            
+            
         </div>
     
     

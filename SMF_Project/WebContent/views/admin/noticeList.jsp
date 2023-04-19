@@ -21,11 +21,10 @@
 
 <style>
 	.notice_all{
-	padding: 200px 300px 300px 300px;	
+	padding: 300px;	
 	}
 	.notice_title{
 		 border-bottom: .3rem solid black;
-	
 	}
 
 	.list-area{
@@ -40,18 +39,14 @@
 	.leftcolor{
 	 border-left: 5px solid #369;
 	 }
-	 
-	 .noticetable{
-	 	padding : 70px 0px;
-	 }
 </style>
 </head>
 
 <body>
 	
 	<div class="outer">
-			<jsp:include page="/views/common/menubar.jsp"></jsp:include>
 			<jsp:include page="/views/admin/adminform.jsp"></jsp:include>
+			
 		<div class="notice_all">
 	<div class= "notice_title">
 		<h2 align="center"> 공지사항 리스트</h2>
@@ -60,18 +55,16 @@
 		<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
 			<div align= "right" style="width:800px;">
 			
-				<a href="<%= contextPath %>/enrollform.no" class="btn btn-success">글작성</a>
+				<a href="<%= contextPath %>/enrollform.no" class="btn btn-secondary">글작성</a>
 				
 			</div>	
 		<%} %>
-		
-		<div class="noticetable">
 		<table border ="1" class="list-area" align="center" >
 			<thead>
 				<tr>
-					<th class="leftcolor"> 번호</th>
-					<th width="100"> 카테고리</th>
-					<th width="400"> 제목</th>
+					<th class="leftcolor">글번호 </th>
+					<th width="100">글 카테고리</th>
+					<th width="400">글 제목</th>
 					<th width="100">작성일 </th>
 					
 					
@@ -87,8 +80,8 @@
 				<%} else { %>
 				<% for(Notice n : list) { %>
 					<tr onclick="moveNotice(<%=n.getAlertNo()%>)">
-						<td class="leftcolor"><%=n.getAlertNo()%></td>
-						<td ><%= n.getAlertCategory() %> </td>
+						<td class="leftcolor"><%= n.getAlertNo() %></td>
+						<td><%= n.getAlertCategory() %> </td>
 						<td><%= n.getAlertTitle() %> </td>
 						<td><%= n.getCreateDate() %> </td>
 					</tr>
@@ -96,7 +89,6 @@
 			<% } %>
 			</tbody>
 		</table>
-		</div>
 		</div>
 		<jsp:include page="/views/common/footer.jsp"></jsp:include>
 	</div>

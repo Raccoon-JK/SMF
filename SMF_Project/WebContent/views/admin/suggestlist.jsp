@@ -30,34 +30,14 @@
 		background: gray;
 		cursor:pointer;
 	}
-	
-	.suggestlistall{
-		padding: 200px 300px 300px 300px;
-	}
-	.sell_title{
-		text-align: center;
-		padding: 20px;
-		border-bottom: .3rem solid black;
-	}
-	
-	.sellsuggesttable{
-		padding: 70px 0px;
-	}
-	
-	.leftcolor{
-	 border-left: 5px solid #369;
-	 }
-	
 </style>
 </head>
 
 <body>
 	
 	<div class="outer">
-	<jsp:include page="/views/common/menubar.jsp"></jsp:include>
 	<jsp:include page="adminform.jsp"></jsp:include>
-	<div class="suggestlistall">
-		<h2 class="sell_title"> 판매 제안서 목록</h2>
+		<h2 align="center"> 판매 제안서 목록</h2>
 		
 		
 		<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
@@ -66,11 +46,10 @@
 				
 			</div>	
 		<%} %>
-		<div class="sellsuggesttable">
 		<table border ="1" class="list-area" align="center" >
 			<thead>
 				<tr>
-					<th width="100" class="leftcolor">글번호 </th>
+					<th>글번호 </th>
 					<th width="120">판매제안서 목록 </th>
 					<th width="400">판매제안서 상품이름</th>
 					<th width="100">작성자 </th>
@@ -90,7 +69,7 @@
 				<%} else { %>
 				<% for(Stock s : list) { %>
 					<tr onclick="moveNotice(<%=s.getStockNo()%>)">
-						<td class="leftcolor"><%= s.getStockNo() %> </td>
+						<td><%= s.getStockNo() %> </td>
 						<td> 판매제안서 목록 </td>
 						<td><%= s.getProductName() %> </td>
 						<td><%= s.getUserId() %> </td>
@@ -104,10 +83,6 @@
 			<% } %>
 			</tbody>
 		</table>
-		</div>
-		</div>
-		
-				<jsp:include page="/views/common/footer.jsp"></jsp:include>
 	</div>
 	<script>
 	function moveNotice(nno){

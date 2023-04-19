@@ -208,18 +208,13 @@ public class MemberDao {
 						);
 				
 				list.add(m);
-				
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-			
 		}finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
-		
 		}
-		
-		
 		return list;
 		
 		
