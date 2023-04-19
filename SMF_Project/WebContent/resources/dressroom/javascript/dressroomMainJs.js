@@ -88,10 +88,10 @@ function makeDragEvent() {
 
 function makeCopyDragEvent() {
 	let leftboxes = document.querySelectorAll('.leftbox');
-	const rightboxes = document.querySelectorAll('.rightbox');
-
-	rightboxes.forEach((rightbox) => {
-		const images = rightbox.querySelectorAll('.itemObject');
+	const rightboxes = document.querySelectorAll('.rightboxSelectList');
+	
+	rightboxes.forEach((rightboxSelectList) => {
+		const images = rightboxSelectList.querySelectorAll('.itemObject');
 		images.forEach((image) => {
 			image.addEventListener('dragstart', startDrag, false);
 		});
