@@ -2,7 +2,7 @@ package com.smf.main.model.dao;
 
 import static com.smf.common.JDBCTemplate.*;
 
-import com.smf.main.model.vo.MainStyle;
+import com.smf.main.model.vo.MainNotice;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
-public class MainStyleDao {
+public class MainNoticeDao {
 	private Properties prop = new Properties();
 
-	public MainStyleDao() {
+	public MainNoticeDao() {
 		try {
 			prop.loadFromXML(new FileInputStream(
-					MainStyleDao.class.getResource("/sql/main/style/main-style-mapper.xml").getPath()));
+					MainNoticeDao.class.getResource("/sql/main/notice/main-notice-mapper.xml").getPath()));
 		} catch (InvalidPropertiesFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -33,27 +33,24 @@ public class MainStyleDao {
 		}
 	}
 
-	public ArrayList<MainStyle> getStyle(Connection conn) {
-		ArrayList<MainStyle> styleList = new ArrayList<>();
+	public ArrayList<MainNotice> getNotice(Connection conn) {
+		ArrayList<MainNotice> noticeList = new ArrayList<>();
 
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
 
-		String sql = prop.getProperty("getStyle");
+		String sql = prop.getProperty("getNotice");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				MainStyle style = new MainStyle();
-				style.setSnsId(rset.getString("SNS_ID"));
-				style.setUserImage(rset.getString("USER_IMAGE"));
-				style.setImgPath(rset.getString("IMG_PATH"));
-				style.setImgName(rset.getString("IMG_NAME"));
-				
-				styleList.add(style);
+				MainNotice notice = new MainNotice();
+				notice.setAlertTitle(rset.getString("ALERT_TITLE"));
+
+				noticeList.add(notice);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -61,6 +58,7 @@ public class MainStyleDao {
 			close(rset);
 			close(pstmt);
 		}
-		return styleList;
+		return noticeList;
 	}
+	
 }
