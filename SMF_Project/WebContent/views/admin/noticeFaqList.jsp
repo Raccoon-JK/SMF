@@ -25,13 +25,7 @@
 
 <style>
 
-div {
-    box-sizing: border-box;
-    border: 1px solid red; 
- }
- .wrap {
- 	
- }
+
 
 
 .layout{
@@ -41,16 +35,16 @@ div {
 h2{
 	margin: 0;
 	padding: 50px;
-	text-align: center;
+	
 }
 .qna{
     list-style: none;
     margin: 0;
-    padding: 0 0 0 100px;
+    padding: 50px;
     
 }
 .qna > li{
-  padding: 10px 0;
+  padding: 0;
   box-sizing: border-box;
 }
 .qna > li:nth-child(n+2){ /* 아이템 구분 점선 */
@@ -98,6 +92,13 @@ h2{
 
 .noticefaq_title{
 	border-bottom: .3rem solid black;
+	text-align: center;
+}
+
+.faqlistall{
+	
+	align: center;
+	padding: 200px 300px 300px 300px;
 }
 </style>
 </head>
@@ -105,16 +106,20 @@ h2{
 <body>
 	
 	<body>
+	<jsp:include page="/views/common/menubar.jsp"></jsp:include>
 	<jsp:include page="adminform.jsp"></jsp:include>
 	<div id="wrap">
+	<div class="faqlistall">
+		
 		<div class="noticefaq_title">
+	
 		<h2>FAQ 자주묻는 질문</h2>
 		</div>
 		
 			<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
-			<div align= "right" style="width:800px;">
+			<div align= "right" style="width:900px;">
 				
-				<a href="<%= contextPath %>/faqenrollform.no" class="btn btn-secondary">글작성</a>
+				<a href="<%= contextPath %>/faqenrollform.no" class="btn btn-success">글작성</a>
 				
 			</div>	
 		<%} %>
@@ -133,9 +138,14 @@ h2{
                 
                 </p>
             </div>
-        </li>
+        </li> 
     </ul>
+    
     <%} %>
+    
+    		
+		</div>    
+		<jsp:include page="/views/common/footer.jsp"></jsp:include>
     </div>
 	<script>
 	 const msg = "<%= alertMsg %>";
