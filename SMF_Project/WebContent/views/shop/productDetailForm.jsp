@@ -656,8 +656,11 @@
 						 stockNo: stockNo
 				},
 	             success: function(data) {
-	            	 location.href = '${ pageContext.request.contextPath }/sCart.sh';
+	            	 location.href = '${ pageContext.request.contextPath }/mypageshoppingcart.me';
 	             },
+	             error: function(data) {
+	            	 location.href = '${ pageContext.request.contextPath }/mypageshoppingcart.me';
+	             }
 	         });
 	    });
 		    

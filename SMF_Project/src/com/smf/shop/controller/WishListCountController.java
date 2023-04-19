@@ -37,10 +37,12 @@ public class WishListCountController extends HttpServlet {
 		int result = new ShopService().insertWishList(productName, userId);
 		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath());
+//			response.sendRedirect(request.getContextPath());
+			response.sendRedirect("http://localhost:8080/SMF_Project/productDetail.sh?productName="+productName);
 			
 		}else {
-			
+			int result2 = new ShopService().deleteWishList(productName, userId);
+			response.sendRedirect("http://localhost:8080/SMF_Project/productDetail.sh?productName="+productName);
 		}
 		
 	}

@@ -1,7 +1,10 @@
 package com.smf.shop.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.smf.common.model.vo.PageInfo;
 import com.smf.shop.model.service.ShopService;
 import com.smf.shop.model.vo.ProductAll;
@@ -62,16 +67,25 @@ public class NaviCategoryController extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		
 		String category = request.getParameter("category");
 		
 		ArrayList<ProductAll> list = new ShopService().selectNcategory(category, pi);
+//		ArrayList<ProductAll> list2 = new ShopService().selectNcategoryAll(category);
 		
-		response.setContentType("apllication/json; charset=UTF-8");
+		System.out.println(pi);
+		System.out.println(list);
 		
-		//System.out.println(list);
 		
-		new Gson().toJson(list, response.getWriter());
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pi", pi);
+		map.put("list", list);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		new Gson().toJson(map, response.getWriter());
+
 	}
 
 	/**
