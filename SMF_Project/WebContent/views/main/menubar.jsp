@@ -32,7 +32,7 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/main/css/rain.css"
+	href="${pageContext.request.contextPath}/views/main/css/cloud.css"
 	type="text/css">
 <style>
 .header {
@@ -54,6 +54,14 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 </style>
 </head>
 <body>
+	<div id="clouds">
+		<div class="cloud x1"></div>
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+	</div>
+
 	<div class="modal">
 		<div class="frame">
 			<div class="deco"></div>
@@ -66,7 +74,6 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 			</div>
 		</div>
 	</div>
-
 	<div class="header">
 		<div class="header_box">
 			<div class="header_top">
