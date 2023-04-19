@@ -12,6 +12,8 @@
 
 .top_list li {
 	margin-left: 24px;
+	list-style: none;
+	float: left;
 }
 
 .top_inner {
@@ -45,11 +47,6 @@
 	margin-right: 27px;
 }
 
-ul li {
-	list-style: none;
-	float: left;
-}
-
 .main_inner {
 	padding: 20px 40px;
 	height: 64px;
@@ -69,6 +66,8 @@ ul li {
 
 .gnb_list li {
 	margin-left: 40px;
+	list-style: none;
+	float: left;
 }
 
 .header a {
@@ -76,7 +75,7 @@ ul li {
 	color: inherit;
 }
 
-#search {
+#searchBtn {
 	width: 16px;
 	margin-bottom: 3px;
 }

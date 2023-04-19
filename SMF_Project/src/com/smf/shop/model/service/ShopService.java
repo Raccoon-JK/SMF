@@ -367,4 +367,15 @@ public class ShopService {
 		
 		return result;
 	}
+	
+	public ArrayList<ProductAll> searchPname(String text) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().searchPname(conn, text);
+		
+		close(conn);
+		
+		return list;
+	}
 }

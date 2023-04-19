@@ -60,12 +60,13 @@
 </style>
 
 <body>
-    <div id="navibar"></div>
-<%--     <jsp:include page="/views/main/menubar_shop.jsp" /> --%>
+    <div id="navibar">
+	    <jsp:include page="/views/main/menubar_shop.jsp" />
+    </div>
     <div>
         <div id="searchbox">
             <div id="search">
-                <input id="searchMain" type="text" placeholder="브랜드, 모델명, 모델번호 등" onfocus="this.placeholder = ''" onblur="this.placeholder = '브랜드, 모델명, 모델번호 등'">
+                <input id="searchMain" type="text" placeholder="모델명 검색" onfocus="this.placeholder = ''" onblur="this.placeholder = '모델명 검색'">
                 <img src="<%= contextPath %>/resources/shop/symbols/x.png" id="deleteBtn">
             </div>
         </div>
@@ -428,7 +429,7 @@
             </aside>
             <div id="mainContent">
                 <div id="showFilter">
-                    <div>상품</div> <!-- 총 상품 개수 -->
+<!--                     <div>상품</div> 총 상품 개수 -->
                     <div align="center" class="pagin-area" style="display:none">
 						<a href="${ pageContext.request.contextPath }/main.sh?currentPage=${ pi.currentPage - 1 }" class="prevPage">&lt;</a>
 						<a href="${ pageContext.request.contextPath }/main.sh?currentPage=${ pi.currentPage + 1 }" class="nextPage">&gt;</a>
@@ -470,6 +471,9 @@
             </div>
         </div>
     </div>
+    <div id="footerBarrr">
+    	<jsp:include page="/views/main/footer.jsp" />
+    </div>
     <script>
     
 
@@ -479,6 +483,8 @@
         });
 
         $('.categoryLi').click(function() {
+        	//$('.filterText').prop("checked", false);
+        	$('input[type="checkbox"]').prop('checked', false);
             $('.categoryLi').removeClass('tab');
             $(this).addClass('tab');
         });
@@ -503,7 +509,7 @@
                 }
             });
         });
-
+		
         $('.filterCheckDiv').each(function(index, e) {
             $(e).change(function(){
                 if($(this).children().is(":checked")) {
@@ -513,7 +519,14 @@
                 }
             });            
         });
-
+        
+        $('input[type="checkbox"]').each(function(index, item){
+            $(item).change(function(){
+            	$('.categoryLi').removeClass('tab');
+                $('input[type="checkbox"]').not(this).prop('checked', false);        		
+            });
+        });
+        
         let filterData = {
             sortBy: 'price',
             order: 'asc'
@@ -593,7 +606,7 @@
                 	$('#mainContent').empty();
                 	$('#mainContent').append(
                             '<div id="showFilter">' +
-                                '<div>상품</div>' +
+//                                 '<div>상품</div>' +
                                 '<div align="center" class="pagin-area" style="display:none">' +
             						'<a href="http://localhost:8080${ pageContext.request.contextPath }/nCat.sh?currentPage='+(data.pi.currentPage - 1) + '" class="prevPage">&lt;</a>' +
             						'<a href="http://localhost:8080${ pageContext.request.contextPath }/nCat.sh?currentPage='+(data.pi.currentPage + 1) + '" class="nextPage">&gt;</a>' +
@@ -1123,12 +1136,55 @@
 		 	});
 		});
         
-        $('input[type="checkbox"]').each(function(index, item){
-            $(item).change(function(){
-                $('input[type="checkbox"]').not(this).prop('checked', false);        		
-            });
-        });
-        
+		$('#searchMain').keypress(function(event){
+			  if(event.keyCode === 13){
+				  console.log('11');
+				  $.ajax({
+	                  url: "${ pageContext.request.contextPath }/search.sh",
+	                  dataType: 'json',
+	                  data: { text: $('#searchMain').val() },
+	                  success: function(data) {
+	                	  
+		                	$('#content').empty();
+		                    $('input[type="checkbox"]').prop('checked', false);
+		                    $('.categoryLi').removeClass('tab');
+		                    
+	               	    	for (let i = 0; i < data.length; i++) {
+		               	        $('#content').append(
+		               	            '<div class="postItem">' +
+		               	                '<a href="${ pageContext.request.contextPath }/productDetail.sh?productName=' + data[i].productName + '">' +
+		               	                    '<div>' +
+		               	                        '<img src="${ pageContext.request.contextPath }' + data[i].imgPath + data[i].imgName + '" alt="" class="productImg">' +
+		               	                    '</div>' +
+		               	                    '<div class="productInner">' +
+		               	                        '<div class="productBrand">' + data[i].brandName + '</div>' +
+		               	                        '<div class="productName">' + data[i].productName + '</div>' +
+		               	                        '<div class="productPrice">' + data[i].companyPrice + '원</div>' +
+		               	                    '</div>' +
+		               	                '</a>' +
+		               	                '<div class="productWish">' +
+		               	                    '<div class="interestWish">' +
+		               	                        '<svg width="13" height="15">' +
+		               	                            '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />' +
+		               	                        '</svg>' +
+		               	                        '<div class="wishText">' + data[i].wishListCount + '</div>' +
+		               	                    '</div>' +
+		               	                    '<div class="interestWish">' +
+		               	                        '<svg width="15" height="15">' +
+		               	                            '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />' +
+		               	                            '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>' +
+		               	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
+		               	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
+		               	                        '</svg>' +
+		               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
+		               	                    '</div>' +
+		               	                '</div>' + 
+		               	            '</div>'
+	               	    	)}                
+	                  }
+	             });
+			  }
+			});
 //         $('.menu3 input[type="checkbox"]').each(function(index, item){
 //             $(item).change(function(){
 //                 $('input[type="checkbox"]').not(this).prop('checked', false);        		
