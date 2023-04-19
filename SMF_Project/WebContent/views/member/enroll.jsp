@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="wrap">
+    <jsp:include page="/views/common/menubar.jsp"></jsp:include>
         <div class="container join">
             <!-- 회원가입 영역 -->
             <div class="content lg">
@@ -101,6 +102,7 @@
                     </div>
                 </div>
         </div>
+        <jsp:include page="/views/common/footer.jsp"></jsp:include>
     </div>
     
 

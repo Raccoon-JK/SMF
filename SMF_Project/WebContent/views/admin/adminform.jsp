@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();    
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +12,19 @@
     <title>Document</title>
 </head>
 <style>
-div {
-    box-sizing: border-box;
-    border: 1px solid red; 
+.wrapadmin {
+   box-sizing: border-box;
+    border: 5px solid #ebebeb;
+ }
+ .left-side-bar{
+  box-sizing: border-box;
+    border: 5px solid #ebebeb;
  }
 
-
-
- body, ul{
-    padding: 0;
-    margin: 0;
-    list-style: none;
+.status-ico{
+	box-sizing: border-box;
+    border: 5px solid #ebebeb;
 }
-li{
-    padding :0;
-    margin: 0;
-
-}
-
 a {
     color: black;
     text-decoration: none;
@@ -41,9 +39,6 @@ a {
     background-color:white;
 }
 
-body {
-    height: 10000px;
-}
 
 .left-side-bar {
     background-color: white;
@@ -52,6 +47,7 @@ body {
     position: fixed;
     left: -155px;
     transition: left .3s;
+    z-index: 1550;
 }
 
 .left-side-bar > .status-ico {
@@ -71,7 +67,7 @@ body {
 
 .left-side-bar ul > li > a {
     display: block;
-    padding: 10px;
+    padding: 10px 60px;
     white-space: nowrap;
 }
 
@@ -81,6 +77,7 @@ body {
 
 .left-side-bar ul > li:hover ul {
     display: block;
+  
 }
 
 .left-side-bar ul > li:hover > a {
@@ -101,25 +98,26 @@ body {
 }
 </style>
 <body>
+
     <div class="left-side-bar">
         <div class="status-ico">
             <span>▶</span>
             <span>▼</span>
         </div>
 
-        <ul>
+        <ul class="wrapadmin">
             <li>
                 <a href="#">회원관리</a>
                 <ul>
                     <li><a href="#">신고접수</a></li>
-                    <li><a href="#">회원정보 조회</a></li>
+                    <li><a href="<%=contextPath %>/member.list">회원정보 조회</a></li>
                     <li><a href="#">블랙리스트 관리</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">공지사항</a>
                 <ul>
-                    <li><a href="#">공지사항 등록</a></li>
+                    <li><a href="<%=contextPath%>/list.no">공지사항</a></li>
                 </ul>
             </li>
             <li>
@@ -131,15 +129,15 @@ body {
             <li>
                 <a href="#">고객문의</a>
                 <ul>
-                    <li><a href="#">실시간문의 (채팅)</a></li>
-                    <li><a href="#">FAQ관리</a></li>
-                    <li><a href="#">판매제안서 목록</a></li>
+                    <li><a href="<%=contextPath%>/Faqlist.no">FAQ관리</a></li>
+                    <li><a href="<%=contextPath%>/suggestlist.no">판매제안서 목록</a></li>
                 </ul>
             </li>
             
         </ul>
+        
     </div>
-    
+
 
         
     

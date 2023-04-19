@@ -139,4 +139,32 @@
 		WHERE ALERT_NO = ? AND QLEVEL = 1
 		
 	</entry>
+	
+	
+	<entry key="selectSuggestList">
+		SELECT STOCK_NO,
+		 	   PRODUCT_NAME,
+			   USER_ID,
+			   SUGGEST_DATE,
+			   STATUS
+		FROM STOCK
+		ORDER BY STOCK_NO DESC
+	
+	
+	</entry>
+	
+	<entry key= "selectSuggest">
+		SELECT STOCK_NO,
+			   USER_ID,
+			   PRODUCT_NAME,
+			   PRICE,
+			   STOCK,
+			   P_SIZE,
+			   STATUS,
+			   SUGGEST_DATE
+		FROM STOCK
+		WHERE STOCK_NO = ?
+	</entry>
+	
+	
 </properties>

@@ -16,7 +16,10 @@ public class Member {
 	private Date enrollDate;
 	private String snsId;
 	private int totalPoint;
+	private String address;
 	
+	
+
 	public Member() {
 		super();
 	}
@@ -68,6 +71,19 @@ public class Member {
 		this.totalPoint = totalPoint;
 	}
 	
+	
+	
+	public Member(String userId, String userName, String phone, Date enrollDate, String address, String agreeEmail) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.phone = phone;
+		this.enrollDate = enrollDate;
+		this.address = address;
+		this.agreeEmail = agreeEmail;
+		
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -147,7 +163,14 @@ public class Member {
 	public void setTotalPoint(int totalPoint) {
 		this.totalPoint = totalPoint;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", userName=" + userName + ", userPwd=" + userPwd + ", phone=" + phone

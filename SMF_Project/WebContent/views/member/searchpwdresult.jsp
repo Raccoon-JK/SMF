@@ -17,6 +17,7 @@
 
 <body>
     <div class="wrap">
+    	<jsp:include page="/views/common/menubar.jsp"></jsp:include>
         <div class="container help">
             <div class="content lg">
                 <div class="help_area">
@@ -46,6 +47,7 @@
                 </div>
             </div>
         </div>
+           <jsp:include page="/views/common/footer.jsp"></jsp:include>
     </div>
     
 </body>
