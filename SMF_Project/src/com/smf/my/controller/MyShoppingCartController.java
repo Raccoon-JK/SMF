@@ -32,14 +32,19 @@ public class MyShoppingCartController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		
-		ArrayList<ShoppingCart> list = new MyPageService().shoppingCartList(userId);
-		
-		request.setAttribute("cartList", list);
-		
-		request.getRequestDispatcher("/views/my/mypageShoppingCart.jsp").forward(request, response);
+		if(request.getSession().getAttribute("loginUser") != null) {
+			String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			
+			ArrayList<ShoppingCart> list = new MyPageService().shoppingCartList(userId);
+			
+			request.setAttribute("cartList", list);
+			
+			request.getRequestDispatcher("/views/my/mypageShoppingCart.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			
+			response.sendRedirect(request.getContextPath()+"/login.page");
+		}
 	}
 
 	/**

@@ -12,8 +12,9 @@
     flex-direction: column;
 }
 #mypage_mainBtn{
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
+    margin-bottom: 30px;
 }
 #mypage_menu ul{
     display: flex;
@@ -30,6 +31,10 @@
     margin-top: 13px;
     font-size: 12px;
     border-bottom: 1px solid black;
+}
+#mypage_menu>ul>li:hover{
+    background-color: #ebebeb;
+    border-radius: 5px;
 }
 
 #mypage_content_wrapper{

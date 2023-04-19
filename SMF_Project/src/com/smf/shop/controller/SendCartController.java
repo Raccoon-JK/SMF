@@ -41,17 +41,12 @@ public class SendCartController extends HttpServlet {
 		int result = new ShopService().insertStockNo(userId, pCount, stockNo);
 		
 		if(result > 0) {
+			System.out.println(result);
 			response.sendRedirect(request.getContextPath() + "/mypageshoppingcart.me");
-//			request.getRequestDispatcher("/mypageshoppingcart.me").forward(request, response); 
-			
 		}else {
 			System.out.println("실패");
 		}
-//		response.setContentType("apllication/json; charset=UTF-8");
-//		
-//		System.out.println(s);
-//		
-//		new Gson().toJson(s, response.getWriter());
+
 	}
 
 	/**

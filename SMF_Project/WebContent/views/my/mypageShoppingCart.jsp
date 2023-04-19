@@ -81,12 +81,12 @@
     </div>
     
    	<script>
-		const msg = "${alertMsg}";
+// 		const msg = "${alertMsg}";
 		 
-		 if(msg != ""){
-			alert(msg);
-			<% session.removeAttribute("alertMsg"); %>
-		} 
+// 		 if(msg != ""){
+// 			alert(msg);
+<%-- 			<% session.removeAttribute("alertMsg"); %> --%>
+// 		} 
 	</script>
     <script>
 		function p_totalPrice(){

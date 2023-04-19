@@ -32,7 +32,7 @@ public class MySalesHistoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		if(request.getSession().getAttribute("loginUser") != null) {
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
 		ArrayList<BuySellHistory> sellList = new MyPageService().selectsellList(userId);
@@ -40,6 +40,10 @@ public class MySalesHistoryController extends HttpServlet {
 		request.setAttribute("sellList", sellList);
 		
 		request.getRequestDispatcher("/views/my/mypageSalesHistory.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("alertMsg", "로그인이 필요합니다.");
+			response.sendRedirect(request.getContextPath()+"/login.page");
+		}
 	}
 
 	/**

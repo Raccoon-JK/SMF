@@ -14,7 +14,7 @@ public class ShoppingCart {
 	private int cartCount;
 	private String imgPath;
 	private String imgName;
-	private int status;
+	private String status;
 	
 	public ShoppingCart() {
 		super();
@@ -23,7 +23,7 @@ public class ShoppingCart {
 	
 	public ShoppingCart(String userId, String reseller, int stockNo, int stock, int cartNo, int imgNo,
 			String productName, String brandName, int price, String size, int cartCount, String imgPath,
-			String imgName, int status) {
+			String imgName, String status) {
 		super();
 		this.userId = userId;
 		this.reseller = reseller;
@@ -42,7 +42,7 @@ public class ShoppingCart {
 	}
 
 	public ShoppingCart(String reseller, int stockNo, int cartNo, String productName, String brandName, int price,
-			String size, int cartCount, String imgPath, String imgName, int status) {
+			String size, int cartCount, String imgPath, String imgName, String status) {
 		super();
 		this.reseller = reseller;
 		this.stockNo = stockNo;
@@ -161,11 +161,11 @@ public class ShoppingCart {
 		this.imgName = imgName;
 	}
 	
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
