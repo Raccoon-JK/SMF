@@ -1,13 +1,17 @@
 .address_area{
-    border: 1px solid black;
+    border: 2px solid #ebebeb;
     border-radius: 20px;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
+    padding: 10px 15px 10px 10px;
+    /* background-color: #ebebeb; */
 }
 
 .address_area_right{
-    align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 .address_area>p{
     margin-left: 10px;
@@ -15,7 +19,9 @@
 .address_area>p:not(.addrName){
     font-size: 12px;
 }
-
+.addressBtn_bottom{
+    display: flex;
+}
 #address_wrapper{
     width: 80%;
     margin-left: auto;
@@ -55,4 +61,8 @@
     position: absolute;
     right: 0;
     bottom: 8px;
+}
+
+.mypageBtn{
+    font-size: 15px;
 }

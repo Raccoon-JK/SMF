@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-
+	<!-- 마이 페이지 메인 -->
+	<entry key="selectMypageMainWishList">
+	<![CDATA[
+	        SELECT * FROM(
+            SELECT W.PRODUCT_NAME, P.BRAND_NAME, IMG_PATH, IMG_NAME
+            FROM WISHLIST W
+            JOIN PRODUCT P ON W.PRODUCT_NAME = P.PRODUCT_NAME
+            JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+            WHERE USER_ID = ?  AND  IMG_NAME LIKE '%_1.png'
+            ORDER BY dbms_random.value
+            )
+        WHERE ROWNUM<=4
+    ]]>
+	</entry>
+	
 	<!-- 내 프로필 정보 -->
 	<entry key="myInfoUpdateLoginUser">
 		SELECT * FROM MEMBER WHERE USER_ID = ?
@@ -84,7 +98,7 @@
         LEFT JOIN STOCK ST ON C.STOCK_NO = ST.STOCK_NO
         LEFT JOIN PRODUCT P ON ST.PRODUCT_NAME = P.PRODUCT_NAME
         LEFT JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
-        WHERE C.USER_ID = ? AND ST.STATUS IN(1,2) AND IMG_NAME LIKE '%_1.png'
+        WHERE C.USER_ID = ? AND ST.STATUS IN('Y','X') AND IMG_NAME LIKE '%_1.png'
 	</entry>
 	<entry key="shoppingCartItemDelete">
 		DELETE FROM CART WHERE CART_NO = ?
@@ -97,7 +111,7 @@
         LEFT JOIN STOCK ST ON C.STOCK_NO = ST.STOCK_NO
         LEFT JOIN PRODUCT P ON ST.PRODUCT_NAME = P.PRODUCT_NAME
         LEFT JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
-        WHERE C.USER_ID = ? AND ST.STATUS IN(1,2) AND IMG_NAME LIKE '%_1.png' AND C.CART_NO IN (?)
+        WHERE C.USER_ID = ? AND ST.STATUS IN('Y') AND IMG_NAME LIKE '%_1.png' AND C.CART_NO IN (?)
 	</entry>
 	<entry key="insertOrder">
 		INSERT INTO "ORDER"(ORDER_NO, USER_ID, ADDRESS_NO, TOTAL_AMOUNT, POINT)
@@ -113,6 +127,9 @@
 	</entry>
 	<entry key="updateMemberPoint">
 		UPDATE MEMBER SET TOTAL_POINT = TOTAL_POINT-? WHERE USER_ID = ?
+	</entry>
+		<entry key="updateAddMemberPoint">
+		UPDATE MEMBER SET TOTAL_POINT = TOTAL_POINT+? WHERE USER_ID = ?
 	</entry>
 	
 	<!-- 구매내역 -->
@@ -131,5 +148,23 @@
 	</entry>
 	<entry key="selectOrderListMountCount">
 		SELECT ORDER_NO, ORDER_DATE, TOTAL_AMOUNT, "POINT" FROM "ORDER" WHERE USER_ID = ? AND ORDER_DATE >= ADD_MONTHS(SYSDATE, -?) ORDER BY ORDER_DATE DESC
+	</entry>
+	
+	<!-- 판매내역 -->
+	<entry key="selectsellList">
+        SELECT STOCK_NO, S.PRODUCT_NAME, P.BRAND_NAME, PRICE, STOCK, P_SIZE, S.STATUS, TRADE_COUNT , IMG_PATH, IMG_NAME, SUGGEST_DATE
+        FROM STOCK S
+        JOIN PRODUCT P ON S.PRODUCT_NAME = P.PRODUCT_NAME
+        JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+        WHERE USER_ID = ? AND IMG_NAME LIKE '%_1.png'
+        ORDER BY SUGGEST_DATE DESC
+	</entry>
+	<entry key="selectSellMonthList">
+        SELECT STOCK_NO, S.PRODUCT_NAME, P.BRAND_NAME, PRICE, STOCK, P_SIZE, S.STATUS, TRADE_COUNT , IMG_PATH, IMG_NAME, SUGGEST_DATE
+        FROM STOCK S
+        JOIN PRODUCT P ON S.PRODUCT_NAME = P.PRODUCT_NAME
+        JOIN PRODUCT_IMG PI ON P.PRODUCT_NAME = PI.PRODUCT_NAME
+        WHERE USER_ID = ? AND IMG_NAME LIKE '%_1.png' AND SUGGEST_DATE >= ADD_MONTHS(SYSDATE, -?)
+        ORDER BY SUGGEST_DATE DESC
 	</entry>
 </properties>

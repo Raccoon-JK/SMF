@@ -16,7 +16,7 @@ import com.smf.style.model.vo.StylePost;
 /**
  * Servlet implementation class DetailPageController
  */
-@WebServlet("/detailPost.th")
+@WebServlet("/userDetail.st")
 public class DetailPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,20 +33,23 @@ public class DetailPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int postNo = Integer.parseInt(request.getParameter("pno"));
 		
-		StylePost sp = new StyleService().selectPost(postNo);
-		
-		ArrayList<PostImg> list = new StyleService().selectPostImgList(postNo);
-		
-		request.setAttribute("sp", sp);
-		request.setAttribute("list", list);
-		
-		
-		request.getRequestDispatcher("views/style/userDetailPage.jsp").forward(request,response);
-		
+		int pno = Integer.parseInt(request.getParameter("pno"));// "1" , "2"	, ""	
+	
+			
+			StylePost sp = new StyleService().selectPost(pno);
+			request.setAttribute("sp", sp);
+			
+			//response.sendRedirect("/jspproject"); request에 담겨있떤 데이터가 싹 날라간다.
+			
+			request.getRequestDispatcher("views/style/userDetailPage.jsp").forward(request,response);
+			
 		
 	}
+		
+		
+		
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

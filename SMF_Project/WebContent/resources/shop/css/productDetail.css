@@ -226,7 +226,10 @@ button{
     margin-top: 27px;
 }
 
-
+.mainImgList{
+	background: rgb(246, 238, 237);
+	border-radius: 5px;
+}
 
 .PDIC2_0{
     padding: 42px 100px 0;
@@ -490,4 +493,8 @@ input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+#pCountDiv{
+	display: flex;
 }

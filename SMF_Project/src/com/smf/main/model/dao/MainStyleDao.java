@@ -53,7 +53,6 @@ public class MainStyleDao {
 				style.setImgPath(rset.getString("IMG_PATH"));
 				style.setImgName(rset.getString("IMG_NAME"));
 				
-
 				styleList.add(style);
 			}
 		} catch (SQLException e) {

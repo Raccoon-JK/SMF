@@ -18,6 +18,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/menu.css"
 	type="text/css">
@@ -53,19 +54,7 @@
 				<div>
 					<table class="table-alarm">
 						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
-						</tr>
-						<tr>
-							<td>새로운 알림이 왔습니다.</td>
+							<td id="notification"></td>
 						</tr>
 					</table>
 				</div>

@@ -44,7 +44,7 @@ public class MyAddressListController extends HttpServlet {
 		
 		request.getRequestDispatcher("/views/my/mypageAddress.jsp").forward(request, response);
 		}else {
-			request.getSession().setAttribute("alertMsg","로그인이 필요합니다.");
+			request.getSession().setAttribute("alertMsg", "로그인 후 이용가능합니다.");
 			
 			response.sendRedirect(request.getContextPath()+"/login.page");
 		}

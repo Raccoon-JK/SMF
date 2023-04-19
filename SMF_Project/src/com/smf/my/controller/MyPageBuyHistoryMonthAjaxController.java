@@ -46,7 +46,6 @@ public class MyPageBuyHistoryMonthAjaxController extends HttpServlet {
 		
 		int month = Integer.parseInt(request.getParameter("month"));
 		
-//		ArrayList<BuySellHistory> orderList = new MyPageService().selectOrderListMountCount(userId, month);
 		ArrayList<ArrayList<BuySellHistory>> list = new MyPageService().selectBuyListMountCount(userId, month);
 		
 		response.setContentType("apllication/json; charset=UTF-8");
