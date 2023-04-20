@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+    <jsp:include page="/views/main/menubar_sun.jsp" />
     <h1>배송 / 결제</h1>
     <div id="orderPayment_wrapper">
         <div id="orderPayment_contentArea">

@@ -21,6 +21,7 @@
 }
 .addressBtn_bottom{
     display: flex;
+    justify-content: space-between;
 }
 #address_wrapper{
     width: 80%;
@@ -28,21 +29,33 @@
     margin-right: auto;
     margin-top: 30px;
 }
-
 #addressLine{
 	border-bottom: 2px solid black;
 	margin-top: 15px;
     margin-bottom: 15px;
 }
-
+.addrTop{
+    margin-bottom: 15px;
+}
+.address_area_left>p{
+    margin: 0px;
+}
 .addrName{
+    font-size: 18px;
 	font-weight: bold;
 }
 .address_null>p{
     font-weight: 700;
-
 }
-
+#default_addrText{
+    border-radius: 7px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 600;
+    padding: 3px;
+    font-size: 12px;
+    vertical-align: text-top;
+}
 
 /* 새 주소 추가 모달창 */
 .modal-body input{
@@ -65,4 +78,42 @@
 
 .mypageBtn{
     font-size: 15px;
+}
+
+/* 모달창 수정하기 */
+.modal-content.add-content{
+    border-radius: 10px;
+
+}
+
+.modal-body .inputBox{
+    border: 0px;
+    border-bottom: 2px solid #ebebeb;
+    width: 100%;
+}
+.modal-body .inputBox:focus-visible{
+    outline: none;
+}
+button:focus{
+    outline: none !important;
+}
+
+.modal-body .inputBoxSelect{
+    border-bottom: 2px solid #222;
+    
+}
+.modal-body .inputBoxSelectTitle{
+    color: #222;
+    font-weight: 600;
+
+}
+.modal-title{
+    font-weight: 700;
+}
+.modal-body .postcodeBtn{
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fafafa;
+    font-weight: 600;
 }

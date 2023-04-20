@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/views/common/menubar_sun.jsp" />
+	<jsp:include page="/views/main/menubar_sun.jsp" />
 	<div id="mypage_wrapper">
 		<jsp:include page="mypageMenu.jsp"></jsp:include>
 		<div id="mypage_content_wrapper">
@@ -23,11 +23,11 @@
 			<div id="mypage_content">
 				<div id="accounts_card">
 				<div id="settlement_accounts">
-					<h5>정산 계좌</h5>
+					<h5 class="accountCardTitle" >정산 계좌</h5>
 					<form action="" method="post" id="account_form">
 						<div>
 							<p>은행명</p>
-							<input type="text" class="inputBox" name="bankName" placeholder="은행을 선택하세요" readonly>
+							<input type="text" class="inputBox" name="bankName" placeholder="은행을 입력하세요" readonly>
 						</div>
 						<div>
 							<p>계좌번호</p>
@@ -38,12 +38,12 @@
 							<input type="text" class="inputBox" name="accountHolder" placeholder="예금주명을 정확히 입력하세요" readonly>
 						</div>
 						<div>
-							<button type="button" id="accountBtn"></button>
+							<button type="button" id="accountBtn" class="customBtn"></button>
 						</div>
 					</form>
 				</div>
 					<div id="manage_Card">
-						<h5>카드 관리</h5>
+						<h5 class="accountCardTitle" >카드 관리</h5>
 						<form action="" method="post" id="card_form">
 							<div>
 								<p>카드번호</p>
@@ -62,7 +62,7 @@
 								<input type="text" class="inputBox" name="cvcNo" placeholder="3자리" readonly>
 							</div>
 							<div>
-								<button type="button" id="cardBtn"></button>
+								<button type="button" id="cardBtn" class="customBtn"></button>
 							</div>
 						</form>
 					</div>
@@ -88,6 +88,73 @@
 		cardInput[2].value = MMYY('${card.cardValidity}');
 		cardInput[3].value = '${card.cvc}';
 		
+		function validate(e){
+			let boolVal = true;
+			let regExpName = '';
+			let inputBox = $(e).parents('form')
+			if(inputBox.attr('id') == 'account_form'){
+
+				if(inputBox.find('input[name="bankName"]').val() == ''){
+					alert("은행명이 비어있습니다.")
+					inputBox.find('input[name="bankName"]').click();
+					inputBox.find('input[name="bankName"]').focus();
+
+					boolVal = false;
+				}
+				if(inputBox.find('input[name="accountNo"]').val() == ''){
+					alert("계좌번호가 비어있습니다.")
+					inputBox.find('input[name="accountNo"]').click();
+					inputBox.find('input[name="accountNo"]').focus();
+
+					boolVal = false;
+				}
+				// regExpName = /^\d{11}$/g;
+				// if(!regExpName.test(inputBox.find('input[name="phone"]').val())){
+				// 	alert("휴대폰 번호가 아닙니다.")
+				// 	inputBox.find('input[name="phone"]').click();
+				// 	inputBox.find('input[name="phone"]').focus();
+
+				// 	return false;
+				// }
+				if(inputBox.find('input[name="accountHolder"]').val() == ''){
+					alert("예금주가 비어있습니다.")
+					inputBox.find('input[name="accountHolder"]').click();
+					inputBox.find('input[name="accountHolder"]').focus();
+
+					boolVal = false;
+				}
+			}else{
+				if(inputBox.find('input[name="cardNo"]').val() == ''){
+					alert("카드번호가 비어있습니다.")
+					inputBox.find('input[name="cardNo"]').click();
+					inputBox.find('input[name="cardNo"]').focus();
+
+					boolVal = false;
+				}
+				if(inputBox.find('input[name="cardPwd"]').val() == ''){
+					alert("카드 비밀번호가 비어있습니다.")
+					inputBox.find('input[name="cardPwd"]').click();
+					inputBox.find('input[name="cardPwd"]').focus();
+
+					boolVal = false;
+				}
+				if(inputBox.find('input[name="cardDate"]').val() == ''){
+					alert("카드 유효기간이 비어있습니다.")
+					inputBox.find('input[name="cardDate"]').click();
+					inputBox.find('input[name="cardDate"]').focus();
+
+					boolVal = false;
+				}
+				if(inputBox.find('input[name="cvcNo"]').val() == ''){
+					alert("CVC가 비어있습니다.")
+					inputBox.find('input[name="cvcNo"]').click();
+					inputBox.find('input[name="cvcNo"]').focus();
+
+					boolVal = false;
+				}
+				return boolVal;
+			}
+	}
 		if('${account}' == ''){
 			accountBtn.innerText = '추가하기';
 			accountForm.setAttribute('action','<%=contextPath%>/accountinsert.me');
@@ -108,10 +175,13 @@
 			accountInput.forEach(function(item, index, array){
 				item.removeAttribute('readonly');
 			});
+			accountInput[0].click();
 			accountInput[0].focus(); // 나중에 포커스가 아닌 스타일을 다르게 주는 것도 생각해야 함
 			accountBtn.innerText = '저장하기';
 			accountBtn.addEventListener('click',function(){
-				accountForm.submit();
+				if(validate($(this))){
+					accountForm.submit();
+				}
 				return false;
 			});
 		});
@@ -120,11 +190,15 @@
 			cardInput.forEach(function(item, index, array){
 				item.removeAttribute('readonly');
 			});
-			cardInput[0].focus();
+			if(cardBtn.textContent != '저장하기'){
+				cardInput[0].click();
+				cardInput[0].focus();
+			}
 			cardBtn.innerText = '저장하기';
 			cardBtn.addEventListener('click',function(){
-				cardForm.submit();
-				return false;
+					cardForm.submit(function(){
+						return validate($(this));
+					});
 			});
 		});
 		
@@ -139,6 +213,19 @@
 			}
 			return outputDateStr
 		}
+
+		$('.inputBox').on('click', function(){
+			let inputTitle = $(this).parent();
+
+			$('input[type="text"]').removeClass('inputBoxSelect');
+			$('input[type="text"]').parent().removeClass('inputBoxSelectTitle');
+
+			if($(this).attr('readonly') != 'readonly'){
+			$(this).addClass('inputBoxSelect');
+			inputTitle.addClass('inputBoxSelectTitle');
+		}
+		})
+
 	</script>
 </body>
 </html>
