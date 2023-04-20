@@ -15,7 +15,6 @@
 	
 	<entry key="selectPostList">
 		SELECT
-			SP.POST_NO, 
 			SP.CONTENT,
 			PI.IMG_PATH,
 			PI.IMG_NAME,
@@ -24,12 +23,24 @@
 			PI.IMG_PATH || PI.IMG_NAME AS TITLEIMG,
 			SP.USER_ID,
 			SP.UPROADTIME,
-			M.USER_IMAGE
-		FROM SNS_POST SP, POST_IMG PI, MEMBER M
+			M.USER_IMAGE,
+            COUNT(SPL.POST_NO) AS PLIKE
+		FROM SNS_POST SP, POST_IMG PI, MEMBER M, SNS_POST_LIKE SPL
 		WHERE SP.POST_NO = PI.POST_NO
 		  AND SP.USER_ID = M.USER_ID
 		  AND SP.POST_STATUS = 'Y'
 		  AND PI.IMG_LEVEL = 1
+          AND SPL.POST_NO(+) = SP.POST_NO
+        GROUP BY 			
+            SP.CONTENT,
+			PI.IMG_PATH,
+			PI.IMG_NAME,
+			PI.IMG_LEVEL,
+			SP.POST_NO,
+			PI.IMG_PATH || PI.IMG_NAME,
+			SP.USER_ID,
+			SP.UPROADTIME,
+			M.USER_IMAGE
 		ORDER BY UPROADTIME DESC
 	</entry>
 	
@@ -65,7 +76,7 @@
 	</entry>
 	
 	<entry key="selectPostImgList">
-		SELECT 
+		SELECT
 			SP.CONTENT,
 			PI.IMG_PATH,
 			PI.IMG_NAME,
@@ -74,13 +85,26 @@
 			PI.IMG_PATH || PI.IMG_NAME AS TITLEIMG,
 			SP.USER_ID,
 			SP.UPROADTIME,
-			M.USER_IMAGE
-		FROM SNS_POST SP, POST_IMG PI, MEMBER M
+			M.USER_IMAGE,
+            COUNT(SPL.POST_NO) AS PLIKE
+		FROM SNS_POST SP, POST_IMG PI, MEMBER M, SNS_POST_LIKE SPL
 		WHERE SP.POST_NO = PI.POST_NO
 		  AND SP.USER_ID = M.USER_ID
 		  AND SP.POST_STATUS = 'Y'
-          AND PI.IMG_LEVEL = 1
-		ORDER BY SP.POST_NO DESC
+		  AND PI.IMG_LEVEL = 1
+          AND SPL.POST_NO(+) = SP.POST_NO
+          AND SP.POST_NO = ?
+        GROUP BY 			
+            SP.CONTENT,
+			PI.IMG_PATH,
+			PI.IMG_NAME,
+			PI.IMG_LEVEL,
+			SP.POST_NO,
+			PI.IMG_PATH || PI.IMG_NAME,
+			SP.USER_ID,
+			SP.UPROADTIME,
+			M.USER_IMAGE
+		ORDER BY UPROADTIME DESC
 	</entry>
 	<entry key="selectPostImgList2">
 		SELECT 
@@ -99,6 +123,8 @@
 		  AND SP.POST_STATUS = 'Y'
           AND SP.POST_NO = ?
 		ORDER BY UPROADTIME DESC
+		
+		
 	</entry>
 	
 	<entry key="selectHtList">
@@ -130,9 +156,16 @@
 		VALUES (?, ?)
 	</entry>
 	
+	<entry key="selectPostLike">
+		SELECT COUNT(*) POST_NO
+		FROM SNS_POST_LIKE SPL
+		JOIN SNS_POST SP USING(POST_NO)
+		WHERE POST_NO = ?
+	</entry>
+	
 	<entry key="insertComment">
 		INSERT INTO SNS_COMMENT(C_NO, C_CONTENT, POST_NO, USER_ID)
-		VALUES (SEQ_POST.CNO.NEXTVAL, ?, ?, ?)		
+		VALUES (SEQ_POST_CNO.NEXTVAL, ?, ?, ?)		
 	</entry>
 	
 	<entry key="selectCommentList">
@@ -143,7 +176,7 @@
 			C_UPROADTIME
 		FROM SNS_COMMENT SC
 		JOIN MEMBER USING (USER_ID)
-		WHERE SC.STATUS = 'Y' AND POST_NO = ?
+		WHERE SC.C_STATUS = 'Y' AND POST_NO = ?
 		ORDER BY C_UPROADTIME DESC, C_NO DESC
 	</entry>
 	

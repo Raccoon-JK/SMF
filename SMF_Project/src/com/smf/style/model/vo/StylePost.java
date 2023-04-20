@@ -12,6 +12,7 @@ public class StylePost {
 	
 	private String titleImg;
 	private String userImage;
+	private String pLike;
 	
 	private PostImg pi;
 	
@@ -41,6 +42,17 @@ public class StylePost {
 	
 	
 	
+	
+
+
+	public String getpLike() {
+		return pLike;
+	}
+
+
+	public void setpLike(String pLike) {
+		this.pLike = pLike;
+	}
 
 
 	public String getUserImage() {

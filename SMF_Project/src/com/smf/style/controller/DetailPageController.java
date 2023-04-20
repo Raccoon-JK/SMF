@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smf.style.model.service.StyleService;
 import com.smf.style.model.vo.PostImg;
+import com.smf.style.model.vo.StyleComment;
 import com.smf.style.model.vo.StylePost;
 
 /**
@@ -33,16 +34,29 @@ public class DetailPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		
-		int pno = Integer.parseInt(request.getParameter("pno"));// "1" , "2"	, ""	
-	
+		StyleService sService = new StyleService();
+				
+		
 			
-			StylePost sp = new StyleService().selectPost(pno);
-			request.setAttribute("sp", sp);
+		StylePost sp = sService.selectPost(postNo);
+		PostImg pi = sService.selectPostImg(postNo);
 			
-			//response.sendRedirect("/jspproject"); request에 담겨있떤 데이터가 싹 날라간다.
+		
+		ArrayList<StylePost> list = new StyleService().selectPostImgList();
+		ArrayList<ArrayList<PostImg>> list2 = new StyleService().selectPostImgList2();
+		ArrayList<StyleComment> list3 = sService.selectCommentList(postNo);
+		
+		
+		request.setAttribute("sp", sp);
+		request.setAttribute("pi", pi);
+		
+		request.setAttribute("list",list);
+		request.setAttribute("list2", list2);
+		request.setAttribute("list3", list3);
 			
-			request.getRequestDispatcher("views/style/userDetailPage.jsp").forward(request,response);
+		request.getRequestDispatcher("views/style/userDetailPage.jsp").forward(request,response);
 			
 		
 	}

@@ -1,9 +1,11 @@
-<%@ page import = "com.smf.member.model.vo.*"  %>
+<%@ page import="com.smf.member.model.vo.* , com.smf.style.model.vo.* , java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
 	Member loginUser = (Member) session.getAttribute("loginUser");
+	ArrayList<StylePost> list = (ArrayList<StylePost>) request.getAttribute("list");
+	Member m = (Member) session.getAttribute("m");
 
 %>
 <!DOCTYPE html>
@@ -13,7 +15,7 @@
 <title>구해줘 패션</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources/style/카테고리.css" />
+    <link rel="stylesheet" href="resources/style/css/카테고리.css" />
   </head>
   <body>
      <jsp:include page="/views/main/menubar_style.jsp" />
@@ -32,92 +34,36 @@
       
       
       <div class="contentwrap">
-        
-      
         <div class="ct-sort">
-           <% if(loginUser != null){ %>
-          <a href="<%= contextPath %>/styleEnroll.st" class="style-insert">#스타일 등록</a>
-	       	<% } else {%>
-	       	  <a href="<%= contextPath %>/login.page" class="style-insert">#스타일 등록</a>
-	       	<% } %>
-          <ul>
+         <ul>
             <li>
-              <a href="" style="font-weight: bold;">날짜별</a>
+              <a href="#" style="font-weight: bold;">최신순</a>&nbsp&nbsp|&nbsp&nbsp&nbsp
             </li>
             <li>
-              <a href="">인기순</a>
-            </li>
-            <li>
-              <a href="">최신순</a>
+              <a href="#">인기순</a>
             </li>
           </ul>
         </div>
         <div class="ct-feedcontainer">
-          <div class="feedwrap">
-            <div class="feedimg1">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-              <img src="./resources/style/캡처55.PNG">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/캡쳐66.PNG">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-            </div>
-          </div>
-          <div class="feedwrap">
-            <div class="feedimg2">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/캡처88.PNG">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/캡쳐66.PNG">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-            </div>
-          </div>
-          <div class="feedwrap">
-            <div class="feedimg3">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/캡쳐66.PNG">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/캡쳐66.PNG">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-            </div>
-          </div>
-          <div class="feedwrap">
-            <div class="feedimg4">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/캡쳐66.PNG">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-              <img src="./resources/style/a_17002637a4e44a5c958830c00ab3059a.webp">
-              <img src="./resources/style/a_171c091de0d142dfb94c421b6bf55b6f.jpg">
-              <img src="./resources/style/캡쳐66.PNG">
-              <img src="./resources/style/a_1a4352d0cfaf42639677af7d142ed7c0.webp">
-              <img src="./resources/style/a_aa9dfdbd41a746dfbc025a06fad36f62.webp">
-              <img src="./resources/style/a_89c114d3a071422e9966dca98fa051f8.webp">
-            </div>
-          </div>
-        </div>
+	        <% for(StylePost sp : list) { %>
+	        <div class="feedwrap">
+	        	<input type="hidden" name="postNo" value="<%= sp.getPostNo() %>">
+	            <div class="feedimg1">
+					<img src="<%= contextPath %><%= sp.getPi().getImgPath()+ sp.getPi().getImgName() %>" width="250px" height="170px"/>
+					<div>
+						<form action="<%= contextPath %>/styleList.st" method="POST">
+							 <div class="userImg"><img src="<%= contextPath %><%= sp.getUserImage() %>" style="width:30px; height:30px; margin-right:5px;"><%= sp.getUserId() %>
+		            			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16" style="margin-left:60px;">
+				                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+				                 </svg>
+							 </div>
+		            	</form>
+						 <%=sp.getContent() %><br>
+					</div>
+				</div>
+         	</div>
+	         <% } %>
+      	</div>
       </div>
     </content>
 

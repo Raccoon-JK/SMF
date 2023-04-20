@@ -8,6 +8,15 @@ public class PostLike {
 	public PostLike() {
 		super();
 	}
+	
+	
+
+	public PostLike(int postNo) {
+		super();
+		this.postNo = postNo;
+	}
+
+
 
 	public PostLike(String userId, int postNo) {
 		super();
