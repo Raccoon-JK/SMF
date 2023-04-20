@@ -161,7 +161,7 @@ function dropped(e) {
 	// 이미지를 교체
 	if (leftbox.tagName == "SECTION") {
 		// 드랍된 이미지가 부모가 container4 이면
-		if (data.startsWith("img") && document.getElementById(data).parentNode.parentNode.classList.contains("container4")) {
+		if (data.startsWith("img") && document.getElementById(data).parentNode.parentNode.classList.contains("container3")) {
 			// 이미지를 좌우반전시킴
 			var flippedImage = newImage.cloneNode(true);
 			newImage.style.transform = "scaleX(-1)";
