@@ -30,7 +30,7 @@
     </div>
 	<form action="<%= contextPath %>/suggest.sh" method="POST" id="productPostForm">
             <div id="itemDetail">
-                <h2 style="text-align: center;">상품 제안서</h2>
+                <h2 style="text-align: center;">판매 제안서</h2>
                 <table>
                     <tr>
                         <td>브랜드 명</td>

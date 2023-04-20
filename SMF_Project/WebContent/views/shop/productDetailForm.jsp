@@ -490,7 +490,9 @@
             </div>
         </div>
     </div>
-    <a href="${ pageContext.request.contextPath }/suggestPost.sh?productName=${ p.productName }&&brandName=${ p.brandName }">aa</a>
+    <div class="sellPost">
+	    <a href="${ pageContext.request.contextPath }/suggestPost.sh?productName=${ p.productName }&&brandName=${ p.brandName }">판매제안서</a>
+    </div>
     <div id="footerBarrr">
     	<jsp:include page="/views/main/footer.jsp" />
     </div>
