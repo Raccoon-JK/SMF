@@ -13,6 +13,7 @@ import java.util.Properties;
 import static com.smf.common.JDBCTemplate.*;
 import com.smf.admin.model.vo.Notice;
 import com.smf.shop.model.vo.Stock;
+import com.smf.admin.model.vo.Black;
 
 public class NoticeDao {
 
@@ -449,6 +450,67 @@ public Stock selectSuggest(Connection conn, int nno) {
 	
 	return s;
 }
+
+public int updateSuggest(Connection conn, String stockno) {
+	
+	int result = 0;
+	
+	PreparedStatement pstmt = null;
+	
+	String sql = prop.getProperty("updateSuggest");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, stockno);
+		
+		
+		
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	return result;
+}
+
+
+public ArrayList<Black> selectBlackList(Connection conn){
+	
+	ArrayList<Black> list = new ArrayList<>();
+	
+	PreparedStatement pstmt = null;
+	
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectBlackList");
+	
+	
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+		while(rset.next()) {
+			Black b = new Black(
+					rset.getInt("BLACK_NO"),
+					rset.getString("USER_ID"),
+					rset.getDate("BLACK_DATE"),
+					rset.getString("STATUS")
+					);
+			
+			list.add(b);
+		}
+	} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;		
+	
+  }
 
 
 

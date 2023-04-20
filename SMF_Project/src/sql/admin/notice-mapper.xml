@@ -166,5 +166,15 @@
 		WHERE STOCK_NO = ?
 	</entry>
 	
+	<entry key= "updateSuggest">
+		UPDATE STOCK
+		SET STATUS = 1
+		WHERE STOCK_NO = ? 
+	
+	</entry>
+	
+	<entry key ="selectBlackList">
+		SELECT 
+	</entry>
 	
 </properties>

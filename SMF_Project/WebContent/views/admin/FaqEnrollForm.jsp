@@ -33,7 +33,7 @@ padding-top : 40px;
 </style>
 <body>
 	<div class="outer">
-			<jsp:include page="/views/common/menubar.jsp"></jsp:include>
+		<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
 			<jsp:include page="adminform.jsp"></jsp:include>
 		<br>
 	<div class="faqenrollformall">

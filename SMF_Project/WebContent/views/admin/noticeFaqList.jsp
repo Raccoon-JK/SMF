@@ -106,7 +106,7 @@ h2{
 <body>
 	
 	<body>
-	<jsp:include page="/views/common/menubar.jsp"></jsp:include>
+	<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
 	<jsp:include page="adminform.jsp"></jsp:include>
 	<div id="wrap">
 	<div class="faqlistall">

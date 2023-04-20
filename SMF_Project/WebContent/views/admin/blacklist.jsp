@@ -104,14 +104,7 @@
 		padding : 70px 0px;
 	}
 	
-	.membertable{
-	border: 1px solid white;
-	text-align:center;
-	}
 	
-	.membertable{
-	border-bottom : 5px solid #28a745;
-	}
     
 </style>
 <body>
@@ -124,7 +117,7 @@
         <div class= "content lg">
                     <div class="content_title border">
                         <div class="membermanagetitle">
-                            <h2 align="center">회원정보 조회</h2>
+                            <h2 align="center">블랙리스 조회</h2>
                         </div>      
 
                     </div>
@@ -136,15 +129,12 @@
                           
                          <div class="membermanagetable">
                             <div class="tabletest">
-                            <table border="1" class="membertable" aligin="center">
+                            <table border="3" class="membertable">
                               <thead>
                                 <tr>
-                                  <th width="100" height="30">등록일</th>
-                                  <th width="100">이름</th>
+                                  <th width="100" height="30"> 번호</th>                                  
                                   <th width="130">이메일</th>
-                                  <th width="130">휴대폰</th>
-                                  <th width="300">배송지</th>
-                                  <th width="130">이메일 수신</th>
+                                  <th width="130">블랙리스트 날짜</th>
                                 </tr>
                                 
                                 
