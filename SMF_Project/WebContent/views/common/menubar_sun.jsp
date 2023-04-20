@@ -33,19 +33,33 @@ char weather = 's';
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
-<% if(weather == 's') { %>
+<%
+	if (weather == 's') {
+%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
 	type="text/css">
-<% } else if(weather == 'r') { %>
+<%
+	} else if (weather == 'r') {
+%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/rain.css"
 	type="text/css">
-<% } else if(weather == 'n') { %>
+<%
+	} else if (weather == 'n') {
+%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/snow.css"
 	type="text/css">
-<% } %>
+<%
+	} else if (weather == 'c') {
+%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/cloud.css"
+	type="text/css">
+<%
+	}
+%>
 <style>
 .header {
 	position: fixed;
@@ -66,6 +80,10 @@ char weather = 's';
 </style>
 </head>
 <body>
+
+	<%
+		if (weather == 's') {
+	%>
 	<div class="sky">
 		<div class="sky__phase sky__1"></div>
 		<div class="sky__phase sky__2"></div>
@@ -76,7 +94,21 @@ char weather = 's';
 			<div class="sun4"></div>
 		</div>
 	</div>
+	<%
+		} else if (weather == 'c') {
+	%>
 
+	<div id="clouds">
+		<div class="cloud x1"></div>
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+		<div class="cloud x6"></div>
+	</div>
+	<%
+		}
+	%>
 	<div class="modal">
 		<div class="frame">
 			<div class="deco"></div>
@@ -149,13 +181,19 @@ char weather = 's';
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/modal.js"></script>
 
-	<% if(weather == 'r') { %>
+	<%
+		if (weather == 'r') {
+	%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/rain.js"></script>
-	<% } else if(weather == 'n') { %>
+	<%
+		} else if (weather == 'n') {
+	%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/snow.js"></script>
-	<% } %>
+	<%
+		}
+	%>
 
 
 </body>
