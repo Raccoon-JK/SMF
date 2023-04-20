@@ -12,6 +12,8 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 import static com.smf.common.JDBCTemplate.*;
 import com.smf.admin.model.vo.Notice;
+import com.smf.shop.model.vo.Stock;
+import com.smf.admin.model.vo.Black;
 
 public class NoticeDao {
 
@@ -360,6 +362,156 @@ public int deletefaqNotice(Connection conn, int nno) {
 	}
 	return result;
 }
+
+
+
+public ArrayList<Stock> selectSuggestList(Connection conn){
+	
+	//SElECT문 = > ResultSet(여러 행)
+	ArrayList<Stock> list = new ArrayList<>();
+	
+	PreparedStatement pstmt = null;
+	
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectSuggestList");
+	
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		rset = pstmt.executeQuery();
+		
+		//rset.next()함수를 통해 다음행이 있는지 없는지 검사
+		int count=0;
+		while(rset.next()) {
+			Stock s = new Stock(
+					 	rset.getInt("STOCK_NO"),
+					   rset.getString("USER_ID"),
+					   rset.getString("PRODUCT_NAME"),
+					   rset.getDate("SUGGEST_DATE"),
+					   rset.getString("STATUS")
+							);
+					count++;   
+			list.add(s);		 
+			
+			
+			
+		}
+		System.out.println(count);
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	return list;
+}
+public Stock selectSuggest(Connection conn, int nno) {
+	
+	Stock s = null;
+	
+	PreparedStatement pstmt = null;
+	
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectSuggest");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, nno);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			s = new Stock(
+					rset.getInt("STOCK_NO"),
+					rset.getString("USER_ID"),
+					rset.getString("PRODUCT_NAME"),
+					rset.getInt("PRICE"),
+					rset.getInt("STOCK"),
+					rset.getString("P_SIZE"),
+					rset.getString("STATUS"),
+					rset.getDate("SUGGEST_DATE")
+					);
+			
+		}
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return s;
+}
+
+public int updateSuggest(Connection conn, String stockno) {
+	
+	int result = 0;
+	
+	PreparedStatement pstmt = null;
+	
+	String sql = prop.getProperty("updateSuggest");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, stockno);
+		
+		
+		
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	return result;
+}
+
+
+public ArrayList<Black> selectBlackList(Connection conn){
+	
+	ArrayList<Black> list = new ArrayList<>();
+	
+	PreparedStatement pstmt = null;
+	
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectBlackList");
+	
+	
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+		while(rset.next()) {
+			Black b = new Black(
+					rset.getInt("BLACK_NO"),
+					rset.getString("USER_ID"),
+					rset.getDate("BLACK_DATE"),
+					rset.getString("STATUS")
+					);
+			
+			list.add(b);
+		}
+	} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;		
+	
+  }
+
 
 
 }

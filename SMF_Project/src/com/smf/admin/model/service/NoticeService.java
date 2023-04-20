@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import static com.smf.common.JDBCTemplate.*;
 
 import com.smf.admin.model.dao.NoticeDao;
+import com.smf.admin.model.vo.Black;
 import com.smf.admin.model.vo.Notice;
+import com.smf.shop.model.vo.Stock;
+
+
 
 public class NoticeService {
 
@@ -159,5 +163,62 @@ public class NoticeService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public ArrayList<Stock> selectSuggestList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Stock> list = new NoticeDao().selectSuggestList(conn);
+		
+		
+		close(conn);
+		
+		
+		return list; 	
+	}
+	
+	
+	public Stock selectSuggest(int nno) {
+		
+		Connection conn = getConnection();
+		
+		Stock s = new NoticeDao().selectSuggest(conn, nno);
+		
+		
+		close(conn);
+		
+		return s;
+		
+	}
+	
+	
+	
+
+	public int updateSuggest(String stockno) {
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().updateSuggest(conn, stockno);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+			
+		
+	}
+	
+	public ArrayList<Black> selectBlackList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Black> list = new NoticeDao().selectBlackList(conn);
+		
+		close(conn);
+		
+		return list;
 	}
 }

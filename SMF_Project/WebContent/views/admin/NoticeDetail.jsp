@@ -20,15 +20,7 @@
     <title>공지사항</title>
 </head>
 <style>
-    div {
-        box-sizing: border-box;
-        border : 1px solid blue;
-    }    
-    
-    p{
-    	height:150px;
-    }               
-    
+  
     
     
     .content{
@@ -51,10 +43,18 @@
         margin-right: 40px;
     }
     .content_title.border{
-        padding-bottom: 16px;
-        border-bottom: 3px solid #222;
+        padding-bottom: 0;
+        border-bottom : 1px solid black;
     }
+    
+    
+    .title{
+    	  
+    	  border-bottom: .3rem solid black;
+    }
+    
     .title>h3{
+    	
         line-height: 29px;
         font-size: inherit;
        
@@ -78,12 +78,14 @@
     }
 
     .content_area{
-        margin: 0 auto;
-    padding: 60px 0 160px;
-    width: 400px;
+     box-sizing: border-box;
+     border : 1px solid #ebebeb;
+     margin: 0 auto;
+     padding: 60px 0 10px;
+     width: 900px;
     }
     .dropdown_head{
-        padding: 17px 0 19px;
+        padding: 15px 0 0px;
         align-items: center;
         border-bottom : 1px solid #ebebeb;
         cursor: pointer
@@ -109,6 +111,7 @@
     }
 
     .dropdown_content{
+    	height: 400px;
         padding: 30px 30px 28px;
         background-color: #fafafa;
         border-bottom: 1px solid #ebebeb;
@@ -116,27 +119,36 @@
         letter-spacing: -.21px;
     }
     .dropdown_content .content{
-        max-width: 640px;
+        max-width: 900px;
         word-break: break-word;
+       
     }
 
     .btn_list{
         margin-top : 30px;
         text-align: center;
     }
-
+	
     body, button, div, p, h3, h4 ,h5, h6, input, form{
         margin:0;
         padding:0;
     }
-
+    .noticedetail_all{
+    
+   	 padding: 200px 300px 200px 300px;	
+    }
+    
+  
+	
     
 </style>
 <body>
+<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
  <jsp:include page="adminform.jsp"></jsp:include>
-    <div class="wrap">
+    <div class="noticedetail_all">
    
         <div class= "content lg">
+        
             <div class="sub_area">
 
             </div>
@@ -144,13 +156,13 @@
                 <div class="content_area">
                     <div class="content_title border">
                         <div class="title">
-                            <div>
+                            <div class="notice_underline">
                             <h3>공지사항</h3>
                             </div>
                             <div class="test">
                            	<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
-                                <a href="<%=contextPath %>/updateForm.no?nno=<%=n.getAlertNo() %>" class="btn btn warning btn-sm">수정</a>
-                                <a href="<%=contextPath %>/delete.no?nno=<%=n.getAlertNo() %>" class="btn btn danger  btn-sm">삭제</a>
+                                <a href="<%=contextPath %>/updateForm.no?nno=<%=n.getAlertNo() %>" class="btn btn-primary">수정</a>
+                                <a href="<%=contextPath %>/delete.no?nno=<%=n.getAlertNo() %>" class="btn btn btn-danger">삭제</a>
                             <%} %>
                             </div>
                         </div>      
@@ -163,7 +175,7 @@
                     <div class="dropdown_head">
                         <div class="title_box">
                             <span class="date"><%= n.getCreateDate() %></span>
-                            <p class="title"><%= n.getAlertCategory() %> <%= n.getAlertTitle() %> </p>
+                            <p class="title2"><%= n.getAlertCategory() %> <%= n.getAlertTitle() %> </p>
                         </div>
                     </div>
                     <div class="dropdown_content">
@@ -173,7 +185,7 @@
                     </div>
                 </div>
                 <div class="btn_list">
-                    <a href="<%= contextPath %>/list.no" class="btn outlinegreymedium">목록보기</a>
+                    <a href="<%= contextPath %>/list.no" class="btn btn-success btn-block">목록보기</a>
                 </div>
 
             </div>
@@ -186,6 +198,6 @@
             
         </div>
     </div>
-    
+    <jsp:include page="/views/common/footer.jsp"></jsp:include>
 </body>
 </html>

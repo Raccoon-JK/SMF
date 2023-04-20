@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.smf.common.MyFileRenamePolicy;
+import com.smf.common.MyFileRenamePolicy2;
 import com.smf.member.model.vo.Member;
 import com.smf.style.model.service.StyleService;
 import com.smf.style.model.vo.PostImg;
@@ -60,7 +60,7 @@ public class insertController extends HttpServlet {
 			
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/style/upfiles/");
 			
-			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy2());
 			
 			StylePost sp = new StylePost();
 			sp.setContent(multi.getParameter("content"));

@@ -79,7 +79,20 @@ public class MemberService {
 		
 		
 		
+		public ArrayList<Member> selectMemberList(){
+			Connection conn = JDBCTemplate.getConnection();
+			
+			ArrayList<Member> list = new MemberDao().selectMemberList(conn);
+			
 		
+			JDBCTemplate.close(conn);
+			
+			return list;
+			
+			
+			
+			
+		}
 		
 		
 		

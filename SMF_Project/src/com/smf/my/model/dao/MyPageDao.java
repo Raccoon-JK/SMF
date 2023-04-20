@@ -627,7 +627,7 @@ public class MyPageDao {
 													 rset.getInt("CART_COUNT"), 
 													 rset.getString("IMG_PATH"), 
 													 rset.getString("IMG_NAME"),
-													 rset.getInt("STATUS")
+													 rset.getString("STATUS")
 													);
 				list.add(cart);
 			}
@@ -637,7 +637,7 @@ public class MyPageDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+		
 		return list;
 	}
 	
@@ -700,7 +700,7 @@ public class MyPageDao {
 													 rset.getInt("CART_COUNT"), 
 													 rset.getString("IMG_PATH"), 
 													 rset.getString("IMG_NAME"),
-													 rset.getInt("STATUS")
+													 rset.getString("STATUS")
 													);
 				
 				plist.add(cart);

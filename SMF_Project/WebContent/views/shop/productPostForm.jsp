@@ -21,6 +21,9 @@
     </head>
 
     <body>
+    	<div id="navibar">
+		    <jsp:include page="/views/main/menubar_shop.jsp" />
+	    </div>
         <form action="<%= contextPath %>/insert.sh" method="POST" enctype="multipart/form-data" id="productPostForm">
             <div id="itemDetail">
                 <h2>상품 등록</h2>

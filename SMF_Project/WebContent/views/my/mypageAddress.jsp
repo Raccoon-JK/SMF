@@ -129,7 +129,7 @@
         <div id="mypage_content_wrapper">
             <div id="mypage_title">
                 <p id="title" style="display: inline-block;">주소록</p>
-                <button type="button" data-toggle="modal" data-target="#addressAdd">새 주소 추가</button>
+                <button type="button" class="customAadd" data-toggle="modal" data-target="#addressAdd">새 주소 추가</button>
             </div>
             <div id="mypage_content">
             	<div id="address_wrapper">
@@ -151,7 +151,7 @@
 											<p>(${addrDefault.postcode}) ${addrDefault.address}</p>
 										</div>
 										<div class="address_area_right">
-											<a href="#" class="mypageBtn" data-toggle="modal" data-target="#addressUpdate" onclick="(${addrDefault.addressNo});">수정</a>
+											<a href="#" class="mypageBtn customAupdate" data-toggle="modal" data-target="#addressUpdate" onclick="(${addrDefault.addressNo});">수정</a>
 										</div>
 					                </div>
 				                </c:when>
@@ -171,9 +171,13 @@
 										<p>(${list.postcode}) ${list.address}</p>
 									</div>
 									<div class="address_area_right">
-										<a href="#" class="mypageBtn" id="defaultAddr_Btn" onclick="defaultAddrChange(${list.addressNo});">기본 배송지</a>
-										<a href="#" class="mypageBtn" data-toggle="modal" data-target="#addressUpdate" onclick="addrUpdate(${list.addressNo});">수정</a>
-										<a href="#" class="mypageBtn" data-toggle="modal" data-target="#addressDel" onclick="addrDel(${list.addressNo});">삭제</a>
+										<div class="addressBtn_top">
+											<a href="#" class="mypageBtn customAadd" id="defaultAddr_Btn" onclick="defaultAddrChange(${list.addressNo});">기본 배송지</a>
+										</div>
+										<div class="addressBtn_bottom">
+											<a href="#" class="mypageBtn customAupdate" data-toggle="modal" data-target="#addressUpdate" onclick="addrUpdate(${list.addressNo});">수정</a>
+											<a href="#" class="mypageBtn customADel" data-toggle="modal" data-target="#addressDel" onclick="addrDel(${list.addressNo});">삭제</a>
+										</div>
 									</div>
 				                </div>
 		               		</c:forEach>

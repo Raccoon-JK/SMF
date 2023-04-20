@@ -37,10 +37,12 @@ public class WishListCountController extends HttpServlet {
 		int result = new ShopService().insertWishList(productName, userId);
 		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath());
-			
+			request.getSession().setAttribute("alertMsg", "관심 상품에 등록되었습니다.");
+			response.sendRedirect(request.getContextPath()+"/productDetail.sh?productName="+productName);
+		
 		}else {
-			
+			int result2 = new ShopService().deleteWishList(productName, userId);
+			response.sendRedirect(request.getContextPath()+"/productDetail.sh?productName="+productName);
 		}
 		
 	}

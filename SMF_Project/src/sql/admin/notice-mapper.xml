@@ -139,4 +139,49 @@
 		WHERE ALERT_NO = ? AND QLEVEL = 1
 		
 	</entry>
+	
+	
+	<entry key="selectSuggestList">
+		SELECT STOCK_NO,
+		 	   PRODUCT_NAME,
+			   USER_ID,
+			   SUGGEST_DATE,
+			   STATUS
+		FROM STOCK
+		ORDER BY STOCK_NO DESC
+	
+	
+	</entry>
+	
+	<entry key= "selectSuggest">
+		SELECT STOCK_NO,
+			   USER_ID,
+			   PRODUCT_NAME,
+			   PRICE,
+			   STOCK,
+			   P_SIZE,
+			   STATUS,
+			   SUGGEST_DATE
+		FROM STOCK
+		WHERE STOCK_NO = ?
+	</entry>
+	
+	<entry key= "updateSuggest">
+		UPDATE STOCK
+		SET STATUS = 1
+		WHERE STOCK_NO = ? 
+	
+	</entry>
+	
+	<entry key ="selectBlackList">
+		
+	SELECT  BLACK_NO,
+        USER_ID,
+        BLACK_DATE,
+        STATUS
+		FROM BLACKLIST  
+		WHERE STATUS= 'Y'
+		ORDER BY BLACK_NO DESC
+	</entry>
+	
 </properties>
