@@ -56,7 +56,9 @@
 <!-- 	       </div> -->
 <!-- 	   </div> -->
 <!-- 	</div> -->
-    <div></div>
+    <div id="navibar">
+	    <jsp:include page="/views/main/menubar_shop.jsp" />
+    </div>
     <div class="content">
         <div class="contentHead">
             <div id="contentHeaderLeft" class="column mainImg">
@@ -488,6 +490,7 @@
             </div>
         </div>
     </div>
+    <a href="${ pageContext.request.contextPath }/suggestPost.sh?productName=${ p.productName }&&brandName=${ p.brandName }">aa</a>
     <script>
         $( document ).ready( function() {
             $('.mainImgList').slick({
@@ -665,13 +668,14 @@
                 $(this).attr('href', "${ pageContext.request.contextPath }/login.page");
                 alert("로그인이 필요합니다.");
             }else{
+                // $(this).attr('href', "${ pageContext.request.contextPath }/wishListCount.sh?productName=${ p.productName }");
                 if(msg != ""){
-                    alert("이미 관심상품에 등록한 상품입니다.");
+                    alert("관심 목록에서 제거되었습니다.");
                     msg = "";
                     <% session.removeAttribute("alertMsg"); %>
                 }else{
                     alert("관심 상품에 등록되었습니다.");
-                    msg = "이미 관심상품에 등록한 상품입니다.";
+                    msg = "관심 목록에서 제거되었습니다.";
                 }
             }
         });

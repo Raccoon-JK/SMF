@@ -1,27 +1,29 @@
 package com.smf.shop.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.member.model.vo.Member;
-import com.smf.my.model.vo.WishList;
+import com.google.gson.Gson;
 import com.smf.shop.model.service.ShopService;
+import com.smf.shop.model.vo.ProductAll;
 
 /**
- * Servlet implementation class WishListCountController
+ * Servlet implementation class SearchController
  */
-@WebServlet("/wishListCount.sh")
-public class WishListCountController extends HttpServlet {
+@WebServlet("/search.sh")
+public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WishListCountController() {
+    public SearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +32,17 @@ public class WishListCountController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String text = request.getParameter("text");
+		System.out.println(text);
+		ArrayList<ProductAll> list = new ShopService().searchPname(text);
 		
-		String productName = request.getParameter("productName");
-		String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId() + "";
+		response.setContentType("apllication/json; charset=UTF-8");
 		
-		int result = new ShopService().insertWishList(productName, userId);
+		System.out.println(list);
 		
-		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "관심 상품에 등록되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/productDetail.sh?productName="+productName);
+		new Gson().toJson(list, response.getWriter());
 		
-		}else {
-			int result2 = new ShopService().deleteWishList(productName, userId);
-			response.sendRedirect(request.getContextPath()+"/productDetail.sh?productName="+productName);
-		}
 		
 	}
 
