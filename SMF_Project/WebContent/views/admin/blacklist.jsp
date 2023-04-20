@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.smf.admin.model.vo.Black" %>
 <%@ page import="com.smf.member.model.vo.Member" %>
 <%@ page import="java.util.ArrayList, com.smf.admin.model.vo.Notice" %>    
 <%
-	ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("list");
+	ArrayList<Black> list = (ArrayList<Black>) request.getAttribute("list");
 
 %>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <%
 	String contextPath = request.getContextPath();
 
@@ -104,6 +105,15 @@
 		padding : 70px 0px;
 	}
 	
+	.membertable{
+	border: 1px solid white;
+	text-align:center;
+	}
+	
+	.membertable{
+	border-bottom : 5px solid #28a745;
+	}
+	
 	
     
 </style>
@@ -117,7 +127,7 @@
         <div class= "content lg">
                     <div class="content_title border">
                         <div class="membermanagetitle">
-                            <h2 align="center">블랙리스 조회</h2>
+                            <h2 align="center">블랙리스트 조회</h2>
                         </div>      
 
                     </div>
@@ -132,8 +142,8 @@
                             <table border="3" class="membertable">
                               <thead>
                                 <tr>
-                                  <th width="100" height="30"> 번호</th>                                  
-                                  <th width="130">이메일</th>
+                                  <th width="130" height="20"> 번호</th>                                  
+                                  <th width="200">이메일</th>
                                   <th width="130">블랙리스트 날짜</th>
                                 </tr>
                                 
@@ -145,14 +155,13 @@
                               	  	<td colspan ="6"> 회원이 없습니다 </td>
                               	  </tr>
                               	<%}else {%> 
-                              	<% for (Member m : list){ %>
+                              	<% for (Black b : list){ %>
                               		<tr>
-                              			<td height="50"><%= m.getEnrollDate() %></td>
-                              			<td><%= m.getUserName() %></td>
-                              			<td><%= m.getUserId() %></td>
-                              			<td><%= m.getPhone()%></td>
-                              			<td><%= m.getAddress() %></td>
-                              			<td><%= m.getAgreeEmail() %></td>
+                              			<td height="30"><%= b.getBlackNo() %></td>
+                              			<td><%= b.getUserId() %></td>
+                              			<td><%= b.getBlackDate()%></td>
+                    
+                              			
                               		</tr> 
                               <% }%>
 							<%} %>                             
@@ -166,9 +175,7 @@
                         </div>
                     
                
-                <div class="btn_list">
-                    <a href="" class="btn btn-success ">목록보기</a>
-                </div>
+                
 
             </div>
 

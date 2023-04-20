@@ -174,7 +174,14 @@
 	</entry>
 	
 	<entry key ="selectBlackList">
-		SELECT 
+		
+	SELECT  BLACK_NO,
+        USER_ID,
+        BLACK_DATE,
+        STATUS
+		FROM BLACKLIST  
+		WHERE STATUS= 'Y'
+		ORDER BY BLACK_NO DESC
 	</entry>
 	
 </properties>

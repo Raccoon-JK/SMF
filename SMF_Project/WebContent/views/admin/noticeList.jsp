@@ -6,6 +6,7 @@
 	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
 
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <%
 	String contextPath = request.getContextPath();
@@ -57,8 +58,15 @@
 <body>
 	
 	<div class="outer">
+	
 	<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
+	
+			<c:if test="${loginUser.userId == 'admin@naver.com' }">
 			<jsp:include page="/views/admin/adminform.jsp"></jsp:include>
+			</c:if> 
+			
+
+				
 		<div class="notice_all">
 	<div class= "notice_title">
 		<h2 align="center"> 공지사항 리스트</h2>
