@@ -1,4 +1,4 @@
-package com.smf.style.controller;
+package com.smf.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.member.model.vo.Member;
-import com.smf.style.model.service.StyleService;
-import com.smf.style.model.vo.Follow;
-import com.smf.style.model.vo.PostLike;
+import com.smf.admin.model.service.NoticeService;
+import com.smf.shop.model.vo.Stock;
 
 /**
- * Servlet implementation class postLikeController
+ * Servlet implementation class SuggestUpdateController
  */
-@WebServlet("/postLike.st")
-public class postLikeController extends HttpServlet {
+@WebServlet("/suggestupdate.no")
+public class SuggestUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public postLikeController() {
+    public SuggestUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,19 +38,33 @@ public class postLikeController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PostLike pl = new PostLike();
-		pl.setPostNo(Integer.parseInt(request.getParameter("postNo")));
-		pl.setUserId( ((Member) request.getSession().getAttribute("loginUser")).getUserId()+"" );
+		request.setCharacterEncoding("UTF-8");
 		
-		int result = new StyleService().insertPostLike(pl);
+		String status = request.getParameter("status");
+		String stockno = request.getParameter("stockno");
 		
-		if(result > 0) { 
-			response.sendRedirect(request.getContextPath()+"/styleList.st");
+		System.out.println(stockno);
+		
+		//Stock s = new Stock();
+		
+		//s.setStatus(status);
+		
+		
+		
+		int result = new NoticeService().updateSuggest(stockno);
+		
+		
+		
+		
+		if(result >0) {
+			request.getSession().setAttribute("alertMsg", "상태가 변경되었습니다");
+			response.sendRedirect(request.getContextPath() + "/suggestlist.no");
 		}else {
-			request.getRequestDispatcher("views/common/error500.jsp").forward(request, response);
+			request.setAttribute("errorMsg", "상태 변경 실");
+			request.getRequestDispatcher("views/commmon/error404.jsp").forward(request, response);
 		}
-        
-      
+		
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.smf.style.controller;
+package com.smf.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.style.model.service.StyleService;
-import com.smf.style.model.vo.StylePost;
+import com.smf.admin.model.service.NoticeService;
+import com.smf.admin.model.vo.Black;
 
 /**
- * Servlet implementation class accessoryController
+ * Servlet implementation class BlacklistFormController
  */
-@WebServlet("/accessory.st")
-public class accessoryController extends HttpServlet {
+@WebServlet("/blacklist.no")
+public class BlacklistFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public accessoryController() {
+    public BlacklistFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,11 +31,14 @@ public class accessoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<StylePost> list = new StyleService().selectPostList();
-		request.setAttribute("list",list);
+		// TODO Auto-generated method stub
+		ArrayList<Black> list = new NoticeService().selectBlackList();
 		
-		request.getRequestDispatcher("views/style/accessory.jsp").forward(request,response);
-
+		request.setAttribute("list", list);
+		
+		System.out.print(list);
+			
+		request.getRequestDispatcher("views/admin/blacklist.jsp").forward(request, response);
 	}
 
 	/**

@@ -1,0 +1,405 @@
+body {
+  width: 100%;
+}
+
+img {
+  vertical-align: top;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul{
+  list-style: none;
+}
+
+
+
+
+.feedcontainer {
+  height: 100%;
+  margin-top: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  max-width: 720px;
+  
+}
+
+/*프로필+피드게시물 */
+.feedwrap {
+  margin-top: 50px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 프로필박스(프로필이미지, 유저아이디, 업로드타임) */
+.feeduser {
+  display: flex;
+  height: 50px;
+}
+
+
+.userimg img {
+  border-radius: 100%;
+  height: 44px;
+  width: 44px;
+  margin-right: 10px;
+}
+
+.feeduser a {
+  display: flex;
+  max-width: 100px;
+  text-decoration: none;
+}
+
+.userfollow{
+  margin-left: 490px;
+}
+
+#follow-btn{
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: white; 
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+.userinfo p{
+  padding: 0;
+  margin: 0;
+}
+
+.userid {
+  color: black;
+  font-weight: bold;
+}
+
+.uproadtime {
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 14px;
+}
+
+
+
+
+
+
+.feedproduct .product-title {
+  display: flex;
+  justify-content: center;
+  margin-right: 580px;
+}
+
+.itemwrap a {
+  text-decoration: none;
+}
+
+.item .product-name {
+  display: inline-block;
+}
+
+.itemwrap span {
+  font-weight: bold;
+}
+
+.itemwrap p,
+span {
+  color: black;
+}
+
+.itemwrap > .item {
+  display: inline-block;
+  margin-right: 100px;
+  width: 10%;
+}
+
+.product-title {
+  display: block;
+}
+
+.price-box {
+  display: flex;
+}
+
+/* 피드 버튼 */
+.fc-btn {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 550px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.btn-bind {
+  margin-right: 550px;
+  display : flex;
+}
+
+.btn-bind a{
+	margin-right: 10px;
+}
+
+
+.like-count {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  margin-right: 620px;
+}
+
+/* 피드 게시물에 등록된 해쉬태그 */
+.tag-link {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  margin-top: 30px;
+  margin-right: 600px;
+  margin-bottom: 30px;
+}
+
+
+.fc-comment {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.comment-count {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-right: 500px;
+}
+
+.profile-link {
+  border-radius: 100%;
+  height: 34px;
+  margin-right: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 34px;
+  z-index: -1;
+}
+
+.profile-link img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  
+}
+
+.comment-detail .user-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.comment-detail .sub span {
+  color: #22222280;
+  display: flex;
+  font-size: 12px;
+  letter-spacing: -0.06px;
+  line-height: 14px;
+}
+
+.comment-box .btn-like img {
+  width: 22px;
+  height: 22px;
+  margin-left: 330px;
+}
+
+.comment-box {
+  display: flex;
+  margin-left: 10px;
+}
+
+/* 모달  */
+
+ #modal-wrapper1{
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100; 
+}
+
+#modal-wrapper2 {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+  }
+  
+#modal-wrapper2 .modal {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    margin-top: 300px;
+    width: 350px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+  }
+
+#modal-wrapper2  .modal-title, .modal-title ul{
+    width: 100%;
+  }
+
+#modal-wrapper2  .action-list{
+    padding: 0;
+  }
+  
+  
+#modal-wrapper2  .modal li {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+
+
+
+.modal {
+  background: white;
+  padding-top: 30px;
+  width: 400px;
+}
+
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.modal p {
+  font-size: 16px;
+}
+
+.close-wrapper1, .close-wrapper2, .close-wrapper3{
+  float: left;
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+#open1, #open2, #open3{
+  cursor: pointer;
+}
+
+.modal .comment-box{
+  display: inline-block;
+}
+
+.comment-input{
+  width: 300px;
+  border-top: 8px solid #f4f4f4;
+}
+
+.comment-top{
+  margin-top: 20px;
+}
+
+.comment-top .feeduser{
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.comment-box{
+  width: 100%;
+  margin-left: 0;
+}
+
+#comments{
+  border-top: 8px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+  padding-top: 10px;
+}
+
+#commentForm{
+  margin-left: 15px;
+  display: flex;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+.modal-profile img{
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+
+.moveTopBtn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+}
+
+.moveTopBtn svg{
+  width: 80%;
+  height: 80%;
+  color: gray;
+}
+
+/* 피드 이미지 슬라이드 */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.swiper-button-next, .swiper-button-prev{
+	
+  color: gray;
+}
+
+

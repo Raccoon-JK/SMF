@@ -34,13 +34,13 @@ public class AjaxReplyInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String cContent = request.getParameter("cContent");
-		int postNo = Integer.parseInt(request.getParameter("pno"));
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		String userId =  ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 	
 		StyleComment sc = new StyleComment();
 		sc.setcContent(cContent);
 		sc.setPostNo(postNo);
-		sc.setUserId(userId+"");
+		sc.setUserId(userId);
 		
 		ReplyBuilder rb =	 new ReplyBuilder.
 									Builder(1).

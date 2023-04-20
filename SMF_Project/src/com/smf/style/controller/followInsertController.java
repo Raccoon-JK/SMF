@@ -40,19 +40,18 @@ public class followInsertController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Follow f = new Follow();
-		f.setFollower(request.getParameter("follower"));
-		f.setUserId( ((Member) request.getSession().getAttribute("loginUser")).getUserId()+"" );
 		
-		int result = new StyleService().insertFollow(f);
-		System.out.println(result);
-		
-		if(result > 0) { 
-			response.sendRedirect(request.getContextPath()+"/styleList.st");
+		  Follow f = new Follow(); 
+		 f.setFollower(request.getParameter("follower"));
+		 f.setUserId( ((Member)request.getSession().getAttribute("loginUser")).getUserId()+"" );
+		 
+		  int result = new StyleService().insertFollow(f); System.out.println(result);
+		  
+		 if(result > 0) {
+			 response.sendRedirect(request.getContextPath()+"/styleList.st"); 
 		}else {
-			request.getRequestDispatcher("views/common/error500.jsp").forward(request, response);
-		}
-        
+		  request.getRequestDispatcher("views/common/error500.jsp").forward(request,response); }
+		 
       
 	}
 

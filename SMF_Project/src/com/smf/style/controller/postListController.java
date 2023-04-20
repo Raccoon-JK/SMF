@@ -43,7 +43,6 @@ public class postListController extends HttpServlet {
 
 		ArrayList<StylePost> list = new StyleService().selectPostList();
 		request.setAttribute("list",list);
-		System.out.println(list);
 		
 		
 		

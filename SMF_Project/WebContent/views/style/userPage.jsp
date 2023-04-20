@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>구해줘 패션</title>
-<link rel="stylesheet" href="resources/style/유저피드.css" />
+<link rel="stylesheet" href="resources/style/css/유저피드.css" />
 </head>
   <body>
      <header><jsp:include page="/views/main/menubar_style.jsp" /></header>
@@ -30,41 +30,35 @@
                 </div>
                 <div class="user-explane">
                   <p class="sub-txt" style="margin-top: 0;">
+                  <% if (loginUser.getInteroduce() != null)  { %>
+                  <%= loginUser.getInteroduce() %>
+                  <% } %>
                   </p>
                 </div>
-                <div class="user-btn">
-                  <button type="button"  class="follow-btn">팔로잉</button>
-                  <span>
-                    <button type="button" id="open">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-                <div class="social-area">
+                
+               <!--  <div class="social-area">
                   <ul class="social-list">
                     <li class="social-item">
                       <a href="" class="item-link">
                         <span class="item-menu">게시물</span>
-                        <span class="item-count">141</span>
+                        <span class="item-count">count</span>
                       </a>
                     </li>
                     <li class="social-item">
                       <a href="" class="item-link">
                         <span class="item-menu">팔로워</span>
-                        <span class="item-count">6088</span>
+                        <span class="item-count">count</span>
                       </a>
                     </li>
                     <li class="social-item">
                       <a href="" class="item-link">
                         <span class="item-menu">팔로잉</span>
-                        <span class="item-count">58</span>
+                        <span class="item-count">count</span>
                       </a>
                     </li>
                   </ul>
 
-                </div>
+                </div> -->
             </div>
         </div>
         
@@ -72,6 +66,7 @@
        <% for(StylePost sp : list) { %>
       	<% if(loginUser != null && loginUser.getUserId().equals( sp.getUserId() )) { %>
           <div class="feedwrap">
+          <input type="hidden" name="postNo" value="<%= sp.getPostNo() %>">
             <div class="feedimg1">
               <img src="<%= contextPath %><%= sp.getPi().getImgPath()+ sp.getPi().getImgName() %>" width="250px" height="170px"/>
 				<div>
@@ -86,19 +81,17 @@
       </div>
      </div>
 
-      <div class="modal-wrapper" style="display: none">
-        <div class="modal">
-          <div class="modal-title">
-            <ul class="action-list">
-              <li class="action-item">프로필 차단</li>
-              <li class="action-item">프로필 신고</li>
-              <li id="close">취소</li>
-            </ul>
-          </div>
-          
-        </div>
-      </div>
-
+    
+      
+       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+      
+		<script>
+		$(function(){
+			$(".feedwrap").click(function(){
+				location.href = "<%= contextPath%>/DetailPost.st?pno="+$(this).children().eq(0).val();
+			})
+		});
+	  </script>
       
       
       <script>
@@ -124,6 +117,7 @@
           </svg>
       </div>
 
+	  
       <script>
 
           const $topBtn = document.querySelector(".moveTopBtn");
@@ -133,7 +127,7 @@
           window.scrollTo({ top: 0 });  
           }
       </script>
-            <jsp:include page="/views/common/footer.jsp" />
+            <%-- <jsp:include page="/views/common/footer.jsp" /> --%>
       
     </foorter>
   </body>
