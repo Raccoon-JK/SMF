@@ -466,7 +466,7 @@
 							}
 								$(data).each(function(index, item){
 								var imgId = "img"+index;
-								str += '<div class="rightboxSelectList" >'
+								str += '<div class="rightboxSelectList">'
                                            +'<img id="'+imgId+'" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
                                        +'</div>'
 								});
