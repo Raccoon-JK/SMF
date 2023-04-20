@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +63,7 @@
 					id="navbarDropdownMenuLink1" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> <i
 					class="fas fa-fw fa-bell"></i><input type="hidden"
-					value="${loginUser.memId }" id="memIdSpan"> <span
+					value="${loginUser.userId }" id="memIdSpan"> <span
 					class="indicator" id="alarmIcon" style="display: none;"></span>
 				</a>
 			</div>

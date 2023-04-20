@@ -13,19 +13,20 @@
 <link rel="stylesheet" href="<%= contextPath %>/resources/shop/css/suggest-styles.css" type="text/css">      
 </head>
 <body>
-	<form action="<%= contextPath %>/insert.sh" method="POST" enctype="multipart/form-data" id="productPostForm">
+	<div id="navibar">
+	    <jsp:include page="/views/main/menubar_shop.jsp" />
+    </div>
+	<form action="<%= contextPath %>/suggest.sh" method="POST" id="productPostForm">
             <div id="itemDetail">
-                <h2>상품 제안서</h2>
+                <h2 style="text-align: center;">상품 제안서</h2>
                 <table>
                     <tr>
                         <td>브랜드 명</td>
-                        <td><input type="text" placeholder="브랜드 명 입력" name="brandName"></td>
+                        <td><input type="text" placeholder="브랜드 명 입력" name="brandName" value="${ bName }"></td>
                     </tr>
-                    <tr>
                     <tr>
                         <td>제품 명</td>
-                        <td><input type="text" placeholder="제품 명 입력" name="productName"></td>
-                    </tr>
+                        <td><input type="text" placeholder="제품 명 입력" name="productName" value="${ pName }"></td>
                     </tr>
                     <tr>
                         <td>가격</td>
@@ -83,12 +84,12 @@
                     <tr>
                         <td>수량</td>
                         <td>
-                            <input type="text" name="stock" placeholder="총 수량 입력">
+                            <input type="text" name="count" placeholder="총 수량 입력">
                         </td>
                     </tr>
                 </table>
                 <div style="width: 100px; margin: auto;">
-                    <button type=button id="submit">확인</button>
+                    <button type=submit id="submit">확인</button>
                     <button type="reset">취소</button>
                 </div>
             </div>

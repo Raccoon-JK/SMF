@@ -498,4 +498,27 @@
 		GROUP BY PI.IMG_PATH,
 		PI.IMG_NAME, P.PRODUCT_NAME, BRAND_NAME, P.COMPANY_PRICE
 	</entry>
+	
+	<entry key="suggestProduct">
+		INSERT INTO STOCK(
+			STOCK_NO,
+			USER_ID,
+			PRODUCT_NAME,
+			PRICE,
+			STOCK,
+			P_SIZE,
+			USER_CLASS,
+			STATUS
+		)
+		VALUES(
+			SEQ_STOCK_NO.NEXTVAL,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			0
+		)
+	</entry>
 </properties>

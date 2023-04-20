@@ -378,4 +378,15 @@ public class ShopService {
 		
 		return list;
 	}
+	
+	public int suggestProduct(String userId, String userClass, String bName, String pName, String price, String size, String count) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().suggestProduct(conn, userId, userClass, bName, pName, price, size, count);
+		
+		close(conn);
+		
+		return result;
+	}
 }

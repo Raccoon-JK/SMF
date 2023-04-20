@@ -1156,4 +1156,40 @@ public class ShopDao {
 		return list;
 		
 	}
+	
+	public int suggestProduct(Connection conn, String userId, String userClass, String bName, String pName, String price, String size, String count) {
+		
+		int result = 0;
+		System.out.println(userId);
+		System.out.println(userClass);
+		System.out.println(pName);
+		System.out.println(price);
+		System.out.println(size);
+		System.out.println(count);
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("suggestProduct");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, pName);
+			pstmt.setString(3, price);
+			pstmt.setString(4, count);
+			pstmt.setString(5, size);
+			pstmt.setString(6, userClass);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 }
