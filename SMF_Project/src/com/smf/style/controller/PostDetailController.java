@@ -42,13 +42,13 @@ public class PostDetailController extends HttpServlet {
 		
 			
 			StylePost sp = sService.selectPost(postNo);
-			PostImg pi = sService.selectPostImg(postNo);
 			
+			ArrayList<StylePost> memberInfo = new StyleService().selectPostMember(postNo);
 			ArrayList<ArrayList<PostImg>> list2 = new StyleService().selectPostImgList2(postNo);
 			ArrayList<StyleComment> list = sService.selectCommentList(postNo);
 			
+			request.setAttribute("m", memberInfo);
 			request.setAttribute("sp", sp);
-			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 			request.setAttribute("list2", list2);
 			

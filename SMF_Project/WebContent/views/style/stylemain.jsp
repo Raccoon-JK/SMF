@@ -7,7 +7,6 @@
 	Member loginUser = (Member) session.getAttribute("loginUser");
 	ArrayList<StylePost> list = (ArrayList<StylePost>) request.getAttribute("list");
 	ArrayList<PostLike> list2 = (ArrayList<PostLike>) request.getAttribute("list2");
-	Member m = (Member) session.getAttribute("m");
 	
 %>
 <!DOCTYPE html>

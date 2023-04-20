@@ -78,7 +78,7 @@
 					<ul class="top_list">
 						<li class="top_item"><a href="">고객센터</a></li>
 						<li class="top_item"><a href="">관심상품</a></li>
-						<li class="top_item"><a href="">로그인</a></li>
+						<li class="top_item"><a href="${pageContext.request.contextPath}/login.page">로그인</a></li>
 						<li><button class="view_more" type="button">
 								<img id="alarm"
 									src="${pageContext.request.contextPath}/resources/main/bell_icon.png">
@@ -107,7 +107,7 @@
 			<div class="tab_area">
 				<ul>
 					<li><a href=""><span>HOME</span></a></li>
-					<li><a href=""><span>STYLE</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/styleList.st"><span>STYLE</span></a></li>
 					<li><a href=""><span>SHOP</span></a></li>
 					<li><a href=""><span>기획전</span></a></li>
 				</ul>
