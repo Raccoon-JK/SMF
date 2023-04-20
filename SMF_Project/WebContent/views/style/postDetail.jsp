@@ -16,9 +16,27 @@
 <meta charset="UTF-8">
 <title>구해줘 패션</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-<link rel="stylesheet" href="resources/style/css/팔로잉.css" />
+<link rel="stylesheet" href="resources/style/css/DetailPost.css" />
 <style>
-	
+
+.blueone {
+  border-collapse: collapse;
+  width:80%;
+}  
+.blueone th {
+  padding: 10px;
+  color: #168;
+  border-bottom: 3px solid #168;
+  text-align: left;
+}
+.blueone td {
+  color: #669;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.blueone tr:hover td {
+  color: #004;
+}
 
 </style>
 </head>
@@ -44,12 +62,8 @@
               </div>
             </a>
             <div class="userfollow">
-            	<% if( loginUser.getUserId().equals(sp.getUserId())) { %>
-            	
-            	<% } else { %>
-            	<form action="<%= contextPath %>/folllowInsert.st" method="POST">
-            		<input type="hidden" name="follower" value="<%= sp.getUserId() %>"><button type="submit" id="follow-btn">팔로우</button>
-            	</form>
+            	<% if( loginUser.getUserId().equals(sp.getContent())) { %>
+            	<a href="<%=contextPath %>/PostDelete.st?pno=<%= sp.getPostNo() %>" class="btn btn-white"><button type="submit" id="follow-btn">삭제</button></a>
             	<% } %>
             </div>
           </div>
@@ -140,20 +154,12 @@
           </div>
         </div>
         <div class="fc-count">
-          <a href="" class="like-count">좋아요 <%= m.get(0).getpLike() %> 개</a>
+          <a href="" class="like-count">좋아요&nbsp;<strong><%= m.get(0).getpLike() %></strong> 개</a>
         </div>
         <div class="fc-tag">
-          <span class="tag-link" style="width:150px;">
+          <span class="tag-link">
              <%= sp.getUserId() %>
           </span>
-        </div>
-        <div class="fc-comment">
-          <div class="comment-area">
-            <button type="submit" id ="open1" name="postNo" value="<%= sp.getPostNo() %>" class="comment-count btn-white" onclick="openModal('modal-wrapper1')">  <strong>댓글&nbsp;보기</strong></button>
-          </div>
-          <div class="comment-list">
-          </div>
-          
         </div>
         
         
@@ -185,23 +191,26 @@
               </div>
               <div id="comments">
                   <div id="reply-area">
-					<table border="1">
+					<table class="blueone">
 						<thead>
+							<% if(loginUser.getUserId().equals(sp.getContent())) { %>
+								
+							<% } else { %>
 								<tr>
 									<th>댓글작성</th>
 									<td>
-										<textarea class="form-control" id="replyContent" cols="20"  rows="3" style="resize:none;" placeholder="댓글을 남기세요"></textarea>
+										<textarea class="form-control" id="replyContent" cols="20"  rows="1" style="resize:none; border:0;" placeholder="댓글을 남기세요"></textarea>
 									</td>
 									<td><button onclick="insertReply();">등록</button></td>
 								</tr>
+							<% } %>
 						</thead>
 						<tbody>
-							
 							<% for(StyleComment sc : list) { %>
 								<tr>
-									<td><%= sc.getUserId() %></td>
 									<td><%= sc.getcContent() %></td>
-									<td><%= sc.getcUproadTime() %></td>
+									<td><%= sc.getUserId() %></td>
+									<td><a href="<%= contextPath %>/CommentDelete.st?cno=<%= sc.getcNo() %>"><button type="submit" id="follow-btn">삭제</button></a></td>
 								</tr>
 							<% } %>
 						</tbody>
@@ -214,21 +223,28 @@
     
           </div>
         </div>
+        
+        <div class="modal-wrapper2" style="display: none">
+        <div class="modal">
+          <div class="modal-title">
+            <ul class="action-list">
+              <li class="action-item"></li>
+              <li class="action-item"></li>
+              <li id="close">닫기</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
         <div style="display:none;"><%= i++ %></div>
         
         
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script>
-        $(function(){
-        	const inner = $('#45').val()
-        	console.log(inner)
-        	
-        })
-        </script>
+        
  
         <script>
 			$(function(){
-				setInterval(selectCommentList, 500);
+				setInterval(selectCommentList, 100);
 			});
 			function insertReply(){
 				$.ajax({
@@ -246,6 +262,7 @@
 							selectCommentList();
 							// 댓글내용 비워주기
 							$("#replyContent").val("");
+							alert("댓글을 작성했습니다.");
 						}else{
 							alert("댓글작성에 실패했습니다.");	
 						}
@@ -266,10 +283,11 @@
 						let result  = "";
 						for(let i of list){ 
 							result += "<tr>"
-										+"<td>"+ i.cContent +"</td>"
-										+"<td>"+ i.userId +"</td>"
-										+"<td>"+ i.cUproadTime +"</td>"
+										+"<td>"+ i.cContent + "</td>"
+										+"<td>"+ i.userId + "</td>"
+										+"<td>" + i.cNo + "</td>"
 								   +  "</tr>"
+								   
 						}
 						
 						$("#reply-area tbody").html(result);
@@ -290,25 +308,7 @@
         
       </div>
       
-      <!-- <div id="modal-wrapper2" style="display: none">
-        <div class="modal">
-          <div class="modal-title">
-            <ul class="action-list">
-              <li class="action-item">공유
-              	<div class="close-wrapper2">
-	              <button class="close" style="background-color: white; border: 0; cursor: pointer;" onclick="closeModal('modal-wrapper2')">
-	                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-	                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-	                </svg>
-	              </button>
-            </div>
-              </li>
-              <li class="action-item"></li>
-            </ul>
-          </div>
-          
-        </div>
-      </div> -->
+      
       
     </content>
 

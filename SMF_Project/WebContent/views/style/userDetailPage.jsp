@@ -4,7 +4,6 @@
 <%
 	String contextPath = request.getContextPath();
 	Member loginUser = (Member) session.getAttribute("loginUser");
-	Follow f = (Follow) session.getAttribute("f");
 	ArrayList<StylePost> list = (ArrayList<StylePost>) request.getAttribute("list");
 	ArrayList<ArrayList<PostImg>> list2 = (ArrayList<ArrayList<PostImg>>) request.getAttribute("list2");
 	ArrayList<StyleComment> list3 = (ArrayList<StyleComment>) request.getAttribute("list3");
@@ -16,7 +15,7 @@
 <meta charset="UTF-8">
 <title>구해줘 패션</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-<link rel="stylesheet" href="resources/style/css/팔로잉.css" />
+<link rel="stylesheet" href="resources/style/css/userPage.css" />
 <style>
 
 </style>
@@ -129,20 +128,12 @@
           </div>
         </div>
         <div class="fc-count">
-          <a href="" class="like-count">공감&nbsp;<strong></strong>갯수</a>
+          <a href="" class="like-count">좋아요&nbsp;<strong><%= m.get(0).getpLike() %></strong> 개</a>
         </div>
         <div class="fc-tag">
           <span class="tag-link">
              <%= sp.getContent() %>
           </span>
-        </div>
-        <div class="fc-comment">
-          <div class="comment-area">
-            <a id ="open1" class="comment-count" onclick="openModal('modal-wrapper1')"> 댓글&nbsp; <strong></strong>보기 </a>
-          </div>
-          <div class="comment-list">
-          </div>
-          
         </div>
         <% } %>
         
@@ -190,7 +181,7 @@
 								<tr>
 									<td><%= sc.getUserId() %></td>
 									<td><%= sc.getcContent() %></td>
-									<td><%= sc.getcUproadTime() %></td>
+									<td><a href="<%= contextPath %>/CommentDelete.st?cno=<%= sc.getcNo() %>"><button type="submit" id="follow-btn">삭제</button></a></td>
 								</tr>
 							<% } %>
 						</tbody>
@@ -249,7 +240,8 @@
 							result += "<tr>"
 										+"<td>"+ k.cContent +"</td>"
 										+"<td>"+ k.userId +"</td>"
-										+"<td>"+ k.cUproadTime +"</td>"
+										+"<td>"+ k.cNo +"</td>"
+										
 								   +  "</tr>"
 						}
 						

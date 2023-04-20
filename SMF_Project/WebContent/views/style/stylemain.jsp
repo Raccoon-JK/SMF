@@ -15,8 +15,12 @@
 <meta charset="UTF-8">
 <title>구해줘 패션</title>
 
-<link rel="stylesheet" href="resources/style/css/스타일 메인.css" />
+<link rel="stylesheet" href="resources/style/css/Stylemain.css" />
 <style>
+	a {
+  text-decoration: none;
+  color: black;
+}
 	
 </style>
 </head>
@@ -167,9 +171,12 @@
           }
       </script>
       
-      <jsp:include page="/views/common/footer.jsp" />
-      
+    <jsp:include page="/views/main/footer.jsp" />
     </foorter>
+      
+      
+      
+    
   </body>
 
 </html>
