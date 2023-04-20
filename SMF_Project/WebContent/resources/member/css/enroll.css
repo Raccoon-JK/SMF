@@ -107,7 +107,7 @@ input, textarea {
 .join_area{
     margin: 0 auto;
     padding: 60px 0 160px;
-    width: 400px;
+    width: 500px;
 }
 
 .join_title { 
@@ -141,6 +141,7 @@ input, textarea {
 }
 
 .birth_box{
+	
     padding: .8rem 0;
     width: 100%;
     font-size: 1.5rem;

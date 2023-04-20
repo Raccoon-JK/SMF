@@ -67,7 +67,11 @@
     }
     
 
-  
+  	th{
+  	 color:#fff;
+  	 background-color: #28a745;
+  	 
+  	}
    
 
    .tabletest{
@@ -92,6 +96,7 @@
     	border-bottom: .3rem solid black;
     }
 	.membermanage_all{
+
 	padding: 200px, 300px, 300px, 300px;
 	}
 	
@@ -99,13 +104,18 @@
 		padding : 70px 0px;
 	}
 	
-	.leftcolor{
-	 border-left: 5px solid #369;
-	 }
+	.membertable{
+	border: 1px solid white;
+	text-align:center;
+	}
+	
+	.membertable{
+	border-bottom : 5px solid #28a745;
+	}
     
 </style>
 <body>
-<jsp:include page="/views/common/menubar.jsp"></jsp:include>
+<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
  <jsp:include page="adminform.jsp"></jsp:include>
  
     <div class="wrap">
@@ -126,16 +136,18 @@
                           
                          <div class="membermanagetable">
                             <div class="tabletest">
-                            <table border="1">
+                            <table border="1" class="membertable" aligin="center">
                               <thead>
                                 <tr>
-                                  <th class="leftcolor"width="100">등록일</th>
-                                  <th>이름</th>
-                                  <th>이메일</th>
-                                  <th>휴대폰</th>
+                                  <th width="100" height="30">등록일</th>
+                                  <th width="100">이름</th>
+                                  <th width="130">이메일</th>
+                                  <th width="130">휴대폰</th>
                                   <th width="300">배송지</th>
-                                  <th width="110">이메일 수신여부</th>
+                                  <th width="130">이메일 수신</th>
                                 </tr>
+                                
+                                
                               </thead>
                               <tbody>
                               	<%if(list.isEmpty()) {%>
@@ -145,7 +157,7 @@
                               	<%}else {%> 
                               	<% for (Member m : list){ %>
                               		<tr>
-                              			<td class="leftcolor"><%= m.getEnrollDate() %></td>
+                              			<td height="50"><%= m.getEnrollDate() %></td>
                               			<td><%= m.getUserName() %></td>
                               			<td><%= m.getUserId() %></td>
                               			<td><%= m.getPhone()%></td>

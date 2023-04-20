@@ -8,6 +8,8 @@
 	Member loginUser = (Member) session.getAttribute("loginUser");
 	
 %>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	Stock s = (Stock) request.getAttribute("s");
 %>
@@ -140,24 +142,29 @@
 </style>
 <body>
  <jsp:include page="adminform.jsp"></jsp:include>
- <jsp:include page="/views/common/menubar.jsp"></jsp:include>
+ <jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
     <div class="suggestdetail_all">
    
         <div class= "content lg">
             <div class="sub_area">
 
             </div>
-
+				  
                 <div class="content_area">
                     <div class="content_title border">
+                   
                         <div class="title">
                             <div class="suggest_underline">
                             <h3>판매제안서 상세보기</h3>
                             </div>
+                        
                             <div class="test">
                            	<% if(loginUser != null && loginUser.getUserId().equals("admin@naver.com")) {%>
-                                <a href="" class="btn btn warning btn-sm">수정</a>
-                                <a href="" class="btn btn danger  btn-sm">삭제</a>
+                                <select name="status" id="status">
+                        			<option value="wait" name="sellwait">판매 대기</option>
+                        			<option value="ing" name="selling">판매중</option>
+                    			</select>
+                                <a href="" class="btn btn-primary" id="statuschange">상태 변경</a>
                             <%} %>
                             </div>
                         </div>      
@@ -188,9 +195,10 @@
                 <div class="btn_list">
                     <a href="<%= contextPath %>/suggestlist.no" class="btn btn-success btn-block">목록보기</a>
                 </div>
+                
 
             </div>
-
+		
 
 
 
@@ -200,5 +208,26 @@
         </div>
     </div>
      <jsp:include page="/views/common/footer.jsp"></jsp:include>
+     <script>
+     	$('#statuschange').click(function(){
+     		$.ajax({
+     		type: 'post',
+     		url: "${ pageContext.request.contextPath}/suggestupdate.no",
+     		data: {status: $('#status option:selected').val(),
+     			stockno : "${ s.stockNo }"
+     			},
+     		dataType: 'json',
+     		success: function(data){
+     			console.log(data);
+     		},
+     		error: function(data){
+     			console.log(data);
+     		}
+     	});		
+     	});
+     	
+     	
+     
+     </script>
 </body>
 </html>
