@@ -3,6 +3,65 @@
  */
 
 /**
+ * 오프닝 js
+ */
+
+$('.opening_button').click(function() {
+	$(".Openning").attr("hidden", true);
+});
+
+var video = document.getElementById("myVideo");
+$(document).ready(function() {
+	video.play();
+});
+
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ')
+			c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0)
+			return c.substring(nameEQ.length, c.length);
+	}
+	return null;
+}
+
+var closeBtn = document.getElementById("closeBtn");
+var dontShowAgain = document.getElementById("dontShowAgain");
+
+closeBtn.onclick = function() {
+	$(".Openning").attr("hidden", true);
+}
+
+dontShowAgain.onclick = function() {
+	setCookie("dontShowAgain", "true", 1); // 1 day expiration
+	$(".Openning").attr("hidden", true);
+}
+
+$(document).ready(function() {
+    var dontShowAgain = getCookie("dontShowAgain");
+    if (dontShowAgain) {
+        $(".Openning").attr("hidden", true);
+    } else {
+        var video = document.getElementById("myVideo");
+        video.play();
+    }
+});
+
+
+/**
  * Swiper 1
  */
 
@@ -111,4 +170,33 @@ $(document).ready(function() {
 		})
 });
 
+
+/**
+ * 알림 기능
+ */
+
+$(document).ready(function() {
+	$.get("/SMF_Project/Notice.no")
+		.done((data) => {
+			if (data.length > 0) {
+				data.forEach((a, i) => {
+					var template = `<tr class="alarm-row"><td class="cell-padding">${data[i].title}</td></tr>`;
+					$(".alarm-list").append(template);
+					$(".red-dot").removeAttr("hidden");
+				});
+			} else {
+				// 데이터가 없는 경우
+				$(".no-alarm").removeAttr("hidden");
+			}
+		})
+		.fail(() => {
+			// 데이터를 받아오지 못한 경우
+			$(".no-alarm").removeAttr("hidden");
+		});
+});
+
+
+$('.view_more').click(function() {
+	$(".red-dot").attr("hidden", true);
+});
 

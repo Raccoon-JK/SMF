@@ -1,5 +1,15 @@
+<%@ page import="com.smf.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+
+Member loginUser = (Member) session.getAttribute("loginUser");
+// 로그인 전 : null값이 담김
+// 로그인 후 : 로그인한 회원의 Member객체
+
+char weather = 's';
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -19,14 +29,38 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/common/css/menu.css"
+	href="${pageContext.request.contextPath}/views/main/css/menu.css"
 	type="text/css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/common/css/modal.css"
+	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
+<%
+	if (weather == 's') {
+%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/common/css/sunny.css"
+	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
 	type="text/css">
+<%
+	} else if (weather == 'r') {
+%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/rain.css"
+	type="text/css">
+<%
+	} else if (weather == 'n') {
+%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/snow.css"
+	type="text/css">
+<%
+	} else if (weather == 'c') {
+%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/cloud.css"
+	type="text/css">
+<%
+	}
+%>
 <style>
 .header {
 	position: fixed;
@@ -44,10 +78,13 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-
 </style>
 </head>
 <body>
+
+	<%
+		if (weather == 's') {
+	%>
 	<div class="sky">
 		<div class="sky__phase sky__1"></div>
 		<div class="sky__phase sky__2"></div>
@@ -58,18 +95,29 @@
 			<div class="sun4"></div>
 		</div>
 	</div>
-	
+	<%
+		} else if (weather == 'c') {
+	%>
+
+	<div id="clouds">
+		<div class="cloud x1"></div>
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+		<div class="cloud x6"></div>
+	</div>
+	<%
+		}
+	%>
 	<div class="modal">
 		<div class="frame">
 			<div class="deco"></div>
 			<div class="modal-alarm">
 				<span class="close">&times;</span>
 				<div>
-					<table class="table-alarm">
-						<tr>
-							<td id="notification"></td>
-						</tr>
-					</table>
+					<table class="alarm-list"></table>
+					<p class="no-alarm" hidden>새로운 알림이 없습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -92,8 +140,12 @@
 						</c:choose>
 						<li><button class="view_more" type="button">
 								<img id="alarm"
-									src="${pageContext.request.contextPath}/resources/common/images/bell_icon.png">
+									src="${pageContext.request.contextPath}/resources/main/bell_icon.png">
+								<div class="red-dot" hidden></div>
 							</button></li>
+						<%
+							}
+						%>
 					</ul>
 				</div>
 			</div>
@@ -102,11 +154,13 @@
 				<div class="gnb_area">
 					<nav class="gnb">
 						<ul class="gnb_list">
-							<li><a href="${pageContext.request.contextPath}/dressroomMain.me">DRESS ROOM</a></li>
-							<li><a href="${pageContext.request.contextPath}/mypagemain.me">MY</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/dressroomMain.me">DRESS
+									ROOM</a></li>
+							<li><a href="">MY</a></li>
 							<li><button class="view_more" type="button">
 									<img id="search"
-										src="${pageContext.request.contextPath}/resources/common/images/search_icon.png">
+										src="${pageContext.request.contextPath}/resources/main/search_icon.png">
 								</button></li>
 						</ul>
 					</nav>
@@ -115,13 +169,32 @@
 			<div class="tab_area">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}"><span>HOME</span></a></li>
-					<li><a href="${pageContext.request.contextPath}/postList.do"><span>STYLE</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/styleList.st"><span>STYLE</span></a></li>
 					<li><a href="${pageContext.request.contextPath}/main.sh"><span>SHOP</span></a></li>
 					<li><a href=""><span>기획전</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/views/main/js/modal.js"></script>
+
+	<%
+		if (weather == 'r') {
+	%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/views/main/js/rain.js"></script>
+	<%
+		} else if (weather == 'n') {
+	%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/views/main/js/snow.js"></script>
+	<%
+		}
+	%>
+
+
 	<script>
 	const msg = "${ alertMsg }";
 	console.log(msg);
