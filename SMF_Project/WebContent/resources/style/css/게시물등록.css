@@ -1,0 +1,254 @@
+  body {
+    width: 100%;
+  }
+
+  body, button, input, textarea, a, span, p{
+    font-family: Arial,sans-serif;
+  }
+  
+  img {
+    vertical-align: top;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  header {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .headerwrap {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+  }
+  
+  .headertop {
+    margin-bottom: 10px;
+    height: 80px;
+    font-size: 12px;
+  }
+  
+  .headertop ul a {
+    margin-right: 20px;
+  }
+  
+  .headertop ul {
+    display: flex;
+    float: right;
+    list-style: none;
+    height: 100px;
+  }
+  
+
+  content{
+    height: 80%;
+    width: 100%;
+  }
+
+  footer{
+    height: 10%;
+  }
+  
+  .noticewrap1{
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    
+  }
+  
+
+  .noticewrap2{
+    border-top: 1px solid #f0f0f0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  
+
+  .insertnotice2{
+    display: flex;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+  }
+
+  .insert-btnwrap{
+    display: flex;
+  }
+
+  .submit-btn{
+  	border : 1px solid black;
+    border-radius: 5px;
+    background-color: white; 
+    font-size: 16px;
+    font-weight: bold; 
+    cursor: pointer;
+  }
+
+  .tag-link button{
+    border-radius: 5px;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .tag-link a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+  }
+
+  .notice-content{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .notice-content textarea{
+    resize: none;
+    border: 0;
+    
+  }
+
+  .uproadfilewrap{
+    margin-top: 50px;
+  }
+
+  .uproadfilewrap button{
+    background-color: white;
+    border: 0;
+  }
+
+  .uproad-img{
+    background-color: gray;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .item-tag{
+    display: flex;
+    flex-direction: column;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .item-tag button{
+    height: 50px;
+    width: 50px;
+
+  }
+
+  #modal-wrapper1, #modal-wrapper2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  .modal {
+    background: white;
+    padding: 24px 16px;
+    width: 800px;
+  }
+  
+  
+  
+  .modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .modal p {
+    font-size: 16px;
+  }
+  
+  #close-wrapper1, #close-wrapper2 {
+    float: right;
+    
+  }
+  
+  #open{
+    cursor: pointer;
+  }
+
+  #close, #close2, .insert-btn2{
+    border-radius: 5px;
+    background-color: white; 
+    font-size: 16px;
+    font-weight: bold; 
+    cursor: pointer;
+  }
+
+  /* 파일업로드 버튼 디자인 */
+
+  .file-box{
+    margin-bottom: 10px;
+  }
+
+  .uproadfilewrap label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+    font-size: 16px;
+    font-weight: bold; 
+  }
+
+  .uproadfilewrap input[type="file"] {  /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+  }
+
+  .list-btn{
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+    font-size: 16px;
+    font-weight: bold; 
+  }
+
+ 
+
+
+ 
+  
+  

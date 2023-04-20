@@ -69,20 +69,11 @@ public class StyleService {
 		return sp;
 	}
 	
-	public ArrayList<StylePost> selectPostImgList(){
-		Connection conn = getConnection();
-		// 총 게시물의 수
-		ArrayList<StylePost> list = new StyleDao().selectPostImgList(conn);
-		
-		close(conn);
-		
-		return list;
-	}
 	
-	public ArrayList<ArrayList<PostImg>> selectPostImgList2(){
+	public ArrayList<ArrayList<PostImg>> selectPostImgList2(int postNo){
 		// 한 개의 게시물의 이미지 수
 		Connection conn = getConnection();
-		ArrayList<StylePost> list = new StyleDao().selectPostImgList(conn);
+		ArrayList<StylePost> list = new StyleDao().selectPostImgList(conn, postNo);
 		ArrayList<ArrayList<PostImg>> list2 = new ArrayList<>();
 		
 		for(int i=0; i<list.size(); i++) {
@@ -140,6 +131,19 @@ public class StyleService {
 		
 		return result;
 	}
+	
+	
+	
+	public ArrayList<PostLike> selectPostLike(int postNo){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<PostLike> list = new StyleDao().selectPostLike(conn, postNo);
+		
+		close(conn);
+		
+		return list;
+}
 	
 	public int insertComment(StyleComment sc) {
 		

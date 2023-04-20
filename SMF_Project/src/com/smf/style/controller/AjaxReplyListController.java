@@ -33,16 +33,16 @@ public class AjaxReplyListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*
-		 * int postNo = Integer.parseInt(request.getParameter("pno"));
-		 * 
-		 * ArrayList<StyleComment> list = new StyleService().selectCommentList(postNo);
-		 * 
-		 * 
-		 * // Gson을 이용해서 응답 ArrayList- > JSONArray로 변환
-		 * response.setContentType("application/json; charset=UTF-8"); new
-		 * Gson().toJson(list , response.getWriter());
-		 */
+		
+		  int postNo = Integer.parseInt(request.getParameter("postNo"));
+		  
+		  ArrayList<StyleComment> list = new StyleService().selectCommentList(postNo);
+		  
+		  
+		  // Gson을 이용해서 응답 ArrayList- > JSONArray로 변환
+		 response.setContentType("application/json; charset=UTF-8"); new
+		 Gson().toJson(list , response.getWriter());
+		 
 	}
 
 	/**
