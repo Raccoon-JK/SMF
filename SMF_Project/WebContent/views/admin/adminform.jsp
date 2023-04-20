@@ -111,7 +111,7 @@ a {
                 <ul>
                     <li><a href="#">신고접수</a></li>
                     <li><a href="<%=contextPath %>/member.list">회원정보 조회</a></li>
-                    <li><a href="#">블랙리스트 관리</a></li>
+                    <li><a href="<%=contextPath %>/blacklist.no">블랙리스트 관리</a></li>
                 </ul>
             </li>
             <li>

@@ -490,7 +490,7 @@
             </div>
         </div>
     </div>
-    <a href="${ pageContext.request.contextPath }/suggestPost.sh?productName=${ p.productName }&&brandName=${ p.brandName }">aa</a>
+    <a href="${ pageContext.request.contextPath }/suggestPost.sh?productName=${ p.productName }&&brandName=${ p.brandName }">aaaaaaaaaaaaaaaaaaaaaaa</a>
     <script>
         $( document ).ready( function() {
             $('.mainImgList').slick({
