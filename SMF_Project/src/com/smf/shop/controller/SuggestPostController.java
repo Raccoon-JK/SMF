@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smf.member.model.vo.Member;
-import com.smf.my.model.vo.WishList;
-import com.smf.shop.model.service.ShopService;
+import com.smf.shop.model.vo.Product;
 
 /**
- * Servlet implementation class WishListCountController
+ * Servlet implementation class SuggestPostController
  */
-@WebServlet("/wishListCount.sh")
-public class WishListCountController extends HttpServlet {
+@WebServlet("/suggestPost.sh")
+public class SuggestPostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WishListCountController() {
+    public SuggestPostController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +28,15 @@ public class WishListCountController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String bName = request.getParameter("brandName");
+		String pName = request.getParameter("productName");
 		
-		String productName = request.getParameter("productName");
-		String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId() + "";
+		request.setAttribute("bName", bName);
+		request.setAttribute("pName", pName);
 		
-		int result = new ShopService().insertWishList(productName, userId);
+		request.getRequestDispatcher("views/shop/suggestPostForm.jsp").forward(request, response);
 		
-		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "관심 상품에 등록되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/productDetail.sh?productName="+productName);
-		
-		}else {
-			int result2 = new ShopService().deleteWishList(productName, userId);
-			response.sendRedirect(request.getContextPath()+"/productDetail.sh?productName="+productName);
-		}
 		
 	}
 

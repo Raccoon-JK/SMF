@@ -579,6 +579,29 @@ public class ShopDao {
 		return result;
 	}
 	
+	public int deleteWishList(Connection conn, String productName, String userId) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteWishList");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, productName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public ArrayList<ProductAll> selectNcategory(Connection conn, String category, PageInfo pi){
 			
 		ArrayList<ProductAll> list = new ArrayList<>();
@@ -598,6 +621,47 @@ public class ShopDao {
 			pstmt.setString(1, category);			
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectNcategoryAll(Connection conn, String category){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectNcategoryAll");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);			
 			
 			rset = pstmt.executeQuery();
 			
@@ -1050,5 +1114,82 @@ public class ShopDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public ArrayList<ProductAll> searchPname(Connection conn, String text){
+		System.out.println(text);
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchPname");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+text+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public int suggestProduct(Connection conn, String userId, String userClass, String bName, String pName, String price, String size, String count) {
+		
+		int result = 0;
+		System.out.println(userId);
+		System.out.println(userClass);
+		System.out.println(pName);
+		System.out.println(price);
+		System.out.println(size);
+		System.out.println(count);
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("suggestProduct");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, pName);
+			pstmt.setString(3, price);
+			pstmt.setString(4, count);
+			pstmt.setString(5, size);
+			pstmt.setString(6, userClass);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 }

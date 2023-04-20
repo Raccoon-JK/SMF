@@ -143,7 +143,8 @@ public class ShopMainListController extends HttpServlet {
 		// 2. 현재 사용자가 요청한 페이지(currentPage)에 보여질 게시글 리스트 요청하기
 		
 		ArrayList<ProductAll> list = new ShopService().selectProductAll(pi);
-		System.out.println(list.size());
+//		System.out.println(list.size());
+//		System.out.println(list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		

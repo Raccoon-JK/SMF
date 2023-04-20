@@ -204,11 +204,37 @@ public class ShopService {
 		
 	}
 	
+	public int deleteWishList(String productName, String userId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().deleteWishList(conn, productName, userId);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	public ArrayList<ProductAll> selectNcategory(String category, PageInfo pi) {
 		
 		Connection conn = getConnection();
 		
 		ArrayList<ProductAll> list = new ShopDao().selectNcategory(conn, category, pi);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<ProductAll> selectNcategoryAll(String category) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectNcategoryAll(conn, category);
 		
 		close(conn);
 		
@@ -336,6 +362,28 @@ public class ShopService {
 		}else {
 			rollback(conn);
 		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public ArrayList<ProductAll> searchPname(String text) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().searchPname(conn, text);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public int suggestProduct(String userId, String userClass, String bName, String pName, String price, String size, String count) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ShopDao().suggestProduct(conn, userId, userClass, bName, pName, price, size, count);
 		
 		close(conn);
 		
