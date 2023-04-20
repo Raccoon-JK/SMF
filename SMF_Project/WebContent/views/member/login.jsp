@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="wrap">
-    <jsp:include page="/views/common/menubar.jsp"></jsp:include>
+    <jsp:include page="/views/main/menubar_sun.jsp"></jsp:include>
         <div class="container login">
             <div class="content lg">
                 <div class="login_area">

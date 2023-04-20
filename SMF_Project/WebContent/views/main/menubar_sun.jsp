@@ -128,7 +128,7 @@ String weather = (String) request.getAttribute("weather");
 				<div class="top_inner">
 					<ul class="top_list">
 						<li class="top_item"><a href="">고객센터</a></li>
-						<li class="top_item"><a href="">관심상품</a></li>
+						<li class="top_item"><a href="${pageContext.request.contextPath}/mypagewishlist.me">관심상품</a></li>
 						<%
 							if (loginUser == null) {
 						%>
@@ -158,7 +158,7 @@ String weather = (String) request.getAttribute("weather");
 							<li><a
 								href="${pageContext.request.contextPath}/dressroomMain.me">DRESS
 									ROOM</a></li>
-							<li><a href="">MY</a></li>
+							<li><a href="${pageContext.request.contextPath}/mypagemain.me">MY</a></li>
 							<li><button class="view_more" type="button">
 									<img id="search"
 										src="${pageContext.request.contextPath}/resources/main/search_icon.png">
@@ -171,7 +171,7 @@ String weather = (String) request.getAttribute("weather");
 				<ul>
 					<li><a href=""><span>HOME</span></a></li>
 					<li><a href="${pageContext.request.contextPath}/styleList.st"><span>STYLE</span></a></li>
-					<li><a href=""><span>SHOP</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/main.sh"><span>SHOP</span></a></li>
 					<li><a href=""><span>기획전</span></a></li>
 				</ul>
 			</div>

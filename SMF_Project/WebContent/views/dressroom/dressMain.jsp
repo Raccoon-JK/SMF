@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/SMF_Project/resources/dressroom/css/dressroomMain.css">
 </head>
 <body>
-<%-- <jsp:include page="/views/common/menubar_sun.jsp" /> --%>
+<jsp:include page="/views/main/menubar_sun.jsp" />
 	<section id="main">
 
 		<div class="container">
@@ -467,7 +467,7 @@
 								$(data).each(function(index, item){
 								var imgId = "img"+index;
 								str += '<div class="rightboxSelectList">'
-                                           +'<img id="'+imgId+'" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
+                                           +'<img id="'+imgId+'_'+item.imgNo+'" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
                                        +'</div>'
 								});
 								str += '</section>';
