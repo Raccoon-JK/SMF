@@ -199,13 +199,20 @@ String weather = (String) request.getAttribute("weather");
 		/**
 		 * 날씨 확인
 		 */
-		 fetch('http://localhost:8080/SMF_Project/WeatherCoding.wc')
-		  .then(response => response.json())
-		  .then(data => {
-		    const weather = String(data.weather);
-		    console.log(weather);
-		  })
-		  .catch(error => console.error(error));
+		let weather;
+
+		$.ajax({
+			url : "/SMF_Project/WeatherCoding.wc",
+			method : "GET",
+			success : function(response) {
+				weather = response;
+				console.log(weather);
+	<%request.setAttribute("weather", weather);%>
+		},
+			error : function(error) {
+				console.log(error);
+			}
+		});
 	</script>
 
 
