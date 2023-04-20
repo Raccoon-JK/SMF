@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+	String alertMsg = (String) session.getAttribute("alertMsg");
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -13,6 +14,17 @@
 <link rel="stylesheet" href="<%= contextPath %>/resources/shop/css/suggest-styles.css" type="text/css">      
 </head>
 <body>
+	<script>
+		const msg = "<%=alertMsg%>";
+		
+		if(msg != "null"){ // 성공적으로 로그인이 되었습니다 / null
+			alert(msg);
+			// 알람창을 띄워준 후 session에 담긴 메세지는 지워줘야함
+			// 안 그러면 menubar.jsp가 로딩될때마다 매번 alert함수가 실행됨
+			<%session.removeAttribute("alertMsg");%>
+		}
+		
+	</script>
 	<div id="navibar">
 	    <jsp:include page="/views/main/menubar_shop.jsp" />
     </div>
@@ -94,5 +106,9 @@
                 </div>
             </div>
         </form>
+        
+        <script>
+        
+        </script>
 </body>
 </html>
