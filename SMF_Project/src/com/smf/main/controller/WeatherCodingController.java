@@ -63,19 +63,21 @@ public class WeatherCodingController extends HttpServlet {
 
         if (xml != null) {
             XPath xpath = XPathFactory.newInstance().newXPath();
-            Node category;
-            Node fcstValue;
-            Node fcstTime;
-            
-            try {
-                category = (Node) xpath.evaluate("//item/category", xml, XPathConstants.NODE);
-                fcstValue = (Node) xpath.evaluate("//item/fcstValue", xml, XPathConstants.NODE);
-                fcstTime = (Node) xpath.evaluate("//item/fcstTime", xml, XPathConstants.NODE);
+            Node fcstValue6;
+            Node fcstValue7;
 
-                String categoryStr = category.getTextContent();
-                String fcstValueStr = fcstValue.getTextContent();
-                String fcstTimeStr = fcstTime.getTextContent();
-                String result = "카테고리 : " + categoryStr + " / 값 : " + fcstValueStr + " / 시간 : " + fcstTimeStr;
+            try {
+                fcstValue6 = (Node) xpath.evaluate("//item[6]/fcstValue", xml, XPathConstants.NODE);
+				/*
+				 * fcstValue7 = (Node) xpath.evaluate("//item[7]/fcstValue", xml,
+				 * XPathConstants.NODE);
+				 */
+
+                String fcstValue6Str = fcstValue6.getTextContent();
+				/* String fcstValue7Str = fcstValue7.getTextContent(); */
+
+                String result = fcstValue6Str;
+                		/*fcstValue6Str + " / 7번째 값 : " + fcstValue7Str;*/
                 response.getWriter().write(result);
                 System.out.println(result);
 
@@ -83,6 +85,7 @@ public class WeatherCodingController extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

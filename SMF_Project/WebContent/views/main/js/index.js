@@ -51,13 +51,13 @@ dontShowAgain.onclick = function() {
 }
 
 $(document).ready(function() {
-    var dontShowAgain = getCookie("dontShowAgain");
-    if (dontShowAgain) {
-        $(".Openning").attr("hidden", true);
-    } else {
-        var video = document.getElementById("myVideo");
-        video.play();
-    }
+	var dontShowAgain = getCookie("dontShowAgain");
+	if (dontShowAgain) {
+		$(".Openning").attr("hidden", true);
+	} else {
+		var video = document.getElementById("myVideo");
+		video.play();
+	}
 });
 
 
@@ -199,4 +199,5 @@ $(document).ready(function() {
 $('.view_more').click(function() {
 	$(".red-dot").attr("hidden", true);
 });
+
 

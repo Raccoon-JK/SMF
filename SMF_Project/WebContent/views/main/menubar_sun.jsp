@@ -8,7 +8,7 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 // 로그인 전 : null값이 담김
 // 로그인 후 : 로그인한 회원의 Member객체
 
-char weather = 's';
+String weather = (String) request.getAttribute("weather");
 %>
 <!DOCTYPE html>
 <html>
@@ -34,25 +34,25 @@ char weather = 's';
 	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
 <%
-	if (weather == 's') {
+	if (weather == "1") {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
 	type="text/css">
 <%
-	} else if (weather == 'r') {
+	} else if (weather == "r") {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/rain.css"
 	type="text/css">
 <%
-	} else if (weather == 'n') {
+	} else if (weather == "n") {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/snow.css"
 	type="text/css">
 <%
-	} else if (weather == 'c') {
+	} else if (weather == "4") {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/cloud.css"
@@ -82,7 +82,7 @@ char weather = 's';
 <body>
 
 	<%
-		if (weather == 's') {
+		if (weather == "1") {
 	%>
 	<div class="sky">
 		<div class="sky__phase sky__1"></div>
@@ -95,7 +95,7 @@ char weather = 's';
 		</div>
 	</div>
 	<%
-		} else if (weather == 'c') {
+		} else if (weather == "4") {
 	%>
 
 	<div id="clouds">
@@ -182,18 +182,31 @@ char weather = 's';
 		src="${pageContext.request.contextPath}/views/main/js/modal.js"></script>
 
 	<%
-		if (weather == 'r') {
+		if (weather == "r") {
 	%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/rain.js"></script>
 	<%
-		} else if (weather == 'n') {
+		} else if (weather == "n") {
 	%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/snow.js"></script>
 	<%
 		}
 	%>
+
+	<script>
+		/**
+		 * 날씨 확인
+		 */
+		 fetch('http://localhost:8080/SMF_Project/WeatherCoding.wc')
+		  .then(response => response.json())
+		  .then(data => {
+		    const weather = String(data.weather);
+		    console.log(weather);
+		  })
+		  .catch(error => console.error(error));
+	</script>
 
 
 </body>
