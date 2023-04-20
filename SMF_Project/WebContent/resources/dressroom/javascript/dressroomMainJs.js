@@ -48,8 +48,10 @@ function makeDragEvent() {
 					isDragging = false;
 					image.style.cursor = 'grab';
 
+					
 					initialX = currentX;
 					initialY = currentY;
+
 				}
 			}
 

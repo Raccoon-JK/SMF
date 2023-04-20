@@ -93,7 +93,7 @@ img {
 	overflow-y: scroll;
 	height: 39%;
 }
-.itemObjectName{
+.itemObjectInformation{
 	font-weight: bold;
 	color: rgb(59, 59, 59);
 	white-space: nowrap;
