@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
@@ -58,7 +59,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			
-			
+			// 더 많은 정보를 로그인할 때 가져와야 합니다.
 			if(rset.next()) {
 				m = new Member(rset.getString("USER_ID"),
 							   rset.getString("USER_NAME"),
@@ -67,10 +68,16 @@ public class MemberDao {
 							   rset.getDate("BIRTH"),
 							   rset.getInt("USER_TYPE"),
 							   rset.getString("AGREE_EMAIL"),
+							   rset.getString("STATUS"),
 							   rset.getString("USER_IMAGE"),
 							   rset.getString("INTRODUCE"),
 							   rset.getString("SNS_ID"),
-							   rset.getInt("TOTAL_POINT"));
+							   rset.getInt("TOTAL_POINT")
+							   );
+				
+				
+				
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,19 +127,23 @@ public class MemberDao {
 	
 	
 	
-		public String searchEmail(Connection conn, String uphone) {
+		public ArrayList<String> searchEmail(Connection conn, String uphone) {
 		
 		String email = "";
+		ArrayList<String> list = new ArrayList();
+		
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("selectEmail");
+		String sql = prop.getProperty("searchEmail");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, uphone);
 			ResultSet result = pstmt.executeQuery();
 			
-			if(result.next()) {
+			while(result.next()) {
 				email = result.getString("USER_ID");
+				
+				list.add(email);
 			}
 			
 		} catch (SQLException e) {
@@ -141,8 +152,89 @@ public class MemberDao {
 			JDBCTemplate.close(pstmt);
 		}
 		
-		return email;
+		return list;
 	}
+		
+		public String searchPwd(Connection conn, String uphone, String userId) {
+		
+		String pwd = "";
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("searchPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uphone);
+			pstmt.setString(2, userId);
+			
+			ResultSet result = pstmt.executeQuery();
+			
+			if(result.next()) {
+				pwd = result.getString("USER_PWD");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return pwd;
+		
+	}
+	
+	public ArrayList<Member> selectMemberList(Connection conn){
+		
+		ArrayList<Member> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMemberList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member m = new Member(
+						rset.getString("USER_ID"),
+						rset.getString("USER_NAME"),
+						rset.getString("PHONE"),
+						rset.getDate("ENROLL_DATE"),
+						rset.getString("ADDRESS"),
+						rset.getString("AGREE_EMAIL")
+						);
+				
+				list.add(m);
+				
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		
+		}
+		
+		
+		return list;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

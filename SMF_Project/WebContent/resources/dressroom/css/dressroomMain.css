@@ -50,16 +50,18 @@ div {
 	justify-content: center;
 }
 
-.container2, .container3, .container4, .container5, .container6 {
+.container2, .container3 {
 	display: flex;
+	flex-wrap: wrap;
 }
 
-.rightbox {
+.rightbox, .rightboxSelectList {
 	width: 100px;
-	height: 100px;
+	height: 130px;
 	margin: 5px;
 	border-bottom: 2px solid black;
 	border-right: 2px solid black;
+	position: relative;
 }
 
 .image-container {
@@ -84,4 +86,50 @@ img {
 	position: absolute;
 	height: 100%;
 	width: 61%;
+}
+#itemListboxList{
+	display:flex;
+	flex-wrap:wrap;
+	overflow-y: scroll;
+	height: 39%;
+}
+.itemObjectName{
+	font-weight: bold;
+	color: rgb(59, 59, 59);
+	white-space: nowrap;
+	font-size: 90%;
+	left: 50%;
+	transform: translateX(-50%);
+	position: absolute;
+	bottom: 10%;
+}
+
+#backButton {
+    text-align: center;
+	background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+#backButton {
+    width: 120px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 40px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    transition: all .4s ease-in-out;
+}
+
+#backButton:hover {
+    background-position: 100% 0;
+    transition: all .4s ease-in-out;
+}
+
+#backButton:focus {
+    outline: none;
 }

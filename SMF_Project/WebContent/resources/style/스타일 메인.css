@@ -1,5 +1,6 @@
 body {
   width: 100%;
+  
 }
 
 img {
@@ -11,51 +12,6 @@ a {
   color: black;
 }
 
-header {
-  border-bottom: 1px solid #f0f0f0;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.headerwrap {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
-}
-
-.headertop {
-  margin-bottom: 10px;
-  height: 20px;
-  font-size: 12px;
-}
-
-.headertop ul a {
-  margin-right: 20px;
-}
-
-.headertop ul {
-  display: flex;
-  float: right;
-  list-style: none;
-  height: 20px;
-}
-
-
-
-.headerbottom {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.headerbottom span {
-  margin-right: 10px;
-}
-
-.headerbottom a:hover {
-  border-bottom: solid 3px black;
-}
 
 content {
   height: 80%;
@@ -134,8 +90,11 @@ content {
 .ct-feedcontainer {
   justify-content: center;
   margin-top: 30px;
+  margin-bottom: 30px;
   width: 100%;
+  border-bottom: 1px solid #f0f0f0;
 }
+
 
 .moveTopBtn {
   position: fixed;
@@ -149,7 +108,7 @@ content {
 .moveTopBtn svg{
   width: 80%;
   height: 80%;
-  color: gray;
+  color: rgba(212, 212, 212, 0.747);
 }
 
 @media(min-width: 640px){
@@ -192,3 +151,5 @@ content {
 footer {
   height: 10%;
 }
+
+

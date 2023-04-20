@@ -1,0 +1,11 @@
+#itemDetail {
+	padding-top: 150px;
+    width: 300px;
+    margin: auto;
+}
+table{
+    margin-bottom: 5px;
+}
+tr+tr{
+	padding-bottom: 10px;
+}

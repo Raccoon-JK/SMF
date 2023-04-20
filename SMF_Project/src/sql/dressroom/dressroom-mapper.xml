@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="categoryItemList">
+		SELECT IMG_NO, PRODUCT_NAME, IMG_NAME, IMG_PATH, CATEGORY_NO, SUB_CATEGORY_NAME
+		FROM PRODUCT_IMG PI 
+		LEFT JOIN PRODUCT P USING(PRODUCT_NAME) 
+		LEFT JOIN CATEGORY_SUB C ON P.CATEGORY_NO = C.SUB_CATEGORY_NO
+		WHERE P.STATUS = 'Y' AND C.SUB_CATEGORY_NAME = ? AND PI.IMG_NAME LIKE '%_1.png%'
+	</entry>
+</properties>

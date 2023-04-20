@@ -22,6 +22,13 @@ public class Product_Img {
 		this.imgStatus = imgStatus;
 	}
 
+	public Product_Img(String productName, String imgName, String imgPath) {
+		super();
+		this.productName = productName;
+		this.imgName = imgName;
+		this.imgPath = imgPath;
+	}
+
 	public int getImgNo() {
 		return imgNo;
 	}

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.service.MyPageService;
@@ -34,14 +35,20 @@ public class MyWishListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-
-		ArrayList<ProductAll> list = new MyPageService().wishlistList(userId);
+		if(session.getAttribute("loginUser") == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			response.sendRedirect(request.getContextPath()+"/login.page");
+		}else {
+			
+			String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			ArrayList<ProductAll> list = new MyPageService().wishlistList(userId);
+			
+			request.setAttribute("wList", list);
 		
-		request.setAttribute("wList", list);
-		
-		request.getRequestDispatcher("views/my/mypageWhishList.jsp").forward(request, response);
+			request.getRequestDispatcher("views/my/mypageWhishList.jsp").forward(request, response);
+		}
 	}
 
 	/**

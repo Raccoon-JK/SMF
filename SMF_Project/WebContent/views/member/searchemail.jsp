@@ -14,7 +14,7 @@
 
 <body>
     <div class="wrap">
-
+		<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
         <div class="container help">
             <div class="content lg">
                 <div class="help_area">
@@ -29,11 +29,11 @@
                         <div class="input_box">
                             <h3 class="input_title">휴대폰 번호</h3>
                             <div class="input_item">
-                                <input type="tel" placeholder="가입하신 휴대폰 번호" class="input_txt" maxlength="11" id="uphone">
+                                <input type="tel" placeholder="가입하신 휴대폰 번호" class="input_txt" maxlength="11" id="uphone" name="uphone"></input>
                             </div>
                         </div>
                         <div class="emailsearch_btn_box">
-                            <input type="button" class="btn full solid disabled" id="emailsearch_btn" value="이메일 아이디 찾기" onclick="phoneCheck();"> </input>
+                            <input type="button" class="btn full solid disabled" id="emailsearch_btn" value="이메일 아이디 찾기" onclick="phoneCheck();"> 
                         
                         </div>
                        
@@ -49,6 +49,7 @@
             </div>
         </div>
     </div>
+      <jsp:include page="/views/common/footer.jsp"></jsp:include>
   </div>  
 </body>
 <script>

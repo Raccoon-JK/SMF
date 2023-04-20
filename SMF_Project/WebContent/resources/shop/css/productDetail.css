@@ -25,8 +25,24 @@ button{
     margin-right: auto;
     max-width: 1280px;
     overflow: hidden;
-    padding: 30px 40px 120px;
+    padding: 100px 40px 120px;
 }
+
+.sellPost{
+	float: right;
+	position: absolute;
+    left: 1450px;
+    bottom: -15840px;
+	margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    overflow: hidden;
+}
+
+.sellPost>a{
+	color: black;
+}
+
 .contentHead{
     max-width: 1280px;
     overflow: hidden;
@@ -88,10 +104,13 @@ button{
 #productInfoPrice{
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 65%;
 }
 .productInfoHalf{
-    width: 50%;
+    width: 65%;
+}
+.productInfoHalfR{
+    width: 35%;
 }
 .productInfoRight{
     display: flex;
@@ -106,7 +125,7 @@ button{
 .detailPriceInfo{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .interestProduct{
     display: flex;
@@ -166,6 +185,68 @@ button{
     padding-top: 60px;
     border-top: 1px solid #ebebeb;
 }
+
+.innerProductArea{
+    padding: 0 100px;
+}
+
+.innerProductArea1{
+    text-align: center;
+}
+
+.innerProduct{
+    font-size: 15px;
+    max-width: 600px;
+    letter-spacing: -.01em;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.innerProductArea2{
+    margin-top: 40px;
+}
+
+.innerProductArea3{
+    text-align: left;
+    border-top: 1px solid #ebebeb;
+    padding: 57px 0 0;
+    margin-top: 40px;
+}
+
+.innerProductArea3_1{
+    font-size: 32px;
+    letter-spacing: -.48px;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 0;
+}
+
+.innerProductArea3_2{
+    font-size: 28px;
+    margin-top: 4px;
+    letter-spacing: -.015em;
+    text-transform: capitalize;
+}
+
+.innerProductArea3_3{
+    font-size: 17px;
+    margin: 24px 0 0;
+    padding: 0;
+    border: 0;
+    line-height: 24px;
+    color: rgba(34,34,34,.5);
+    text-align: justify;
+}
+
+.innerProductArea4{
+    margin-top: 27px;
+}
+
+.mainImgList{
+	background: rgb(246, 238, 237);
+	border-radius: 5px;
+}
+
 .PDIC2_0{
     padding: 42px 100px 0;
 }
@@ -404,17 +485,19 @@ button{
     cursor: pointer;
 }
 .prevArrow{
-    left: 280px;
+	top: 380px;
+    left: 350px;
     background: url(../symbols/prev.svg);
     z-index: 1;
 }
 .nextArrow{
-    right: 917px;
+	top: 380px;
+    right: 990px;
     background: url(../symbols/next.svg);
     z-index: 1;
 }
 .slick-dots{
-    bottom: 15px;
+    bottom: 15px !important;
 }
 .slick-list{
     height: 559px;
@@ -428,4 +511,8 @@ input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+#pCountDiv{
+	display: flex;
 }

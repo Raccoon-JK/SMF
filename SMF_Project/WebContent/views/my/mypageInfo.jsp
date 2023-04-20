@@ -24,54 +24,66 @@
 					<div id="mypageInfo_img">
 						<img id="mypage_profileImg" alt="" src="<%=contextPath%>${loginUser.userImg}">
 						<input type="file" name="userImg" id="updateMyImg">
-						<label for="updateMyImg">변경</label>
+						<label for="updateMyImg" class="customBtn">변경</label>
 						<input type="hidden" name="id" value="${loginUser.userId}">
 					</div>
 				</form>
 				<div id="mypageInfo_content">
 					<div id="mypageInfo_content_left">
-						<div class="Personal_info mypageInfo_class">
-							<h5>개인정보</h5>
-							<p>이름</p>
-							<input class="inputBox" type="text" name="USER_NAME" readonly>
-							<button type="button">변경</button>
-						</div>
-						<div class="Personal_info mypageInfo_class">
-							<p>생년월일</p>
-							<input class="inputBox" type="text" name="BIRTH" readonly>
-							<button type="button">변경</button>
-						</div>
-						<div class="Personal_info mypageInfo_class">
-							<p>핸드폰</p>
-							<input class="inputBox" type="text"  name="PHONE" readonly>
-							<button type="button">변경</button>
-						</div>
-					</div>
-					<div id="mypageInfo_content_right">
 						<div id="mypageInfo_loginInfo">
-							<div class="login_info mypageInfo_class">
+							<div class="info_title">
 								<h5>로그인 정보</h5>
+							</div>
+							<div class="login_info mypageInfo_class">
 								<p>아이디</p>
-								<input class="inputBox" type="text" readonly>
-								<button type="button">변경</button>
+								<input class="inputBox infoText" type="text" readonly>
+								<!-- <button class="customBtn" type="button">변경</button> -->
 							</div>
 							<div class="login_info mypageInfo_class">
 								<p>비밀번호</p>
-								<input class="inputBox" type="password"  name="USER_PWD" readonly>
-								<button type="button">변경</button>
+								<input class="inputBox infoText" type="password"  name="USER_PWD" readonly>
+								<button class="customBtn" type="button">변경</button>
 							</div>
 						</div>
+
+					</div>
+					<div id="mypageInfo_content_right">
+						<div class="info_title">
+								<h5>개인정보</h5>
+						</div>
+						<div class="Personal_info mypageInfo_class">
+							<p>이름</p>
+							<input class="inputBox infoText" type="text" name="USER_NAME" readonly>
+							<button type="button" class="customBtn">변경</button>
+						</div>
+						<div class="Personal_info mypageInfo_class">
+							<p>생년월일</p>
+							<input class="inputBox infoText" type="text" name="BIRTH" readonly>
+							<button type="button" class="customBtn">변경</button>
+						</div>
+						<div class="Personal_info mypageInfo_class">
+							<p>핸드폰</p>
+							<input class="inputBox infoText" type="text"  name="PHONE" readonly>
+							<button type="button" class="customBtn">변경</button>
+						</div>
 						<div class="mypageInfo_class" id="Agree_to_receiveInfo">
-							<h5>정보 수신 동의</h5>
-							<p>이메일</p>
+							<div class="info_title" id="email_agreeTitle">
+								<h5>정보 수신 동의</h5>
+							</div>
+							<p id="emailTitle">이메일</p>
 							<div id="agree_radio_box">
-								<label for="agree_radio">수신 동의</label>
-								<input type="radio" name="AGREE_EMAIL" id="agree_radio" value="Y">
-								<label for="disagree_radio">수신 거부</label>
-								<input type="radio" name="AGREE_EMAIL" id="disagree_radio" value="N">
+								<div class="agreeRadioBox">
+									<label for="agree_radio">수신 동의</label>
+									<input type="radio" name="AGREE_EMAIL" id="agree_radio"  class=" infoRadio"value="Y">
+								</div>
+								<div class="agreeRadioBox">
+									<label for="disagree_radio">수신 거부</label>
+									<input type="radio" name="AGREE_EMAIL" id="disagree_radio" class="customRadio infoRadio" value="N">
+								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
 				<div id="memberDel_div">
 					<span id="memberDel"><a>회원 탈퇴</a></span>
@@ -86,10 +98,10 @@
 		let inputPwd = info.querySelector('input[type=password]');
 		let inputRadio = info.querySelectorAll('input[type=radio]')
 
-		inputText[0].value = '${loginUser.userName}';
-		inputText[1].value = '${loginUser.birth}';
-		inputText[2].value = '${loginUser.phone}'; //MemberDao에서 핸드폰 형식수정
-		inputText[3].value = '${loginUser.userId}';
+		inputText[0].value = '${loginUser.userId}';
+		inputText[1].value = '${loginUser.userName}';
+		inputText[2].value = '${loginUser.birth}';
+		inputText[3].value = '${loginUser.phone}'; //MemberDao에서 핸드폰 형식수정
 		inputPwd.value = '${loginUser.userPwd}';
 
 		console.log('${loginUser.agreeEmail}');
@@ -104,34 +116,33 @@
 		let currImg = $("input[type='file']");
 		
 		currBtn.click(function(){
-			console.log($(this).text())
-				let currInput = $(this).siblings("input");
-				if($(this).text() == '변경'){
+			let currInput = $(this).siblings("input");
+			if($(this).text() == '변경'){
 				currInput.attr('readonly', false);
 				currInput.val('');
 				currInput.focus();
+				$(this).siblings('input').css({'border-bottom' : '2px solid #222'});
+				$(this).siblings('p').css({'color' : '#222', 'font-weight' : '900'});
 				$(this).text('저장');
-				}else if($(this).text() == '저장'){
-					let currName = currInput.attr('name');
-					let currVal = currInput.val();
-					console.log
-					$.ajax({ // 어차피 변경된 값만 input값만 보여주고 새로고침할 때 변경된 값을 보여주면 될거 같은데 왜 굳이 ajax로 했을까란 후회를 다 하고나서 합니다...
-			 			url : "<%=contextPath%>/myinfoupdate.me",
-						data : { name : currName, val : currVal, id : '${ loginUser.userId }'},
-						type : "post",
-						success : function(m){
-						},
-						error :  console.log('실패!')
-					});
-					if(currName == 'BIRTH'){
-						let year = currVal.substring(0,4);
-						let month = currVal.substring(4, 6);
-						let day = currVal.substring(6,8);
-						let dateFormat = year+'-'+month+'-'+day;
-						currInput.val(dateFormat);
+			}else if($(this).text() == '저장'){
+				let currName = currInput.attr('name');
+				let currVal = currInput.val();
+				$.ajax({ // 어차피 변경된 값만 input값만 보여주고 새로고침할 때 변경된 값을 보여주면 될거 같은데 왜 굳이 ajax로 했을까란 후회를 다 하고나서 합니다...
+					url : "<%=contextPath%>/myinfoupdate.me",
+					data : { name : currName, val : currVal, id : '${ loginUser.userId }'},
+					type : "post",
+					success : function(m){
 					}
-					$(this).text('변경');
+				});
+				if(currName == 'BIRTH'){
+					let year = currVal.substring(0,4);
+					let month = currVal.substring(4, 6);
+					let day = currVal.substring(6,8);
+					let dateFormat = year+'-'+month+'-'+day;
+					currInput.val(dateFormat);
 				}
+				$(this).text('변경');
+			}
 		});
 		
 		currRadio.click(function() {

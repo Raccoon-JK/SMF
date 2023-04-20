@@ -24,16 +24,26 @@ input::placeholder{
 }
 
 /* 상품 정보 */
-#proudctInfo_flex{
+.proudctInfo_flex{
+    display: flex;
+    justify-content: space-between;
+}
+.proudctInfo_leftFlex{
     display: flex;
 }
-#productInfo_img>img{
+.proudctInfo_rightFlex{
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+    justify-content: center;
+}
+.productInfo_img>img{
     border: 1px solid black;
     border-radius: 10px;
     width: 80px;
     height: 80px;
 }
-#productInfo_text{
+.productInfo_text{
     padding-left: 16px;
 }
 .product_brand{
@@ -97,7 +107,7 @@ input::placeholder{
 
 /* 결제 방법 */
 #enrollment_orderPayment{
-    border: 1px solid black;
+    border: 1px solid #ebebeb;
     border-radius: 10px;
     padding: 11px 8px 13px 9px;
 }
@@ -126,9 +136,7 @@ input::placeholder{
 #enrollment_cardDate{
     font-size: 11px;
 }
-#enrollment_cardTitle{
-    font-weight: bold;
-}
+
 #generalPayments_title{
     margin-top: 15px;
     font-weight: bold;
@@ -137,7 +145,7 @@ input::placeholder{
     display: flex;
 }
 #tossPayments{
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center ;
     border: 1px solid #ebebeb;
@@ -148,6 +156,9 @@ input::placeholder{
     width: 60px;
     height: 40px;
     margin-left: 15px;
+}
+.paymentsClass{
+    cursor: pointer;
 }
 
 /* 최종 주문정보 */
@@ -218,4 +229,12 @@ input::placeholder{
     border-radius: 4px;
     color: #fff;
     background-color: #ebebeb;
+}
+
+/* 선택된 결제방식 */
+.paymentSelect> p{
+    font-weight: 700;
+}
+.paymentSelect{
+    border: 2px solid black !important; 
 }

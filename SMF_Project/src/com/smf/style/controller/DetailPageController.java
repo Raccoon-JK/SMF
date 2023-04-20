@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smf.style.model.service.StyleService;
 import com.smf.style.model.vo.PostImg;
+import com.smf.style.model.vo.StyleComment;
 import com.smf.style.model.vo.StylePost;
 
 /**
  * Servlet implementation class DetailPageController
  */
-@WebServlet("/detailPost.th")
+@WebServlet("/userDetail.st")
 public class DetailPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,20 +34,36 @@ public class DetailPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int postNo = Integer.parseInt(request.getParameter("pno"));
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		
-		StylePost sp = new StyleService().selectPost(postNo);
+		StyleService sService = new StyleService();
+				
 		
-		ArrayList<PostImg> list = new StyleService().selectPostImgList(postNo);
+			
+		StylePost sp = sService.selectPost(postNo);
+		PostImg pi = sService.selectPostImg(postNo);
+			
+		
+		ArrayList<StylePost> list = new StyleService().selectPostImgList();
+		ArrayList<ArrayList<PostImg>> list2 = new StyleService().selectPostImgList2();
+		ArrayList<StyleComment> list3 = sService.selectCommentList(postNo);
+		
 		
 		request.setAttribute("sp", sp);
-		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		
-		
+		request.setAttribute("list",list);
+		request.setAttribute("list2", list2);
+		request.setAttribute("list3", list3);
+			
 		request.getRequestDispatcher("views/style/userDetailPage.jsp").forward(request,response);
-		
+			
 		
 	}
+		
+		
+		
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -8,16 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 import static com.smf.common.JDBCTemplate.*;
 
-import com.smf.main.model.vo.Product;
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.vo.Account;
 import com.smf.my.model.vo.Address;
+import com.smf.my.model.vo.BuySellHistory;
 import com.smf.my.model.vo.Card;
+import com.smf.my.model.vo.OrderBuilder;
 import com.smf.my.model.vo.ReplacePhoneNumber;
 import com.smf.my.model.vo.ShoppingCart;
 import com.smf.my.model.vo.WishList;
@@ -39,6 +41,52 @@ public class MyPageDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String varIn(String sql, final int params) {
+		final StringBuilder sb = new StringBuilder(String.join(", ", Collections.nCopies(params, "?")));
+		
+		if(sb.length() > 1) {
+			sql = sql.replace("(?)", "("+sb+")");
+		}
+		
+		return sql;
+	}
+	
+	//마이 페이지 메인
+	public ArrayList<ProductAll> selectMypageMainWishList(Connection conn, String userId){
+		
+		ArrayList<ProductAll> wList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMypageMainWishList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll();
+				pa.setProductName(rset.getString("PRODUCT_NAME"));
+				pa.setBrandName(rset.getString("BRAND_NAME"));
+				pa.setImgPath(rset.getString("IMG_PATH"));
+				pa.setImgName(rset.getString("IMG_NAME"));
+				
+				wList.add(pa);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return wList;
 	}
 	
 	// 내 프로필 정보
@@ -87,6 +135,7 @@ public class MyPageDao {
 						   rset.getDate("BIRTH"),
 						   rset.getInt("USER_TYPE"),
 						   rset.getString("AGREE_EMAIL"),
+						   rset.getString("STATUS"),
 						   rset.getString("USER_IMAGE"),
 						   rset.getString("INTRODUCE"),
 						   rset.getString("SNS_ID"),
@@ -378,7 +427,7 @@ public class MyPageDao {
 				card = new Card(rset.getString("USER_ID"),
 								rset.getInt("CARD_NO"),
 								rset.getInt("CARD_PWD"),
-								rset.getDate("CARD_VALIDIY"),
+								rset.getDate("CARD_VALIDITY"),
 								rset.getInt("CVC")
 								);
 			}
@@ -574,11 +623,11 @@ public class MyPageDao {
 													 rset.getString("PRODUCT_NAME"), 
 													 rset.getString("BRAND_NAME"), 
 													 rset.getInt("PRICE"), 
-													 rset.getString("SIZE"), 
+													 rset.getString("P_SIZE"), 
 													 rset.getInt("CART_COUNT"), 
 													 rset.getString("IMG_PATH"), 
 													 rset.getString("IMG_NAME"),
-													 rset.getInt("STATUS")
+													 rset.getString("STATUS")
 													);
 				list.add(cart);
 			}
@@ -612,4 +661,399 @@ public class MyPageDao {
 		
 		return result;
 	}
+	
+	
+	
+	// 주문 결제 페이지
+	public ArrayList<ShoppingCart> stockProdcutSelectList(Connection conn, String userId, String[] pArr){
+		
+		ArrayList<ShoppingCart> plist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("stockProdcutSelectList");
+		
+		sql = varIn(sql, pArr.length);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			int i = 2;
+			for(String p : pArr) {
+				pstmt.setString(i, p);
+				i++;
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ShoppingCart cart = new ShoppingCart(rset.getString("RESELLER"), 
+													 rset.getInt("STOCK_NO"),
+													 rset.getInt("CART_NO"), 
+													 rset.getString("PRODUCT_NAME"), 
+													 rset.getString("BRAND_NAME"), 
+													 rset.getInt("PRICE"), 
+													 rset.getString("P_SIZE"), 
+													 rset.getInt("CART_COUNT"), 
+													 rset.getString("IMG_PATH"), 
+													 rset.getString("IMG_NAME"),
+													 rset.getString("STATUS")
+													);
+				
+				plist.add(cart);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return plist;
+	}
+	
+	public int insertOrder(Connection conn, OrderBuilder ob) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ob.getUserId());
+			pstmt.setInt(2, ob.getAddrNo());
+			pstmt.setInt(3, ob.getTotalAmount());
+			pstmt.setInt(4,ob.getPoint());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	public int insertOrderProduct(Connection conn, int sNo, int orderCount) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertOrderProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sNo);
+			pstmt.setInt(2, orderCount);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int updateStockOrder(Connection conn, int sNo, int orderCount) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateStockOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, orderCount);
+			pstmt.setInt(2, orderCount);
+			pstmt.setInt(3, sNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int updateMemberPoint(Connection conn, String userId, int usedPoint) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemberPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, usedPoint);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int updateAddMemberPoint(Connection conn, String userId, int point) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateAddMemberPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, point);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	//구매내역
+	public ArrayList<BuySellHistory> selectBuyListCount(Connection conn, String userId){
+		
+		ArrayList<BuySellHistory> listcount = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBuyListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+				
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory();
+				bs.setOrderNo(rset.getInt("ORDER_NO"));
+				bs.setOrderDate(rset.getDate("ORDER_DATE"));
+				bs.setTotalAmount(rset.getInt("TOTAL_AMOUNT"));
+				bs.setPoint(rset.getInt("POINT"));
+				
+				listcount.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listcount;
+	}
+	
+	public ArrayList<BuySellHistory> selectBuyListInProduct(Connection conn, String userId, int orderNo){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<BuySellHistory> listInProduct = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectBuyListInProduct");
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, orderNo);
+			
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				BuySellHistory h = new BuySellHistory(rset.getInt("ORDER_NO")
+						                             ,rset.getInt("ORDER_PNO")
+						                             ,rset.getInt("ORDER_COUNT")
+						                             ,rset.getDate("ORDER_DATE")
+						                             ,rset.getInt("PRICE")
+						                             ,rset.getString("PRODUCT_NAME")
+						                             ,rset.getString("BRAND_NAME")
+						                             ,rset.getString("P_SIZE")
+						                             ,rset.getInt("POSTCODE")
+						                             ,rset.getString("ADDRESS")
+						                             ,rset.getString("IMG_PATH")
+						                             ,rset.getString("IMG_NAME")
+						                             );
+				listInProduct.add(h);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listInProduct;
+	}
+	
+	public ArrayList<BuySellHistory> selectOrderListMountCount(Connection conn, String userId, int month){
+		
+		ArrayList<BuySellHistory> listcount = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOrderListMountCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, month);
+				
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory();
+				bs.setOrderNo(rset.getInt("ORDER_NO"));
+				bs.setOrderDate(rset.getDate("ORDER_DATE"));
+				bs.setTotalAmount(rset.getInt("TOTAL_AMOUNT"));
+				bs.setPoint(rset.getInt("POINT"));
+				
+				listcount.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listcount;
+	}
+	
+	//판매 내역
+	public ArrayList<BuySellHistory> selectsellList(Connection conn, String userId){
+		
+		ArrayList<BuySellHistory> listcount = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectsellList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+				
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory(
+									rset.getInt("STOCK_NO"),
+									rset.getInt("STOCK"),
+									rset.getDate("SUGGEST_DATE"),
+									rset.getInt("PRICE"),
+									rset.getString("PRODUCT_NAME"),
+									rset.getString("BRAND_NAME"),
+									rset.getString("P_SIZE"),
+									rset.getString("IMG_PATH"),
+									rset.getString("IMG_NAME"),
+									rset.getInt("TRADE_COUNT"),
+									rset.getInt("STATUS")
+									
+						);
+				listcount.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listcount;
+	}
+	
+	public ArrayList<BuySellHistory> selectSellMonthList(Connection conn, String userId, int month){
+		
+		ArrayList<BuySellHistory> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSellMonthList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, month);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				BuySellHistory bs = new BuySellHistory(
+									rset.getInt("STOCK_NO"),
+									rset.getInt("STOCK"),
+									rset.getDate("SUGGEST_DATE"),
+									rset.getInt("PRICE"),
+									rset.getString("PRODUCT_NAME"),
+									rset.getString("BRAND_NAME"),
+									rset.getString("P_SIZE"),
+									rset.getString("IMG_PATH"),
+									rset.getString("IMG_NAME"),
+									rset.getInt("TRADE_COUNT"),
+									rset.getInt("STATUS")
+									);
+				list.add(bs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
+	}
+	
 }

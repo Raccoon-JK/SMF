@@ -16,7 +16,7 @@ import com.smf.style.model.vo.StyleComment;
 /**
  * Servlet implementation class AjaxReplyInsertController
  */
-@WebServlet("/rinsert.bo")
+@WebServlet("/insertComment.st")
 public class AjaxReplyInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,28 +34,23 @@ public class AjaxReplyInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String cContent = request.getParameter("cContent");
-		int postNo = Integer.parseInt(request.getParameter("pno"));
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		String userId =  ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 	
 		StyleComment sc = new StyleComment();
 		sc.setcContent(cContent);
 		sc.setPostNo(postNo);
-		sc.setUserId(userId+"");
+		sc.setUserId(userId);
 		
 		ReplyBuilder rb =	 new ReplyBuilder.
 									Builder(1).
 									setcContent("댓글내용").
 									setPostNo(1).
 									build();
-		
-//		ReplyBuilder rb =	 new ReplyBuilder.
-//									builder(1).
-//									replyContent("댓글내용").
-//									refBno(1).
-//									build();
+
 
 		
-		int result = new StyleService().insertReply(sc);
+		int result = new StyleService().insertComment(sc);
 		
 		response.getWriter().print(result);
 	}

@@ -38,12 +38,11 @@
 			                            <div class="wishList_productInfo_text">
 			                                <p class="wishList_productInfo_brand">${list.brandName }</p>
 			                                <p class="wishList_productInfo_name">${list.productName }</p>
-		<!-- 	                                <p class="wishList_productInfo_size">255</p> -->
 			                            </div>
 			                        </div>
 			                        <div class="wishList_productInfo_right">
 			                            <div class="wishList_productInfo_shoppingCart_div">
-			                                <a href="" >상품페이지 이동</a>
+			                                <a href="${pageContext.request.contextPath}/productDetail.sh?productName=${list.productName}" >상품페이지 이동</a>
 			                            </div>
 			                            <div class="wishList_productInfo_delete_div">
 			                                <a href="#">삭제</a>

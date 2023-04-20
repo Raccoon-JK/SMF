@@ -9,12 +9,26 @@ import com.smf.member.model.vo.Member;
 import com.smf.my.model.dao.MyPageDao;
 import com.smf.my.model.vo.Account;
 import com.smf.my.model.vo.Address;
+import com.smf.my.model.vo.BuySellHistory;
 import com.smf.my.model.vo.Card;
+import com.smf.my.model.vo.OrderBuilder;
 import com.smf.my.model.vo.ShoppingCart;
 import com.smf.my.model.vo.WishList;
 import com.smf.shop.model.vo.ProductAll;
 
 public class MyPageService {
+	
+	// 마이 페이지 메인
+	public ArrayList<ProductAll> selectMypageMainWishList(String userId){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> wList = new MyPageDao().selectMypageMainWishList(conn, userId);
+		
+		close(conn);
+		
+		return wList;
+	}
 	
 	// 내 프로필 정보
 	public Member myInfoUpdate(String column, String value, String userId) {
@@ -291,5 +305,136 @@ public class MyPageService {
 		
 		return result;
 	}
+	
+	// 주문 결제
+	public ArrayList<ShoppingCart> stockProdcutSelectList(String userId, String[] pArr){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ShoppingCart> list = new MyPageDao().stockProdcutSelectList(conn, userId, pArr);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public int insertOrder(OrderBuilder ob, int[] cNo, int[] sNo, int usedPoint, int[] orderCount, int point) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = 0;
+		int result2 = 1;
+		int result3 = 1;
+		int result4 = 1;
+		int result5 = 0;
+		int result6 = 0;
+		
+		result1 = new MyPageDao().insertOrder(conn, ob);
+				
+		for(int i=0; i<sNo.length; i++) {
+			result2 *= new MyPageDao().insertOrderProduct(conn, sNo[i], orderCount[i]);
+			result3 *= new MyPageDao().shoppingCartItemDelete(conn, cNo[i]);
+			result4 *= new MyPageDao().updateStockOrder(conn, sNo[i], orderCount[i]);
+			
+			System.out.println(result2+" "+result3+" "+result4);
+		}
+		result5 = new MyPageDao().updateMemberPoint(conn, ob.getUserId(), usedPoint);
+		result6 = new MyPageDao().updateAddMemberPoint(conn, ob.getUserId(), point);
+		
+			if(result1>0 & result2>0 & result3>0 & result4>0 & result5>0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		
+			close(conn);
+		
+		return result1 & result2 & result3 & result4 & result5;
+	}
+	
+	
+	//구매 내역
+	public ArrayList<BuySellHistory> selectOrderListCount(String userId){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<BuySellHistory> orderList = new MyPageDao().selectBuyListCount(conn, userId);
+		
+		close(conn);
+		
+		return orderList;
+	}
+	
+	public ArrayList<ArrayList<BuySellHistory>> selectBuyListCount(String userId){
+		
+		Connection conn = getConnection();
+			
+		//주문 리스트번호 불러오기
+		ArrayList<BuySellHistory> ListCount = new MyPageDao().selectBuyListCount(conn, userId);
+		
+		ArrayList<ArrayList<BuySellHistory>> ListInProduct = new ArrayList<>();
+		
+		for(int i=0; i<ListCount.size(); i++) {
+			//주문 리스트와 주문 리스트 상품 묶기
+			ListInProduct.add(new MyPageDao().selectBuyListInProduct(conn, userId, ListCount.get(i).getOrderNo()));
+		}
+		
+		close(conn);
+		
+		return ListInProduct;
+	}
+	
+	public ArrayList<BuySellHistory> selectOrderListMountCount(String userId, int month){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<BuySellHistory> orderList = new MyPageDao().selectOrderListMountCount(conn, userId, month);
+		
+		close(conn);
+		
+		return orderList;
+	} 
+	
+	public ArrayList<ArrayList<BuySellHistory>> selectBuyListMountCount(String userId, int month){
+		
+		Connection conn = getConnection();
+			
+		//주문 리스트번호 불러오기
+		ArrayList<BuySellHistory> ListCount = new MyPageDao().selectOrderListMountCount(conn, userId, month);
+		
+		ArrayList<ArrayList<BuySellHistory>> ListInProduct = new ArrayList<>();
+		
+		for(int i=0; i<ListCount.size(); i++) {
+			//주문 리스트와 주문 리스트 상품 묶기
+			ListInProduct.add(new MyPageDao().selectBuyListInProduct(conn, userId, ListCount.get(i).getOrderNo()));
+		}
+		
+		close(conn);
+		
+		return ListInProduct;
+	}
+	
+	//판매 내역
+	public ArrayList<BuySellHistory> selectsellList(String userId){
+		Connection conn = getConnection();
+		
+		ArrayList<BuySellHistory> sellList = new MyPageDao().selectsellList(conn, userId);
+		
+		close(conn);
+		
+		return sellList;
+	}
+	
+	public ArrayList<BuySellHistory> selectSellMonthList(String userId, int month){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<BuySellHistory> sellList = new MyPageDao().selectSellMonthList(conn, userId, month);
+		
+		close(conn);
+		
+		return sellList;
+	}
+
 	
 }

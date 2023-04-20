@@ -10,6 +10,8 @@ public class PostImg {
 	private String imgStatus;	//	IMG_STATUS
 	private int imgLevel; 		// 파일 순서
 	
+	
+	
 	public PostImg() {
 		super();
 	}

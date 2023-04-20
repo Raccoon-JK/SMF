@@ -17,10 +17,35 @@
 	</entry>
 	
 	
-	<entry key="serachEmail">
+	<entry key="searchEmail">
 		SELECT USER_ID
 		FROM MEMBER 
 		WHERE PHONE = ?
+	</entry>
+	
+	<entry key="searchPwd">
+		SELECT USER_PWD
+		FROM MEMBER
+		WHERE PHONE = ?
+			AND USER_ID = ?	
+	</entry>
+	
+	<entry key="selectMemberList">
+		SELECT ENROLL_DATE,
+            USER_NAME,
+            M.USER_ID,
+            M.PHONE,
+            NVL(A.ADDRESS,'미입력') AS ADDRESS,
+            AGREE_EMAIL
+      FROM MEMBER M
+      LEFT JOIN ADDRESS A ON(M.USER_ID = A.USER_ID)
+      WHERE STATUS = 'Y'  AND NVL(DEFAULT_ADDRESS, 'X') IN('Y','X')
+      ORDER BY ENROLL_DATE DESC
+            
+
+            
+		 
+	
 	</entry>
 	
 </properties>

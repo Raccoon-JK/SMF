@@ -7,7 +7,7 @@ function makeDragEvent() {
 	}
 
 	leftboxes.forEach((leftbox) => {
-		const images = leftbox.querySelectorAll('.deco');
+		const images = leftbox.querySelectorAll('.itemObject');
 
 		// images NodeList가 빈 경우 예외처리
 		if (!images.length) {
@@ -88,10 +88,10 @@ function makeDragEvent() {
 
 function makeCopyDragEvent() {
 	let leftboxes = document.querySelectorAll('.leftbox');
-	const rightboxes = document.querySelectorAll('.rightbox');
-
-	rightboxes.forEach((rightbox) => {
-		const images = rightbox.querySelectorAll('.deco');
+	const rightboxes = document.querySelectorAll('.rightboxSelectList');
+	
+	rightboxes.forEach((rightboxSelectList) => {
+		const images = rightboxSelectList.querySelectorAll('.itemObject');
 		images.forEach((image) => {
 			image.addEventListener('dragstart', startDrag, false);
 		});
@@ -121,10 +121,35 @@ function dropped(e) {
 
 	var data = e.dataTransfer.getData('text/plain');
 
+	// 드롭 위치에서 이미지의 id 값과 동일한 id 값을 가진 이미지를 찾음
+    var existingImage = e.currentTarget.querySelector('#' + data);
+
+    // 동일한 id 값을 가진 이미지가 있으면 드롭하지 않음
+    if (existingImage) {
+        return;
+    }
+
 	var newImage = document.createElement('img');
 	newImage.id = data;
-	newImage.className = 'deco';
-	newImage.src = document.getElementById(data).src;
+	newImage.className = 'itemObject';
+
+	if (data.includes('http')) {
+		// 만약 data가 URL 형식이라면, ajax를 이용하여 이미지를 가져옵니다.
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', data, true);
+		xhr.responseType = 'blob';
+		xhr.onload = function() {
+		  if (xhr.status === 200) {
+			var blob = xhr.response;
+			var objectURL = URL.createObjectURL(blob);
+			newImage.src = objectURL;
+		  }
+		};
+		xhr.send();
+	} else {
+		// data가 URL이 아니라면, 기존 코드와 같이 이미지를 가져옵니다.
+		newImage.src = document.getElementById(data).src;
+	  }
 
 	var leftbox = document.querySelector('#' + e.currentTarget.id);
 
@@ -136,7 +161,7 @@ function dropped(e) {
 	// 이미지를 교체
 	if (leftbox.tagName == "SECTION") {
 		// 드랍된 이미지가 부모가 container4 이면
-		if (data.startsWith("img") && document.getElementById(data).parentNode.parentNode.classList.contains("container4")) {
+		if (data.startsWith("img") && document.getElementById(data).parentNode.parentNode.classList.contains("container3")) {
 			// 이미지를 좌우반전시킴
 			var flippedImage = newImage.cloneNode(true);
 			newImage.style.transform = "scaleX(-1)";
@@ -158,8 +183,8 @@ function dropped(e) {
 
 			// 합쳐진 이미지를 새로운 img 엘리먼트로 만들어서 leftbox에 추가
 			var newMergedImage = document.createElement('img');
-			newMergedImage.id = "mergedImage";
-			newMergedImage.className = 'deco';
+			newMergedImage.id = data;
+			newMergedImage.className = 'itemObject';
 			newMergedImage.src = mergedImage.toDataURL();
 			leftbox.appendChild(newMergedImage);
 
@@ -239,7 +264,7 @@ function dropped(e) {
 	}
 
 	// 아이콘 생성
-	var images = document.querySelectorAll('.deco');
+	var images = document.querySelectorAll('.itemObject');
 	images.forEach(function(image) {
 		image.addEventListener('click', function(e) {
 			e.stopPropagation();
@@ -327,4 +352,4 @@ function dropped(e) {
 
 }
 
-window.addEventListener('load', makeCopyDragEvent);
+//window.addEventListener('load', makeCopyDragEvent);

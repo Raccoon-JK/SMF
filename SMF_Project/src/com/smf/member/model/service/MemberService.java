@@ -2,6 +2,7 @@ package com.smf.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.smf.common.JDBCTemplate;
 import com.smf.member.model.dao.MemberDao;
@@ -46,26 +47,52 @@ public class MemberService {
 	
 	
 	//이메일을 조회 하는 메서드
-		public String searchEmail(String uphone) {
+		public ArrayList<String> searchEmail(String uphone) {
 			
-			String email = "";
 			Connection conn = JDBCTemplate.getConnection();
 			
 			//1. DB에서 uphone을 준비물로 email을 조회
-			email = new MemberDao().searchEmail(conn, uphone);
+			ArrayList<String> list = new MemberDao().searchEmail(conn, uphone);
 			
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return email;
+			JDBCTemplate.close(conn);
+
+			return list;
 		}
 		
 		
 		
+		//비밀 번호를 조회하는 메서드
+		public String searchPwd(String uphone, String userId) {
+			
+			String pwd = "";
+			Connection conn = JDBCTemplate.getConnection();
+			
+			//1. DB에서 uphone, userId를 준비물로 Pwd조회
+			
+			pwd = new MemberDao().searchPwd(conn, uphone, userId);
+			
+			JDBCTemplate.close(conn);
+			
+			return pwd;
+			
+		}
+		
+		
+		
+		public ArrayList<Member> selectMemberList(){
+			Connection conn = JDBCTemplate.getConnection();
+			
+			ArrayList<Member> list = new MemberDao().selectMemberList(conn);
+			
+		
+			JDBCTemplate.close(conn);
+			
+			return list;
+			
+			
+			
+			
+		}
 		
 		
 		

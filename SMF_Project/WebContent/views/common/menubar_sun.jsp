@@ -10,6 +10,7 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 
 char weather = 's';
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,17 +129,15 @@ char weather = 's';
 				<div class="top_inner">
 					<ul class="top_list">
 						<li class="top_item"><a href="">고객센터</a></li>
-						<li class="top_item"><a href="">관심상품</a></li>
-						<%
-							if (loginUser == null) {
-						%>
-						<li class="top_item"><a
-							href="${pageContext.request.contextPath}/login.page">로그인</a></li>
-						<%
-							} else {
-						%>
-						<li class="top_item"><a
-							href="${pageContext.request.contextPath}/logout.me">로그아웃</a></li>
+						<li class="top_item"><a href="${pageContext.request.contextPath}/mypagewishlist.me">관심상품</a></li>
+						<c:choose>
+							<c:when test="${loginUser eq null }">
+								<li class="top_item"><a href="${pageContext.request.contextPath}/login.page">로그인</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="top_item"><a href="${pageContext.request.contextPath}/logout.page">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li><button class="view_more" type="button">
 								<img id="alarm"
 									src="${pageContext.request.contextPath}/resources/main/bell_icon.png">
@@ -169,9 +168,9 @@ char weather = 's';
 			</div>
 			<div class="tab_area">
 				<ul>
-					<li><a href=""><span>HOME</span></a></li>
+					<li><a href="${pageContext.request.contextPath}"><span>HOME</span></a></li>
 					<li><a href="${pageContext.request.contextPath}/styleList.st"><span>STYLE</span></a></li>
-					<li><a href=""><span>SHOP</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/main.sh"><span>SHOP</span></a></li>
 					<li><a href=""><span>기획전</span></a></li>
 				</ul>
 			</div>
@@ -196,5 +195,16 @@ char weather = 's';
 	%>
 
 
+	<script>
+	const msg = "${ alertMsg }";
+	console.log(msg);
+	if(msg != ""){
+		alert(msg);
+		<% session.removeAttribute("alertMsg"); %>
+	} 
+	</script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/views/common/js/modal.js">
+ 	</script>
 </body>
 </html>

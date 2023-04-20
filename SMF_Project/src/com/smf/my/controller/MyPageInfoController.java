@@ -27,7 +27,13 @@ public class MyPageInfoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/my/mypageInfo.jsp").forward(request, response);
+		if(request.getSession().getAttribute("loginUser") != null) {
+			request.getRequestDispatcher("views/my/mypageInfo.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("alertMsg", "로그인 후 이용가능합니다.");
+			
+			response.sendRedirect(request.getContextPath()+"/login.page");
+		}
 	}
 
 	/**
