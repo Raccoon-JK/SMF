@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.smf.common.MyFileRenamePolicy;
+import com.smf.common.MyFileRenamePolicy2;
 import com.smf.member.model.vo.Member;
 import com.smf.shop.model.service.ShopService;
 import com.smf.shop.model.vo.Product;
@@ -65,7 +65,7 @@ public class postInsertController extends HttpServlet {
 
 			// 2. 전달된 파일명 수정작업 후 서버에 업로드
 			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8",
-					new MyFileRenamePolicy());
+					new MyFileRenamePolicy2());
 			
 			String pName = multi.getParameter("productName");
 			String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId() + ""; // 로그인 유저 아이디 정보
