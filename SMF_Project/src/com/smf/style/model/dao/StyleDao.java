@@ -129,6 +129,7 @@ private Properties prop = new Properties();
 				sp.setUserId(rset.getString("USER_ID"));
 				sp.setUproadTime(rset.getDate("UPROADTIME"));
 				sp.setUserImage(rset.getString("USER_IMAGE"));
+				sp.setpLike(rset.getString("PLIKE"));
 				
 				
 				PostImg pi = new PostImg();
@@ -141,6 +142,7 @@ private Properties prop = new Properties();
 				list.add(sp);
 			}
 			
+		
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -233,7 +235,7 @@ public ArrayList<StylePost> selectUserPost(Connection conn){
 		return sp;
 	}
 	
-public ArrayList<StylePost> selectPostImgList(Connection conn){
+public ArrayList<StylePost> selectPostImgList(Connection conn, int postNo){
 		
 		ArrayList<StylePost> list = new ArrayList();
 		
@@ -246,9 +248,12 @@ public ArrayList<StylePost> selectPostImgList(Connection conn){
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setInt(1, postNo);
+			
+			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
+			if(rset.next()) {
 				StylePost sp = new StylePost();
 				sp.setPostNo(rset.getInt("POST_NO"));
 				sp.setContent(rset.getString("CONTENT"));
@@ -256,6 +261,8 @@ public ArrayList<StylePost> selectPostImgList(Connection conn){
 				sp.setUserId(rset.getString("USER_ID"));
 				sp.setUproadTime(rset.getDate("UPROADTIME"));
 				sp.setUserImage(rset.getString("USER_IMAGE"));
+				sp.setpLike(rset.getString("PLIKE"));
+				
 				
 				
 
@@ -410,6 +417,39 @@ public ArrayList<StylePost> selectPostImgList(Connection conn){
 		return result;
 		
 	}
+	
+public ArrayList<PostLike> selectPostLike(Connection conn, int postNo){
+		
+		ArrayList<PostLike> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPostLike");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, postNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new PostLike(
+						rset.getInt("COUNT")));				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 	
 public int insertComment(Connection conn, StyleComment sc) {
 		
