@@ -108,7 +108,7 @@ content {
 .moveTopBtn svg{
   width: 80%;
   height: 80%;
-  color: gray;
+  color: rgba(212, 212, 212, 0.747);
 }
 
 @media(min-width: 640px){

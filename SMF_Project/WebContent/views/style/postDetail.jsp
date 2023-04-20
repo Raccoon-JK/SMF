@@ -5,9 +5,9 @@
 	String contextPath = request.getContextPath();
 	Member loginUser = (Member) session.getAttribute("loginUser");
 	StylePost sp = (StylePost) request.getAttribute("sp");
-	PostImg pi = (PostImg) request.getAttribute("pi");
 	ArrayList<StyleComment> list = (ArrayList<StyleComment>) request.getAttribute("list");
 	ArrayList<ArrayList<PostImg>> list2 = (ArrayList<ArrayList<PostImg>>) request.getAttribute("list2");
+	ArrayList<StylePost> m = (ArrayList<StylePost>)request.getAttribute("m");
 	int i = 0;
 %>
 <!DOCTYPE html>
@@ -36,10 +36,10 @@
             <a href="">
             <input type="hidden" name="postNo" value="<%= sp.getPostNo() %>" >
               <div class="userimg">
-                <img src="<%= contextPath %><%= sp.getUserImage() %>" >
+                <img src="<%= contextPath %><%= m.get(0).getUserImage()%>" >
               </div>
               <div class="userinfo">
-                <p class="userid"><%= sp.getUserId()%></p>
+                <p class="userid"><%= sp.getContent()%></p>
                 <p class="uproadtime"><%=sp.getUproadTime() %></p>
               </div>
             </a>
@@ -57,6 +57,7 @@
             <div class="swiper-wrapper">
             <% for(int j = 0; j<list2.get(i).size(); j++) { %>
               <div class="swiper-slide"><img src="<%= contextPath %><%= list2.get(i).get(j).getImgPath()+ list2.get(i).get(j).getImgName()  %>"></div>
+
            <% } %>
             </div>
             <div class="swiper-button-next"></div>
@@ -139,11 +140,11 @@
           </div>
         </div>
         <div class="fc-count">
-          <a href="" class="like-count">좋아요 <%= sp.getpLike() %> 개</a>
+          <a href="" class="like-count">좋아요 <%= m.get(0).getpLike() %> 개</a>
         </div>
         <div class="fc-tag">
           <span class="tag-link" style="width:150px;">
-             <%= sp.getContent() %>
+             <%= sp.getUserId() %>
           </span>
         </div>
         <div class="fc-comment">
@@ -172,11 +173,11 @@
                 <div class="feeduser">
                   <a href="">
                     <div class="userimg">
-                      <img src="<%= contextPath %><%= sp.getUserImage() %>" />
+                      <img src="<%= contextPath %><%= m.get(0).getUserImage() %>" />
                     </div>
                     <div class="userinfo">
-                      <p class="userid"><%= sp.getUserId() %></p>
-                      <p class="user-comment"><%= sp.getContent() %></p>
+                      <p class="userid"><%= sp.getContent() %></p>
+                      <p class="user-comment"><%= sp.getUserId() %></p>
                       <p class="uproadtime"><%= sp.getUproadTime() %></p>
                     </div>
                   </a>

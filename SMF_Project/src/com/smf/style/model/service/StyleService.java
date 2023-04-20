@@ -1,6 +1,7 @@
 package com.smf.style.model.service;
 
 
+import java.io.Console;
 import java.sql.Connection;
 import static com.smf.common.JDBCTemplate.*;
 import java.util.ArrayList;
@@ -68,7 +69,14 @@ public class StyleService {
 		
 		return sp;
 	}
-	
+	public ArrayList<StylePost> selectPostMember(int postNo){
+		Connection conn = getConnection();
+		ArrayList<StylePost> list = new StyleDao().selectPostImgList(conn, postNo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 	public ArrayList<ArrayList<PostImg>> selectPostImgList2(int postNo){
 		// 한 개의 게시물의 이미지 수
@@ -80,7 +88,7 @@ public class StyleService {
 			list2.add(new StyleDao().selectPostImgList2(conn,  list.get(i).getPostNo()));			
 		}
 		
-		
+		System.out.println(list);
 		close(conn);
 		
 		return list2;
