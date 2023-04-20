@@ -45,7 +45,6 @@ public class postLikeController extends HttpServlet {
 		pl.setUserId( ((Member) request.getSession().getAttribute("loginUser")).getUserId()+"" );
 		
 		int result = new StyleService().insertPostLike(pl);
-		System.out.println(result);
 		
 		if(result > 0) { 
 			response.sendRedirect(request.getContextPath()+"/styleList.st");

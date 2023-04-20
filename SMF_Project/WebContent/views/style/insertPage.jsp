@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>구해줘 패션</title>
-<link rel="stylesheet" href="resources/style/게시물등록.css" />
+<link rel="stylesheet" href="resources/style/css/게시물등록.css" />
 <style>
       .img-area img{
           width: 150px;
@@ -35,17 +35,21 @@
     <content>
         <div class="noticewrap1">
         <div class="outer">
-		<br> <h4 style="text-align : center;">당신의 STYLE 을 공유해보세요 !</h4> <br>
+		<br> <h4 ><strong>당신의 STYLE 을 공유해보세요 !</strong></h4> <br>
 		
 		<form action="<%= contextPath %>/styleInsert.st" id="enroll-form" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="userId" value="<%= loginUser.getUserId() %>">
 			<div>
-				<textarea name="content" style="width: 600px; height: 300px; resize:none; border:0;" required placeholder="#아이템과 #스타일을 공유해보세요!"></textarea>
-				<p>이미지 등록하기</p>
+				<textarea name="content" style="width: 600px; height: 300px; resize:none; border:0;" required placeholder="#아이템과 #스타일을 입력하세요"></textarea>
+				<p><strong>스타일 이미지 등록하기</strong></p>
 			 	<img id="titleImg" width="200" height="150">
 				<img id="contentImg1" width="200" height="150">
 				<img id="contentImg2" width="200" height="150">
 				<img id="contentImg3" width="200" height="150">
+			</div>
+			<br>
+			<div>
+				<div name="" onclick=""><strong>구매내역 불러오기</strong><div>
 			</div>
 			
 			<div id="file-area" style="display:none;">
