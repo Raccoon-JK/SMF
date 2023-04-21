@@ -1,8 +1,8 @@
 package com.smf.style.model.dao;
 
-import java.io.FileInputStream;
 import static com.smf.common.JDBCTemplate.close;
 import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,7 +104,29 @@ private Properties prop = new Properties();
 		return result;
 	}
 	
-//
+	
+	public int deletePost(Connection conn, int postNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deletePost");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, postNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	public ArrayList<StylePost> selectPostList(Connection conn){
 		
@@ -510,6 +532,29 @@ public int insertComment(Connection conn, StyleComment sc) {
 		}
 		
 		return list;
+	}
+	
+public int deleteComment(Connection conn, int cNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteComment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	public PostImg selectPostImg(Connection conn, int postNo) {

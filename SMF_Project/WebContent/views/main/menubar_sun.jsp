@@ -170,9 +170,10 @@ button.back {
 			<div class="header_top">
 				<div class="top_inner">
 					<ul class="top_list">
-						<li class="top_item"><a href="">고객센터</a></li>
-						<li class="top_item"><a
-							href="${pageContext.request.contextPath}/mypagewishlist.me">관심상품</a></li>
+
+						<li class="top_item"><a href="${pageContext.request.contextPath}/list.no">고객센터</a></li>
+						<li class="top_item"><a href="${pageContext.request.contextPath}/mypagewishlist.me">관심상품</a></li>
+
 						<%
 							if (loginUser == null) {
 						%>
