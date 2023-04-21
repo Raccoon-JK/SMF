@@ -109,7 +109,6 @@ a {
             <li>
                 <a href="#">회원관리</a>
                 <ul>
-                    <li><a href="#">신고접수</a></li>
                     <li><a href="<%=contextPath %>/member.list">회원정보 조회</a></li>
                     <li><a href="<%=contextPath %>/blacklist.no">블랙리스트 관리</a></li>
                 </ul>
@@ -120,12 +119,15 @@ a {
                     <li><a href="<%=contextPath%>/list.no">공지사항</a></li>
                 </ul>
             </li>
+            
             <li>
-                <a href="#">결제관리</a>
+                <a href="#">상품등록</a>
                 <ul>
-                    <li><a href="#">주문관리</a></li>
+                    <li><a href="<%=contextPath%>/sendPPF.sh">상품등록</a></li>
                 </ul>
             </li>
+            
+            
             <li>
                 <a href="#">고객문의</a>
                 <ul>

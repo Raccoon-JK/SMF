@@ -35,7 +35,7 @@
                         <div class="input_box">
                             <h3 class="input_title">이메일 </h3>
                             <div class="input_item">
-                                <input type="email" placeholder="예)kream@kream.co.kr" class="input_txt" name="email" id="userId" >
+                                <input type="email" placeholder="예)SMF@SMF.co.kr" class="input_txt" name="email" id="userId" >
                             </div>
                         </div>
                         <div class="help_btn_box">

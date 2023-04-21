@@ -12,6 +12,12 @@
 		VALUES (SEQ_POST_INO.NEXTVAL, SEQ_POST_NO.CURRVAL , ?, ? , ?, ?)
 	</entry>
 	
+	<entry key="deletePost">
+		UPDATE SNS_POST
+		SET POST_STATUS = 'N'
+		WHERE POST_NO = ?
+	</entry>
+	
 	
 	<entry key="selectPostList">
 		SELECT
@@ -178,6 +184,12 @@
 		JOIN MEMBER USING (USER_ID)
 		WHERE SC.C_STATUS = 'Y' AND POST_NO = ?
 		ORDER BY C_UPROADTIME DESC, C_NO DESC
+	</entry>
+	
+	<entry key="deleteComment">
+		UPDATE SNS_COMMENT
+		SET C_STATUS = 'N'
+		WHERE C_NO = ?
 	</entry>
 	
 	<entry key="selectPostImg">
