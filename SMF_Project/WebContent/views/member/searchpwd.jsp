@@ -12,7 +12,7 @@
 
 <body>
     <div class="wrap">
-		<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
+		<jsp:include page="/views/main/menubar_sun.jsp"></jsp:include>
         <div class="container help">
             <div class="content lg">
                 <div class="help_area">

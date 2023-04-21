@@ -77,6 +77,31 @@ String weather = (String) request.getAttribute("weather");
 	margin-left: auto;
 	margin-right: auto;
 }
+
+button.back {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+#search {
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	background-image: url('${pageContext.request.contextPath}/resources/main/search_icon.png');
+	color: rgba(255, 255, 255, 0);
+	background-size: cover;
+	border-style: none;
+	position: relative;
+}
+
+#alarm {
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	background-image:
+		url('${pageContext.request.contextPath}/resources/main/bell_icon.png');
+	border-style: none;
+	position: relative;
+}
 </style>
 </head>
 <body>
@@ -139,9 +164,7 @@ String weather = (String) request.getAttribute("weather");
 						%>
 						<li class="top_item"><a
 							href="${pageContext.request.contextPath}/logout.me">로그아웃</a></li>
-						<li><button class="view_more" type="button">
-								<img id="alarm"
-									src="${pageContext.request.contextPath}/resources/main/bell_icon.png">
+						<li><button class="view_more back" type="button" id="alarm">
 								<div class="red-dot" hidden></div>
 							</button></li>
 						<%
@@ -159,9 +182,8 @@ String weather = (String) request.getAttribute("weather");
 								href="${pageContext.request.contextPath}/dressroomMain.me">DRESS
 									ROOM</a></li>
 							<li><a href="">MY</a></li>
-							<li><button class="view_more" type="button">
-									<img id="search"
-										src="${pageContext.request.contextPath}/resources/main/search_icon.png">
+							<li><button class="back" type="button" id="search">
+								S
 								</button></li>
 						</ul>
 					</nav>
