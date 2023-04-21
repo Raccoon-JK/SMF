@@ -86,7 +86,7 @@
 						<li>검수기준</li>
 						<li>이용정책</li>
 						<li>페널티 정책</li>
-						<li>커뮤니티 가이드라인</li>
+						<li>커뮤니티 가이드</li>
 					</ul>
 				</div>
 				<div class="menu_box">
