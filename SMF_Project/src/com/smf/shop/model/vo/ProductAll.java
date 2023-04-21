@@ -100,7 +100,7 @@ public class ProductAll {
 	}
 
 	public ProductAll(String productName, int imgNo, String imgName, String imgPath, int subCategoryNo,
-			String subCategoryName) {
+			String subCategoryName, int companyPrice) {
 		super();
 		this.productName = productName;
 		this.imgNo = imgNo;
@@ -108,6 +108,7 @@ public class ProductAll {
 		this.imgPath = imgPath;
 		this.subCategoryNo = subCategoryNo;
 		this.subCategoryName = subCategoryName;
+		this.companyPrice = companyPrice;
 	}
 
 	public int getWishListCount() {

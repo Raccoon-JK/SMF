@@ -54,7 +54,8 @@ public class DressroomDao {
 											   rset.getString("IMG_NAME"),
 											   rset.getString("IMG_PATH"),
 											   rset.getInt("CATEGORY_NO"),
-											   rset.getString("SUB_CATEGORY_NAME")
+											   rset.getString("SUB_CATEGORY_NAME"),
+											   rset.getInt("COMPANY_PRICE")
 											   );
 				list.add(pa);
 			}
