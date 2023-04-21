@@ -136,7 +136,7 @@ public class postInsertController extends HttpServlet {
 						
 						pi.setProductName(pName);
 						pi.setImgName(imgName);
-						pi.setImgPath("/resources/thumb_upfiles/");
+						pi.setImgPath("/resources/shop/thumb_upfiles/");
 						imgresult += new ShopService().insertProductImg(pi);
 						System.out.println(pi);
 					}
