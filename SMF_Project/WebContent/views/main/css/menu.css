@@ -82,35 +82,18 @@ div a:hover {
 	color: black;
 }
 
-#search {
-	width: 16px;
-	margin-bottom: 3px;
-}
-
-#alarm {
-	width: 16px;
-	margin-bottom: 5px;
-}
-
-
-.red-dot{
+.red-dot {
 	position: absolute;
 	border-radius: 10px 10px;
 	width: 10px;
 	height: 10px;
 	z-index: 10000;
 	background-color: red;
-	top: 2px;
-	right: 2px;
+	top: -3px;
+	left: 9px;
 }
 
 
 .swiper-slide>a>img {
 	height: 100%;
-}
-
-.view_more{
-	border-style: none;
-	background-color: rgba(255, 255, 255, 0);
-	position: relative;
 }

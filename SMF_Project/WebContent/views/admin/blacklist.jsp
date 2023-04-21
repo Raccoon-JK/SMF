@@ -118,7 +118,7 @@
     
 </style>
 <body>
-<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
+<jsp:include page="/views/main/menubar_sun.jsp"></jsp:include>
  <jsp:include page="adminform.jsp"></jsp:include>
  
     <div class="wrap">

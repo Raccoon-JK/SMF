@@ -1,0 +1,187 @@
+body {
+    width: 100%;
+  }
+  
+  img {
+    vertical-align: top;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  a:hover{
+    color: black;
+  }
+  
+  header {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .headerwrap {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+  }
+  
+  .headertop {
+    margin-bottom: 10px;
+    height: 80px;
+    font-size: 12px;
+  }
+  
+  .headertop ul a {
+    margin-right: 20px;
+    height: 10px;
+  }
+  
+  .headertop ul {
+    display: flex;
+    float: right;
+    list-style: none;
+    
+  }
+  
+  .headerbottom {
+    font-size: 16px;
+    padding-bottom: 20px;
+  }
+  
+  .headerbottom span {
+    margin-right: 10px;
+  }
+
+  .headerbottom a:hover {
+    border-bottom: solid 3px black;
+  }
+  
+  content {
+    height: 80%;
+  }
+  
+  .contentwrap {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1100px;
+    width: 100%;
+  }
+  
+  /* 날짜별,인기순,최신순 필터 */
+  .ct-sort ul {
+    display: flex;
+    float: right;
+    list-style: none;
+    height: 100px;
+    margin-top: 20px;
+    margin-right: 12px;
+    
+  }
+  
+  .ct-sort ul a {
+    text-decoration: none;
+    margin-right: 5px;
+    color: rgba(34, 34, 34, 0.8);
+    font-size: 14px;
+    letter-spacing: -0.21px;
+    line-height: 17px;
+  }
+
+  .ct-sort .style-insert{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100px;
+    font-weight: bold;
+  }
+  
+  /*숏 해쉬태그 영역  */
+  .ct-btncontainer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 150px;
+    
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    }
+
+    .ct-btncontainer .btn{
+        margin-right: 10px;
+        font-size: 14px;
+        letter-spacing: -.21px;
+        border: solid 2px grey;
+        border-radius: 12px;
+        
+    }
+  
+  
+    .ct-feedcontainer {
+      justify-content: center;
+      margin-top: 30px;
+      margin-bottom:30px;
+      padding-bottom: 50px;
+      width: 100%;
+    }
+    
+    @media(min-width: 640px){
+      .ct-feedcontainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        grid-auto-flow: row dense;
+      }
+    
+      .feedimg1 {
+        display: grid;
+        row-gap: 50px;
+      }
+      .feedimg2 {
+        display: grid;
+        row-gap: 20px;
+      }
+      .feedimg3 {
+        display: grid;
+        row-gap: 30px;
+      }
+    
+      .feedimg4 {
+        display: grid;
+        row-gap: 10px;
+      }
+      
+    }
+    
+    .ct-feedcontainer img{
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .moveTopBtn {
+          position: fixed;
+          bottom: 1rem;
+          right: 1rem;
+          width: 50px;
+          height: 50px;
+          color: #fff;
+      }
+  
+      .moveTopBtn svg{
+          width: 80%;
+          height: 80%;
+          color: gray;
+      }
+  
+  footer {
+    height: 10%;
+  }
+  

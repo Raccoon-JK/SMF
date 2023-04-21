@@ -108,7 +108,7 @@ h2{
 <body>
 	
 	<body>
-	<jsp:include page="/views/common/menubar_sun.jsp"></jsp:include>
+	<jsp:include page="/views/main/menubar_sun.jsp"></jsp:include>
 	<c:if test="${loginUser.userId == 'admin@naver.com' }">
 			<jsp:include page="/views/admin/adminform.jsp"></jsp:include>
 			</c:if> 
