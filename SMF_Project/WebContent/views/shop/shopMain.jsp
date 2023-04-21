@@ -82,26 +82,26 @@
                 <li class="categoryLi cat2">시계</li>
                 <li class="categoryLi cat2">패션잡화</li>
             </ul>
-            <div>
-                <ul id="weatherCategory">
-                    <li>
-                        <img src="<%= contextPath %>/resources/shop/symbols/맑음.png" alt="" class="weather">
-                    </li>
-                    <li>
-                        <img src="<%= contextPath %>/resources/shop/symbols/흐림.png" alt="" class="weather">
-                    </li>
-                    <li>
-                        <img src="<%= contextPath %>/resources/shop/symbols/비.png" alt="" class="weather">
-                    </li>
-                    <li>
-                        <img src="<%= contextPath %>/resources/shop/symbols/눈.png" alt="" class="weather">
-                    </li>
-                    <li class="temper">
-                        <img src="<%= contextPath %>/resources/shop/symbols/기온.png" alt="" class="weather">
-                        <div class="temperature">현재 기온</div>
-                    </li>
-                </ul>
-            </div>
+<!--             <div> -->
+<!--                 <ul id="weatherCategory"> -->
+<!--                     <li> -->
+<%--                         <img src="<%= contextPath %>/resources/shop/symbols/맑음.png" alt="" class="weather"> --%>
+<!--                     </li> -->
+<!--                     <li> -->
+<%--                         <img src="<%= contextPath %>/resources/shop/symbols/흐림.png" alt="" class="weather"> --%>
+<!--                     </li> -->
+<!--                     <li> -->
+<%--                         <img src="<%= contextPath %>/resources/shop/symbols/비.png" alt="" class="weather"> --%>
+<!--                     </li> -->
+<!--                     <li> -->
+<%--                         <img src="<%= contextPath %>/resources/shop/symbols/눈.png" alt="" class="weather"> --%>
+<!--                     </li> -->
+<!--                     <li class="temper"> -->
+<%--                         <img src="<%= contextPath %>/resources/shop/symbols/기온.png" alt="" class="weather"> --%>
+<!--                         <div class="temperature">현재 기온</div> -->
+<!--                     </li> -->
+<!--                 </ul> -->
+<!--             </div> -->
         </div>
         <div id="body">
             <aside id="mainFilter">
@@ -293,9 +293,11 @@
                         </div>
                         <div class="filterCheck" id="filterCheck1" style="display: none;">
                             <ul class="filterCheckUl">
-                                <li class="menu">
-                                    <input type="checkbox" value=""><label for="" class="filterText"></label><br><!-- 브랜드 종류 -->
-                                </li>
+                                <c:forEach var="bl" items="${ bList }">
+                                	<li class="menu menu4">
+	                                    <input type="checkbox" name="brand" id="${ bl.brandName }" value="${ bl.brandName }"><label for="${ bl.brandName }" class="filterText">${ bl.brandName }</label><br>
+                                	</li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
@@ -475,8 +477,10 @@
     	<jsp:include page="/views/main/footer.jsp" />
     </div>
     <script>
-    
-
+//     $('.productPrice').each(function(index, item){
+//         // console.log(parseInt(item.textContent.replace(/[^0-9]/g, "")).toLocaleString())
+//         item.textContent = parseInt(item.textContent.replace(/[^0-9]/g, "")).toLocaleString()+'원'
+//     });
         
         $('#deleteBtn').click(function() {
             $('#searchMain').val("");
@@ -532,13 +536,13 @@
             order: 'asc'
         };
 
-		// $(".tProduct").click(function(){
-        //         $.ajax({
-        //           url: "${ pageContext.request.contextPath }/tCat.sh",
-        //           dataType: 'json',
-        //           success: function(data) {
+		$(".tProduct").click(function(){
+                $.ajax({
+                  url: "${ pageContext.request.contextPath }/tCat.sh",
+                  dataType: 'json',
+                  success: function(data) {
  
-                	// $('#content').empty();
+                	$('#content').empty();
 //                 	$('#mainContent').append(
 //                             '<div id="showFilter">' +
 //                                 '<div>상품</div>' +
@@ -551,50 +555,49 @@
 //                 	);
                 	
 
-               	    // for (let i = 0; i < data.length; i++) {
-               	    //     $('#content').append(
-                    //             '<div class="postItem">' +
-                    //                 '<a href="${ pageContext.request.contextPath }/productDetail.sh?productName=' + data[i].productName + '">' +
-                    //                     '<div>' +
-                    //                         '<img src="${ pageContext.request.contextPath }' + data[i].imgPath + data[i].imgName + '" alt="" class="productImg">' +
-                    //                     '</div>' +
-                    //                     '<div class="productInner">' +
-                    //                         '<div class="productBrand">' + data[i].brandName + '</div>' +
-                    //                         '<div class="productName">' + data[i].productName + '</div>' +
-                    //                         '<div class="productPrice">' + data[i].companyPrice + '원</div>' +
-                    //                     '</div>' +
-                    //                 '</a>' +
-                    //                 '<div class="productWish">' +
-                    //                     '<div class="interestWish">' +
-                    //                         '<svg width="13" height="15">' +
-                    //                             '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />' +
-                    //                         '</svg>' +
-                    //                         '<div class="wishText">' + data[i].wishListCount + '</div>' +
-                    //                     '</div>' +
-                    //                     '<div class="interestWish">' +
-                    //                         '<svg width="15" height="15">' +
-                    //                             '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />' +
-                    //                             '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>' +
-                    //                             '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
-                    //                             '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
-                    //                         '</svg>' +
-                    //                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
-                    //                     '</div>' +
-                    //                 '</div>' + 
+               	    for (let i = 0; i < data.length; i++) {
+               	        $('#content').append(
+                                '<div class="postItem">' +
+                                    '<a href="${ pageContext.request.contextPath }/productDetail.sh?productName=' + data[i].productName + '">' +
+                                        '<div>' +
+                                            '<img src="${ pageContext.request.contextPath }' + data[i].imgPath + data[i].imgName + '" alt="" class="productImg">' +
+                                        '</div>' +
+                                        '<div class="productInner">' +
+                                            '<div class="productBrand">' + data[i].brandName + '</div>' +
+                                            '<div class="productName">' + data[i].productName + '</div>' +
+                                            '<div class="productPrice">' + data[i].companyPrice + '원</div>' +
+                                        '</div>' +
+                                    '</a>' +
+                                    '<div class="productWish">' +
+                                        '<div class="interestWish">' +
+                                            '<svg width="13" height="15">' +
+                                                '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />' +
+                                            '</svg>' +
+                                            '<div class="wishText">' + data[i].wishListCount + '</div>' +
+                                        '</div>' +
+                                        '<div class="interestWish">' +
+                                            '<svg width="15" height="15">' +
+                                                '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />' +
+                                                '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>' +
+                                                '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
+                                                '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
+                                            '</svg>' +
+                                        '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
+                                        '</div>' +
+                                    '</div>' + 
                                
-                    //         '</div>'                                                                                       
-               	    // )}
+                            '</div>'                                                                                       
+               	    )}
 //                 	$('#mainContent').append(
                 			
 //                 			'</div>'
 //                 	);
-        //           },
-        //      });
-        // });        
+                  },
+             });
+        });        
        
-        // $(".cat2").each(function(index, item){
-        	// $(item).click(function(){
-        	$('.cat2').click(function(){
+        $(".cat2").each(function(index, item){
+        	$(item).click(function(){
         		let category = $(this).text();
                 $.ajax({
                   url: "${ pageContext.request.contextPath }/nCat.sh",
@@ -602,18 +605,8 @@
                   success: function(data) {
                     console.log(data.pi)
                     console.log(data.list)
-
-                	$('#mainContent').empty();
-                	$('#mainContent').append(
-                            '<div id="showFilter">' +
-//                                 '<div>상품</div>' +
-                                '<div align="center" class="pagin-area" style="display:none">' +
-            						'<a href="http://localhost:8080${ pageContext.request.contextPath }/nCat.sh?currentPage='+(data.pi.currentPage - 1) + '" class="prevPage">&lt;</a>' +
-            						'<a href="http://localhost:8080${ pageContext.request.contextPath }/nCat.sh?currentPage='+(data.pi.currentPage + 1) + '" class="nextPage">&gt;</a>' +
-            					'</div>' +
-                           	'</div>' +
-                            '<div id="content" class="contentContainer">' 
-                	);
+					$('#showFilter').empty();
+                	$('#content').empty();
                	    for (let i = 0; i < data.list.length; i++) {
                	        $('#content').append(
                	            '<div class="postItem">' +
@@ -645,21 +638,13 @@
                	                    '</div>' +
                	                '</div>' + 
                	            '</div>'
-               	    )
-                }
-               	 	$('#mainContent').append(
-             			'</div>'
-             		);
-                infiniteScroll({
-                container: "#content",
-                item: ".postItem",
-                next: 2,
-                prev: 1
-            });
+               	   		)
+                	}
+               	    
                   }
                 });
         	});
-        // });
+        });
         
         $(".menu2").each(function(index, item){
         	$(item).click(function(){
@@ -671,6 +656,7 @@
                   success: function(data) {
                 	  
                   	console.log(data);
+                  	$('#showFilter').empty();
                 	$('#content').empty();
 
                	    for (let i = 0; i < data.length; i++) {
@@ -721,6 +707,57 @@
                   success: function(data) {
                 	  
                   	console.log(data);
+                  	$('#showFilter').empty();
+                	$('#content').empty();
+
+               	    for (let i = 0; i < data.length; i++) {
+               	        $('#content').append(
+               	            '<div class="postItem">' +
+               	                '<a href="${ pageContext.request.contextPath }/productDetail.sh?productName=' + data[i].productName + '">' +
+               	                    '<div>' +
+               	                        '<img src="${ pageContext.request.contextPath }' + data[i].imgPath + data[i].imgName + '" alt="" class="productImg">' +
+               	                    '</div>' +
+               	                    '<div class="productInner">' +
+               	                        '<div class="productBrand">' + data[i].brandName + '</div>' +
+               	                        '<div class="productName">' + data[i].productName + '</div>' +
+               	                        '<div class="productPrice">' + data[i].companyPrice + '원</div>' +
+               	                    '</div>' +
+               	                '</a>' +
+               	                '<div class="productWish">' +
+               	                    '<div class="interestWish">' +
+               	                        '<svg width="13" height="15">' +
+               	                            '<path d="M0,0 L13,0 L13,15 L6.5,9.5 L0,15 L0,10 Z" fill="none" stroke="#000000" stroke-width="1" />' +
+               	                        '</svg>' +
+               	                        '<div class="wishText">' + data[i].wishListCount + '</div>' +
+               	                    '</div>' +
+               	                    '<div class="interestWish">' +
+               	                        '<svg width="15" height="15">' +
+               	                            '<rect x="0" y="0" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1" />' +
+               	                            '<path d="M6.5 9.2c-1.88-1.85-3.67-3.44-3.67-4.84 0-1.28 1.04-1.76 1.79-1.76 0.44 0 1.39 0.17 1.92 1.5 0.53-1.32 1.49-1.48 1.92-1.48 0.85 0 1.76 0.54 1.76 1.72 0 1.69-2.13 3.59-4.5 6.01m1.92-8.63c-0.7 0-1.42 0.33-1.84 1.02-0.42-0.72-1.15-1.06-1.88-1.06-1.05 0-2.08 0.72-2.08 2.04 0 1.54 1.84 3.11 4 5.24 2.16-2.13 4-3.71 4-5.24 0-1.33-1.03-2.05-2.09-2.05" fill="#000" stroke="#000" stroke-width="0"/>' +
+               	                            '<line x1="2" y1="11" x2="13" y2="11" stroke="#000" stroke-width="1" />' +
+               	                            '<line x1="2" y1="13" x2="10.5" y2="13" stroke="#000" stroke-width="1" />' +
+               	                        '</svg>' +
+               	                     '<div class="wishText">' + data[i].postProductTagCount + '</div>' +
+               	                    '</div>' +
+               	                '</div>' + 
+               	            '</div>'
+               	    )}                
+                  },
+                });
+        	});
+        });
+        
+        $(".menu4").each(function(index, item){
+        	$(item).click(function(){
+        		let bName = $(this).children().val();
+                $.ajax({
+                  url: "${ pageContext.request.contextPath }/brandCat.sh",
+                  dataType: 'json',
+                  data: { bName: bName },
+                  success: function(data) {
+                	  
+                  	console.log(data);
+                  	$('#showFilter').empty();
                 	$('#content').empty();
 
                	    for (let i = 0; i < data.length; i++) {
@@ -767,6 +804,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -811,6 +849,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -855,6 +894,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -899,6 +939,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -943,6 +984,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -987,6 +1029,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -1032,6 +1075,7 @@
               success: function(data) {
             	  
               	console.log(data);
+              	$('#showFilter').empty();
             	$('#content').empty();
 
            	    for (let i = 0; i < data.length; i++) {
@@ -1096,7 +1140,7 @@
 	                  dataType: 'json',
 	                  data: { category: category },
 	                  success: function(data) {
-	                	  
+	                	  	$('#showFilter').empty();
 		                	$('#content').empty();
 	
 	               	    	for (let i = 0; i < data.length; i++) {
@@ -1144,7 +1188,7 @@
 	                  dataType: 'json',
 	                  data: { text: $('#searchMain').val() },
 	                  success: function(data) {
-	                	  
+	                	  	$('#showFilter').empty();
 		                	$('#content').empty();
 		                    $('input[type="checkbox"]').prop('checked', false);
 		                    $('.categoryLi').removeClass('tab');
@@ -1239,7 +1283,23 @@
                 next: ".nextPage",
                 prev: ".prevPage"
             });
+            
+            $(window).scroll(function() {
+            	  var scrollPosition = $(this).scrollTop(); // 스크롤 위치 가져오기
+            	  var target = $("#category"); // position: fixed를 적용할 대상 요소
 
+            	  if (scrollPosition > 100) { // 스크롤 위치가 100 이상이면
+            	    target.css({
+            	      position: "fixed",
+            	      top: "109px",
+            	      left: "311px"
+            	    });
+            	  } else { // 스크롤 위치가 100 미만이면
+            	    target.css({
+            	      position: "static"
+            	    });
+            	  }
+            	});
         
     </script>
 </body>
