@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/views/common/menubar_sun.jsp" />
+	<jsp:include page="/views/main/menubar_sun.jsp" />
 	<div id="mypage_wrapper">
 		<jsp:include page="mypageMenu.jsp"></jsp:include>
 		<div id="mypage_content_wrapper">

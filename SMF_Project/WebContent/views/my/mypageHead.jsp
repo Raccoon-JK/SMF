@@ -6,6 +6,7 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> Latest compiled and minified CSS  -->
 <link rel="stylesheet" href="/SMF_Project/resources/my/css/mypageMenu.css">
 <link rel="stylesheet" href="/SMF_Project/resources/my/css/mypageTools.css">
+<link rel="icon" href="data:,">
 <style>
     *{
         box-sizing: border-box;

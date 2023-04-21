@@ -122,6 +122,15 @@ function startDrag(e) {
 function dropped(e) {
 
 	var data = e.dataTransfer.getData('text/plain');
+	
+	// 드랍된 이미지를 관심상품 영역으로 보냄
+	const selectItem = document.getElementById(data).parentNode;
+	const newArea = document.getElementById('selectboxList');
+	
+	if(!newArea.querySelector("#" + data)) {
+  	newArea.appendChild(selectItem.cloneNode(true));
+	}
+	
 
 	// 드롭 위치에서 이미지의 id 값과 동일한 id 값을 가진 이미지를 찾음
     var existingImage = e.currentTarget.querySelector('#' + data);
@@ -198,6 +207,8 @@ function dropped(e) {
 		}
 	}
 	makeDragEvent();
+
+	
 
 	// 아이콘 생성 함수
 	function createResizeIcon(image) {
@@ -324,7 +335,17 @@ function dropped(e) {
 
 		deleteIcon.addEventListener("click", function() {
 			image.remove();
+			// selectboxList에서 해당 아이디의 이미지도 삭제
+			// const selectImages = document.querySelectorAll(`#selectboxList #${image.id}`);
+			// selectImages.forEach((selectImage) => {
+			// 	selectImage.remove();
+			// });
 			// updateTransform();
+
+			const selectImages = document.querySelectorAll(`#selectboxList #${image.id}`);
+			selectImages.forEach((selectImage) => {
+				selectImage.parentElement.remove();
+			});
 		});
 
 		IconRemoveEvent(deleteIcon, image);

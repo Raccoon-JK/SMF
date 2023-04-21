@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>배송 / 결제</h1>
+    <jsp:include page="/views/main/menubar_sun.jsp" />
+<!--     <h1>배송 / 결제</h1> -->
     <div id="orderPayment_wrapper">
         <div id="orderPayment_contentArea">
             <div class="orderPayment_div">
@@ -40,7 +41,7 @@
             <div class="orderPayment_div">
                 <div id="orderAdress_title">
                     <h5>배송 주소</h5>
-                    <a href="">변경</a>
+<!--                     <a href="">변경</a> -->
                 </div>
                 <div id="orderAddress_area">
                     <input type="hidden" name="arrNo" value="${ defaultAddr.addressNo }">
