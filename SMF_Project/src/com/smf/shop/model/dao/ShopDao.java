@@ -619,8 +619,8 @@ public class ShopDao {
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			pstmt.setString(1, category);			
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+//			pstmt.setInt(2, startRow);
+//			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -1190,6 +1190,81 @@ public class ShopDao {
 			close(pstmt);
 		}
 		return result;
+		
+	}
+	
+	public ArrayList<Product> selectBrandAll(Connection conn){
+		
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBrandAll");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+		
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Product p = new Product();
+				p.setBrandName(rset.getString("BRAND_NAME"));
+				
+				list.add(p);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ProductAll> selectBrandCategory(Connection conn, String bName){
+		
+		ArrayList<ProductAll> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBrandCategory");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bName);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ProductAll pa = new ProductAll(
+						rset.getString("PRODUCT_NAME"),
+						rset.getString("BRAND_NAME"),
+						rset.getInt("COMPANY_PRICE"),
+						rset.getString("IMG_NAME"),
+						rset.getString("IMG_PATH"),
+						rset.getInt("WISHLIST_COUNT"),
+						rset.getInt("PPT_COUNT")
+						);
+				list.add(pa);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 		
 	}
 }

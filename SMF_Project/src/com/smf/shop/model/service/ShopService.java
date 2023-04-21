@@ -389,4 +389,26 @@ public class ShopService {
 		
 		return result;
 	}
+	
+	public ArrayList<Product> selectBrandAll() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Product> bList = new ShopDao().selectBrandAll(conn);
+		
+		close(conn);
+		
+		return bList;
+	}
+	
+	public ArrayList<ProductAll> selectBrandCategory(String bName) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductAll> list = new ShopDao().selectBrandCategory(conn, bName);
+		
+		close(conn);
+		
+		return list;
+	}
 }
