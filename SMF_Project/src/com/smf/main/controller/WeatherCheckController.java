@@ -44,8 +44,8 @@ public class WeatherCheckController extends HttpServlet {
        
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 		String serviceKey = "I2atMlAeZkfGfgZwpxb1Dl4m3bKK2DDbwZ1wArS7l%2FTOc4PG27oXEWANpkCjSNvMc88yUg%2BW7VF1HeKA0nqcrw%3D%3D";
-        String nx = "36"; // 위도
-        String ny = "128"; // 경도
+        String nx = "60"; // 위도
+        String ny = "127"; // 경도
         String baseDate = date; // 조회하고 싶은 날짜
         String baseTime = time; // API 제공 시간
         String type = "xml"; // 타입 xml, json 등등 ..
@@ -57,7 +57,7 @@ public class WeatherCheckController extends HttpServlet {
         urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode(nx, "UTF-8")); // 경도
         urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode(ny, "UTF-8")); // 위도
         urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); // 조회하고 싶은 날짜
-        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); // 조회하고 싶은 시간 AM 02시부터 3시간 단위 
+        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); // 조회하고 싶은 시간 
         urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8")); // 타입 
         urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); // 타입 
         urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode(numOfRows, "UTF-8")); // 한 페이지

@@ -202,9 +202,9 @@ button.back {
 								href="${pageContext.request.contextPath}/dressroomMain.me">DRESS
 									ROOM</a></li>
 
-							<li><a href="">MY</a></li>
-							<li><button class="back" type="button" id="search">
-									S</button></li>
+							<li><a href="${pageContext.request.contextPath}/mypagemain.me">MY</a></li>
+							<li><button class="back" type="button" id="search" onclick="location.href='${pageContext.request.contextPath}/main.sh#searchMain'">S</button>
+									</li>
 						</ul>
 					</nav>
 				</div>
