@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +9,18 @@
 <!-- Latest compiled and minified CSS -->
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-<!-- <!-- Popper JS --> -->
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+<!-- <!-- Popper JS -->
+-->
 <!-- <script -->
 <!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
 <!-- Latest compiled JavaScript -->
@@ -44,6 +50,12 @@
 	margin: 30px 0px;
 	text-align: center;
 }
+
+#main_logo{
+	width: 130px;
+	position: absolute;
+	top: 10px;
+}
 </style>
 </head>
 <body>
@@ -68,7 +80,10 @@
 				</a>
 			</div>
 			<div class="header_main">
-				<div class="main_inner">구해줘패션(로고 삽입 예정)</div>
+				<div class="main_inner">
+					<img id="main_logo"
+						src="${pageContext.request.contextPath}/resources/main/logo.png">
+				</div>
 				<div class="gnb_area">
 					<nav class="gnb">
 						<ul class="gnb_list">
@@ -84,33 +99,33 @@
 					</nav>
 				</div>
 			</div>
-<!-- 			<div class="search_title"> -->
-<!-- 				<h1>SHOP</h1> -->
-<!-- 			</div> -->
-<!-- 			<div class="tab_area"> -->
-<!-- 				<ul> -->
-<!-- 					<li><a href=""> <span>전체</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>럭셔리</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>신발</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>아우터</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>상의</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>하의</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>가방</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>지갑</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>시계</span> -->
-<!-- 					</a></li> -->
-<!-- 					<li><a href=""> <span>패션잡화</span> -->
-<!-- 					</a></li> -->
-<!-- 				</ul> -->
-<!-- 			</div> -->
+			<!-- 			<div class="search_title"> -->
+			<!-- 				<h1>SHOP</h1> -->
+			<!-- 			</div> -->
+			<!-- 			<div class="tab_area"> -->
+			<!-- 				<ul> -->
+			<!-- 					<li><a href=""> <span>전체</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>럭셔리</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>신발</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>아우터</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>상의</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>하의</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>가방</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>지갑</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>시계</span> -->
+			<!-- 					</a></li> -->
+			<!-- 					<li><a href=""> <span>패션잡화</span> -->
+			<!-- 					</a></li> -->
+			<!-- 				</ul> -->
+			<!-- 			</div> -->
 		</div>
 	</div>
 
