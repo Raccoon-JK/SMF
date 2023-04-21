@@ -436,8 +436,8 @@
     <div id="selectboxList">
 		<div id="selectboxListInformation"></div>
     </div>
-    
   </section>
+  <jsp:include page="/views/common/footer.jsp" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
 	 $(function(){
@@ -470,6 +470,7 @@
                                            +'<img id="'+imgId+'_'+item.imgNo+'" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
 										   +'<div class="itemObjectInformationName">'+item.productName+'</div>'
 										   +'<div class="itemObjectInformation">'+item.companyPrice.toLocaleString()+'원</div>'
+										   //+'<div><a href="<%= contextPath %>/dressroomWish.me?productName='+item.productName+'"/></div>'
                                        +'</div>'
 								});
 								str += '</section>';

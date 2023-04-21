@@ -122,7 +122,7 @@ div {
 }
 
 #selectbox {
-	height: 700px;
+	height: 2000px;
 	width: 100%;
 	max-width: 1900px;
 	min-width: 1600px;
@@ -160,7 +160,7 @@ div {
 	font-weight: bold;
 	color: rgb(59, 59, 59);
 	font-size: 90%;
-	left: 55%;
+	left: 50%;
 	transform: translateX(-50%);
 	position: absolute;
 	bottom: 13%;

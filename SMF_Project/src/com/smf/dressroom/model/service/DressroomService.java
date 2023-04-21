@@ -20,4 +20,29 @@ public class DressroomService {
 		
 		return list;
 	}
+	
+	public int dressroomWish(String UserId, String productName) {
+		
+		Connection conn = getConnection();
+		
+		int result = new DressroomDao().dressroomWish(conn, UserId, productName);
+		
+		if(result > 0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	
+	
 }
+
+
+
+

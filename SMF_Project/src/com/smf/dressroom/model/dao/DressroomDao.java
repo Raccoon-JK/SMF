@@ -67,4 +67,35 @@ public class DressroomDao {
 		}
 		return list;
 	}
+	
+	public int dressroomWish(Connection conn, String UserId, String productName) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("dressroomWish");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, UserId);
+			pstmt.setString(2, productName);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		return result;
+		
+		
+	}
+	
 }

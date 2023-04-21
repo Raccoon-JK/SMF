@@ -8,4 +8,12 @@
 		LEFT JOIN CATEGORY_SUB C ON P.CATEGORY_NO = C.SUB_CATEGORY_NO
 		WHERE P.STATUS = 'Y' AND C.SUB_CATEGORY_NAME = ? AND PI.IMG_NAME LIKE '%_1.png%'
 	</entry>
+	
+	<entry key="dressroomWish">
+		INSERT INTO WISHLIST VALUES(?, ?)
+	</entry>
+	
+	
+	
+	
 </properties>
