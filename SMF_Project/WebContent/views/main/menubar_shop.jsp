@@ -34,7 +34,7 @@
 }
 
 .header_box {
-	height: 86px;
+	height: 109px;
 	max-width: 1280px;
 	margin-left: auto;
 	margin-right: auto;
