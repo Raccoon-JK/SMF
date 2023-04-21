@@ -1,0 +1,274 @@
+body {
+    width: 100%;
+  }
+  
+  img {
+    vertical-align: top;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  ul{
+    list-style: none;
+  }
+  
+ 
+  
+  content {
+    height: 80%;
+  }
+  
+  .contentwrap {
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1100px;
+    height: 10%;
+    width: 100%;
+  }
+
+  .user-area{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 200px;
+  }
+
+  .social-area{
+    margin-right: 30px;
+  }
+
+  .social-area li{
+    display: inline-block;
+    margin-right: 30px;
+  }
+
+  .sub-txt{
+    color: rgba(34, 34, 34, 0.5);
+  }
+
+  .item-menu{
+    font-size: 16px;
+  }
+
+  .item-count{
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .profile-imgbox{
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+  }
+
+  .profile-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* 날짜별,인기순,최신순 필터 */
+  .ct-sort ul {
+    display: flex;
+    float: right;
+    list-style: none;
+    margin-top: 30px;
+    margin-right: 12px;
+  }
+  
+  .ct-sort ul a {
+    text-decoration: none;
+    margin-right: 5px;
+    color: rgba(34, 34, 34, 0.8);
+    font-size: 14px;
+    letter-spacing: -0.21px;
+    line-height: 17px;
+  }
+  
+  .ct-sort .style-insert{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100px;
+    font-weight: bold;
+  }
+  
+  /*숏 해쉬태그 영역  */
+  .ct-tagcontainer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+    
+  }
+  
+  .tagshort {
+    width: 10px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 100px;
+  }
+  
+  .round p {
+    font-size: 12px;
+    margin-top: 4px;
+    width: 100px;
+  }
+  
+  .round img {
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    height: 70px;
+  }
+  
+  .ct-feedcontainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 100px;    
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .userImg {
+	margin-bottom: 10px;
+}
+
+.comment-top .feeduser{
+  margin-left: 20px;
+  margin-bottom: 60px;
+}
+  
+  @media(min-width: 640px){
+    .ct-feedcontainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 20px;
+      grid-auto-flow: row dense;
+    }
+  
+    .feedimg1 {
+      display: grid;
+      row-gap: 10px;
+    }
+    .feedimg2 {
+      display: grid;
+      row-gap: 20px;
+    }
+    .feedimg3 {
+      display: grid;
+      row-gap: 30px;
+    }
+  
+    .feedimg4 {
+      display: grid;
+      row-gap: 5px;
+    }
+  }
+  
+  .ct-feedcontainer img{
+    border-radius: 20px;
+    margin-rigth: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  
+  
+  footer {
+    height: 10%;
+  }
+
+  /* 모달 */
+  .modal-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .modal {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    margin-top: 300px;
+    width: 350px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal-title, .modal-title ul{
+    width: 100%;
+  }
+
+  .action-list{
+    padding: 0;
+  }
+  
+  
+  .modal li {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(17,17,17,.1);
+  }
+
+  .modal .action-item{
+    color:red;
+  }
+  
+  
+  #open{
+    cursor: pointer;
+  }
+
+  .moveTopBtn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+}
+
+.moveTopBtn svg{
+    width: 80%;
+    height: 80%;
+    color: gray;
+}
+
+.user-btn button{
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: white; 
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.follow-btn {
+  width: 100px;
+  height: 30px;
+}
+  

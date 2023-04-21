@@ -1687,3 +1687,20 @@ COMMIT;
 --SELECT * FROM user_tables;    
 SELECT COUNT(*) AS "테이블 개수" FROM user_tables; -- 35개
 SELECT COUNT(*) AS "시퀀스 개수" FROM user_sequences; -- 20개
+
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('ruegenie@naver.com', '신류진', '!smf1234', 01011110002, '92/12/12', 'ruegenie@naver.com' );
+       
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('hsd09@gmail.com', '해린', '!smf1234', 01011110003, '90/01/12', 'hsd09@gmail.com' );
+       
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('winnerdraw@naver.com', '송민호', '!smf1234', 01011110004, '98/02/02', 'winnerdraw@naver.com' );
+       
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('hittaek@naver.com', '주우재', '!smf1234', 01011110001, '93/04/12', 'hittaek@naver.com' );
+       
+INSERT INTO MEMBER(USER_ID, USER_NAME, USER_PWD, PHONE, BIRTH, SNS_ID)
+       VALUES  ('sehyeon0@gmail.com', '김세현', '!smf1234', 01011110005, '96/06/22', 'sehyeon0@gmail.com' );
+
+COMMIT;

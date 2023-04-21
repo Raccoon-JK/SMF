@@ -11,8 +11,27 @@
 <head>
 <meta charset="UTF-8">
 <title>구해줘 패션</title>
-<link rel="stylesheet" href="resources/style/css/게시물등록.css" />
+<link rel="stylesheet" href="resources/style/css/PostInsert.css" />
 <style>
+
+	#enroll-form{
+		font-family: "paybooc-Light", sans-serif;
+	}
+	
+	#enroll-form img{
+		 border: 1px solid rgba(0, 0, 0, 0.2);
+		 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	}
+	
+	#enroll-form textarea{
+		margin-left : 100px;
+		margin-bottom: 20px;
+		width: 600px; 
+		height: 300px; 
+		resize:none; 
+		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	
       .img-area img{
           width: 150px;
           height: 200px;
@@ -24,6 +43,42 @@
          width: 250;
     	height: 170;
       }
+      
+	      .w-btn {
+	    position: relative;
+	    border: none;
+	    display: inline-block;
+	    padding: 15px 30px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	    text-decoration: none;
+	    font-weight: 600;
+	    transition: 0.25s;
+	}
+	
+	.w-btn-outline {
+	    position: relative;
+	    padding: 15px 30px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	    text-decoration: none;
+	    font-weight: 600;
+	    transition: 0.25s;
+	}
+	
+	
+	
+	.w-btn-gray-outline {
+    border: 3px solid #a3a1a1;
+    color: #6e6e6e;
+}
+	
+	.w-btn-gray-outline:hover {
+    background-color: #a3a1a1;
+    color: #e3dede;
+}
       
     </style>
   </head>
@@ -40,7 +95,7 @@
 		<form action="<%= contextPath %>/styleInsert.st" id="enroll-form" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="userId" value="<%= loginUser.getUserId() %>">
 			<div>
-				<textarea name="content" style="width: 600px; height: 300px; resize:none; border:0;" required placeholder="#아이템과 #스타일을 입력하세요"></textarea>
+				<textarea name="content" required placeholder="#아이템과 #스타일을 입력하세요"></textarea>
 				<p><strong>스타일 이미지 등록하기</strong></p>
 			 	<img id="titleImg" width="200" height="150">
 				<img id="contentImg1" width="200" height="150">
@@ -48,9 +103,7 @@
 				<img id="contentImg3" width="200" height="150">
 			</div>
 			<br>
-			<div>
-				<div name="" onclick=""><strong>구매내역 불러오기</strong><div>
-			</div>
+			
 			
 			<div id="file-area" style="display:none;">
 				<input type="file" id="img1" name="img1" onchange="loadImg(this, 1);" required>
@@ -58,6 +111,7 @@
 				<input type="file" id="img3" name="img3" onchange="loadImg(this, 3);">
 				<input type="file" id="img4" name="img4" onchange="loadImg(this, 4);">
 			</div>
+			
 			
 			<script>
 				$(function(){
@@ -104,8 +158,9 @@
 			</script>
 			<br>
 			<div align="center">
-				<button type="submit" class="submit-btn">스타일 등록</button>
-				<button type="button" class="submit-btn" onclick="history.back();" >취소</button>	
+			
+				<button class="w-btn w-btn-gray-outline" type="submit">스타일 등록</button>
+				<button class="w-btn w-btn-gray-outline submit-btn" type="button" onclick="history.back();">취소</button>
 			</div>
 			
 		</form>
