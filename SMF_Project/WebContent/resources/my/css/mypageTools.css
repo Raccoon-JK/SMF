@@ -74,3 +74,13 @@
     border: 0.4em solid #fff;
     outline-style: 1px solid black;
 } */
+
+.inputBoxSelect{
+    border-bottom: 2px solid #222;
+    
+}
+.inputBoxSelectTitle{
+    color: #222;
+    font-weight: 600;
+
+}

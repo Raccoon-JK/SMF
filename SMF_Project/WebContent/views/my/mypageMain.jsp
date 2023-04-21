@@ -41,7 +41,7 @@
 						</div>
 	            	</div>
             	</div>
-            	<div class="mypage_box" id="delivery_summary">
+            	<!-- <div class="mypage_box" id="delivery_summary">
             		<div id="delivery_title">
             			<div id="shoppingcart">
             				<span class="mypageInfo_titleText">
@@ -81,13 +81,12 @@
             				</div>
             			</div>
             		</div>
-            	</div>
+            	</div> -->
             	<div class="mypage_box" id="interest_summary">
             		<div id="interest_title">
             			<div id="interest">
             				<?xml version="1.0" encoding="utf-8"?>
 							<!-- License: PD. Made by Mary Akveo: https://maryakveo.com/ -->
-							
             				<span class="interest_titleText mypageInfo_titleText">
 								<svg fill="#000000" width="60px" height="60px" viewBox="0 0 24 24" id="bookmark" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><path id="primary" d="M12,17,5,21V4A1,1,0,0,1,6,3H18a1,1,0,0,1,1,1V21Z" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
 								관심 상품</span>

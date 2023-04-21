@@ -73,7 +73,7 @@
 	<entry key="cardUpdate">
 		UPDATE CARD SET CARD_NO = ?,
 						   CARD_PWD = ?,
-						   CARD_VALIDIY = ?,
+						   CARD_VALIDITY = ?,
 						   CVC = ?
 			   WHERE USER_ID = ?
 	</entry>
