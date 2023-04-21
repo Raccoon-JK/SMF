@@ -14,6 +14,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.smf.common.MyFileRenamePolicy;
+import com.smf.common.MyFileRenamePolicy2;
 import com.smf.member.model.vo.Member;
 import com.smf.my.model.service.MyPageService;
 
@@ -51,7 +52,7 @@ public class MyInfoUpdateController extends HttpServlet {
 			
 			int maxSize = 1024 * 1024 * 10;
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/my/img/");
-			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy2());
 		
 			userId = multi.getParameter("id");
 			column = "USER_IMAGE";

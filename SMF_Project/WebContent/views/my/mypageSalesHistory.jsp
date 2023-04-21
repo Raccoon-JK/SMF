@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/views/common/menubar_sun.jsp" />
+	<jsp:include page="/views/main/menubar_sun.jsp" />
     <div id="mypage_wrapper">
     	<jsp:include page="mypageMenu.jsp"></jsp:include>
     	<div id="mypage_content_wrapper">
@@ -34,9 +34,9 @@
                 </div>
                 <div class="dateSelect_box">
                     <div class="decentBtn_box">
-                        <button type="button" class="monthBtn" value="2">최근 2개월</button>
-                        <button type="button" class="monthBtn" value="4"> 4개월</button>
-                        <button type="button" class="monthBtn" value="6"> 6개월</button>
+                        <button type="button" class="monthBtn customBtn" value="2">최근 2개월</button>
+                        <button type="button" class="monthBtn customBtn" value="4"> 4개월</button>
+                        <button type="button" class="monthBtn customBtn" value="6"> 6개월</button>
                     </div>
                     <div class="duration_box">
                         <input type="date" name="duration_start" id="">
@@ -59,9 +59,9 @@
                                     <img src="${pageContext.request.contextPath}${list.imgPath}${list.imgName}" alt="" width="80" height="80">
                                 </div>
                                 <div class="salebuy_info_product_text">
-                                    <p>${list.brandName}</p>
-                                    <p>${list.productName}</p>
-                                    <p>${list.pSize}</p>
+                                    <span class="p_brandname">${list.brandName}</span>
+                                    <span>${list.productName}</span>
+                                    <span>${list.pSize}</span>
                                 </div>
                             </div>
                             <div class="salebuy_info_product_right">
