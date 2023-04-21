@@ -1,4 +1,10 @@
-<%@ page import="com.smf.member.model.vo.Member"%>
+<%@ page
+	import="com.smf.member.model.vo.Member, com.smf.main.controller.*"%>
+<%@ page import="java.net.URL, java.net.URLConnection"%>
+<%@ page
+	import="java.io.BufferedReader, java.io.InputStream, java.io.InputStreamReader"%>
+<%@ page import="java.util.regex.Pattern, java.util.regex.Matcher"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -8,7 +14,12 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 // 로그인 전 : null값이 담김
 // 로그인 후 : 로그인한 회원의 Member객체
 
-String weather = (String) request.getAttribute("weather");
+// WeatherServlet 인스턴스 생성
+WeatherNumberController weatherServlet = new WeatherNumberController();
+// init() 메서드 실행
+weatherServlet.init();
+// getWeather() 메서드로 날씨 정보 가져오기
+String weather = weatherServlet.getWeather();
 %>
 <!DOCTYPE html>
 <html>
@@ -34,28 +45,28 @@ String weather = (String) request.getAttribute("weather");
 	href="${pageContext.request.contextPath}/views/main/css/modal.css"
 	type="text/css">
 <%
-	if (weather == "1") {
-%>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
-	type="text/css">
-<%
-	} else if (weather == "r") {
+	if (weather.equals("5") || weather.equals("8")) {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/rain.css"
 	type="text/css">
 <%
-	} else if (weather == "n") {
+	} else if (weather.equals("6") || weather.equals("7")) {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/snow.css"
 	type="text/css">
 <%
-	} else if (weather == "4") {
+	} else if (weather.equals("3") || weather.equals("4")) {
 %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/views/main/css/cloud.css"
+	type="text/css">
+<%
+	} else {
+%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/views/main/css/sunny.css"
 	type="text/css">
 <%
 	}
@@ -86,7 +97,8 @@ button.back {
 	vertical-align: middle;
 	width: 16px;
 	height: 16px;
-	background-image: url('${pageContext.request.contextPath}/resources/main/search_icon.png');
+	background-image:
+		url('${pageContext.request.contextPath}/resources/main/search_icon.png');
 	color: rgba(255, 255, 255, 0);
 	background-size: cover;
 	border-style: none;
@@ -99,15 +111,30 @@ button.back {
 	height: 16px;
 	background-image:
 		url('${pageContext.request.contextPath}/resources/main/bell_icon.png');
+	color: rgba(255, 255, 255, 0);
+	background-size: cover;
 	border-style: none;
 	position: relative;
+	background-size: cover;
 }
 </style>
 </head>
 <body>
 
+
 	<%
-		if (weather == "1") {
+		if (weather.equals("3") || weather.equals("4")) {
+	%>
+	<div id="clouds">
+		<div class="cloud x1"></div>
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+		<div class="cloud x6"></div>
+	</div>
+	<%
+		} else {
 	%>
 	<div class="sky">
 		<div class="sky__phase sky__1"></div>
@@ -120,20 +147,11 @@ button.back {
 		</div>
 	</div>
 	<%
-		} else if (weather == "4") {
-	%>
-
-	<div id="clouds">
-		<div class="cloud x1"></div>
-		<div class="cloud x2"></div>
-		<div class="cloud x3"></div>
-		<div class="cloud x4"></div>
-		<div class="cloud x5"></div>
-		<div class="cloud x6"></div>
-	</div>
-	<%
 		}
 	%>
+
+
+
 	<div class="modal">
 		<div class="frame">
 			<div class="deco"></div>
@@ -153,7 +171,8 @@ button.back {
 				<div class="top_inner">
 					<ul class="top_list">
 						<li class="top_item"><a href="">고객센터</a></li>
-						<li class="top_item"><a href="">관심상품</a></li>
+						<li class="top_item"><a
+							href="${pageContext.request.contextPath}/mypagewishlist.me">관심상품</a></li>
 						<%
 							if (loginUser == null) {
 						%>
@@ -165,6 +184,7 @@ button.back {
 						<li class="top_item"><a
 							href="${pageContext.request.contextPath}/logout.me">로그아웃</a></li>
 						<li><button class="view_more back" type="button" id="alarm">
+								A
 								<div class="red-dot" hidden></div>
 							</button></li>
 						<%
@@ -183,18 +203,16 @@ button.back {
 									ROOM</a></li>
 							<li><a href="">MY</a></li>
 							<li><button class="back" type="button" id="search">
-								S
-								</button></li>
+									S</button></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 			<div class="tab_area">
 				<ul>
-					<li><a href=""><span>HOME</span></a></li>
+					<li><a href="${pageContext.request.contextPath}"><span>HOME</span></a></li>
 					<li><a href="${pageContext.request.contextPath}/styleList.st"><span>STYLE</span></a></li>
-					<li><a href=""><span>SHOP</span></a></li>
-					<li><a href=""><span>기획전</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/main.sh"><span>SHOP</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -202,40 +220,19 @@ button.back {
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/modal.js"></script>
-
 	<%
-		if (weather == "r") {
+		if (weather.equals("5") || weather.equals("8")) {
 	%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/rain.js"></script>
 	<%
-		} else if (weather == "n") {
+		} else if (weather.equals("6") || weather.equals("7")) {
 	%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/views/main/js/snow.js"></script>
 	<%
 		}
 	%>
-
-	<script>
-		/**
-		 * 날씨 확인
-		 */
-		let weather;
-
-		$.ajax({
-			url : "/SMF_Project/WeatherCoding.wc",
-			method : "GET",
-			success : function(response) {
-				weather = response;
-				console.log(weather);
-	<%request.setAttribute("weather", weather);%>
-		},
-			error : function(error) {
-				console.log(error);
-			}
-		});
-	</script>
 
 
 </body>

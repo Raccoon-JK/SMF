@@ -44,8 +44,8 @@ public class WeatherCheckController extends HttpServlet {
        
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 		String serviceKey = "I2atMlAeZkfGfgZwpxb1Dl4m3bKK2DDbwZ1wArS7l%2FTOc4PG27oXEWANpkCjSNvMc88yUg%2BW7VF1HeKA0nqcrw%3D%3D";
-        String nx = "60"; // 위도
-        String ny = "127"; // 경도
+        String nx = "36"; // 위도
+        String ny = "128"; // 경도
         String baseDate = date; // 조회하고 싶은 날짜
         String baseTime = time; // API 제공 시간
         String type = "xml"; // 타입 xml, json 등등 ..

@@ -89,9 +89,10 @@ div a:hover {
 	height: 10px;
 	z-index: 10000;
 	background-color: red;
-	top: 2px;
-	right: 2px;
+	top: -3px;
+	left: 9px;
 }
+
 
 .swiper-slide>a>img {
 	height: 100%;
