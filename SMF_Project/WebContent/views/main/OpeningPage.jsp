@@ -81,7 +81,7 @@ video {
 			</video>
 		</div>
 		<div class="opening_title">
-			구해줘패션 (로고삽입 예정)
+			<img id="main_logo" src="${pageContext.request.contextPath}/resources/main/logo.png">
 		</div>
 		<button class="opening_button" id="closeBtn">시작하기</button>
 		<div class="show_check">
