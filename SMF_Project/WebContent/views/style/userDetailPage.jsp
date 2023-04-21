@@ -17,7 +17,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="resources/style/css/userPage.css" />
 <style>
-
+	.comment-top .feeduser{
+  margin-left: 20px;
+  margin-bottom: 60px;
+}
+  
 </style>
 </head>
    <body>
@@ -181,7 +185,7 @@
 								<tr>
 									<td><%= sc.getUserId() %></td>
 									<td><%= sc.getcContent() %></td>
-									<td><a href="<%= contextPath %>/CommentDelete.st?cno=<%= sc.getcNo() %>"><button type="submit" id="follow-btn">삭제</button></a></td>
+									<td><%= sc.getcUproadTime() %></td>
 								</tr>
 							<% } %>
 						</tbody>
@@ -240,7 +244,7 @@
 							result += "<tr>"
 										+"<td>"+ k.cContent +"</td>"
 										+"<td>"+ k.userId +"</td>"
-										+"<td>"+ k.cNo +"</td>"
+										+"<td>"+ k.cUproadTime +"</td>"
 										
 								   +  "</tr>"
 						}

@@ -30,6 +30,9 @@
                 </div>
                 <div class="user-explane">
                   <p class="sub-txt" style="margin-top: 0;">
+                  <%= loginUser.getUserName() %>
+                  </p>
+                  <p class="sub-txt" style="margin-top: 0;">
                   <% if (loginUser.getInteroduce() != null)  { %>
                   <%= loginUser.getInteroduce() %>
                   <% } %>
@@ -47,7 +50,7 @@
               <img src="<%= contextPath %><%= sp.getPi().getImgPath()+ sp.getPi().getImgName() %>" width="250px" height="170px"/>
 				<div>
 					 <div class="userImg"><img src="<%= contextPath %><%= sp.getUserImage() %>" style="width:30px; height:30px;"><%=sp.getUserId() %>
-					 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16" style="margin-left:30px;">
+					 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16" style="margin-left:20px;">
 			                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
 			                 </svg>
 			                 

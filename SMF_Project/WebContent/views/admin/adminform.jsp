@@ -121,6 +121,14 @@ a {
             </li>
             
             <li>
+                <a href="#">상품등록</a>
+                <ul>
+                    <li><a href="<%=contextPath%>/sendPPF.sh">상품등록</a></li>
+                </ul>
+            </li>
+            
+            
+            <li>
                 <a href="#">고객문의</a>
                 <ul>
                     <li><a href="<%=contextPath%>/Faqlist.no">FAQ관리</a></li>

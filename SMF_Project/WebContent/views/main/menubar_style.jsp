@@ -53,7 +53,7 @@ a, a:hover{
 			<div class="header_top">
 				<div class="top_inner">
 					<ul class="top_list">
-						<li class="top_item"><a href="">고객센터</a></li>
+						<li class="top_item"><a href="<%= contextPath %>/list.no">고객센터</a></li>
 						<li class="top_item"><a href="">관심상품</a></li>
 						<% if (loginUser == null) {%>
 						<li class="top_item"><a href="<%= contextPath %>/login.page">로그인</a></li>
@@ -76,7 +76,7 @@ a, a:hover{
 					<nav class="gnb">
 						<ul class="gnb_list">
 							<li><a href="<%= contextPath %>/dressroomMain.me">DRESS ROOM</a></li>
-							<li><a href="">MY</a></li>
+							<li><a href="<%= contextPath %>/mypagemain.me">MY</a></li>
 							<li><button class="btnFind" type="submit" name="btnFind">
 									<img id="search" src="<%= contextPath %>/resources/main/search_icon.png"> 
 								</button>
@@ -87,8 +87,10 @@ a, a:hover{
 			</div>
 			<div class="tab_area">
 				<ul>
+					<% if (loginUser != null) {%>
 					<li><a href="<%= contextPath %>/userPage.st"> <span>MY스타일</span>
 					</a></li>
+					<% } %>
 					<li><a href="<%= contextPath %>/styleList.st"> <span>발견</span>
 					</a></li>
 					<li><a href="<%= contextPath %>/sneakers.st"> <span>스니커즈</span>

@@ -162,7 +162,7 @@ span {
   justify-content: center;
   text-align: left;
   margin-top: 30px;
-  margin-right: 450px;
+  margin-right: 150px;
   margin-bottom: 30px;
 }
 
@@ -283,7 +283,7 @@ span {
 .modal {
   background: white;
   padding-top: 30px;
-  width: 450px;
+  width: 500px;
 }
 
 
@@ -322,7 +322,7 @@ span {
 
 .comment-top .feeduser{
   margin-left: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 .comment-box{
@@ -404,7 +404,7 @@ span {
 }
 
 #reply-area {
-	width:550px;
+	width:600px;
 }
 
 

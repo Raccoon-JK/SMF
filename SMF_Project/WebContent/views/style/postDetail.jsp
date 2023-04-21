@@ -30,22 +30,42 @@
   text-align: left;
 }
 .blueone td {
-  color: #669;
+  color: #a3a1a1;
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
-.blueone tr:hover td {
-  color: #004;
+
+
+.comment-top .feeduser{
+  margin-left: 20px;
+  margin-bottom: 60px;
 }
+
+.pageback {
+	display:flex;
+	justify-content: center;
+	margin-right: 610px;
+}
+
+
 
 </style>
 </head>
    <body>
 	<header>
 	<%-- <jsp:include page="/views/main/menubar_style.jsp" /> --%>
+	
 	</header>
     <content>
-    
+    <div class="pageback">
+   	  <a href="<%= contextPath %>/styleList.st">
+   		<button class="back" style="background-color: white; border: 0; cursor: pointer;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+          </svg>
+        </button>
+       </a>
+    </div>
        
       
       <div class="feedcontainer">
@@ -193,24 +213,20 @@
                   <div id="reply-area">
 					<table class="blueone">
 						<thead>
-							<% if(loginUser.getUserId().equals(sp.getContent())) { %>
-								
-							<% } else { %>
 								<tr>
 									<th>댓글작성</th>
 									<td>
 										<textarea class="form-control" id="replyContent" cols="20"  rows="1" style="resize:none; border:0;" placeholder="댓글을 남기세요"></textarea>
 									</td>
-									<td><button onclick="insertReply();">등록</button></td>
+									<td><button style="border-radius: 5px; background-color:white;" onclick="insertReply();"><strong>등록</strong></button></td>
 								</tr>
-							<% } %>
 						</thead>
 						<tbody>
 							<% for(StyleComment sc : list) { %>
 								<tr>
 									<td><%= sc.getcContent() %></td>
 									<td><%= sc.getUserId() %></td>
-									<td><a href="<%= contextPath %>/CommentDelete.st?cno=<%= sc.getcNo() %>"><button type="submit" id="follow-btn">삭제</button></a></td>
+									<td><%= sc.getcUproadTime() %></td>
 								</tr>
 							<% } %>
 						</tbody>
@@ -285,7 +301,7 @@
 							result += "<tr>"
 										+"<td>"+ i.cContent + "</td>"
 										+"<td>"+ i.userId + "</td>"
-										+"<td>" + i.cNo + "</td>"
+										+"<td>" + i.cUproadTime + "</td>"
 								   +  "</tr>"
 								   
 						}

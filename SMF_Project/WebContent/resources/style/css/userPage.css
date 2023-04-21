@@ -146,6 +146,11 @@ body {
   .userImg {
 	margin-bottom: 10px;
 }
+
+.comment-top .feeduser{
+  margin-left: 20px;
+  margin-bottom: 60px;
+}
   
   @media(min-width: 640px){
     .ct-feedcontainer {
