@@ -39,6 +39,7 @@
 	overflow-y: hidden;
 	justify-content: space-between;
 	padding-right: 40px;
+	z-index: 10001;
 }
 
 .tab_area li {
@@ -48,12 +49,6 @@
 ul li {
 	list-style: none;
 	float: left;
-}
-
-.main_inner {
-	padding: 20px 40px;
-	height: 64px;
-	min-width: 320px;
 }
 
 .gnb_area {

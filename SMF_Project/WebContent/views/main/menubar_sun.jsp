@@ -117,6 +117,13 @@ button.back {
 	position: relative;
 	background-size: cover;
 }
+
+#main_logo{
+	width: 130px;
+	position: absolute;
+	top: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -193,8 +200,10 @@ button.back {
 					</ul>
 				</div>
 			</div>
+			
+			
 			<div class="header_main">
-				<div class="main_inner">구해줘패션(로고 삽입 예정)</div>
+				<div class="main_inner" ><img id="main_logo" src="${pageContext.request.contextPath}/resources/main/logo.png"></div>
 				<div class="gnb_area">
 					<nav class="gnb">
 						<ul class="gnb_list">
