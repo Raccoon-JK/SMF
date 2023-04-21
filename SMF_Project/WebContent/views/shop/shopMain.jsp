@@ -475,13 +475,6 @@
     	<jsp:include page="/views/main/footer.jsp" />
     </div>
     <script>
-        $(function(){
-            $('.productPrice').each(function(index, item){
-                // console.log(parseInt(item.textContent.replace(/[^0-9]/g, "")).toLocaleString())
-                item.textContent = parseInt(item.textContent.replace(/[^0-9]/g, "")).toLocaleString()+'원'
-            });
-        })
-
         
         $('#deleteBtn').click(function() {
             $('#searchMain').val("");
