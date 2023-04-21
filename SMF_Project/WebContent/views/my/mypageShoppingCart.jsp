@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- 	<jsp:include page="/views/common/menubar_sun.jsp" /> --%>
+	<jsp:include page="/views/main/menubar_sun.jsp" />
     <div id="mypage_wrapper">
     	<jsp:include page="mypageMenu.jsp"></jsp:include>
     	<div id="mypage_content_wrapper">
@@ -66,7 +66,7 @@
 										<span id="total_priceVal"></span>
 			                        </div>
 			                        <div id="buyBtn_div">
-			                            <a href="#"><button type="submit">결제하기</button></a> <!-- 회원은 하나의 재고 상품에 한번만 장바구니에 담기 가능 -->
+			                            <button type="submit" class="customAadd" id="orderBtn">결제하기</button> <!-- 회원은 하나의 재고 상품에 한번만 장바구니에 담기 가능 -->
 			                        </div>
 			                    </div>
 			                </div>

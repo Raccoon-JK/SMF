@@ -7,3 +7,19 @@
     display: flex;
     justify-content: space-around;
 }
+form p{
+    margin: 0;
+}
+.accountCardTitle{
+    font-weight: 700;
+    font-size: 23px;
+}
+form>div>p{
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(34,34,34,.5);
+    margin-bottom: 0px;
+}
+form>div{
+    margin-top: 20px;
+}

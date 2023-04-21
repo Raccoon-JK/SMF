@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<%= contextPath %>/resources/dressroom/css/dressroomMain.css">
 </head>
 <body>
-
+<jsp:include page="/views/main/menubar_sun.jsp" />
 	<section id="main">
 
 		<div class="container">
@@ -434,6 +434,7 @@
 	<section id="selectbox">
     <div><h3>코디에 사용된 제품</h3></div>
     <div id="selectboxList">
+		<div id="selectboxListInformation"></div>
     </div>
     
   </section>
@@ -443,7 +444,7 @@
             var previousContent;
 
             // 클릭 이벤트 핸들러 등록 함수
-            function listBackHandlers() {
+            function itemHandlers() {
                 $(".rightbox").click(function(){
 					 var className = $(this).parent('section').attr('class')
                     // Ajax 요청 이전의 내용을 저장
@@ -467,7 +468,8 @@
 								var imgId = "img"+index;
 								str += '<div class="rightboxSelectList">'
                                            +'<img id="'+imgId+'_'+item.imgNo+'" class="itemObject" src="/SMF_Project'+item.imgPath+item.imgName+'"/>'
-										   +'<div class="itemObjectInformation">'+item.companyPrice+'원</div>'
+										   +'<div class="itemObjectInformationName">'+item.productName+'</div>'
+										   +'<div class="itemObjectInformation">'+item.companyPrice.toLocaleString()+'원</div>'
                                        +'</div>'
 								});
 								str += '</section>';
@@ -492,7 +494,7 @@
             $("#backButton").hide();
 
             // 페이지 로딩 시 클릭 이벤트 핸들러 등록
-            listBackHandlers();
+            itemHandlers();
 			
 
             $("#backButton").click(function() {
@@ -505,7 +507,7 @@
 				$("#itemListboxList").off("mousedown", ".itemObject", makeCopyDragEvent);
 				
                 // 다시 클릭 이벤트 핸들러 등록
-                listBackHandlers();
+                itemHandlers();
             });
         });
 		
