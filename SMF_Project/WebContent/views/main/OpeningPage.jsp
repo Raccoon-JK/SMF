@@ -20,11 +20,22 @@
 
 .video_frame {
 	width: 730px;
-	height: 520px;
+	height: 410px;
 	background-color: gray;
 	position: absolute;
 	top: 80px;
 	left: 430px;
+}
+
+.opening_title {
+	width: 400px;
+	height: 105px;
+	position: absolute;
+	bottom: 374px;
+	left: 760px;
+	background-color: rgb(198, 202, 196);
+	border: inset 5px;
+	text-align: center;
 }
 
 .opening_button {
@@ -68,6 +79,9 @@ video {
 			<video id="myVideo" autoplay controls>
 				<source src="resources/main/Wildlife.webm" type="video/webm">
 			</video>
+		</div>
+		<div class="opening_title">
+			구해줘패션 (로고삽입 예정)
 		</div>
 		<button class="opening_button" id="closeBtn">시작하기</button>
 		<div class="show_check">

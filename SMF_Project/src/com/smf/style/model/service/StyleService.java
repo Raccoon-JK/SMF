@@ -36,6 +36,22 @@ public class StyleService {
 		return result1*result2;
 	}
 	
+	public int deletePost(int postNo) {
+		Connection conn = getConnection();
+		
+		int result = new StyleDao().deletePost(conn, postNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 	
 	
 	public ArrayList<StylePost> selectPostList(){
@@ -88,7 +104,6 @@ public class StyleService {
 			list2.add(new StyleDao().selectPostImgList2(conn,  list.get(i).getPostNo()));			
 		}
 		
-		System.out.println(list);
 		close(conn);
 		
 		return list2;
@@ -179,6 +194,22 @@ public class StyleService {
 			close(conn);
 			
 			return list;
+	}
+	
+	public int deleteComment(int cNo) {
+		Connection conn = getConnection();
+		
+		int result = new StyleDao().deleteComment(conn, cNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	public PostImg selectPostImg(int postNo) {
