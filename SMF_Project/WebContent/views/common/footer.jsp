@@ -104,7 +104,7 @@
 						<li>1:1 문의하기는 PC버전에서만 가능합니다.</li>
 					</ul>
 					<div class="question_box">
-						<button class="ask">자주 묻는 질문</button>
+						<a href="${pageContext.request.contextPath}/Faqlist.no"><button class="ask">자주 묻는 질문</button></a>
 					</div>
 				</div>
 			</div>
