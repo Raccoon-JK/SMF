@@ -41,7 +41,7 @@
 						</div>
 	            	</div>
             	</div>
-            	<div class="mypage_box" id="delivery_summary">
+            	<!-- <div class="mypage_box" id="delivery_summary">
             		<div id="delivery_title">
             			<div id="shoppingcart">
             				<span class="mypageInfo_titleText">
@@ -81,7 +81,7 @@
             				</div>
             			</div>
             		</div>
-            	</div>
+            	</div> -->
             	<div class="mypage_box" id="interest_summary">
             		<div id="interest_title">
             			<div id="interest">

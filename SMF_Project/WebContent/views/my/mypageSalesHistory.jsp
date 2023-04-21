@@ -34,9 +34,9 @@
                 </div>
                 <div class="dateSelect_box">
                     <div class="decentBtn_box">
-                        <button type="button" class="monthBtn" value="2">최근 2개월</button>
-                        <button type="button" class="monthBtn" value="4"> 4개월</button>
-                        <button type="button" class="monthBtn" value="6"> 6개월</button>
+                        <button type="button" class="monthBtn customBtn" value="2">최근 2개월</button>
+                        <button type="button" class="monthBtn customBtn" value="4"> 4개월</button>
+                        <button type="button" class="monthBtn customBtn" value="6"> 6개월</button>
                     </div>
                     <div class="duration_box">
                         <input type="date" name="duration_start" id="">
