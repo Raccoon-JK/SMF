@@ -35,7 +35,7 @@ public class WeatherCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 현재 날짜와 시간을 구합니다.
+		// 현재 날짜와 시간을 구하기.
         Date d = new Date();
         SimpleDateFormat f1 = new SimpleDateFormat("yyyyMMdd");
         String date = f1.format(d);

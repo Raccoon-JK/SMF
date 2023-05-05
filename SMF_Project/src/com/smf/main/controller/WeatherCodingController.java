@@ -33,7 +33,7 @@ public class WeatherCodingController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String urlStr = "http://localhost:8080/SMF_Project/Weather.we";
+        String urlStr = "http://localhost:8085/SMF_Project/Weather.we";
 
         URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();

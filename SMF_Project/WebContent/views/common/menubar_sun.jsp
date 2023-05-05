@@ -10,6 +10,7 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 
 char weather = 's';
 %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>

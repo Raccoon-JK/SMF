@@ -31,7 +31,7 @@ public class WeatherNumberController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        URL url = new URL("http://localhost:8080/SMF_Project/WeatherCoding.wc");
+        URL url = new URL("http://localhost:8085/SMF_Project/WeatherCoding.wc");
         Scanner scanner = new Scanner(url.openStream());
 
         // HTML 문서에서 숫자를 추출
