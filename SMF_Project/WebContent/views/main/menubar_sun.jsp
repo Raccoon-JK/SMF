@@ -19,7 +19,7 @@ WeatherNumberController weatherServlet = new WeatherNumberController();
 // init() 메서드 실행
 weatherServlet.init();
 // getWeather() 메서드로 날씨 정보 가져오기
-String weather = "1";
+String weather = "5";
 %>
 <!DOCTYPE html>
 <html>
